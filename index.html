@@ -68,6 +68,14 @@
     background: var(--orange); color: var(--white);
   }
 
+  .nav-routes {
+    color: var(--gray-light);
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-routes:hover { color: var(--white); }
+
   .nav-cta {
     background: var(--orange); color: var(--white);
     border: none; padding: 10px 24px; border-radius: 2px;
@@ -356,10 +364,94 @@
 
   .service-link:hover { gap: 16px; }
 
+  /* ─── COVERAGE ─── */
+  .coverage {
+    padding: 120px 64px;
+    background: var(--gray);
+  }
+
+  .coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 32px;
+  }
+
+  .coverage-region {
+    background: var(--black);
+    padding: 40px 32px;
+  }
+
+  .coverage-region-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--gray-mid);
+  }
+
+  .coverage-flag { font-size: 20px; }
+
+  .coverage-region-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 2px;
+  }
+
+  .coverage-countries {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+
+  .coverage-country {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 12px;
+    background: var(--gray);
+    text-decoration: none;
+    color: var(--gray-light);
+    font-size: 13px;
+    transition: all 0.2s;
+    border-left: 2px solid transparent;
+  }
+
+  .coverage-country:hover {
+    color: var(--white);
+    border-left-color: var(--orange);
+    background: #222;
+    padding-left: 16px;
+  }
+
+  .coverage-country.active {
+    color: var(--white);
+    border-left-color: var(--orange);
+  }
+
+  .coverage-mode {
+    font-size: 10px; letter-spacing: 1px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .coverage-country.active .coverage-mode,
+  .coverage-country:hover .coverage-mode {
+    color: var(--orange);
+  }
+
+  .coverage-note {
+    text-align: center;
+    font-size: 13px; color: var(--gray-light);
+    padding: 24px;
+    border: 1px solid var(--gray-mid);
+    background: var(--black);
+  }
+
+  .coverage-note a {
+    color: var(--orange); text-decoration: none;
+  }
+
+  .coverage-note a:hover { text-decoration: underline; }
+
   /* ─── HOW IT WORKS ─── */
   .how {
     padding: 120px 64px;
-    background: var(--gray);
+    background: var(--black);
     position: relative; overflow: hidden;
   }
 
@@ -380,7 +472,7 @@
 
   .how-step {
     padding: 48px 32px;
-    background: var(--black);
+    background: var(--gray);
     position: relative;
   }
 
@@ -484,35 +576,75 @@
   /* ─── FOOTER ─── */
   footer {
     border-top: 1px solid var(--gray-mid);
-    padding: 48px 64px;
-    display: flex; align-items: center; justify-content: space-between;
+    padding: 64px 64px 48px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 64px;
+    margin-bottom: 48px;
+    align-items: start;
   }
 
   .footer-logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 24px; letter-spacing: 4px;
+    display: block; margin-bottom: 12px;
   }
 
   .footer-logo span { color: var(--orange); }
+
+  .footer-tagline {
+    font-size: 12px; color: var(--text-muted);
+    letter-spacing: 1px; line-height: 1.6;
+    max-width: 200px;
+  }
+
+  .footer-col-title {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 16px;
+  }
+
+  .footer-col-links {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+
+  .footer-col-links a {
+    font-size: 12px; color: var(--gray-light); text-decoration: none;
+    letter-spacing: 1px; transition: color 0.2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .footer-col-links a:hover { color: var(--orange); }
+
+  .footer-col-links a .arr { font-size: 10px; opacity: 0; transform: translateX(-4px); transition: all 0.2s; }
+  .footer-col-links a:hover .arr { opacity: 1; transform: translateX(0); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--gray-mid);
+    padding-top: 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
 
   .footer-copy {
     font-size: 12px; color: var(--text-muted);
     letter-spacing: 1px;
   }
 
-  .footer-links {
-    display: flex; gap: 32px;
+  /* ─── FADE UP ANIMATION ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .footer-links a {
-    font-size: 12px; color: var(--gray-light); text-decoration: none;
-    letter-spacing: 1px; text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--orange); }
-
-  /* ─── LANG CONTENT ─── */
+  /* ─── LANG ─── */
   [data-lang="tr"] { display: none; }
   body.tr [data-lang="en"] { display: none; }
   body.tr [data-lang="tr"] { display: block; }
@@ -526,17 +658,20 @@
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { padding: 120px 32px 60px; }
     .hero-right { height: 400px; }
-    .services, .how, .contact { padding: 80px 32px; }
+    .services, .how, .contact, .coverage { padding: 80px 32px; }
+    .coverage-grid { grid-template-columns: 1fr 1fr; }
     .services-grid { grid-template-columns: 1fr; }
     .how-grid { grid-template-columns: 1fr 1fr; }
     .contact { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 24px; text-align: center; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
   }
 
   @media (max-width: 640px) {
     nav { padding: 16px 20px; }
     .hero-left { padding: 100px 20px 48px; }
-    .services, .how, .contact { padding: 60px 20px; }
+    .services, .how, .contact, .coverage { padding: 60px 20px; }
+    .coverage-grid { grid-template-columns: 1fr; }
     .how-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
     .hero-stats { flex-wrap: wrap; gap: 24px; left: 20px; }
@@ -554,6 +689,10 @@
       <button class="active" id="btn-en">EN</button>
       <button id="btn-tr">TR</button>
     </div>
+    <a href="#coverage" class="nav-routes">
+      <span data-lang="en">Routes</span>
+      <span data-lang="tr">Güzergahlar</span>
+    </a>
     <a href="#contact" class="nav-cta">
       <span data-lang="en">Get a Quote</span>
       <span data-lang="tr">Teklif Al</span>
@@ -621,13 +760,13 @@
     <span class="ticker-item">AIR FREIGHT</span>
     <span class="ticker-item">SEA FREIGHT</span>
     <span class="ticker-item">ROAD FREIGHT</span>
-    <span class="ticker-item">IMPORT & EXPORT</span>
+    <span class="ticker-item">IMPORT &amp; EXPORT</span>
     <span class="ticker-item">GLOBAL COVERAGE</span>
     <span class="ticker-item">REAL-TIME QUOTES</span>
     <span class="ticker-item">AIR FREIGHT</span>
     <span class="ticker-item">SEA FREIGHT</span>
     <span class="ticker-item">ROAD FREIGHT</span>
-    <span class="ticker-item">IMPORT & EXPORT</span>
+    <span class="ticker-item">IMPORT &amp; EXPORT</span>
     <span class="ticker-item">GLOBAL COVERAGE</span>
     <span class="ticker-item">REAL-TIME QUOTES</span>
   </div>
@@ -681,6 +820,137 @@
         <span data-lang="tr">Teklif Al →</span>
       </a>
     </div>
+  </div>
+</section>
+
+<!-- GLOBAL COVERAGE -->
+<section class="coverage" id="coverage">
+  <div class="section-label">
+    <span data-lang="en">Global Coverage</span>
+    <span data-lang="tr">Global Kapsam</span>
+  </div>
+  <h2 class="section-title" data-lang="en">WE MOVE CARGO<br>EVERYWHERE.</h2>
+  <h2 class="section-title" data-lang="tr">HER YERE<br>TAŞIYORUZ.</h2>
+
+  <div class="coverage-grid">
+
+    <div class="coverage-region fade-up">
+      <div class="coverage-region-header">
+        <span class="coverage-flag">🌍</span>
+        <h3 class="coverage-region-title" data-lang="en">Europe</h3>
+        <h3 class="coverage-region-title" data-lang="tr">Avrupa</h3>
+      </div>
+      <div class="coverage-countries">
+        <a href="turkey-germany-freight.html" class="coverage-country active">
+          <span>Germany</span><span class="coverage-mode">Air · Sea · Road</span>
+        </a>
+        <a href="turkey-spain-freight.html" class="coverage-country active">
+          <span>Spain</span><span class="coverage-mode">Air · Sea · Road</span>
+        </a>
+        <a href="turkey-netherlands-freight.html" class="coverage-country active">
+          <span>Netherlands</span><span class="coverage-mode">Air · Sea · Road</span>
+        </a>
+        <a href="turkey-poland-freight.html" class="coverage-country active">
+          <span>Poland</span><span class="coverage-mode">Air · Sea · Road</span>
+        </a>
+        <a href="turkey-italy-freight.html" class="coverage-country active">
+          <span>Italy</span><span class="coverage-mode">Air · Sea · Road</span>
+        </a>
+        <a href="turkey-france-freight.html" class="coverage-country active">
+          <span>France</span><span class="coverage-mode">Air · Sea · Road</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>Belgium</span><span class="coverage-mode">Air · Sea · Road</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>UK</span><span class="coverage-mode">Air · Sea · Road</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>Turkey</span><span class="coverage-mode">Air · Sea · Road</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="coverage-region fade-up">
+      <div class="coverage-region-header">
+        <span class="coverage-flag">🌏</span>
+        <h3 class="coverage-region-title" data-lang="en">Asia Pacific</h3>
+        <h3 class="coverage-region-title" data-lang="tr">Asya Pasifik</h3>
+      </div>
+      <div class="coverage-countries">
+        <a href="#contact" class="coverage-country active">
+          <span>China</span><span class="coverage-mode">Air · Sea</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>India</span><span class="coverage-mode">Air · Sea</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>Japan</span><span class="coverage-mode">Air · Sea</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>South Korea</span><span class="coverage-mode">Air · Sea</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>Vietnam</span><span class="coverage-mode">Sea</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>Bangladesh</span><span class="coverage-mode">Air · Sea</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="coverage-region fade-up">
+      <div class="coverage-region-header">
+        <span class="coverage-flag">🌎</span>
+        <h3 class="coverage-region-title" data-lang="en">Americas</h3>
+        <h3 class="coverage-region-title" data-lang="tr">Amerika</h3>
+      </div>
+      <div class="coverage-countries">
+        <a href="#contact" class="coverage-country active">
+          <span>USA</span><span class="coverage-mode">Air · Sea</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>Canada</span><span class="coverage-mode">Air · Sea</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>Brazil</span><span class="coverage-mode">Air · Sea</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>Mexico</span><span class="coverage-mode">Air · Sea</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="coverage-region fade-up">
+      <div class="coverage-region-header">
+        <span class="coverage-flag">🌍</span>
+        <h3 class="coverage-region-title" data-lang="en">Middle East &amp; Africa</h3>
+        <h3 class="coverage-region-title" data-lang="tr">Orta Doğu &amp; Afrika</h3>
+      </div>
+      <div class="coverage-countries">
+        <a href="#contact" class="coverage-country active">
+          <span>UAE</span><span class="coverage-mode">Air · Sea · Road</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>Saudi Arabia</span><span class="coverage-mode">Air · Sea · Road</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>Egypt</span><span class="coverage-mode">Air · Sea · Road</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>South Africa</span><span class="coverage-mode">Air · Sea</span>
+        </a>
+        <a href="#contact" class="coverage-country active">
+          <span>Nigeria</span><span class="coverage-mode">Sea</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="coverage-note fade-up">
+    <span data-lang="en">Don't see your destination? We ship to 150+ countries. <a href="#contact">Get in touch →</a></span>
+    <span data-lang="tr">Hedef ülkenizi görmüyor musunuz? 150'den fazla ülkeye gönderim yapıyoruz. <a href="#contact">İletişime geçin →</a></span>
   </div>
 </section>
 
@@ -744,7 +1014,9 @@
       <div class="contact-detail-icon">📧</div>
       <div class="contact-detail-text">
         <div class="contact-detail-label">Email</div>
-        <div class="contact-detail-value"><a href="mailto:info@canxansa.com" style="color:inherit;text-decoration:none;">info@canxansa.com</a></div>
+        <div class="contact-detail-value">
+          <a href="mailto:info@canxansa.com" style="color:inherit;text-decoration:none;">info@canxansa.com</a>
+        </div>
       </div>
     </div>
     <div class="contact-detail">
@@ -828,21 +1100,44 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">CAN<span>X</span>ANSA</div>
-  <div class="footer-copy">© 2026 CANXANSA OÜ. All rights reserved.</div>
-  <div class="footer-links">
-    <a href="#services">
-      <span data-lang="en">Services</span>
-      <span data-lang="tr">Hizmetler</span>
-    </a>
-    <a href="#how">
-      <span data-lang="en">How It Works</span>
-      <span data-lang="tr">Nasıl Çalışır</span>
-    </a>
-    <a href="#contact">
-      <span data-lang="en">Contact</span>
-      <span data-lang="tr">İletişim</span>
-    </a>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="footer-logo">CAN<span>X</span>ANSA</span>
+      <p class="footer-tagline">Global freight forwarding. Air, sea &amp; road.</p>
+    </div>
+
+    <div>
+      <div class="footer-col-title">
+        <span data-lang="en">Services</span>
+        <span data-lang="tr">Hizmetler</span>
+      </div>
+      <div class="footer-col-links">
+        <a href="#services"><span data-lang="en">Air Freight</span><span data-lang="tr">Hava Kargo</span><span class="arr">→</span></a>
+        <a href="#services"><span data-lang="en">Sea Freight</span><span data-lang="tr">Deniz Kargo</span><span class="arr">→</span></a>
+        <a href="#services"><span data-lang="en">Road Freight</span><span data-lang="tr">Kara Kargo</span><span class="arr">→</span></a>
+        <a href="#how"><span data-lang="en">How It Works</span><span data-lang="tr">Nasıl Çalışır</span><span class="arr">→</span></a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-col-title">
+        <span data-lang="en">Contact</span>
+        <span data-lang="tr">İletişim</span>
+      </div>
+      <div class="footer-col-links">
+        <a href="mailto:info@canxansa.com">info@canxansa.com <span class="arr">→</span></a>
+        <a href="#contact">
+          <span data-lang="en">Get a Quote</span>
+          <span data-lang="tr">Teklif Al</span>
+          <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 CANXANSA OÜ. All rights reserved.</div>
+    <div class="footer-copy">Tallinn, Estonia · info@canxansa.com</div>
   </div>
 </footer>
 
@@ -874,7 +1169,7 @@
   const savedLang = localStorage.getItem('canxansa-lang');
   if (savedLang === 'tr') setLang('tr');
 
-  // Form submit: fetch ile gönder, sonra kendi thank-you sayfasına yönlendir
+  // Form submit
   document.getElementById('quote-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const lang = document.body.classList.contains('tr') ? 'tr' : 'en';
@@ -882,6 +1177,7 @@
     btn.disabled = true;
     btn.textContent = lang === 'tr' ? 'Gönderiliyor...' : 'Sending...';
 
+    const originalHTML = btn.innerHTML;
     try {
       const res = await fetch('https://formspree.io/f/mpqykzop', {
         method: 'POST',
@@ -895,8 +1191,9 @@
       }
     } catch {
       btn.disabled = false;
-      btn.textContent = lang === 'tr' ? 'Hata! Tekrar dene' : 'Error! Try again';
+      btn.innerHTML = originalHTML;
       btn.style.background = '#c00';
+      setTimeout(() => { btn.style.background = ''; }, 3000);
     }
   });
 
