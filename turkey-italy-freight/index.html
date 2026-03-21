@@ -20,10 +20,10 @@
     --gray-light: #888;
     --text-muted: #555;
   }
-
+ 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-
+ 
   body {
     background: var(--black);
     color: var(--white);
@@ -31,7 +31,7 @@
     font-weight: 300;
     overflow-x: hidden;
   }
-
+ 
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -54,20 +54,20 @@
     transition: background 0.2s;
   }
   .nav-cta:hover { background: var(--orange-dim); }
-
+ 
   /* HERO */
   .hero {
     min-height: 100vh;
     display: grid; grid-template-columns: 1fr 1fr;
     position: relative; overflow: hidden;
   }
-
+ 
   .hero-left {
     display: flex; flex-direction: column; justify-content: center;
     padding: 140px 64px 80px;
     position: relative; z-index: 2;
   }
-
+ 
   .breadcrumb {
     font-size: 11px; color: var(--gray-light);
     letter-spacing: 1px; margin-bottom: 24px;
@@ -75,7 +75,7 @@
   .breadcrumb a { color: var(--gray-light); text-decoration: none; }
   .breadcrumb a:hover { color: var(--orange); }
   .breadcrumb span { color: var(--orange); }
-
+ 
   .hero-tag {
     font-size: 11px; font-weight: 500; letter-spacing: 3px;
     text-transform: uppercase; color: var(--orange);
@@ -86,7 +86,7 @@
     content: ''; display: block;
     width: 32px; height: 1px; background: var(--orange);
   }
-
+ 
   h1 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(56px, 7vw, 96px);
@@ -94,13 +94,13 @@
     margin-bottom: 40px;
   }
   h1 .accent { color: var(--orange); }
-
+ 
   .hero-sub {
     font-size: 16px; line-height: 1.7;
     color: var(--gray-light); max-width: 420px;
     margin-bottom: 48px;
   }
-
+ 
   .hero-modes {
     display: flex; gap: 8px; margin-bottom: 48px; flex-wrap: wrap;
   }
@@ -115,9 +115,9 @@
     width: 6px; height: 6px; border-radius: 50%;
     background: var(--orange);
   }
-
+ 
   .hero-actions { display: flex; gap: 16px; align-items: center; }
-
+ 
   .btn-primary {
     background: var(--orange); color: var(--white);
     padding: 16px 36px; border: none; border-radius: 2px;
@@ -126,7 +126,7 @@
     transition: all 0.2s; text-decoration: none; display: inline-block;
   }
   .btn-primary:hover { background: var(--orange-dim); transform: translateY(-1px); }
-
+ 
   /* HERO RIGHT — route visual */
   .hero-right {
     position: relative; overflow: hidden;
@@ -192,7 +192,7 @@
     box-shadow: 0 0 20px var(--orange);
     flex-shrink: 0;
   }
-
+ 
   .transit-cards {
     display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 2px; margin: 0 40px;
@@ -218,7 +218,7 @@
     font-size: 11px; color: var(--gray-light);
     margin-top: 4px; line-height: 1.5;
   }
-
+ 
   /* TICKER */
   .ticker {
     background: var(--orange); padding: 14px 0;
@@ -235,7 +235,7 @@
   }
   .ticker-item::after { content: '●'; font-size: 8px; color: rgba(255,255,255,0.5); }
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
+ 
   /* STATS */
   .stats {
     padding: 80px 64px;
@@ -257,7 +257,7 @@
     letter-spacing: 2px; text-transform: uppercase;
     margin-top: 8px;
   }
-
+ 
   /* SERVICES */
   .services { padding: 120px 64px; }
   .section-label {
@@ -312,7 +312,7 @@
   .spec-row:last-child { border-bottom: none; }
   .spec-key { color: var(--gray-light); }
   .spec-val { color: var(--orange); font-weight: 500; }
-
+ 
   /* FAQ */
   .faq { padding: 120px 64px; background: var(--gray); }
   .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 64px; }
@@ -327,7 +327,7 @@
     font-size: 20px; letter-spacing: 1px; margin-bottom: 16px;
   }
   .faq-a { font-size: 14px; line-height: 1.7; color: var(--gray-light); }
-
+ 
   /* CONTACT */
   .contact {
     padding: 120px 64px;
@@ -360,7 +360,7 @@
     transition: background 0.2s; margin-top: 8px;
   }
   .form-submit:hover { background: var(--orange-dim); }
-
+ 
   /* RELATED */
   .related { padding: 80px 64px; }
   .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 48px; }
@@ -390,7 +390,7 @@
     transition: all 0.2s;
   }
   .related-card:hover .related-arrow { opacity: 1; transform: translateX(0); }
-
+ 
   /* FOOTER */
   footer {
     border-top: 1px solid var(--gray-mid);
@@ -406,7 +406,7 @@
     letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s;
   }
   .footer-links a:hover { color: var(--orange); }
-
+ 
   /* RESPONSIVE */
   @media (max-width: 1024px) {
     nav { padding: 20px 32px; }
@@ -429,7 +429,7 @@
     .form-row { grid-template-columns: 1fr; }
     .related-grid { grid-template-columns: 1fr; }
   }
-
+ 
   /* Animations */
   .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
@@ -438,12 +438,12 @@
 </style>
 </head>
 <body>
-
+ 
 <nav>
   <a href="../index.html" class="nav-logo">CAN<span>X</span>ANSA</a>
   <a href="#contact" class="nav-cta">Get a Quote</a>
 </nav>
-
+ 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
@@ -462,7 +462,7 @@
       <a href="#contact" class="btn-primary">Get a Free Quote</a>
     </div>
   </div>
-
+ 
   <div class="hero-right">
     <div class="route-visual">
       <div class="route-line">
@@ -480,7 +480,7 @@
         </div>
         <div class="route-dot"></div>
       </div>
-
+ 
       <div class="transit-cards">
         <div class="transit-card">
           <div class="transit-mode">✈️</div>
@@ -504,7 +504,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner">
@@ -522,7 +522,7 @@
     <span class="ticker-item">1-HOUR QUOTES</span>
   </div>
 </div>
-
+ 
 <!-- STATS -->
 <div class="stats">
   <div class="stat-box fade-up">
@@ -537,14 +537,14 @@
     <div class="stat-num">24<span>/7</span></div>
     <div class="stat-label">Support</div>
   </div>
-
+ 
 </div>
-
+ 
 <!-- SERVICES -->
 <section class="services" id="services">
   <div class="section-label">Shipping Options</div>
   <h2 class="section-title">TURKEY ↔ ITALY<br>FREIGHT OPTIONS.</h2>
-
+ 
   <div class="services-grid">
     <div class="service-card fade-up">
       <span class="service-num">01</span>
@@ -557,7 +557,7 @@
         <div class="spec-row"><span class="spec-key">Airports</span><span class="spec-val">IST / SAW → MXP / FCO</span></div>
       </div>
     </div>
-
+ 
     <div class="service-card fade-up">
       <span class="service-num">02</span>
       <span class="service-icon">🚢</span>
@@ -569,7 +569,7 @@
         <div class="spec-row"><span class="spec-key">Ports</span><span class="spec-val">IST / MRS → TRS / GOA</span></div>
       </div>
     </div>
-
+ 
     <div class="service-card fade-up">
       <span class="service-num">03</span>
       <span class="service-icon">🚛</span>
@@ -583,7 +583,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="section-label">Common Questions</div>
@@ -615,7 +615,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-left">
@@ -639,7 +639,7 @@
       </div>
     </div>
   </div>
-
+ 
   <div class="contact-right">
     <form id="quote-form">
       <input type="hidden" name="_next" value="https://canxansa.com/thank-you.html">
@@ -687,31 +687,31 @@
     </form>
   </div>
 </section>
-
+ 
 <!-- RELATED ROUTES -->
 <section class="related">
   <div class="section-label">Other Routes</div>
   <h2 class="section-title" style="margin-bottom:0;">MORE ROUTES<br>FROM TURKEY.</h2>
   <div class="related-grid" style="margin-top:48px;">
-    <a href="turkey-germany-freight.html" class="related-card fade-up">
+    <a href="/turkey-germany-freight/" class="related-card fade-up">
       <div class="related-flag">🇩🇪</div>
       <div class="related-route">Turkey ↔ Germany</div>
       <div class="related-desc">Air, sea & road to/from Frankfurt, Hamburg</div>
       <span class="related-arrow">→</span>
     </a>
-    <a href="turkey-spain-freight.html" class="related-card fade-up">
+    <a href="/turkey-spain-freight/" class="related-card fade-up">
       <div class="related-flag">🇪🇸</div>
       <div class="related-route">Turkey ↔ Spain</div>
       <div class="related-desc">Air, sea & road to/from Madrid, Barcelona</div>
       <span class="related-arrow">→</span>
     </a>
-    <a href="turkey-netherlands-freight.html" class="related-card fade-up">
+    <a href="/turkey-netherlands-freight/" class="related-card fade-up">
       <div class="related-flag">🇳🇱</div>
       <div class="related-route">Turkey ↔ Netherlands</div>
       <div class="related-desc">Air, sea & road to/from Rotterdam, Amsterdam</div>
       <span class="related-arrow">→</span>
     </a>
-    <a href="turkey-france-freight.html" class="related-card fade-up">
+    <a href="/turkey-france-freight/" class="related-card fade-up">
       <div class="related-flag">🇫🇷</div>
       <div class="related-route">Turkey ↔ France</div>
       <div class="related-desc">Air & road freight to/from Paris, Lyon</div>
@@ -719,7 +719,7 @@
     </a>
   </div>
 </section>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">CAN<span>X</span>ANSA</div>
@@ -730,7 +730,7 @@
     <a href="#contact">Contact</a>
   </div>
 </footer>
-
+ 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   document.getElementById('quote-form').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -745,5 +745,17 @@
         headers: { 'Accept': 'application/json' }
       });
       if (res.ok) {
-        window.location.href = '../thank-you.html?lang=en';
-      } els
+        window.location.href = '/thank-you.html?lang=en';
+      } else {
+        throw new Error('failed');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Error! Try again';
+      btn.style.background = '#c00';
+    }
+  });
+</script>
+</body>
+</html>
+ 
