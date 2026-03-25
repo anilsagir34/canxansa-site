@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CANXANSA — Terms & Conditions</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="shortcut icon" href="../favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f0eb;
+    --orange: #e8521a;
+    --orange-dim: #c44010;
+    --gray: #1a1a1a;
+    --gray-mid: #2e2e2e;
+    --gray-light: #888;
+    --text-muted: #555;
+  }
+ 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+ 
+  /* ─── NAV ─── */
+  body > nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 48px;
+    background: rgba(10,10,10,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--gray-mid);
+  }
+ 
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 4px;
+    color: var(--white);
+    text-decoration: none;
+  }
+ 
+  .nav-logo span { color: var(--orange); }
+ 
+  .nav-right { display: flex; align-items: center; gap: 32px; }
+ 
+  .lang-toggle {
+    display: flex; gap: 2px;
+    background: var(--gray); border-radius: 4px; overflow: hidden;
+  }
+ 
+  .lang-toggle button {
+    background: none; border: none; color: var(--gray-light);
+    font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
+    padding: 6px 12px; cursor: pointer; letter-spacing: 1px;
+    transition: all 0.2s;
+  }
+ 
+  .lang-toggle button.active {
+    background: var(--orange); color: var(--white);
+  }
+ 
+  .nav-back {
+    color: var(--gray-light);
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
+    transition: color 0.2s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-back:hover { color: var(--white); }
+ 
+  .nav-cta {
+    background: var(--orange); color: var(--white);
+    border: none; padding: 10px 24px; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    letter-spacing: 1px; cursor: pointer; text-transform: uppercase;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--orange-dim); }
+ 
+  /* ─── PAGE HEADER ─── */
+  .page-header {
+    padding: 160px 64px 80px;
+    background: var(--black);
+    position: relative; overflow: hidden;
+    border-bottom: 1px solid var(--gray-mid);
+  }
+ 
+  .page-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(232,82,26,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,82,26,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+ 
+  .page-header::after {
+    content: '';
+    position: absolute;
+    width: 800px; height: 500px;
+    background: radial-gradient(circle, rgba(232,82,26,0.07) 0%, transparent 65%);
+    top: 0; right: -200px;
+    pointer-events: none;
+  }
+ 
+  .header-inner {
+    position: relative; z-index: 1;
+    max-width: 900px;
+  }
+ 
+  .section-label {
+    font-size: 11px; font-weight: 500; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+ 
+  .section-label::before {
+    content: ''; width: 32px; height: 1px; background: var(--orange);
+  }
+ 
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 8vw, 112px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    margin-bottom: 32px;
+  }
+ 
+  .page-title span { color: var(--orange); }
+ 
+  .page-meta {
+    display: flex; align-items: center; gap: 32px;
+    flex-wrap: wrap;
+  }
+ 
+  .meta-item {
+    font-size: 12px; color: var(--gray-light);
+    letter-spacing: 1px;
+    display: flex; align-items: center; gap: 8px;
+  }
+ 
+  .meta-item::before {
+    content: ''; width: 4px; height: 4px;
+    background: var(--orange); border-radius: 50%;
+    flex-shrink: 0;
+  }
+ 
+  /* ─── CONTENT ─── */
+  .content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 64px 120px;
+  }
+ 
+  /* Table of contents */
+  .toc {
+    background: var(--gray);
+    border-left: 2px solid var(--orange);
+    padding: 32px 40px;
+    margin-bottom: 64px;
+  }
+ 
+  .toc-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; letter-spacing: 3px;
+    color: var(--orange); margin-bottom: 20px;
+  }
+ 
+  .toc-list {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px 48px;
+    list-style: none;
+  }
+ 
+  .toc-list li a {
+    font-size: 13px; color: var(--gray-light);
+    text-decoration: none; letter-spacing: 1px;
+    display: flex; align-items: center; gap: 10px;
+    transition: color 0.2s;
+  }
+ 
+  .toc-list li a:hover { color: var(--orange); }
+ 
+  .toc-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px; color: var(--orange); opacity: 0.5;
+    min-width: 24px;
+  }
+ 
+  /* Clause blocks */
+  .clause {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--gray-mid);
+    scroll-margin-top: 100px;
+  }
+ 
+  .clause:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+ 
+  .clause-header {
+    display: flex; align-items: baseline; gap: 20px;
+    margin-bottom: 20px;
+  }
+ 
+  .clause-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px; line-height: 1;
+    color: var(--orange); opacity: 0.25;
+    flex-shrink: 0;
+  }
+ 
+  .clause-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; letter-spacing: 2px;
+    color: var(--white);
+  }
+ 
+  .clause-body {
+    font-size: 14px; line-height: 1.85;
+    color: var(--gray-light);
+    padding-left: 68px;
+  }
+ 
+  .clause-body p { margin-bottom: 12px; }
+  .clause-body p:last-child { margin-bottom: 0; }
+ 
+  .clause-body strong {
+    color: var(--white); font-weight: 500;
+  }
+ 
+  .clause-body .highlight {
+    color: var(--orange);
+  }
+ 
+  /* Warning box */
+  .clause-warning {
+    background: rgba(232,82,26,0.08);
+    border: 1px solid rgba(232,82,26,0.25);
+    border-radius: 2px;
+    padding: 16px 20px;
+    margin-top: 16px;
+    font-size: 13px; color: var(--white);
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+ 
+  .clause-warning-icon {
+    color: var(--orange); font-size: 16px; flex-shrink: 0; line-height: 1.5;
+  }
+ 
+  /* Final note */
+  .terms-footer-note {
+    background: var(--gray);
+    border-top: 2px solid var(--orange);
+    padding: 40px;
+    margin-top: 64px;
+    font-size: 13px; line-height: 1.8;
+    color: var(--gray-light);
+  }
+ 
+  .terms-footer-note strong { color: var(--white); }
+ 
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--gray-mid);
+    padding: 64px 64px 48px;
+  }
+ 
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 64px;
+    margin-bottom: 48px;
+    align-items: start;
+  }
+ 
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px; letter-spacing: 4px;
+    display: block; margin-bottom: 12px;
+    color: var(--white); text-decoration: none;
+  }
+ 
+  .footer-logo span { color: var(--orange); }
+ 
+  .footer-tagline {
+    font-size: 12px; color: var(--text-muted);
+    letter-spacing: 1px; line-height: 1.6;
+    max-width: 200px;
+  }
+ 
+  .footer-col-title {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 16px;
+  }
+ 
+  .footer-col-links {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+ 
+  .footer-col-links a {
+    font-size: 12px; color: var(--gray-light); text-decoration: none;
+    letter-spacing: 1px; transition: color 0.2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+ 
+  .footer-col-links a:hover { color: var(--orange); }
+ 
+  .footer-col-links a .arr { font-size: 10px; opacity: 0; transform: translateX(-4px); transition: all 0.2s; }
+  .footer-col-links a:hover .arr { opacity: 1; transform: translateX(0); }
+ 
+  .footer-bottom {
+    border-top: 1px solid var(--gray-mid);
+    padding-top: 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+ 
+  .footer-copy {
+    font-size: 12px; color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+ 
+  /* ─── LANG ─── */
+  [data-lang="tr"] { display: none; }
+  body.tr [data-lang="en"] { display: none; }
+  body.tr [data-lang="tr"] { display: block; }
+  body.tr span[data-lang="tr"] { display: inline; }
+  body.tr span[data-lang="en"] { display: none; }
+  span[data-lang="tr"] { display: none; }
+ 
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    nav { padding: 20px 32px; }
+    .page-header { padding: 130px 32px 60px; }
+    .content-wrapper { padding: 60px 32px 80px; }
+    .toc-list { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    footer { padding: 48px 32px 40px; }
+  }
+ 
+  @media (max-width: 640px) {
+    nav { padding: 16px 20px; }
+    .page-header { padding: 110px 20px 48px; }
+    .content-wrapper { padding: 40px 20px 60px; }
+    .nav-back span { display: none; }
+    .clause-body { padding-left: 0; }
+    .clause-num { font-size: 36px; }
+    .footer-top { grid-template-columns: 1fr; }
+    footer { padding: 40px 20px 32px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .toc { padding: 24px; }
+    .toc-list { gap: 8px; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav>
+  <a href="../" class="nav-logo">CAN<span>X</span>ANSA</a>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="active" id="btn-en">EN</button>
+      <button id="btn-tr">TR</button>
+    </div>
+    <a href="../" class="nav-back">
+      <span>← </span>
+      <span data-lang="en">Home</span>
+      <span data-lang="tr">Ana Sayfa</span>
+    </a>
+    <a href="../#contact" class="nav-cta">
+      <span data-lang="en">Get a Quote</span>
+      <span data-lang="tr">Teklif Al</span>
+    </a>
+  </div>
+</nav>
+ 
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="header-inner">
+    <div class="section-label">
+      <span data-lang="en">Legal</span>
+      <span data-lang="tr">Hukuki Bilgi</span>
+    </div>
+    <h1 class="page-title" data-lang="en">GENERAL<br>TRANSPORT<br><span>CONDITIONS.</span></h1>
+    <h1 class="page-title" data-lang="tr">GENEL<br>TAŞIMA<br><span>KOŞULLARI.</span></h1>
+    <div class="page-meta">
+      <span class="meta-item" data-lang="en">CANXANSA OÜ · Tallinn, Estonia</span>
+      <span class="meta-item" data-lang="tr">CANXANSA OÜ · Tallinn, Estonya</span>
+      <span class="meta-item" data-lang="en">VAT: EE102968134</span>
+      <span class="meta-item" data-lang="tr">VAT: EE102968134</span>
+      <span class="meta-item" data-lang="en">Effective: 1 January 2026</span>
+      <span class="meta-item" data-lang="tr">Yürürlük Tarihi: 1 Ocak 2026</span>
+    </div>
+  </div>
+</div>
+ 
+<!-- CONTENT -->
+<div class="content-wrapper">
+ 
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc" aria-label="Table of contents">
+    <div class="toc-title" data-lang="en">CONTENTS</div>
+    <div class="toc-title" data-lang="tr">İÇİNDEKİLER</div>
+    <ul class="toc-list">
+      <li><a href="#clause-1"><span class="toc-num">01</span><span data-lang="en">Forwarder Status</span><span data-lang="tr">Forwarder Statüsü</span></a></li>
+      <li><a href="#clause-2"><span class="toc-num">02</span><span data-lang="en">Accuracy of Information</span><span data-lang="tr">Bilgi Doğruluğu</span></a></li>
+      <li><a href="#clause-3"><span class="toc-num">03</span><span data-lang="en">Limitation of Liability</span><span data-lang="tr">Sorumluluk Sınırı</span></a></li>
+      <li><a href="#clause-4"><span class="toc-num">04</span><span data-lang="en">Dangerous Goods</span><span data-lang="tr">Tehlikeli Maddeler</span></a></li>
+      <li><a href="#clause-5"><span class="toc-num">05</span><span data-lang="en">Insurance</span><span data-lang="tr">Sigorta</span></a></li>
+      <li><a href="#clause-6"><span class="toc-num">06</span><span data-lang="en">Payment Terms</span><span data-lang="tr">Ödeme Koşulları</span></a></li>
+      <li><a href="#clause-7"><span class="toc-num">07</span><span data-lang="en">Force Majeure</span><span data-lang="tr">Mücbir Sebep</span></a></li>
+      <li><a href="#clause-8"><span class="toc-num">08</span><span data-lang="en">Governing Law</span><span data-lang="tr">Uygulanacak Hukuk</span></a></li>
+    </ul>
+  </div>
+ 
+  <!-- CLAUSE 1: FORWARDER STATUS -->
+  <div class="clause" id="clause-1">
+    <div class="clause-header">
+      <div class="clause-num">01</div>
+      <h2 class="clause-title" data-lang="en">FORWARDER STATUS</h2>
+      <h2 class="clause-title" data-lang="tr">FORWARDER STATÜSÜ</h2>
+    </div>
+    <div class="clause-body">
+      <div data-lang="en">
+        <p>CANXANSA OÜ (hereinafter <strong>"CANXANSA"</strong>) acts exclusively as a <strong>freight forwarder and intermediary</strong>. CANXANSA is not a carrier and does not take physical possession of goods at any point in the transport chain.</p>
+        <p>CANXANSA arranges shipments on behalf of the client by contracting with third-party carriers — including airlines, shipping lines, road hauliers and other transport operators — in its own name or in the name of the client as agreed. All carriage is performed by such third-party carriers, whose own terms and conditions apply to the physical movement of goods.</p>
+        <p>CANXANSA assumes no liability for acts or omissions of any carrier, port authority, customs authority, warehouse operator or other third party involved in the execution of a shipment.</p>
+      </div>
+      <div data-lang="tr">
+        <p>CANXANSA OÜ (bundan böyle <strong>"CANXANSA"</strong>) münhasıran bir <strong>freight forwarder ve aracı</strong> olarak hareket etmektedir. CANXANSA, taşıyıcı değildir; taşıma zincirinin hiçbir aşamasında malları fiziksel olarak teslim almaz.</p>
+        <p>CANXANSA, müşteri adına sevkiyatları düzenlemek üzere üçüncü taraf taşıyıcılarla — havayolları, deniz taşımacılık şirketleri, kara nakliyecileri ve diğer taşıma operatörleriyle — kendi adına veya tarafların mutabakatına göre müşteri adına sözleşme yapar. Tüm taşımalar söz konusu üçüncü taraf taşıyıcılar tarafından gerçekleştirilir; malların fiziksel taşınmasında bu taşıyıcıların kendi koşulları geçerlidir.</p>
+        <p>CANXANSA, sevkiyatın yürütülmesinde yer alan herhangi bir taşıyıcının, liman otoritesinin, gümrük idaresinin, depo operatörünün veya diğer üçüncü tarafların eylem ya da ihmallerinden sorumlu değildir.</p>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- CLAUSE 2: ACCURACY OF INFORMATION -->
+  <div class="clause" id="clause-2">
+    <div class="clause-header">
+      <div class="clause-num">02</div>
+      <h2 class="clause-title" data-lang="en">ACCURACY OF INFORMATION</h2>
+      <h2 class="clause-title" data-lang="tr">BİLGİ DOĞRULUĞU</h2>
+    </div>
+    <div class="clause-body">
+      <div data-lang="en">
+        <p>The client is solely responsible for the completeness and accuracy of all shipment information provided to CANXANSA, including but not limited to: goods description, HS codes, weight, dimensions, quantity, value, country of origin, and any special handling requirements.</p>
+        <p>Any additional costs, penalties, fines, duties, demurrage charges or other expenses arising from incorrect, incomplete or misleading declarations — whether to CANXANSA, a carrier, customs authority or any other party — shall be <strong>borne exclusively by the client</strong>.</p>
+        <div class="clause-warning">
+          <span class="clause-warning-icon">▲</span>
+          <span>CANXANSA reserves the right to recover from the client, without limitation, all costs and losses resulting from inaccurate or incomplete information provided by the client or its agents.</span>
+        </div>
+      </div>
+      <div data-lang="tr">
+        <p>Müşteri, CANXANSA'ya sağlanan tüm gönderi bilgilerinin — mal tanımı, HS kodları, ağırlık, boyutlar, miktar, değer, menşe ülkesi ve özel elleçleme gereksinimleri dahil ancak bunlarla sınırlı olmaksızın — eksiksiz ve doğru olmasından münferiden sorumludur.</p>
+        <p>Hatalı, eksik veya yanıltıcı beyanlardan kaynaklanan tüm ek maliyetler, cezalar, para cezaları, gümrük vergileri, demaj ücretleri veya diğer giderler — CANXANSA'ya, bir taşıyıcıya, gümrük idaresine ya da diğer herhangi bir tarafa yapılan beyanlar nedeniyle — <strong>münhasıran müşteriye</strong> aittir.</p>
+        <div class="clause-warning">
+          <span class="clause-warning-icon">▲</span>
+          <span>CANXANSA, müşteri veya temsilcilerinin sağladığı hatalı ya da eksik bilgilerden kaynaklanan tüm maliyet ve zararları müşteriden herhangi bir sınırlama olmaksızın talep etme hakkını saklı tutar.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- CLAUSE 3: LIMITATION OF LIABILITY -->
+  <div class="clause" id="clause-3">
+    <div class="clause-header">
+      <div class="clause-num">03</div>
+      <h2 class="clause-title" data-lang="en">LIMITATION OF LIABILITY</h2>
+      <h2 class="clause-title" data-lang="tr">SORUMLULUK SINIRI</h2>
+    </div>
+    <div class="clause-body">
+      <div data-lang="en">
+        <p>To the maximum extent permitted by applicable law, the total aggregate liability of CANXANSA — whether arising in contract, tort, negligence or otherwise — for any single claim or series of related claims shall not exceed <strong class="highlight">the freight charges invoiced by CANXANSA for the specific shipment</strong> in respect of which the claim arises.</p>
+        <p>CANXANSA shall not be liable for any indirect, consequential, special or punitive damages, including loss of profit, loss of revenue, loss of business opportunity, or any other economic loss, even if CANXANSA has been advised of the possibility of such damages.</p>
+        <p>CANXANSA is not liable for losses arising from: delays caused by carriers, customs clearance issues, force majeure events, acts of third parties, or any circumstance beyond CANXANSA's direct control.</p>
+      </div>
+      <div data-lang="tr">
+        <p>Yürürlükteki mevzuatın izin verdiği azami ölçüde, CANXANSA'nın herhangi bir tek talep veya birbiriyle ilgili talepler dizisi için — sözleşmeden, haksız fiilden, ihmalden veya başka bir sebepten doğsun — toplam sorumluluğu, talebin ilgili olduğu <strong class="highlight">söz konusu sevkiyat için CANXANSA tarafından faturalanan nakliye ücretini</strong> aşamaz.</p>
+        <p>CANXANSA; kar kaybı, gelir kaybı, iş fırsatı kaybı veya diğer ekonomik kayıplar dahil olmak üzere, bu tür zararların meydana gelebileceği konusunda uyarılmış olsa dahi, dolaylı, sonuçsal, özel veya cezai nitelikteki zararlardan sorumlu tutulamaz.</p>
+        <p>CANXANSA; taşıyıcıların yol açtığı gecikmeler, gümrük işlemleri sorunları, mücbir sebep halleri, üçüncü tarafların eylemleri veya CANXANSA'nın doğrudan kontrolü dışındaki herhangi bir durumdan kaynaklanan kayıplar için sorumlu değildir.</p>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- CLAUSE 4: DANGEROUS GOODS -->
+  <div class="clause" id="clause-4">
+    <div class="clause-header">
+      <div class="clause-num">04</div>
+      <h2 class="clause-title" data-lang="en">DANGEROUS GOODS</h2>
+      <h2 class="clause-title" data-lang="tr">TEHLİKELİ MADDELER</h2>
+    </div>
+    <div class="clause-body">
+      <div data-lang="en">
+        <p>The client is solely responsible for the correct identification, classification, packaging, labelling and documentation of any dangerous, hazardous, restricted or prohibited goods in accordance with all applicable international and national regulations, including IATA DGR, IMDG Code, ADR and any customs regulations of the relevant countries.</p>
+        <p>The client must declare all dangerous goods to CANXANSA <strong>prior to booking</strong>. Failure to do so entitles CANXANSA to refuse, return, destroy or otherwise deal with such goods entirely at the client's expense and risk, without any liability to CANXANSA.</p>
+        <div class="clause-warning">
+          <span class="clause-warning-icon">▲</span>
+          <span>Undeclared dangerous goods may result in immediate cancellation of the shipment, confiscation of cargo, and full recovery of all resulting costs and penalties from the client.</span>
+        </div>
+      </div>
+      <div data-lang="tr">
+        <p>Müşteri; tehlikeli, zararlı, kısıtlı veya yasak malların, IATA DGR, IMDG Kodu, ADR ve ilgili ülkelerin gümrük mevzuatı dahil olmak üzere tüm geçerli uluslararası ve ulusal düzenlemelere uygun biçimde doğru şekilde tanımlanması, sınıflandırılması, ambalajlanması, etiketlenmesi ve belgelenmesinden münferiden sorumludur.</p>
+        <p>Müşteri, tüm tehlikeli maddeleri CANXANSA'ya <strong>rezervasyon öncesinde</strong> beyan etmek zorundadır. Bu yükümlülüğün yerine getirilmemesi halinde CANXANSA, söz konusu malları tamamen müşteri masrafı ve riski üstlenilerek reddetme, iade etme, imha etme veya başka türlü işlem yapma hakkına sahip olur; bu durumda CANXANSA'nın herhangi bir sorumluluğu doğmaz.</p>
+        <div class="clause-warning">
+          <span class="clause-warning-icon">▲</span>
+          <span>Beyan edilmemiş tehlikeli maddeler; sevkiyatın derhal iptaline, kargonun müsaderesine ve doğan tüm masraf ve cezaların müşteriden tam olarak tahsiline yol açabilir.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- CLAUSE 5: INSURANCE -->
+  <div class="clause" id="clause-5">
+    <div class="clause-header">
+      <div class="clause-num">05</div>
+      <h2 class="clause-title" data-lang="en">INSURANCE</h2>
+      <h2 class="clause-title" data-lang="tr">SİGORTA</h2>
+    </div>
+    <div class="clause-body">
+      <div data-lang="en">
+        <p>CANXANSA does <strong>not automatically arrange cargo insurance</strong> for any shipment. Unless the client makes an explicit written request for cargo insurance prior to booking, goods are transported without insurance arranged by CANXANSA.</p>
+        <p>It is the client's responsibility to arrange adequate insurance cover for their goods. If the client requests CANXANSA to arrange insurance, CANXANSA may do so as an additional service, the terms and cost of which will be communicated separately. In such cases, CANXANSA acts only as an intermediary and is not the insurer.</p>
+        <p>CANXANSA recommends that all clients arrange all-risk cargo insurance for their shipments.</p>
+      </div>
+      <div data-lang="tr">
+        <p>CANXANSA, herhangi bir sevkiyat için <strong>otomatik olarak kargo sigortası düzenlemez</strong>. Müşteri, rezervasyon öncesinde kargo sigortası için açık yazılı bir talepte bulunmadığı sürece, mallar CANXANSA tarafından sigorta düzenlenmeksizin taşınır.</p>
+        <p>Malları için yeterli sigorta güvencesi sağlamak müşterinin sorumluluğundadır. Müşterinin CANXANSA'dan sigorta düzenlemesini talep etmesi halinde CANXANSA, bu hizmeti ek bir hizmet olarak sunabilir; koşullar ve maliyet ayrıca bildirilir. Bu durumlarda CANXANSA yalnızca aracı olarak hareket eder ve sigortacı sıfatını taşımaz.</p>
+        <p>CANXANSA, tüm müşterilerin sevkiyatları için tüm risklere karşı kargo sigortası yaptırmalarını tavsiye eder.</p>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- CLAUSE 6: PAYMENT TERMS -->
+  <div class="clause" id="clause-6">
+    <div class="clause-header">
+      <div class="clause-num">06</div>
+      <h2 class="clause-title" data-lang="en">PAYMENT TERMS</h2>
+      <h2 class="clause-title" data-lang="tr">ÖDEME KOŞULLARI</h2>
+    </div>
+    <div class="clause-body">
+      <div data-lang="en">
+        <p>All freight charges and fees invoiced by CANXANSA are due on a <strong>prepayment basis</strong>. Unless otherwise agreed in writing, payment in full is required before the cargo departs — whether by loading, departure of vessel, departure of aircraft, or commencement of road transport.</p>
+        <p>CANXANSA reserves the right to withhold, delay or cancel any shipment where payment has not been received in full and in cleared funds by the agreed deadline.</p>
+        <p>Any costs, bank charges or exchange rate differences incurred in connection with payment are the sole responsibility of the client. Invoices are issued in Euros (EUR) unless otherwise agreed in writing.</p>
+        <p>Late or non-payment entitles CANXANSA to charge interest on overdue amounts in accordance with the Estonian Law of Obligations Act, and to recover all collection costs including legal fees.</p>
+      </div>
+      <div data-lang="tr">
+        <p>CANXANSA tarafından faturalanan tüm nakliye ücretleri ve diğer masraflar <strong>peşin ödeme esasına</strong> tabidir. Yazılı olarak aksi kararlaştırılmadıkça, yükleme, geminin kalkışı, uçağın kalkışı veya kara taşımacılığının başlaması gibi kargonun harekete geçmesinden önce ödemenin tamamlanması zorunludur.</p>
+        <p>CANXANSA, mutabık kalınan süre içinde ödemenin tam ve nakit olarak yapılmadığı durumlarda herhangi bir sevkiyatı alıkoyma, erteleme veya iptal etme hakkını saklı tutar.</p>
+        <p>Ödemeyle bağlantılı olarak doğan masraflar, banka ücretleri veya döviz kuru farkları münhasıran müşteriye aittir. Aksi yazılı olarak kararlaştırılmadıkça faturalar Euro (EUR) cinsinden düzenlenir.</p>
+        <p>Ödemenin gecikmesi veya yapılmaması halinde CANXANSA, Estonya Borçlar Kanunu'na uygun olarak vadesi geçmiş tutarlar üzerinden faiz talep etme ve yasal ücretler dahil tüm tahsilat masraflarını geri alma hakkına sahiptir.</p>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- CLAUSE 7: FORCE MAJEURE -->
+  <div class="clause" id="clause-7">
+    <div class="clause-header">
+      <div class="clause-num">07</div>
+      <h2 class="clause-title" data-lang="en">FORCE MAJEURE</h2>
+      <h2 class="clause-title" data-lang="tr">MÜCBİR SEBEP</h2>
+    </div>
+    <div class="clause-body">
+      <div data-lang="en">
+        <p>CANXANSA shall not be liable for any failure or delay in the performance of its obligations caused by circumstances beyond its reasonable control (<strong>"Force Majeure"</strong>), including but not limited to: acts of God, natural disasters, war, terrorism, civil unrest, strikes or industrial action (including by carriers or port operators), government actions, sanctions, pandemics, epidemics, port congestion, infrastructure failure, or any other extraordinary and unforeseeable event.</p>
+        <p>In the event of a Force Majeure, CANXANSA will notify the client as soon as reasonably practicable and will use commercially reasonable efforts to minimise the impact on the shipment. However, CANXANSA shall have no liability for costs, losses, damages or delays resulting from such events.</p>
+        <p>If a Force Majeure event persists for more than thirty (30) days, either party may cancel the affected shipment instruction by written notice, with any costs incurred up to that point settled by the client.</p>
+      </div>
+      <div data-lang="tr">
+        <p>CANXANSA, kendi makul kontrolü dışındaki koşullardan (<strong>"Mücbir Sebep"</strong>) kaynaklanan yükümlülük ifasındaki herhangi bir başarısızlık veya gecikme nedeniyle sorumlu tutulamaz. Mücbir sebepler arasında şunlar yer almakla birlikte bunlarla sınırlı değildir: doğal afetler, savaş, terör, sivil ayaklanma, grevler veya endüstriyel eylemler (taşıyıcılar veya liman operatörleri tarafından yapılanlar dahil), devlet işlemleri, yaptırımlar, salgın hastalıklar, liman sıkışıklığı, altyapı arızası veya diğer olağanüstü ve öngörülemeyen olaylar.</p>
+        <p>Mücbir sebep halinde CANXANSA, müşteriyi makul ölçüde mümkün olan en kısa sürede bilgilendirecek ve sevkiyat üzerindeki etkiyi en aza indirmek için ticari açıdan makul çabayı gösterecektir. Bununla birlikte CANXANSA, bu olaylardan kaynaklanan maliyet, kayıp, hasar veya gecikmeler için herhangi bir sorumluluk üstlenmez.</p>
+        <p>Mücbir sebep halinin otuz (30) günü aşması durumunda taraflardan herhangi biri, yazılı bildirimle etkilenen sevkiyat talimatını iptal edebilir; o tarihe kadar oluşan masraflar müşteri tarafından karşılanır.</p>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- CLAUSE 8: GOVERNING LAW -->
+  <div class="clause" id="clause-8">
+    <div class="clause-header">
+      <div class="clause-num">08</div>
+      <h2 class="clause-title" data-lang="en">GOVERNING LAW & JURISDICTION</h2>
+      <h2 class="clause-title" data-lang="tr">UYGULANACAK HUKUK & YETKİ</h2>
+    </div>
+    <div class="clause-body">
+      <div data-lang="en">
+        <p>These General Transport Conditions and any dispute, claim or matter arising out of or in connection with any shipment arranged by CANXANSA shall be governed by and construed in accordance with the <strong>laws of the Republic of Estonia</strong>, without regard to its conflict of law provisions.</p>
+        <p>Any dispute that cannot be resolved by good-faith negotiation between the parties shall be submitted to the exclusive jurisdiction of the courts of <strong>Tallinn, Estonia</strong>.</p>
+        <p>These conditions constitute the entire agreement between CANXANSA and the client with respect to the subject matter herein and supersede all prior agreements, representations or understandings. If any provision is found invalid or unenforceable, the remaining provisions shall continue in full force and effect.</p>
+        <p>For any questions regarding these conditions, contact us at <strong><a href="mailto:info@canxansa.com" style="color:var(--orange);text-decoration:none;">info@canxansa.com</a></strong>.</p>
+      </div>
+      <div data-lang="tr">
+        <p>Bu Genel Taşıma Koşulları ile CANXANSA tarafından düzenlenen herhangi bir sevkiyata ilişkin doğan ya da bununla bağlantılı her türlü uyuşmazlık, talep veya mesele, <strong>Estonya Cumhuriyeti hukuku</strong> çerçevesinde yönetilir ve yorumlanır; kanunlar ihtilafı kuralları uygulanmaz.</p>
+        <p>Taraflar arasında iyi niyetle yürütülen müzakerelerle çözülemeyen uyuşmazlıklar, <strong>Tallinn, Estonya</strong> mahkemelerinin münhasır yargı yetkisine sunulur.</p>
+        <p>Bu koşullar, CANXANSA ile müşteri arasındaki konu ile ilgili tam mutabakatı oluşturmakta olup önceki tüm anlaşmaların, beyanların veya mutabakat belgelerinin yerini almaktadır. Herhangi bir hükmün geçersiz veya uygulanamaz olduğu tespit edilirse, kalan hükümler tam olarak yürürlükte kalmaya devam eder.</p>
+        <p>Bu koşullara ilişkin sorularınız için: <strong><a href="mailto:info@canxansa.com" style="color:var(--orange);text-decoration:none;">info@canxansa.com</a></strong>.</p>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- CLOSING NOTE -->
+  <div class="terms-footer-note">
+    <div data-lang="en">
+      <strong>Acceptance.</strong> By submitting a shipment request to CANXANSA — whether via the website form, email, phone or signed Freight Instruction — the client confirms they have read, understood and accepted these General Transport Conditions in their entirety. These conditions apply to all services provided by CANXANSA OÜ.
+    </div>
+    <div data-lang="tr">
+      <strong>Kabul.</strong> CANXANSA'ya — web sitesi formu, e-posta, telefon veya imzalı Yük Talimatı aracılığıyla — sevkiyat talebi ileten müşteri, bu Genel Taşıma Koşulları'nı tamamıyla okuduğunu, anladığını ve kabul ettiğini beyan etmiş sayılır. Bu koşullar, CANXANSA OÜ tarafından sunulan tüm hizmetler için geçerlidir.
+    </div>
+  </div>
+ 
+</div>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="../" class="footer-logo">CAN<span>X</span>ANSA</a>
+      <p class="footer-tagline">Global freight forwarding. Air, sea &amp; road.</p>
+    </div>
+ 
+    <div>
+      <div class="footer-col-title">
+        <span data-lang="en">Services</span>
+        <span data-lang="tr">Hizmetler</span>
+      </div>
+      <div class="footer-col-links">
+        <a href="../#services"><span data-lang="en">Air Freight</span><span data-lang="tr">Hava Kargo</span><span class="arr">→</span></a>
+        <a href="../#services"><span data-lang="en">Sea Freight</span><span data-lang="tr">Deniz Kargo</span><span class="arr">→</span></a>
+        <a href="../#services"><span data-lang="en">Road Freight</span><span data-lang="tr">Kara Kargo</span><span class="arr">→</span></a>
+        <a href="../#how"><span data-lang="en">How It Works</span><span data-lang="tr">Nasıl Çalışır</span><span class="arr">→</span></a>
+      </div>
+    </div>
+ 
+    <div>
+      <div class="footer-col-title">
+        <span data-lang="en">Legal</span>
+        <span data-lang="tr">Hukuki</span>
+      </div>
+      <div class="footer-col-links">
+        <a href="../terms/"><span data-lang="en">Terms &amp; Conditions</span><span data-lang="tr">Genel Taşıma Koşulları</span><span class="arr">→</span></a>
+        <a href="mailto:info@canxansa.com">info@canxansa.com <span class="arr">→</span></a>
+        <a href="../#contact">
+          <span data-lang="en">Get a Quote</span>
+          <span data-lang="tr">Teklif Al</span>
+          <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 CANXANSA OÜ. All rights reserved.</div>
+    <div class="footer-copy">Tallinn, Estonia · info@canxansa.com</div>
+  </div>
+</footer>
+ 
+<script>
+  function setLang(lang) {
+    document.body.classList.toggle('tr', lang === 'tr');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
+    localStorage.setItem('canxansa-lang', lang);
+  }
+ 
+  document.getElementById('btn-en').addEventListener('click', () => setLang('en'));
+  document.getElementById('btn-tr').addEventListener('click', () => setLang('tr'));
+ 
+  const savedLang = localStorage.getItem('canxansa-lang');
+  if (savedLang === 'tr') setLang('tr');
+</script>
+</body>
+</html>
+ 
