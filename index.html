@@ -320,8 +320,10 @@
   .service-card:hover { background: #1f1f1f; }
 
   .service-icon {
-    font-size: 48px; margin-bottom: 32px;
     display: block;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 32px;
   }
 
   .service-num {
@@ -773,7 +775,11 @@
   <div class="services-grid">
     <div class="service-card fade-up">
       <span class="service-num">01</span>
-      <span class="service-icon">✈️</span>
+      <span class="service-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 4C25.5 4 27 8 27 24C27 40 25.5 44 24 44C22.5 44 21 40 21 24C21 8 22.5 4 24 4Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/>
+        <path d="M4 27L21 23H27L44 27V29L27 25H21L4 29V27Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M13 40L21 37H27L35 40V41.5L27 38.5H21L13 41.5V40Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg></span>
       <h3 class="service-title" data-lang="en">Air Freight</h3>
       <h3 class="service-title" data-lang="tr">Hava Kargo</h3>
       <p class="service-desc" data-lang="en">Time-critical shipments delivered fast. We source competitive rates from global airlines for your urgent cargo needs.</p>
@@ -786,7 +792,12 @@
 
     <div class="service-card fade-up">
       <span class="service-num">02</span>
-      <span class="service-icon">🚢</span>
+      <span class="service-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 36L7 28H41L43 36Q24 44 5 36Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
+        <rect x="10" y="22" width="28" height="6" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5"/>
+        <rect x="18" y="15" width="12" height="7" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5"/>
+        <rect x="22" y="9" width="4" height="6" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/>
+      </svg></span>
       <h3 class="service-title" data-lang="en">Sea Freight</h3>
       <h3 class="service-title" data-lang="tr">Deniz Kargo</h3>
       <p class="service-desc" data-lang="en">FCL and LCL options for all cargo types. Cost-effective ocean freight solutions connecting major ports worldwide.</p>
@@ -799,7 +810,15 @@
 
     <div class="service-card fade-up">
       <span class="service-num">03</span>
-      <span class="service-icon">🚛</span>
+      <span class="service-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="13" width="26" height="21" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M28 18H37Q44 20 44 29V34H28V18Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M28 18H37V27H28" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
+        <circle cx="10" cy="36" r="4.5" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/>
+        <circle cx="10" cy="36" r="1.5" fill="#e8521a"/>
+        <circle cx="38" cy="36" r="4.5" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/>
+        <circle cx="38" cy="36" r="1.5" fill="#e8521a"/>
+      </svg></span>
       <h3 class="service-title" data-lang="en">Road Freight</h3>
       <h3 class="service-title" data-lang="tr">Kara Kargo</h3>
       <p class="service-desc" data-lang="en">Cross-border road transport across Europe and beyond. Flexible options for full and partial truck loads.</p>
