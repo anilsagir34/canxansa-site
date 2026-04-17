@@ -39,6 +39,7 @@
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="shortcut icon" href="../favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -198,7 +199,7 @@
     border: 1px solid var(--gray-mid);
     padding: 24px 20px; text-align: center;
   }
-  .transit-mode { font-size: 24px; margin-bottom: 12px; }
+  .transit-mode {  margin-bottom: 12px; }
   .transit-label {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 18px; letter-spacing: 2px; margin-bottom: 8px;
@@ -250,7 +251,7 @@
   }
   .service-card:hover::before { transform: scaleX(1); }
   .service-card:hover { background: #1f1f1f; }
-  .service-icon { font-size: 40px; margin-bottom: 24px; display: block; }
+  .service-icon { width: 48px; height: 48px; margin-bottom: 24px; display: block; }
   .service-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 64px; color: rgba(255,255,255,0.04);
@@ -427,19 +428,19 @@
       </div>
       <div class="transit-cards" style="grid-template-columns: repeat(3,1fr);">
         <div class="transit-card" style="border-color: var(--orange);">
-          <div class="transit-mode">✈️</div>
+          <div class="transit-mode"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 4C25.5 4 27 8 27 24C27 40 25.5 44 24 44C22.5 44 21 40 21 24C21 8 22.5 4 24 4Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/><path d="M4 27L21 23H27L44 27V29L27 25H21L4 29V27Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/><path d="M13 40L21 37H27L35 40V41.5L27 38.5H21L13 41.5V40Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
           <div class="transit-label">Air</div>
           <div class="transit-time">1–2 days</div>
           <div class="transit-detail">Direct flights via QR / TK</div>
         </div>
         <div class="transit-card">
-          <div class="transit-mode">🚢</div>
+          <div class="transit-mode"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 36L7 28H41L43 36Q24 44 5 36Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/><rect x="10" y="22" width="28" height="6" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5"/><rect x="18" y="15" width="12" height="7" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5"/><rect x="22" y="9" width="4" height="6" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/></svg></div>
           <div class="transit-label">Sea</div>
           <div class="transit-time">14–20 days</div>
           <div class="transit-detail">FCL & LCL to Hamad Port</div>
         </div>
         <div class="transit-card">
-          <div class="transit-mode">🚛</div>
+          <div class="transit-mode"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="13" width="26" height="21" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/><path d="M28 18H37Q44 20 44 29V34H28V18Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/><path d="M28 18H37V27H28" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/><circle cx="10" cy="36" r="4.5" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/><circle cx="10" cy="36" r="1.5" fill="#e8521a"/><circle cx="38" cy="36" r="4.5" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/><circle cx="38" cy="36" r="1.5" fill="#e8521a"/></svg></div>
           <div class="transit-label">Road</div>
           <div class="transit-time">On Request</div>
           <div class="transit-detail">Via Habur–Iraq–Saudi corridor</div>
@@ -488,7 +489,7 @@
   <div class="services-grid">
     <div class="service-card fade-up">
       <span class="service-num">01</span>
-      <span class="service-icon">✈️</span>
+      <span class="service-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 4C25.5 4 27 8 27 24C27 40 25.5 44 24 44C22.5 44 21 40 21 24C21 8 22.5 4 24 4Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/><path d="M4 27L21 23H27L44 27V29L27 25H21L4 29V27Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/><path d="M13 40L21 37H27L35 40V41.5L27 38.5H21L13 41.5V40Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
       <h3 class="service-title">Air Freight</h3>
       <p class="service-desc">Express and standard air cargo from Istanbul (IST/SAW) to Hamad International Airport (DOH), Doha. Direct flights via Qatar Airways and Turkish Airlines offer one of the most connected air corridors between the two countries. Ideal for high-value goods, pharmaceuticals, electronics and urgent shipments.</p>
       <div class="service-specs">
@@ -500,7 +501,7 @@
 
     <div class="service-card fade-up">
       <span class="service-num">02</span>
-      <span class="service-icon">🚢</span>
+      <span class="service-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 36L7 28H41L43 36Q24 44 5 36Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/><rect x="10" y="22" width="28" height="6" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5"/><rect x="18" y="15" width="12" height="7" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5"/><rect x="22" y="9" width="4" height="6" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/></svg></span>
       <h3 class="service-title">Sea Freight</h3>
       <p class="service-desc">FCL and LCL ocean freight from Istanbul or Mersin to Hamad Port, Doha — Qatar's state-of-the-art container terminal. Best for bulk goods, construction materials, heavy machinery and large retail shipments. Also suitable for consolidation from multiple Turkish suppliers.</p>
       <div class="service-specs">
@@ -512,7 +513,7 @@
 
     <div class="service-card fade-up">
       <span class="service-num">03</span>
-      <span class="service-icon">🚛</span>
+      <span class="service-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="13" width="26" height="21" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/><path d="M28 18H37Q44 20 44 29V34H28V18Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/><path d="M28 18H37V27H28" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/><circle cx="10" cy="36" r="4.5" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/><circle cx="10" cy="36" r="1.5" fill="#e8521a"/><circle cx="38" cy="36" r="4.5" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/><circle cx="38" cy="36" r="1.5" fill="#e8521a"/></svg></span>
       <h3 class="service-title">Road Freight</h3>
       <p class="service-desc">Overland cargo from Turkey to Qatar via the Habur border gate into Iraq, continuing through Saudi Arabia to Doha. As regional trade routes adapt to ongoing geopolitical shifts, the Habur–Iraq–Saudi corridor is increasingly used for Gulf-bound shipments. Available on request for suitable cargo types.</p>
       <div class="service-specs">
