@@ -5,6 +5,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CANXANSA — Global Freight Solutions</title>
+<meta name="description" content="Turkey-based freight forwarder offering air, sea and road cargo to Europe and the Middle East. Get a quote in 1 hour. FCL, LCL and express air freight.">
+<link rel="canonical" href="https://canxansa.com/">
+<link rel="alternate" hreflang="en" href="https://canxansa.com/">
+<link rel="alternate" hreflang="tr" href="https://canxansa.com/">
+<link rel="alternate" hreflang="x-default" href="https://canxansa.com/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CANXANSA">
+<meta property="og:title" content="CANXANSA — Global Freight Solutions">
+<meta property="og:description" content="Turkey-based freight forwarder offering air, sea and road cargo to Europe and the Middle East. Get a quote in 1 hour.">
+<meta property="og:url" content="https://canxansa.com/">
+<meta property="og:image" content="https://canxansa.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CANXANSA — Global Freight Solutions">
+<meta name="twitter:description" content="Turkey-based freight forwarder offering air, sea and road cargo to Europe and the Middle East. Get a quote in 1 hour.">
+<meta name="twitter:image" content="https://canxansa.com/og-image.jpg">
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CANXANSA",
+  "url": "https://canxansa.com",
+  "logo": "https://canxansa.com/favicon.svg",
+  "description": "Turkey-based freight forwarder offering air, sea and road cargo to Europe and the Middle East.",
+  "areaServed": ["DE","FR","IT","NL","PL","ES","AE","SA","QA","IQ","SY"],
+  "serviceType": ["Air Freight","Sea Freight","Road Freight","FCL","LCL"],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "availableLanguage": ["English","Turkish"]
+  }
+}
+</script>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="shortcut icon" href="favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -183,59 +217,14 @@
     z-index: 2;
   }
 
-  .globe-ring {
-    width: 400px; height: 400px;
-    border: 1px solid rgba(232,82,26,0.3);
-    border-radius: 50%;
-    position: relative;
-    animation: rotate 20s linear infinite;
+  #globe-canvas {
+    width: 480px;
+    height: 480px;
+    max-width: 90vw;
+    max-height: 90vw;
+    opacity: 0;
+    transition: opacity 1s ease;
   }
-
-  .globe-ring::before {
-    content: '';
-    position: absolute; top: 50%; left: -1px; right: -1px; height: 1px;
-    background: rgba(232,82,26,0.3);
-    transform: translateY(-50%);
-  }
-
-  .globe-ring::after {
-    content: '';
-    position: absolute; left: 50%; top: -1px; bottom: -1px; width: 1px;
-    background: rgba(232,82,26,0.3);
-    transform: translateX(-50%);
-  }
-
-  .globe-inner {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 260px; height: 260px;
-    border: 1px solid rgba(232,82,26,0.5);
-    border-radius: 50%;
-    animation: rotate 12s linear infinite reverse;
-  }
-
-  .globe-center {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 12px; height: 12px;
-    background: var(--orange);
-    border-radius: 50%;
-    box-shadow: 0 0 24px var(--orange);
-  }
-
-  .orbit-dot {
-    position: absolute;
-    width: 8px; height: 8px;
-    background: var(--orange);
-    border-radius: 50%;
-    box-shadow: 0 0 12px var(--orange);
-  }
-
-  .orbit-dot:nth-child(1) { top: -4px; left: 50%; transform: translateX(-50%); }
-  .orbit-dot:nth-child(2) { bottom: -4px; left: 50%; transform: translateX(-50%); }
-  .orbit-dot:nth-child(3) { left: -4px; top: 50%; transform: translateY(-50%); }
-
-  @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
   .hero-stats {
     position: absolute; bottom: 48px; left: 48px; right: 48px;
@@ -679,6 +668,14 @@
     .nav-right { gap: 16px; }
   }
 </style>
+<!-- Google Analytics GA4 — G-X19NTBBWNQ yerine kendi ID'ini yaz -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X19NTBBWNQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X19NTBBWNQ');
+</script>
 </head>
 <body>
 
@@ -726,14 +723,7 @@
   <div class="hero-right">
     <div class="hero-grid"></div>
     <div class="hero-visual">
-      <div class="globe-ring">
-        <div class="orbit-dot"></div>
-        <div class="orbit-dot"></div>
-        <div class="orbit-dot"></div>
-        <div class="globe-inner">
-          <div class="globe-center"></div>
-        </div>
-      </div>
+      <canvas id="globe-canvas"></canvas>
     </div>
     <div class="hero-stats">
       <div class="stat">
@@ -1221,6 +1211,79 @@
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+<script type="module">
+  import createGlobe from 'https://esm.sh/cobe@0.6.3';
+
+  const canvas = document.getElementById('globe-canvas');
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const size = 480;
+  canvas.width = size * dpr;
+  canvas.height = size * dpr;
+
+  // Istanbul koordinatları — hub noktası
+  const IST = [41.01, 28.97];
+
+  let phi = -0.49; // Türkiye/Avrupa merkez (28°E longitude)
+  createGlobe(canvas, {
+    devicePixelRatio: dpr,
+    width: size * dpr,
+    height: size * dpr,
+    phi: phi,
+    theta: 0.25,
+    dark: 1,
+    diffuse: 1.0,
+    mapSamples: 20000,
+    mapBrightness: 4,
+    baseColor: [0.12, 0.12, 0.12],
+    markerColor: [0.91, 0.32, 0.10],
+    glowColor: [0.60, 0.18, 0.05],
+
+    // ─── Şehir noktaları ───
+    markers: [
+      { location: IST,           size: 0.10 },  // Istanbul (hub)
+      { location: [25.20, 55.27], size: 0.07 }, // Dubai
+      { location: [52.52, 13.40], size: 0.07 }, // Berlin
+      { location: [48.85,  2.35], size: 0.07 }, // Paris
+      { location: [51.92,  4.47], size: 0.06 }, // Rotterdam
+      { location: [52.23, 21.01], size: 0.06 }, // Warsaw
+      { location: [40.41, -3.70], size: 0.06 }, // Madrid
+      { location: [24.68, 46.72], size: 0.07 }, // Riyadh
+      { location: [25.28, 51.53], size: 0.06 }, // Doha
+      { location: [33.31, 44.36], size: 0.06 }, // Baghdad
+      { location: [33.51, 36.27], size: 0.06 }, // Damascus
+      { location: [41.90, 12.49], size: 0.06 }, // Rome
+    ],
+
+    // ─── Freight rotaları — İstanbul'dan yaylar ───
+    arcs: [
+      { startLat: IST[0], startLng: IST[1], endLat: 25.20, endLng: 55.27, arcAlt: 0.35, color: '#ffffff' }, // Dubai
+      { startLat: IST[0], startLng: IST[1], endLat: 52.52, endLng: 13.40, arcAlt: 0.25, color: '#ffffff' }, // Berlin
+      { startLat: IST[0], startLng: IST[1], endLat: 48.85, endLng:  2.35, arcAlt: 0.28, color: '#ffffff' }, // Paris
+      { startLat: IST[0], startLng: IST[1], endLat: 51.92, endLng:  4.47, arcAlt: 0.30, color: '#ffffff' }, // Rotterdam
+      { startLat: IST[0], startLng: IST[1], endLat: 52.23, endLng: 21.01, arcAlt: 0.22, color: '#ffffff' }, // Warsaw
+      { startLat: IST[0], startLng: IST[1], endLat: 40.41, endLng: -3.70, arcAlt: 0.32, color: '#ffffff' }, // Madrid
+      { startLat: IST[0], startLng: IST[1], endLat: 24.68, endLng: 46.72, arcAlt: 0.28, color: '#ffffff' }, // Riyadh
+      { startLat: IST[0], startLng: IST[1], endLat: 25.28, endLng: 51.53, arcAlt: 0.26, color: '#ffffff' }, // Doha
+      { startLat: IST[0], startLng: IST[1], endLat: 33.31, endLng: 44.36, arcAlt: 0.18, color: '#ffffff' }, // Baghdad
+      { startLat: IST[0], startLng: IST[1], endLat: 33.51, endLng: 36.27, arcAlt: 0.12, color: '#ffffff' }, // Damascus
+      { startLat: IST[0], startLng: IST[1], endLat: 41.90, endLng: 12.49, arcAlt: 0.20, color: '#ffffff' }, // Rome
+    ],
+
+    // ─── Arc animasyon ayarları ───
+    arcDashLength: 0.4,
+    arcDashGap: 4,
+    arcDashInitialGap: 1,
+    arcDashAnimateTime: 3000,
+
+    onRender(state) {
+      state.phi = phi;
+      phi += 0.003;
+    }
+  });
+
+  canvas.style.opacity = '1';
 </script>
 </body>
 </html>
