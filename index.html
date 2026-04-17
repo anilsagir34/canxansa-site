@@ -217,13 +217,11 @@
     z-index: 2;
   }
 
-  #globe-canvas {
+  #globe-el {
     width: 480px;
     height: 480px;
     max-width: 90vw;
     max-height: 90vw;
-    opacity: 0;
-    transition: opacity 1s ease;
   }
 
   .hero-stats {
@@ -723,7 +721,7 @@
   <div class="hero-right">
     <div class="hero-grid"></div>
     <div class="hero-visual">
-      <canvas id="globe-canvas"></canvas>
+      <div id="globe-el"></div>
     </div>
     <div class="hero-stats">
       <div class="stat">
@@ -1213,77 +1211,91 @@
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 
-<script type="module">
-  import createGlobe from 'https://esm.sh/cobe@0.6.3';
+<script src="https://unpkg.com/globe.gl@2"></script>
+<script>
+  const IST = { lat: 41.01, lng: 28.97 };
+  const cities = [
+    // Avrupa
+    { lat: 25.20, lng: 55.27 }, // Dubai
+    { lat: 52.52, lng: 13.40 }, // Berlin
+    { lat: 48.85, lng:  2.35 }, // Paris
+    { lat: 51.92, lng:  4.47 }, // Rotterdam
+    { lat: 52.23, lng: 21.01 }, // Warsaw
+    { lat: 40.41, lng: -3.70 }, // Madrid
+    { lat: 41.90, lng: 12.49 }, // Rome
+    { lat: 51.50, lng: -0.12 }, // London
+    { lat: 59.91, lng: 10.75 }, // Oslo
+    { lat: 55.67, lng: 12.56 }, // Copenhagen
+    { lat: 48.20, lng: 16.37 }, // Vienna
+    { lat: 50.08, lng: 14.43 }, // Prague
+    { lat: 47.37, lng:  8.54 }, // Zurich
+    { lat: 45.46, lng:  9.19 }, // Milan
+    // Ortadoğu & Afrika
+    { lat: 24.68, lng: 46.72 }, // Riyadh
+    { lat: 25.28, lng: 51.53 }, // Doha
+    { lat: 33.31, lng: 44.36 }, // Baghdad
+    { lat: 33.51, lng: 36.27 }, // Damascus
+    { lat: 30.06, lng: 31.25 }, // Cairo
+    { lat: 33.89, lng: 35.50 }, // Beirut
+    { lat: 15.55, lng: 32.53 }, // Khartoum
+    { lat: -26.2, lng: 28.04 }, // Johannesburg
+    { lat:  6.45, lng:  3.39 }, // Lagos
+    // Asya
+    { lat: 28.63, lng: 77.21 }, // New Delhi
+    { lat: 19.07, lng: 72.87 }, // Mumbai
+    { lat: 39.90, lng:116.40 }, // Beijing
+    { lat: 31.23, lng:121.47 }, // Shanghai
+    { lat: 22.30, lng:114.17 }, // Hong Kong
+    { lat: 35.68, lng:139.69 }, // Tokyo
+    { lat:  1.35, lng:103.82 }, // Singapore
+    { lat: 13.75, lng:100.51 }, // Bangkok
+    // Amerika
+    { lat: 40.71, lng: -74.0 }, // New York
+    { lat: 34.05, lng:-118.24 }, // Los Angeles
+    { lat: 43.65, lng: -79.38 }, // Toronto
+    { lat:-23.55, lng: -46.63 }, // São Paulo
+    // Avustralya
+    { lat:-33.86, lng:151.20 }, // Sydney
+  ];
 
-  const canvas = document.getElementById('globe-canvas');
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  const size = 480;
-  canvas.width = size * dpr;
-  canvas.height = size * dpr;
+  const arcs = cities.flatMap(c => [
+    { slat: IST.lat, slng: IST.lng, elat: c.lat, elng: c.lng, color: ['rgba(255,255,255,0.9)', 'rgba(232,82,26,0.2)'] },
+    { slat: c.lat, slng: c.lng, elat: IST.lat, elng: IST.lng, color: ['rgba(232,82,26,0.2)', 'rgba(255,255,255,0.9)'] },
+  ]);
 
-  // Istanbul koordinatları — hub noktası
-  const IST = [41.01, 28.97];
+  const points = [
+    { lat: IST.lat, lng: IST.lng, size: 0.6, color: '#e8521a' },
+    ...cities.map(c => ({ lat: c.lat, lng: c.lng, size: 0.3, color: '#e8521a' }))
+  ];
 
-  let phi = -0.49; // Türkiye/Avrupa merkez (28°E longitude)
-  createGlobe(canvas, {
-    devicePixelRatio: dpr,
-    width: size * dpr,
-    height: size * dpr,
-    phi: phi,
-    theta: 0.25,
-    dark: 1,
-    diffuse: 1.0,
-    mapSamples: 20000,
-    mapBrightness: 4,
-    baseColor: [0.12, 0.12, 0.12],
-    markerColor: [0.91, 0.32, 0.10],
-    glowColor: [0.60, 0.18, 0.05],
+  const globe = Globe()
+    (document.getElementById('globe-el'))
+    .width(480).height(480)
+    .backgroundColor('rgba(0,0,0,0)')
+    .showAtmosphere(true)
+    .atmosphereColor('#e8521a')
+    .atmosphereAltitude(0.1)
+    .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
+    .arcsData(arcs)
+    .arcStartLat('slat').arcStartLng('slng')
+    .arcEndLat('elat').arcEndLng('elng')
+    .arcColor('color')
+    .arcAltitudeAutoScale(0.3)
+    .arcStroke(0.4)
+    .arcDashLength(0.4)
+    .arcDashGap(2)
+    .arcDashInitialGap(() => Math.random() * 2)
+    .arcDashAnimateTime(2000)
+    .pointsData(points)
+    .pointColor('color')
+    .pointAltitude(0.01)
+    .pointRadius('size');
 
-    // ─── Şehir noktaları ───
-    markers: [
-      { location: IST,           size: 0.10 },  // Istanbul (hub)
-      { location: [25.20, 55.27], size: 0.07 }, // Dubai
-      { location: [52.52, 13.40], size: 0.07 }, // Berlin
-      { location: [48.85,  2.35], size: 0.07 }, // Paris
-      { location: [51.92,  4.47], size: 0.06 }, // Rotterdam
-      { location: [52.23, 21.01], size: 0.06 }, // Warsaw
-      { location: [40.41, -3.70], size: 0.06 }, // Madrid
-      { location: [24.68, 46.72], size: 0.07 }, // Riyadh
-      { location: [25.28, 51.53], size: 0.06 }, // Doha
-      { location: [33.31, 44.36], size: 0.06 }, // Baghdad
-      { location: [33.51, 36.27], size: 0.06 }, // Damascus
-      { location: [41.90, 12.49], size: 0.06 }, // Rome
-    ],
-
-    // ─── Freight rotaları — İstanbul'dan yaylar ───
-    arcs: [
-      { startLat: IST[0], startLng: IST[1], endLat: 25.20, endLng: 55.27, arcAlt: 0.35, color: '#ffffff' }, // Dubai
-      { startLat: IST[0], startLng: IST[1], endLat: 52.52, endLng: 13.40, arcAlt: 0.25, color: '#ffffff' }, // Berlin
-      { startLat: IST[0], startLng: IST[1], endLat: 48.85, endLng:  2.35, arcAlt: 0.28, color: '#ffffff' }, // Paris
-      { startLat: IST[0], startLng: IST[1], endLat: 51.92, endLng:  4.47, arcAlt: 0.30, color: '#ffffff' }, // Rotterdam
-      { startLat: IST[0], startLng: IST[1], endLat: 52.23, endLng: 21.01, arcAlt: 0.22, color: '#ffffff' }, // Warsaw
-      { startLat: IST[0], startLng: IST[1], endLat: 40.41, endLng: -3.70, arcAlt: 0.32, color: '#ffffff' }, // Madrid
-      { startLat: IST[0], startLng: IST[1], endLat: 24.68, endLng: 46.72, arcAlt: 0.28, color: '#ffffff' }, // Riyadh
-      { startLat: IST[0], startLng: IST[1], endLat: 25.28, endLng: 51.53, arcAlt: 0.26, color: '#ffffff' }, // Doha
-      { startLat: IST[0], startLng: IST[1], endLat: 33.31, endLng: 44.36, arcAlt: 0.18, color: '#ffffff' }, // Baghdad
-      { startLat: IST[0], startLng: IST[1], endLat: 33.51, endLng: 36.27, arcAlt: 0.12, color: '#ffffff' }, // Damascus
-      { startLat: IST[0], startLng: IST[1], endLat: 41.90, endLng: 12.49, arcAlt: 0.20, color: '#ffffff' }, // Rome
-    ],
-
-    // ─── Arc animasyon ayarları ───
-    arcDashLength: 0.4,
-    arcDashGap: 4,
-    arcDashInitialGap: 1,
-    arcDashAnimateTime: 3000,
-
-    onRender(state) {
-      state.phi = phi;
-      phi += 0.003;
-    }
-  });
-
-  canvas.style.opacity = '1';
+  globe.controls().autoRotate = true;
+  globe.controls().autoRotateSpeed = 0.4;
+  globe.controls().enableZoom = false;
+  globe.pointOfView({ lat: IST.lat, lng: IST.lng, altitude: 2 }, 0);
 </script>
+
 </body>
 </html>
