@@ -5,6 +5,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CANXANSA — Global Freight Solutions</title>
+<meta name="description" content="Turkey-based freight forwarder offering air, sea and road cargo to Europe and the Middle East. Get a quote in 1 hour. FCL, LCL and express air freight.">
+<link rel="canonical" href="https://canxansa.com/">
+<link rel="alternate" hreflang="en" href="https://canxansa.com/">
+<link rel="alternate" hreflang="tr" href="https://canxansa.com/">
+<link rel="alternate" hreflang="x-default" href="https://canxansa.com/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CANXANSA">
+<meta property="og:title" content="CANXANSA — Global Freight Solutions">
+<meta property="og:description" content="Turkey-based freight forwarder offering air, sea and road cargo to Europe and the Middle East. Get a quote in 1 hour.">
+<meta property="og:url" content="https://canxansa.com/">
+<meta property="og:image" content="https://canxansa.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CANXANSA — Global Freight Solutions">
+<meta name="twitter:description" content="Turkey-based freight forwarder offering air, sea and road cargo to Europe and the Middle East. Get a quote in 1 hour.">
+<meta name="twitter:image" content="https://canxansa.com/og-image.jpg">
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CANXANSA",
+  "url": "https://canxansa.com",
+  "logo": "https://canxansa.com/favicon.svg",
+  "description": "Turkey-based freight forwarder offering air, sea and road cargo to Europe and the Middle East.",
+  "areaServed": ["DE","FR","IT","NL","PL","ES","AE","SA","QA","IQ","SY"],
+  "serviceType": ["Air Freight","Sea Freight","Road Freight","FCL","LCL"],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "availableLanguage": ["English","Turkish"]
+  }
+}
+</script>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="shortcut icon" href="favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -154,32 +188,27 @@
 
   .hero-right {
     position: relative; overflow: hidden;
-    background:
-      radial-gradient(circle at 78% 22%, rgba(232,82,26,0.16) 0%, transparent 34%),
-      radial-gradient(circle at 18% 82%, rgba(232,82,26,0.12) 0%, transparent 42%),
-      linear-gradient(160deg, #090909 0%, #0d0b0a 52%, #090909 100%);
   }
 
   .hero-right::before {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(130deg, rgba(232,82,26,0.18) 0%, transparent 56%);
+    background: linear-gradient(135deg, rgba(232,82,26,0.15) 0%, transparent 60%);
     z-index: 1;
-    pointer-events: none;
   }
 
   .hero-grid {
     position: absolute; inset: 0;
     background-image:
-      linear-gradient(rgba(232,82,26,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(232,82,26,0.06) 1px, transparent 1px);
-    background-size: 56px 56px;
-    animation: gridPulse 10s ease-in-out infinite;
+      linear-gradient(rgba(232,82,26,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,82,26,0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridPulse 8s ease-in-out infinite;
   }
 
   @keyframes gridPulse {
-    0%, 100% { opacity: 0.45; }
-    50% { opacity: 0.9; }
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
   }
 
   .hero-visual {
@@ -188,200 +217,11 @@
     z-index: 2;
   }
 
-  .network-globe {
-    position: relative;
-    width: min(560px, 86%);
-    aspect-ratio: 1 / 1;
-    animation: globeFloat 8s ease-in-out infinite;
-    filter: drop-shadow(0 20px 52px rgba(3, 10, 24, 0.85));
-  }
-
-  .network-globe::before {
-    content: '';
-    position: absolute; inset: 7%;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(232,82,26,0.22) 0%, rgba(232,82,26,0) 68%);
-    filter: blur(6px);
-    pointer-events: none;
-  }
-
-  .network-globe::after {
-    content: '';
-    position: absolute; inset: 10%;
-    border-radius: 50%;
-    background: linear-gradient(110deg, transparent 36%, rgba(255, 178, 138, 0.22) 50%, transparent 65%);
-    animation: scanner 6.6s ease-in-out infinite;
-    mix-blend-mode: screen;
-    pointer-events: none;
-  }
-
-  .network-globe-svg {
-    position: relative;
-    width: 100%; height: 100%;
-    z-index: 2;
-  }
-
-  .globe-shell {
-    fill: url(#globeCoreFill);
-    stroke: rgba(232,82,26,0.30);
-    stroke-width: 1.4;
-  }
-
-  .globe-halo {
-    fill: none;
-    stroke: rgba(232,82,26,0.35);
-    stroke-width: 1;
-    filter: url(#outerGlow);
-  }
-
-  .globe-lat,
-  .globe-lon,
-  .globe-mesh {
-    fill: none;
-    stroke: rgba(232,82,26,0.20);
-    stroke-width: 1;
-  }
-
-  .globe-equator {
-    stroke: rgba(232,82,26,0.34);
-    stroke-width: 1.4;
-  }
-
-  .continent {
-    fill: rgba(245, 240, 235, 0.08);
-    stroke: rgba(232,82,26,0.20);
-    stroke-width: 1;
-    animation: drift 18s ease-in-out infinite alternate;
-  }
-
-  .continent.alt { animation-duration: 24s; animation-delay: -4s; }
-
-  .network-route {
-    fill: none;
-    stroke: url(#routeStroke);
-    stroke-width: 1.9;
-    stroke-linecap: round;
-    stroke-dasharray: 7 10;
-    animation: routeFlow 12s linear infinite;
-    filter: url(#innerGlow);
-  }
-
-  .network-route.route-b { animation-duration: 15s; }
-  .network-route.route-c { animation-duration: 10.5s; }
-  .network-route.route-d { animation-duration: 14s; }
-  .network-route.route-e { animation-duration: 11.5s; }
-  .network-route.route-f { animation-duration: 13.5s; }
-
-  .network-route.core {
-    stroke: rgba(255, 192, 160, 0.55);
-    stroke-width: 0.9;
-    stroke-dasharray: none;
-    animation: none;
-  }
-
-  .route-packet {
-    fill: #ffd1bb;
-    filter: url(#innerGlow);
-  }
-
-  .city {
-    fill: #ffd7c1;
-    stroke: rgba(232,82,26,0.98);
-    stroke-width: 1;
-  }
-
-  .city-ping {
-    fill: none;
-    stroke: rgba(232,82,26,0.62);
-    stroke-width: 1;
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: ping 3.8s ease-out infinite;
-  }
-
-  .city-ping.p2 { animation-delay: -0.9s; }
-  .city-ping.p3 { animation-delay: -1.8s; }
-  .city-ping.p4 { animation-delay: -2.7s; }
-  .city-ping.p5 { animation-delay: -1.4s; }
-  .city-ping.p6 { animation-delay: -3.1s; }
-
-  .city-label {
-    fill: rgba(245, 240, 235, 0.84);
-    font-size: 10px;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .globe-orbit {
-    position: absolute;
-    border: 1px solid rgba(232,82,26,0.23);
-    border-radius: 50%;
-    pointer-events: none;
-  }
-
-  .globe-orbit .orbiter {
-    position: absolute;
-    right: -4px;
-    top: 50%;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #ffd8c4;
-    box-shadow: 0 0 14px rgba(255, 163, 118, 0.9);
-    transform: translateY(-50%);
-  }
-
-  .globe-orbit.o1 {
-    inset: 8%;
-    animation: orbitSpin 18s linear infinite;
-  }
-
-  .globe-orbit.o2 {
-    inset: 3%;
-    transform: rotate(58deg);
-    border-color: rgba(232,82,26,0.14);
-    animation: orbitSpinReverse 13s linear infinite;
-  }
-
-  .globe-orbit.o2 .orbiter {
-    width: 6px; height: 6px;
-    background: rgba(255, 207, 184, 0.9);
-  }
-
-  @keyframes routeFlow {
-    from { stroke-dashoffset: 0; }
-    to { stroke-dashoffset: -340; }
-  }
-
-  @keyframes ping {
-    0% { opacity: 0.78; transform-origin: center; transform: scale(1); }
-    75% { opacity: 0.18; }
-    100% { opacity: 0; transform-origin: center; transform: scale(2.6); }
-  }
-
-  @keyframes globeFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-11px); }
-  }
-
-  @keyframes scanner {
-    0%, 100% { transform: translateX(-16%) rotate(-9deg); opacity: 0.25; }
-    50% { transform: translateX(15%) rotate(-9deg); opacity: 0.64; }
-  }
-
-  @keyframes orbitSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  @keyframes orbitSpinReverse {
-    from { transform: rotate(58deg); }
-    to { transform: rotate(-302deg); }
-  }
-
-  @keyframes drift {
-    from { transform: translateY(-2px) translateX(0); }
-    to { transform: translateY(3px) translateX(1px); }
+  #globe-el {
+    width: 480px;
+    height: 480px;
+    max-width: 90vw;
+    max-height: 90vw;
   }
 
   .hero-stats {
@@ -480,8 +320,10 @@
   .service-card:hover { background: #1f1f1f; }
 
   .service-icon {
-    font-size: 48px; margin-bottom: 32px;
     display: block;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 32px;
   }
 
   .service-num {
@@ -805,9 +647,7 @@
     nav { padding: 20px 32px; }
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { padding: 120px 32px 60px; }
-    .hero-right { height: 420px; }
-    .network-globe { width: min(500px, 88%); }
-    .city-label { font-size: 9px; letter-spacing: 1.2px; }
+    .hero-right { height: 400px; }
     .services, .how, .contact, .coverage { padding: 80px 32px; }
     .coverage-grid { grid-template-columns: 1fr 1fr; }
     .services-grid { grid-template-columns: 1fr; }
@@ -820,8 +660,6 @@
   @media (max-width: 640px) {
     nav { padding: 16px 20px; }
     .hero-left { padding: 100px 20px 48px; }
-    .hero-right { height: 410px; }
-    .network-globe { width: min(390px, 95%); }
     .services, .how, .contact, .coverage { padding: 60px 20px; }
     .coverage-grid { grid-template-columns: 1fr; }
     .how-grid { grid-template-columns: 1fr; }
@@ -829,19 +667,15 @@
     .hero-stats { flex-wrap: wrap; gap: 24px; left: 20px; }
     .nav-right { gap: 16px; }
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    .network-globe,
-    .network-globe::after,
-    .hero-grid,
-    .network-route,
-    .city-ping,
-    .globe-orbit {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-    }
-  }
 </style>
+<!-- Google Analytics GA4 — G-X19NTBBWNQ yerine kendi ID'ini yaz -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X19NTBBWNQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X19NTBBWNQ');
+</script>
 </head>
 <body>
 
@@ -889,115 +723,7 @@
   <div class="hero-right">
     <div class="hero-grid"></div>
     <div class="hero-visual">
-      <div class="network-globe" aria-hidden="true">
-        <svg class="network-globe-svg" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="globeCoreFill" cx="34%" cy="28%">
-              <stop offset="0%" stop-color="#2a1913"/>
-              <stop offset="62%" stop-color="#16100e"/>
-              <stop offset="100%" stop-color="#0d0b0a"/>
-            </radialGradient>
-            <linearGradient id="routeStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#e8521a"/>
-              <stop offset="55%" stop-color="#ff995e"/>
-              <stop offset="100%" stop-color="#ffd1bb"/>
-            </linearGradient>
-            <filter id="innerGlow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="1.4" result="blur"/>
-              <feMerge>
-                <feMergeNode in="blur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-            <filter id="outerGlow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="2.5" result="blur"/>
-              <feMerge>
-                <feMergeNode in="blur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-            <clipPath id="globeClip">
-              <circle cx="260" cy="260" r="198"/>
-            </clipPath>
-          </defs>
-
-          <circle class="globe-halo" cx="260" cy="260" r="214"/>
-          <circle class="globe-shell" cx="260" cy="260" r="198"/>
-
-          <g clip-path="url(#globeClip)">
-            <ellipse class="globe-lat" cx="260" cy="260" rx="188" ry="58"/>
-            <ellipse class="globe-lat" cx="260" cy="260" rx="192" ry="92"/>
-            <ellipse class="globe-lat globe-equator" cx="260" cy="260" rx="196" ry="124"/>
-            <ellipse class="globe-lat" cx="260" cy="260" rx="188" ry="154"/>
-            <ellipse class="globe-lat" cx="260" cy="260" rx="172" ry="178"/>
-
-            <ellipse class="globe-lon" cx="260" cy="260" rx="62" ry="198"/>
-            <ellipse class="globe-lon" cx="260" cy="260" rx="104" ry="198" transform="rotate(24 260 260)"/>
-            <ellipse class="globe-lon" cx="260" cy="260" rx="104" ry="198" transform="rotate(-24 260 260)"/>
-            <ellipse class="globe-lon" cx="260" cy="260" rx="146" ry="198" transform="rotate(58 260 260)"/>
-            <ellipse class="globe-lon" cx="260" cy="260" rx="146" ry="198" transform="rotate(-58 260 260)"/>
-
-            <path class="continent" d="M118 232 L138 196 L170 175 L210 179 L236 202 L226 229 L201 243 L168 247 L138 264 Z"/>
-            <path class="continent alt" d="M194 268 L216 252 L238 260 L250 286 L238 314 L220 350 L201 374 L187 352 L182 320 Z"/>
-            <path class="continent" d="M252 188 L276 176 L304 178 L321 193 L314 211 L286 220 L261 212 Z"/>
-            <path class="continent alt" d="M267 226 L288 220 L314 234 L330 262 L320 296 L292 312 L268 286 L260 252 Z"/>
-            <path class="continent" d="M328 216 L350 208 L372 220 L386 244 L380 270 L356 282 L338 260 L326 236 Z"/>
-
-            <path class="globe-mesh" d="M108 315 L192 276 L252 296 L328 264 L412 290"/>
-            <path class="globe-mesh" d="M128 220 L216 248 L282 222 L362 250"/>
-            <path class="globe-mesh" d="M160 356 L228 302 L306 318 L368 286"/>
-
-            <path class="network-route route-a" d="M300 220 Q280 182 255 188"/>
-            <path class="network-route core" d="M300 220 Q280 182 255 188"/>
-            <path class="network-route route-b" d="M300 220 Q232 134 165 210"/>
-            <path class="network-route core" d="M300 220 Q232 134 165 210"/>
-            <path class="network-route route-c" d="M300 220 Q320 232 335 255"/>
-            <path class="network-route core" d="M300 220 Q320 232 335 255"/>
-            <path class="network-route route-d" d="M300 220 Q273 258 258 300"/>
-            <path class="network-route route-e" d="M255 188 Q214 142 165 210"/>
-            <path class="network-route route-f" d="M220 150 Q252 126 300 220"/>
-
-            <circle class="city" cx="300" cy="220" r="3.8"/>
-            <circle class="city-ping" cx="300" cy="220" r="4.2"/>
-            <text class="city-label" x="309" y="216">ISTANBUL</text>
-
-            <circle class="city" cx="255" cy="188" r="3.2"/>
-            <circle class="city-ping p2" cx="255" cy="188" r="4.2"/>
-            <text class="city-label" x="186" y="182">ROTTERDAM</text>
-
-            <circle class="city" cx="165" cy="210" r="3.2"/>
-            <circle class="city-ping p3" cx="165" cy="210" r="4.2"/>
-            <text class="city-label" x="104" y="204">NEW YORK</text>
-
-            <circle class="city" cx="220" cy="150" r="3.2"/>
-            <circle class="city-ping p4" cx="220" cy="150" r="4.2"/>
-            <text class="city-label" x="146" y="144">REYKJAVIK</text>
-
-            <circle class="city" cx="258" cy="300" r="3.2"/>
-            <circle class="city-ping p5" cx="258" cy="300" r="4.2"/>
-            <text class="city-label" x="267" y="296">LAGOS</text>
-
-            <circle class="city" cx="335" cy="255" r="3.2"/>
-            <circle class="city-ping p6" cx="335" cy="255" r="4.2"/>
-            <text class="city-label" x="344" y="251">DUBAI</text>
-          </g>
-
-          <circle class="route-packet" r="2.8">
-            <animateMotion dur="6.8s" repeatCount="indefinite" path="M300 220 Q280 182 255 188"/>
-          </circle>
-          <circle class="route-packet" r="2.8">
-            <animateMotion dur="5.9s" begin="-2.1s" repeatCount="indefinite" path="M300 220 Q232 134 165 210"/>
-          </circle>
-          <circle class="route-packet" r="2.8">
-            <animateMotion dur="6.4s" begin="-4s" repeatCount="indefinite" path="M300 220 Q320 232 335 255"/>
-          </circle>
-          <circle class="route-packet" r="2.8">
-            <animateMotion dur="7.1s" begin="-1.2s" repeatCount="indefinite" path="M300 220 Q273 258 258 300"/>
-          </circle>
-        </svg>
-        <div class="globe-orbit o1"><span class="orbiter"></span></div>
-        <div class="globe-orbit o2"><span class="orbiter"></span></div>
-      </div>
+      <div id="globe-el"></div>
     </div>
     <div class="hero-stats">
       <div class="stat">
@@ -1049,7 +775,11 @@
   <div class="services-grid">
     <div class="service-card fade-up">
       <span class="service-num">01</span>
-      <span class="service-icon">✈️</span>
+      <span class="service-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 4C25.5 4 27 8 27 24C27 40 25.5 44 24 44C22.5 44 21 40 21 24C21 8 22.5 4 24 4Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/>
+        <path d="M4 27L21 23H27L44 27V29L27 25H21L4 29V27Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M13 40L21 37H27L35 40V41.5L27 38.5H21L13 41.5V40Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg></span>
       <h3 class="service-title" data-lang="en">Air Freight</h3>
       <h3 class="service-title" data-lang="tr">Hava Kargo</h3>
       <p class="service-desc" data-lang="en">Time-critical shipments delivered fast. We source competitive rates from global airlines for your urgent cargo needs.</p>
@@ -1062,7 +792,12 @@
 
     <div class="service-card fade-up">
       <span class="service-num">02</span>
-      <span class="service-icon">🚢</span>
+      <span class="service-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 36L7 28H41L43 36Q24 44 5 36Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
+        <rect x="10" y="22" width="28" height="6" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5"/>
+        <rect x="18" y="15" width="12" height="7" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5"/>
+        <rect x="22" y="9" width="4" height="6" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/>
+      </svg></span>
       <h3 class="service-title" data-lang="en">Sea Freight</h3>
       <h3 class="service-title" data-lang="tr">Deniz Kargo</h3>
       <p class="service-desc" data-lang="en">FCL and LCL options for all cargo types. Cost-effective ocean freight solutions connecting major ports worldwide.</p>
@@ -1075,7 +810,15 @@
 
     <div class="service-card fade-up">
       <span class="service-num">03</span>
-      <span class="service-icon">🚛</span>
+      <span class="service-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="13" width="26" height="21" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M28 18H37Q44 20 44 29V34H28V18Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M28 18H37V27H28" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
+        <circle cx="10" cy="36" r="4.5" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/>
+        <circle cx="10" cy="36" r="1.5" fill="#e8521a"/>
+        <circle cx="38" cy="36" r="4.5" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/>
+        <circle cx="38" cy="36" r="1.5" fill="#e8521a"/>
+      </svg></span>
       <h3 class="service-title" data-lang="en">Road Freight</h3>
       <h3 class="service-title" data-lang="tr">Kara Kargo</h3>
       <p class="service-desc" data-lang="en">Cross-border road transport across Europe and beyond. Flexible options for full and partial truck loads.</p>
@@ -1404,6 +1147,7 @@
           <span data-lang="en">Get a Quote</span>
           <span data-lang="tr">Teklif Al</span>
           <span class="arr">→</span>
+        </a>
         <a href="/terms/">
           <span data-lang="en">Terms</span>
           <span data-lang="tr">Koşullar</span>
@@ -1486,5 +1230,92 @@
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
+
+<script src="https://unpkg.com/globe.gl@2"></script>
+<script>
+  const IST = { lat: 41.01, lng: 28.97 };
+  const cities = [
+    // Avrupa
+    { lat: 25.20, lng: 55.27 }, // Dubai
+    { lat: 52.52, lng: 13.40 }, // Berlin
+    { lat: 48.85, lng:  2.35 }, // Paris
+    { lat: 51.92, lng:  4.47 }, // Rotterdam
+    { lat: 52.23, lng: 21.01 }, // Warsaw
+    { lat: 40.41, lng: -3.70 }, // Madrid
+    { lat: 41.90, lng: 12.49 }, // Rome
+    { lat: 51.50, lng: -0.12 }, // London
+    { lat: 59.91, lng: 10.75 }, // Oslo
+    { lat: 55.67, lng: 12.56 }, // Copenhagen
+    { lat: 48.20, lng: 16.37 }, // Vienna
+    { lat: 50.08, lng: 14.43 }, // Prague
+    { lat: 47.37, lng:  8.54 }, // Zurich
+    { lat: 45.46, lng:  9.19 }, // Milan
+    // Ortadoğu & Afrika
+    { lat: 24.68, lng: 46.72 }, // Riyadh
+    { lat: 25.28, lng: 51.53 }, // Doha
+    { lat: 33.31, lng: 44.36 }, // Baghdad
+    { lat: 33.51, lng: 36.27 }, // Damascus
+    { lat: 30.06, lng: 31.25 }, // Cairo
+    { lat: 33.89, lng: 35.50 }, // Beirut
+    { lat: 15.55, lng: 32.53 }, // Khartoum
+    { lat: -26.2, lng: 28.04 }, // Johannesburg
+    { lat:  6.45, lng:  3.39 }, // Lagos
+    // Asya
+    { lat: 28.63, lng: 77.21 }, // New Delhi
+    { lat: 19.07, lng: 72.87 }, // Mumbai
+    { lat: 39.90, lng:116.40 }, // Beijing
+    { lat: 31.23, lng:121.47 }, // Shanghai
+    { lat: 22.30, lng:114.17 }, // Hong Kong
+    { lat: 35.68, lng:139.69 }, // Tokyo
+    { lat:  1.35, lng:103.82 }, // Singapore
+    { lat: 13.75, lng:100.51 }, // Bangkok
+    // Amerika
+    { lat: 40.71, lng: -74.0 }, // New York
+    { lat: 34.05, lng:-118.24 }, // Los Angeles
+    { lat: 43.65, lng: -79.38 }, // Toronto
+    { lat:-23.55, lng: -46.63 }, // São Paulo
+    // Avustralya
+    { lat:-33.86, lng:151.20 }, // Sydney
+  ];
+
+  const arcs = cities.flatMap(c => [
+    { slat: IST.lat, slng: IST.lng, elat: c.lat, elng: c.lng, color: ['rgba(255,255,255,0.9)', 'rgba(232,82,26,0.2)'] },
+    { slat: c.lat, slng: c.lng, elat: IST.lat, elng: IST.lng, color: ['rgba(232,82,26,0.2)', 'rgba(255,255,255,0.9)'] },
+  ]);
+
+  const points = [
+    { lat: IST.lat, lng: IST.lng, size: 0.6, color: '#e8521a' },
+    ...cities.map(c => ({ lat: c.lat, lng: c.lng, size: 0.3, color: '#e8521a' }))
+  ];
+
+  const globe = Globe()
+    (document.getElementById('globe-el'))
+    .width(480).height(480)
+    .backgroundColor('rgba(0,0,0,0)')
+    .showAtmosphere(true)
+    .atmosphereColor('#e8521a')
+    .atmosphereAltitude(0.1)
+    .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
+    .arcsData(arcs)
+    .arcStartLat('slat').arcStartLng('slng')
+    .arcEndLat('elat').arcEndLng('elng')
+    .arcColor('color')
+    .arcAltitudeAutoScale(0.3)
+    .arcStroke(0.4)
+    .arcDashLength(0.4)
+    .arcDashGap(2)
+    .arcDashInitialGap(() => Math.random() * 2)
+    .arcDashAnimateTime(2000)
+    .pointsData(points)
+    .pointColor('color')
+    .pointAltitude(0.01)
+    .pointRadius('size');
+
+  globe.controls().autoRotate = true;
+  globe.controls().autoRotateSpeed = 0.4;
+  globe.controls().enableZoom = false;
+  globe.pointOfView({ lat: IST.lat, lng: IST.lng, altitude: 2 }, 0);
+</script>
+
 </body>
 </html>
