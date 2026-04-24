@@ -1176,6 +1176,7 @@
 <script>
   // Language toggle
   function setLang(lang) {
+    document.documentElement.lang = lang;
     document.body.classList.toggle('tr', lang === 'tr');
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
@@ -1197,9 +1198,20 @@
   document.getElementById('btn-en').addEventListener('click', () => setLang('en'));
   document.getElementById('btn-tr').addEventListener('click', () => setLang('tr'));
 
-  // Restore saved lang
+  // Restore saved lang or auto-detect by country
   const savedLang = localStorage.getItem('canxansa-lang');
-  if (savedLang === 'tr') setLang('tr');
+  if (savedLang) {
+    if (savedLang === 'tr') setLang('tr');
+  } else {
+    fetch('https://ipapi.co/country/')
+      .then(r => r.text())
+      .then(country => {
+        if (country.trim() === 'TR') setLang('tr');
+      })
+      .catch(() => {
+        if ((navigator.language || '').toLowerCase().startsWith('tr')) setLang('tr');
+      });
+  }
 
   // Form submit
   document.getElementById('quote-form').addEventListener('submit', async function(e) {
