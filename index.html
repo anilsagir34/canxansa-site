@@ -448,6 +448,77 @@
 
   .coverage-note a:hover { text-decoration: underline; }
 
+  /* ─── SPECIALTY CORRIDORS ─── */
+  .corridors {
+    padding: 120px 64px;
+    background: var(--gray);
+    position: relative;
+  }
+
+  .corridor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .corridor-card {
+    background: var(--black);
+    padding: 48px 36px;
+    text-decoration: none;
+    color: var(--white);
+    display: flex; flex-direction: column;
+    border-top: 2px solid var(--orange);
+    position: relative; overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .corridor-card::after {
+    content: '→';
+    position: absolute; top: 36px; right: 36px;
+    color: var(--orange); font-size: 24px;
+    opacity: 0; transform: translateX(-8px);
+    transition: all 0.3s;
+  }
+
+  .corridor-card:hover {
+    background: #1f1f1f;
+    transform: translateY(-2px);
+  }
+
+  .corridor-card:hover::after {
+    opacity: 1; transform: translateX(0);
+  }
+
+  .corridor-flags {
+    font-size: 28px;
+    letter-spacing: 4px;
+    margin-bottom: 28px;
+    color: var(--orange);
+  }
+
+  .corridor-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+
+  .corridor-subtitle {
+    font-size: 13px; color: var(--gray-light);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+
+  .corridor-modes {
+    font-size: 11px; letter-spacing: 2px;
+    color: var(--orange);
+    text-transform: uppercase;
+    padding-top: 20px;
+    border-top: 1px solid var(--gray-mid);
+  }
+
   /* ─── HOW IT WORKS ─── */
   .how {
     padding: 120px 64px;
@@ -658,8 +729,9 @@
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { padding: 120px 32px 60px; }
     .hero-right { height: 400px; }
-    .services, .how, .contact, .coverage { padding: 80px 32px; }
+    .services, .how, .contact, .coverage, .corridors { padding: 80px 32px; }
     .coverage-grid { grid-template-columns: 1fr 1fr; }
+    .corridor-grid { grid-template-columns: 1fr; }
     .services-grid { grid-template-columns: 1fr; }
     .how-grid { grid-template-columns: 1fr 1fr; }
     .contact { grid-template-columns: 1fr; }
@@ -670,7 +742,7 @@
   @media (max-width: 640px) {
     nav { padding: 16px 20px; }
     .hero-left { padding: 100px 20px 48px; }
-    .services, .how, .contact, .coverage { padding: 60px 20px; }
+    .services, .how, .contact, .coverage, .corridors { padding: 60px 20px; }
     .coverage-grid { grid-template-columns: 1fr; }
     .how-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
@@ -838,6 +910,44 @@
         <span data-lang="tr">Teklif Al →</span>
       </a>
     </div>
+  </div>
+</section>
+
+<!-- SPECIALTY CORRIDORS -->
+<section class="corridors" id="corridors">
+  <div class="section-label">
+    <span data-lang="en">Specialty Corridors</span>
+    <span data-lang="tr">Özel Koridorlar</span>
+  </div>
+  <h2 class="section-title" data-lang="en">DUAL-HUB<br>CORRIDORS.</h2>
+  <h2 class="section-title" data-lang="tr">İKİLİ HUB<br>KORİDORLARI.</h2>
+
+  <div class="corridor-grid">
+
+    <a href="china-to-europe-via-turkey-freight/" class="corridor-card fade-up">
+      <div class="corridor-flags">🇨🇳 → 🇹🇷 → 🇪🇺</div>
+      <div class="corridor-title">China → Europe</div>
+      <div class="corridor-subtitle" data-lang="en">via Turkey hub. Belt &amp; Road alternative — Middle Corridor rail, multimodal sea and air freight from Shanghai, Ningbo, Shenzhen to Frankfurt, Hamburg, Madrid.</div>
+      <div class="corridor-subtitle" data-lang="tr">Türkiye hub üzerinden. Belt &amp; Road alternatifi — Orta Koridor demiryolu, çok modlu deniz ve hava kargo.</div>
+      <div class="corridor-modes">RAIL · SEA · AIR · MULTIMODAL</div>
+    </a>
+
+    <a href="central-asia-to-europe-freight/" class="corridor-card fade-up">
+      <div class="corridor-flags">🌏 → 🇹🇷 → 🇪🇺</div>
+      <div class="corridor-title">Central Asia → Europe</div>
+      <div class="corridor-subtitle" data-lang="en">Kazakhstan, Uzbekistan, Turkmenistan, Kyrgyzstan and Tajikistan to Europe via Caspian crossing and Turkey hub. The fastest route bypassing Russia.</div>
+      <div class="corridor-subtitle" data-lang="tr">Kazakistan, Özbekistan, Türkmenistan, Kırgızistan ve Tacikistan'dan Avrupa'ya — Hazar geçişi ve Türkiye hub üzerinden.</div>
+      <div class="corridor-modes">RAIL · SEA · ROAD</div>
+    </a>
+
+    <a href="estonia-turkey-freight/" class="corridor-card fade-up">
+      <div class="corridor-flags">🇪🇪 ↔ 🇹🇷</div>
+      <div class="corridor-title">Estonia ↔ Turkey</div>
+      <div class="corridor-subtitle" data-lang="en">Direct freight between Estonia and Turkey. Dual-hub advantage — EU customs in Tallinn, Turkish customs in Istanbul. One contract, one team, no agent margins.</div>
+      <div class="corridor-subtitle" data-lang="tr">Estonya ile Türkiye arasında doğrudan kargo. İkili hub avantajı — Tallinn'de AB gümrüğü, İstanbul'da Türk gümrüğü.</div>
+      <div class="corridor-modes">AIR · SEA · ROAD</div>
+    </a>
+
   </div>
 </section>
 
