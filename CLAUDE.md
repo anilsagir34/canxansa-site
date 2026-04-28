@@ -41,7 +41,7 @@ Tüm `href="#contact"` vb. anchor linkler JS ile intercept ediliyor.
 ## Action Cards (panel-home altında)
 1. **Get a Quote** — origin/dest input → contact formuna taşır
 2. **Our Services** — SVG ikonlu 3 satır (Air/Sea/Road) → panel-services
-3. **Track Shipment** — disabled, coming soon (kargo takip sistemi gelince aktif)
+3. **Track Shipment** — disabled (coming soon tag kaldırıldı, kart duruyor)
 
 ## Coverage Tabları
 `data-tab="europe|asia|americas|mea"` → `data-panel="..."` eşleşmesi
@@ -54,8 +54,18 @@ Tüm `href="#contact"` vb. anchor linkler JS ile intercept ediliyor.
 - Supabase + admin şifre korumalı panel
 - Track Shipment kartı hazır bekliyor
 
+## Mobil Navigasyon
+- `<=1024px`: hamburger butonu (`#nav-hamburger`) görünür, `.nav-center` gizlenir
+- `<=640px`: `.nav-cta` da gizlenir, menüdeki CTA çalışır
+- `#mobile-menu` — tam ekran overlay, `showPanel()` kullanır, açıkken `body.overflow: hidden`
+- Hamburger açma/kapama: `.open` class toggle
+
+## Contact Section İkonlar
+- Email · Coverage · Response Time ikonları SVG (turuncu stroke, 20x20) — emoji değil
+
 ## Düzenleme Kuralları
 - Renkleri değiştirme
 - `showPanel()` fonksiyonunu bozma
 - Panel açma/kapama div'lerini (`<!-- ═══ ... PANEL ═══ -->`) koru
+- Mobil menüye yeni link eklerken `#mobile-menu` div'ine de ekle
 - Commit her zaman Türkçe açıklama ile
