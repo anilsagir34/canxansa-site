@@ -473,6 +473,21 @@
   .fade-up.visible { opacity: 1; transform: translateY(0); }
   .fade-up { animation: fadeUpAuto 0.6s ease forwards; }
   @keyframes fadeUpAuto { to { opacity: 1; transform: translateY(0); } }
+  @keyframes panelIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Hamburger */
+  .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 200; }
+  .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: #f5f0eb; transition: transform 0.3s, opacity 0.3s; transform-origin: center; }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .mobile-menu { display: none; position: fixed; inset: 0; background: var(--black); z-index: 90; flex-direction: column; justify-content: center; padding: 0 40px 48px; animation: panelIn 0.25s ease; }
+  .mobile-menu.open { display: flex; }
+  .mobile-nav-link { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 3px; color: #888; text-decoration: none; padding: 16px 0; border-bottom: 1px solid #2e2e2e; transition: color 0.2s, padding-left 0.2s; display: block; }
+  .mobile-nav-link:hover { color: #f5f0eb; padding-left: 8px; }
+  .mobile-nav-cta { border: none; color: var(--orange); margin-top: 24px; }
+  @media (max-width: 1024px) { .nav-hamburger { display: flex; } }
+  @media (max-width: 640px) { .nav-cta { display: none; } .mobile-nav-link { font-size: 36px; padding: 14px 0; } }
 </style>
 <!-- Google Analytics GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X19NTBBWNQ"></script>
@@ -487,8 +502,20 @@
 
 <nav>
   <a href="../index.html" class="nav-logo">CAN<span>X</span>ANSA</a>
-  <a href="#contact" class="nav-cta">Get a Quote</a>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../index.html" class="mobile-nav-link">Home</a>
+  <a href="../index.html" class="mobile-nav-link">Services</a>
+  <a href="../index.html" class="mobile-nav-link">Corridors</a>
+  <a href="#contact" class="mobile-nav-link mobile-nav-cta" id="mobile-cta">Get a Quote →</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -668,14 +695,14 @@
     <p class="contact-intro">Tell us about your shipment — origin in China, final destination in Europe, cargo type and timeline. We'll respond within 1 hour with multimodal corridor options.</p>
     <div style="display:flex;flex-direction:column;gap:16px;margin-top:32px;">
       <div style="display:flex;align-items:center;gap:12px;">
-        <div style="width:36px;height:36px;background:var(--gray);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:16px;">📧</div>
+        <div style="width:36px;height:36px;background:var(--gray);border-radius:2px;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8521a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg></div>
         <div>
           <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:2px;">Email</div>
           <a href="mailto:info@canxansa.com" style="color:var(--white);font-size:14px;text-decoration:none;">info@canxansa.com</a>
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
-        <div style="width:36px;height:36px;background:var(--gray);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:16px;">🕐</div>
+        <div style="width:36px;height:36px;background:var(--gray);border-radius:2px;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8521a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
         <div>
           <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:2px;">Response Time</div>
           <div style="color:var(--white);font-size:14px;">Within 1 hour</div>
@@ -743,25 +770,21 @@
   <h2 class="section-title" style="margin-bottom:0;">EXPLORE MORE<br>ROUTES.</h2>
   <div class="related-grid" style="margin-top:48px;">
     <a href="/central-asia-to-europe-freight/" class="related-card fade-up">
-      <div class="related-flag">🌏</div>
       <div class="related-route">Central Asia → Europe</div>
       <div class="related-desc">Kazakhstan, Uzbekistan via Caspian crossing</div>
       <span class="related-arrow">→</span>
     </a>
     <a href="/estonia-turkey-freight/" class="related-card fade-up">
-      <div class="related-flag">🇪🇪</div>
       <div class="related-route">Estonia ↔ Turkey</div>
       <div class="related-desc">Dual-hub EU + Türkiye operations</div>
       <span class="related-arrow">→</span>
     </a>
     <a href="/turkey-germany-freight/" class="related-card fade-up">
-      <div class="related-flag">🇩🇪</div>
       <div class="related-route">Turkey ↔ Germany</div>
       <div class="related-desc">Air, sea &amp; road to Frankfurt, Hamburg</div>
       <span class="related-arrow">→</span>
     </a>
     <a href="/turkey-netherlands-freight/" class="related-card fade-up">
-      <div class="related-flag">🇳🇱</div>
       <div class="related-route">Turkey ↔ Netherlands</div>
       <div class="related-desc">Air, sea &amp; road to Rotterdam</div>
       <span class="related-arrow">→</span>
@@ -779,6 +802,23 @@
     <a href="#contact">Contact</a>
   </div>
 </footer>
+
+<script>
+  const hamburger = document.getElementById('nav-hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', function() {
+    this.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
 
 <script>
   document.getElementById('quote-form').addEventListener('submit', async function(e) {
