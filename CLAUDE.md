@@ -49,6 +49,14 @@ Tüm `href="#contact"` vb. anchor linkler JS ile intercept ediliyor.
 ## Güzergah Alt Sayfaları
 28 klasör var (turkey-germany-freight/ vb.) — her biri kendi index.html
 
+## Corridor Sayfaları (3 özel sayfa)
+- `china-to-europe-via-turkey-freight/`, `central-asia-to-europe-freight/`, `estonia-turkey-freight/`
+- Ana sayfada section başlığı: **SPECIALTY CORRIDORS** (DUAL-HUB değil)
+- Koridor kartlarında `.corridor-route` class — emoji değil, text rota (`CHINA → TURKEY → EUROPE`)
+- Alt sayfalarda hamburger: index.html'den farklı — `showPanel()` yok, direkt link (`../index.html`)
+- Alt sayfalarda contact ikonları SVG (inline style div içinde, 18x18)
+- Alt sayfalarda `.related-flag` div'leri yok (kaldırıldı)
+
 ## Kargo Takip Sistemi (Yapılacak)
 - Plan: `/research/tracking_system_plan.md` dosyasında
 - Supabase + admin şifre korumalı panel
