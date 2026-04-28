@@ -704,6 +704,18 @@
     letter-spacing: 1px;
   }
 
+  /* ─── PAGE PANELS ─── */
+  .page-panel { display: none; }
+  .page-panel.active {
+    display: block;
+    animation: panelIn 0.35s ease;
+  }
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .panel-sections { padding-top: 80px; }
+
   /* ─── FADE UP ANIMATION ─── */
   .fade-up {
     opacity: 0;
@@ -723,31 +735,166 @@
   body.tr span[data-lang="en"] { display: none; }
   span[data-lang="tr"] { display: none; }
 
+  /* ─── NAV CENTER LINKS ─── */
+  nav {
+    justify-content: space-between;
+  }
+  .nav-center {
+    display: flex; align-items: center; gap: 28px;
+    position: absolute; left: 50%; transform: translateX(-50%);
+  }
+  .nav-link {
+    color: var(--gray-light);
+    font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none;
+    transition: color 0.2s; position: relative; padding-bottom: 3px;
+  }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 1px; background: var(--orange);
+    transform: scaleX(0); transition: transform 0.25s;
+  }
+  .nav-link:hover { color: var(--white); }
+  .nav-link.active { color: var(--white); }
+  .nav-link.active::after, .nav-link:hover::after { transform: scaleX(1); }
+
+  /* ─── ACTION CARDS ─── */
+  .action-cards-section {
+    padding: 0 64px;
+    position: relative; z-index: 10;
+  }
+  .action-cards-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  }
+  .action-card {
+    background: var(--gray); padding: 40px 36px;
+    border-top: 2px solid var(--orange);
+  }
+  .action-card-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .action-card-label::before {
+    content: ''; width: 20px; height: 1px; background: var(--orange);
+  }
+  .action-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px; letter-spacing: 2px; margin-bottom: 6px;
+  }
+  .action-card-sub {
+    font-size: 12px; color: var(--gray-light);
+    margin-bottom: 24px; letter-spacing: 0.5px; line-height: 1.6;
+  }
+  .action-card-inputs { display: flex; flex-direction: column; gap: 8px; }
+  .action-card-inputs input {
+    background: var(--black); border: 1px solid var(--gray-mid);
+    color: var(--white); padding: 12px 14px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    border-radius: 2px; outline: none; transition: border-color 0.2s;
+    width: 100%;
+  }
+  .action-card-inputs input:focus { border-color: var(--orange); }
+  .action-card-inputs input::placeholder { color: var(--text-muted); }
+  .action-card-btn {
+    display: block; width: 100%; margin-top: 12px;
+    background: var(--orange); color: var(--white); border: none;
+    padding: 14px; font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 500; letter-spacing: 1.5px;
+    text-transform: uppercase; cursor: pointer; border-radius: 2px;
+    transition: background 0.2s; text-decoration: none; text-align: center;
+  }
+  .action-card-btn:hover { background: var(--orange-dim); }
+  .action-card-modes { display: flex; flex-direction: column; gap: 2px; }
+  .action-card-mode {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 16px; background: var(--black);
+    color: var(--gray-light); font-size: 13px;
+    text-decoration: none; border-left: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  .action-card-mode:hover {
+    color: var(--white); border-left-color: var(--orange);
+    padding-left: 20px; background: #111;
+  }
+  .action-card-mode-icon { font-size: 20px; line-height: 1; }
+  .action-card-mode-label { flex: 1; }
+  .action-card-mode-sub { font-size: 11px; color: var(--text-muted); letter-spacing: 0.5px; }
+  .action-card-mode-arr { color: var(--orange); opacity: 0; transition: opacity 0.2s; font-size: 14px; }
+  .action-card-mode:hover .action-card-mode-arr { opacity: 1; }
+  .action-card-track { display: flex; gap: 8px; margin-top: 8px; }
+  .action-card-track input {
+    flex: 1; background: var(--black); border: 1px solid var(--gray-mid);
+    color: var(--white); padding: 14px 16px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    border-radius: 2px; outline: none;
+  }
+  .action-card-track input::placeholder { color: var(--text-muted); }
+  .action-card-track button {
+    background: var(--gray-mid); border: none; color: var(--gray-light);
+    padding: 14px 20px; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif; font-size: 11px;
+    letter-spacing: 1px; text-transform: uppercase; cursor: not-allowed;
+  }
+  .coming-soon-tag {
+    display: inline-block;
+    background: rgba(232,82,26,0.08); color: var(--orange);
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 10px; border: 1px solid rgba(232,82,26,0.25);
+    border-radius: 2px; margin-bottom: 20px;
+  }
+
+  /* ─── COVERAGE TABS ─── */
+  .coverage-tabs {
+    display: flex; gap: 2px; margin-bottom: 2px; flex-wrap: wrap;
+  }
+  .coverage-tab {
+    background: var(--black); border: none;
+    color: var(--gray-light); padding: 12px 28px;
+    font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .coverage-tab:hover { color: var(--white); background: #1f1f1f; }
+  .coverage-tab.active { background: var(--orange); color: var(--white); }
+  .coverage-panel { display: none; }
+  .coverage-panel.active { display: block; }
+  .coverage-panel-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+  }
+
   /* ─── RESPONSIVE ─── */
   @media (max-width: 1024px) {
     nav { padding: 20px 32px; }
+    .nav-center { display: none; }
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { padding: 120px 32px 60px; }
     .hero-right { height: 400px; }
     .services, .how, .contact, .coverage, .corridors { padding: 80px 32px; }
-    .coverage-grid { grid-template-columns: 1fr 1fr; }
     .corridor-grid { grid-template-columns: 1fr; }
     .services-grid { grid-template-columns: 1fr; }
     .how-grid { grid-template-columns: 1fr 1fr; }
     .contact { grid-template-columns: 1fr; }
     .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    .action-cards-section { padding: 0 32px; }
+    .action-cards-grid { grid-template-columns: 1fr; }
+    .coverage-panel-grid { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 640px) {
     nav { padding: 16px 20px; }
     .hero-left { padding: 100px 20px 48px; }
     .services, .how, .contact, .coverage, .corridors { padding: 60px 20px; }
-    .coverage-grid { grid-template-columns: 1fr; }
     .how-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
     .hero-stats { flex-wrap: wrap; gap: 24px; left: 20px; }
     .nav-right { gap: 16px; }
+    .action-cards-section { padding: 0 20px; }
+    .coverage-panel-grid { grid-template-columns: 1fr; }
+    .coverage-tabs { gap: 4px; }
+    .coverage-tab { padding: 10px 16px; font-size: 10px; }
   }
 </style>
 <!-- Google Analytics GA4 — G-X19NTBBWNQ yerine kendi ID'ini yaz -->
@@ -764,21 +911,37 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">CAN<span>X</span>ANSA<span class="nav-sub">· LOGISTICS</span></a>
+  <div class="nav-center">
+    <a href="#services" class="nav-link" data-section="services">
+      <span data-lang="en">Services</span><span data-lang="tr">Hizmetler</span>
+    </a>
+    <a href="#corridors" class="nav-link" data-section="corridors">
+      <span data-lang="en">Corridors</span><span data-lang="tr">Koridorlar</span>
+    </a>
+    <a href="#coverage" class="nav-link" data-section="coverage">
+      <span data-lang="en">Routes</span><span data-lang="tr">Güzergahlar</span>
+    </a>
+    <a href="#how" class="nav-link" data-section="how">
+      <span data-lang="en">Process</span><span data-lang="tr">Süreç</span>
+    </a>
+    <a href="#contact" class="nav-link" data-section="contact">
+      <span data-lang="en">Contact</span><span data-lang="tr">İletişim</span>
+    </a>
+  </div>
   <div class="nav-right">
     <div class="lang-toggle">
       <button class="active" id="btn-en">EN</button>
       <button id="btn-tr">TR</button>
     </div>
-    <a href="#coverage" class="nav-routes">
-      <span data-lang="en">Routes</span>
-      <span data-lang="tr">Güzergahlar</span>
-    </a>
     <a href="#contact" class="nav-cta">
       <span data-lang="en">Get a Quote</span>
       <span data-lang="tr">Teklif Al</span>
     </a>
   </div>
 </nav>
+
+<!-- ═══ HOME PANEL ═══ -->
+<div class="page-panel active" id="panel-home">
 
 <!-- HERO -->
 <section class="hero">
@@ -845,7 +1008,99 @@
   </div>
 </div>
 
-<!-- SERVICES -->
+<!-- ACTION CARDS -->
+<section class="action-cards-section">
+  <div class="action-cards-grid">
+
+    <!-- Card 1: Get a Quote -->
+    <div class="action-card">
+      <div class="action-card-label">
+        <span data-lang="en">Start Here</span>
+        <span data-lang="tr">Buradan Başla</span>
+      </div>
+      <div class="action-card-title" data-lang="en">Get a Quote</div>
+      <div class="action-card-title" data-lang="tr">Teklif Al</div>
+      <div class="action-card-sub" data-lang="en">Tell us your route — we respond within 1 hour.</div>
+      <div class="action-card-sub" data-lang="tr">Güzergahınızı bildirin, 1 saat içinde dönelim.</div>
+      <div class="action-card-inputs">
+        <input type="text" id="ac-origin" data-placeholder-en="Origin — City, Country" data-placeholder-tr="Kalkış — Şehir, Ülke" placeholder="Origin — City, Country">
+        <input type="text" id="ac-dest" data-placeholder-en="Destination — City, Country" data-placeholder-tr="Varış — Şehir, Ülke" placeholder="Destination — City, Country">
+      </div>
+      <a href="#contact" class="action-card-btn" id="ac-quote-btn">
+        <span data-lang="en">Request a Quote →</span>
+        <span data-lang="tr">Teklif İste →</span>
+      </a>
+    </div>
+
+    <!-- Card 2: Our Services -->
+    <div class="action-card">
+      <div class="action-card-label">
+        <span data-lang="en">Transport Modes</span>
+        <span data-lang="tr">Taşıma Modları</span>
+      </div>
+      <div class="action-card-title" data-lang="en">Our Services</div>
+      <div class="action-card-title" data-lang="tr">Hizmetlerimiz</div>
+      <div class="action-card-sub" data-lang="en">Air, sea or road — we find the right carrier at the right price.</div>
+      <div class="action-card-sub" data-lang="tr">Hava, deniz veya kara — doğru taşıyıcıyı, doğru fiyata buluruz.</div>
+      <div class="action-card-modes">
+        <a href="#services" class="action-card-mode">
+          <span class="action-card-mode-icon">✈</span>
+          <span class="action-card-mode-label">
+            <span data-lang="en">Air Freight</span>
+            <span data-lang="tr">Hava Kargo</span>
+            <div class="action-card-mode-sub" data-lang="en">Express · Time-critical</div>
+            <div class="action-card-mode-sub" data-lang="tr">Ekspres · Acil teslimat</div>
+          </span>
+          <span class="action-card-mode-arr">→</span>
+        </a>
+        <a href="#services" class="action-card-mode">
+          <span class="action-card-mode-icon">🚢</span>
+          <span class="action-card-mode-label">
+            <span data-lang="en">Sea Freight</span>
+            <span data-lang="tr">Deniz Kargo</span>
+            <div class="action-card-mode-sub">FCL · LCL</div>
+          </span>
+          <span class="action-card-mode-arr">→</span>
+        </a>
+        <a href="#services" class="action-card-mode">
+          <span class="action-card-mode-icon">🚛</span>
+          <span class="action-card-mode-label">
+            <span data-lang="en">Road Freight</span>
+            <span data-lang="tr">Kara Kargo</span>
+            <div class="action-card-mode-sub" data-lang="en">FTL · LTL · Cross-border</div>
+            <div class="action-card-mode-sub" data-lang="tr">Tam · Parsiyel · Sınır ötesi</div>
+          </span>
+          <span class="action-card-mode-arr">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 3: Track Shipment -->
+    <div class="action-card">
+      <div class="coming-soon-tag" data-lang="en">Coming Soon</div>
+      <div class="coming-soon-tag" data-lang="tr">Yakında</div>
+      <div class="action-card-title" data-lang="en">Track Shipment</div>
+      <div class="action-card-title" data-lang="tr">Kargo Takip</div>
+      <div class="action-card-sub" data-lang="en">Enter your tracking ID to see real-time status updates for your cargo.</div>
+      <div class="action-card-sub" data-lang="tr">Takip numaranızı girerek kargonuzun anlık durumunu görün.</div>
+      <div class="action-card-track">
+        <input type="text" disabled data-placeholder-en="Enter Tracking ID" data-placeholder-tr="Takip Numarası" placeholder="Enter Tracking ID">
+        <button disabled>
+          <span data-lang="en">Track</span>
+          <span data-lang="tr">Takip Et</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div>
+<!-- ═══ END HOME PANEL ═══ -->
+
+<!-- ═══ SERVICES PANEL ═══ -->
+<div class="page-panel" id="panel-services">
+<div class="panel-sections">
 <section class="services" id="services">
   <div class="section-label">
     <span data-lang="en">What We Do</span>
@@ -913,7 +1168,12 @@
   </div>
 </section>
 
-<!-- SPECIALTY CORRIDORS -->
+</div></div>
+<!-- ═══ END SERVICES PANEL ═══ -->
+
+<!-- ═══ CORRIDORS PANEL ═══ -->
+<div class="page-panel" id="panel-corridors">
+<div class="panel-sections">
 <section class="corridors" id="corridors">
   <div class="section-label">
     <span data-lang="en">Specialty Corridors</span>
@@ -951,7 +1211,12 @@
   </div>
 </section>
 
-<!-- GLOBAL COVERAGE -->
+</div></div>
+<!-- ═══ END CORRIDORS PANEL ═══ -->
+
+<!-- ═══ COVERAGE PANEL ═══ -->
+<div class="page-panel" id="panel-coverage">
+<div class="panel-sections">
 <section class="coverage" id="coverage">
   <div class="section-label">
     <span data-lang="en">Global Coverage</span>
@@ -960,129 +1225,71 @@
   <h2 class="section-title" data-lang="en">WE MOVE CARGO<br>ANYWHERE.</h2>
   <h2 class="section-title" data-lang="tr">HER YERE<br>TAŞIYORUZ.</h2>
 
-  <div class="coverage-grid">
+  <div class="coverage-tabs">
+    <button class="coverage-tab active" data-tab="europe">
+      <span data-lang="en">Europe</span><span data-lang="tr">Avrupa</span>
+    </button>
+    <button class="coverage-tab" data-tab="asia">
+      <span data-lang="en">Asia Pacific</span><span data-lang="tr">Asya Pasifik</span>
+    </button>
+    <button class="coverage-tab" data-tab="americas">Americas</button>
+    <button class="coverage-tab" data-tab="mea">
+      <span data-lang="en">Middle East &amp; Africa</span><span data-lang="tr">Orta Doğu &amp; Afrika</span>
+    </button>
+  </div>
 
-    <div class="coverage-region fade-up">
-      <div class="coverage-region-header">
-        <span class="coverage-flag">●</span>
-        <h3 class="coverage-region-title" data-lang="en">Europe</h3>
-        <h3 class="coverage-region-title" data-lang="tr">Avrupa</h3>
-      </div>
-      <div class="coverage-countries">
-        <a href="turkey-germany-freight/" class="coverage-country active">
-          <span>Germany</span><span class="coverage-mode">Air · Sea · Road</span>
-        </a>
-        <a href="turkey-spain-freight/" class="coverage-country active">
-          <span>Spain</span><span class="coverage-mode">Air · Sea · Road</span>
-        </a>
-        <a href="turkey-netherlands-freight/" class="coverage-country active">
-          <span>Netherlands</span><span class="coverage-mode">Air · Sea · Road</span>
-        </a>
-        <a href="turkey-poland-freight/" class="coverage-country active">
-          <span>Poland</span><span class="coverage-mode">Air · Sea · Road</span>
-        </a>
-        <a href="turkey-italy-freight/" class="coverage-country active">
-          <span>Italy</span><span class="coverage-mode">Air · Sea · Road</span>
-        </a>
-        <a href="turkey-france-freight/" class="coverage-country active">
-          <span>France</span><span class="coverage-mode">Air · Sea · Road</span>
-        </a>
-        <a href="turkey-belgium-freight/" class="coverage-country active">
-          <span>Belgium</span><span class="coverage-mode">Air · Sea · Road</span>
-        </a>
-        <a href="turkey-uk-freight/" class="coverage-country active">
-          <span>UK</span><span class="coverage-mode">Air · Sea · Road</span>
-        </a>
-        <a href="#contact" class="coverage-country active">
-          <span>Turkey</span><span class="coverage-mode">Air · Sea · Road</span>
-        </a>
-      </div>
+  <!-- Europe -->
+  <div class="coverage-panel active" data-panel="europe">
+    <div class="coverage-panel-grid">
+      <a href="turkey-germany-freight/" class="coverage-country active"><span>Germany</span><span class="coverage-mode">Air · Sea · Road</span></a>
+      <a href="turkey-france-freight/" class="coverage-country active"><span>France</span><span class="coverage-mode">Air · Sea · Road</span></a>
+      <a href="turkey-netherlands-freight/" class="coverage-country active"><span>Netherlands</span><span class="coverage-mode">Air · Sea · Road</span></a>
+      <a href="turkey-italy-freight/" class="coverage-country active"><span>Italy</span><span class="coverage-mode">Air · Sea · Road</span></a>
+      <a href="turkey-spain-freight/" class="coverage-country active"><span>Spain</span><span class="coverage-mode">Air · Sea · Road</span></a>
+      <a href="turkey-poland-freight/" class="coverage-country active"><span>Poland</span><span class="coverage-mode">Air · Sea · Road</span></a>
+      <a href="turkey-belgium-freight/" class="coverage-country active"><span>Belgium</span><span class="coverage-mode">Air · Sea · Road</span></a>
+      <a href="turkey-uk-freight/" class="coverage-country active"><span>UK</span><span class="coverage-mode">Air · Sea · Road</span></a>
+      <a href="#contact" class="coverage-country active"><span>Turkey</span><span class="coverage-mode">Air · Sea · Road</span></a>
+      <a href="estonia-turkey-freight/" class="coverage-country active"><span>Estonia</span><span class="coverage-mode">Air · Sea · Road</span></a>
     </div>
+  </div>
 
-    <div class="coverage-region fade-up">
-      <div class="coverage-region-header">
-        <span class="coverage-flag">●</span>
-        <h3 class="coverage-region-title" data-lang="en">Asia Pacific</h3>
-        <h3 class="coverage-region-title" data-lang="tr">Asya Pasifik</h3>
-      </div>
-      <div class="coverage-countries">
-        <a href="/turkey-china-freight/" class="coverage-country active">
-          <span>China</span><span class="coverage-mode">Air · Sea · Rail</span>
-        </a>
-        <a href="/turkey-india-freight/" class="coverage-country active">
-          <span>India</span><span class="coverage-mode">Air · Sea</span>
-        </a>
-        <a href="/turkey-japan-freight/" class="coverage-country active">
-          <span>Japan</span><span class="coverage-mode">Air · Sea</span>
-        </a>
-        <a href="#contact" class="coverage-country active">
-          <span>South Korea</span><span class="coverage-mode">Air · Sea</span>
-        </a>
-        <a href="#contact" class="coverage-country active">
-          <span>Vietnam</span><span class="coverage-mode">Sea</span>
-        </a>
-        <a href="#contact" class="coverage-country active">
-          <span>Bangladesh</span><span class="coverage-mode">Air · Sea</span>
-        </a>
-      </div>
+  <!-- Asia Pacific -->
+  <div class="coverage-panel" data-panel="asia">
+    <div class="coverage-panel-grid">
+      <a href="turkey-china-freight/" class="coverage-country active"><span>China</span><span class="coverage-mode">Air · Sea · Rail</span></a>
+      <a href="turkey-india-freight/" class="coverage-country active"><span>India</span><span class="coverage-mode">Air · Sea</span></a>
+      <a href="turkey-japan-freight/" class="coverage-country active"><span>Japan</span><span class="coverage-mode">Air · Sea</span></a>
+      <a href="#contact" class="coverage-country active"><span>South Korea</span><span class="coverage-mode">Air · Sea</span></a>
+      <a href="#contact" class="coverage-country active"><span>Vietnam</span><span class="coverage-mode">Sea</span></a>
+      <a href="#contact" class="coverage-country active"><span>Bangladesh</span><span class="coverage-mode">Air · Sea</span></a>
+      <a href="central-asia-to-europe-freight/" class="coverage-country active"><span>Kazakhstan</span><span class="coverage-mode">Rail · Road</span></a>
+      <a href="central-asia-to-europe-freight/" class="coverage-country active"><span>Uzbekistan</span><span class="coverage-mode">Rail · Road</span></a>
     </div>
+  </div>
 
-    <div class="coverage-region fade-up">
-      <div class="coverage-region-header">
-        <span class="coverage-flag">●</span>
-        <h3 class="coverage-region-title" data-lang="en">Americas</h3>
-        <h3 class="coverage-region-title" data-lang="tr">Amerika</h3>
-      </div>
-      <div class="coverage-countries">
-        <a href="/turkey-usa-freight/" class="coverage-country active">
-          <span>USA</span><span class="coverage-mode">Air · Sea</span>
-        </a>
-        <a href="#contact" class="coverage-country active">
-          <span>Canada</span><span class="coverage-mode">Air · Sea</span>
-        </a>
-        <a href="#contact" class="coverage-country active">
-          <span>Brazil</span><span class="coverage-mode">Air · Sea</span>
-        </a>
-        <a href="#contact" class="coverage-country active">
-          <span>Mexico</span><span class="coverage-mode">Air · Sea</span>
-        </a>
-      </div>
+  <!-- Americas -->
+  <div class="coverage-panel" data-panel="americas">
+    <div class="coverage-panel-grid">
+      <a href="turkey-usa-freight/" class="coverage-country active"><span>USA</span><span class="coverage-mode">Air · Sea</span></a>
+      <a href="#contact" class="coverage-country active"><span>Canada</span><span class="coverage-mode">Air · Sea</span></a>
+      <a href="#contact" class="coverage-country active"><span>Brazil</span><span class="coverage-mode">Air · Sea</span></a>
+      <a href="#contact" class="coverage-country active"><span>Mexico</span><span class="coverage-mode">Air · Sea</span></a>
     </div>
+  </div>
 
-    <div class="coverage-region fade-up">
-      <div class="coverage-region-header">
-        <span class="coverage-flag">●</span>
-        <h3 class="coverage-region-title" data-lang="en">Middle East &amp; Africa</h3>
-        <h3 class="coverage-region-title" data-lang="tr">Orta Doğu &amp; Afrika</h3>
-      </div>
-      <div class="coverage-countries">
-        <a href="/turkey-uae-freight/" class="coverage-country active">
-          <span>UAE</span><span class="coverage-mode">Air · Sea · Road</span>
-        </a>
-        <a href="/turkey-saudi-arabia-freight/" class="coverage-country active">
-          <span>Saudi Arabia</span><span class="coverage-mode">Air · Sea · Road</span>
-        </a>
-        <a href="/turkey-qatar-freight/" class="coverage-country active">
-          <span>Qatar</span><span class="coverage-mode">Air · Sea · Road</span>
-        </a>
-        <a href="/turkey-syria-freight/" class="coverage-country active">
-          <span>Syria</span><span class="coverage-mode">Air · Road</span>
-        </a>
-        <a href="/turkey-iraq-freight/" class="coverage-country active">
-          <span>Iraq</span><span class="coverage-mode">Air · Sea · Road</span>
-        </a>
-        <a href="/turkey-egypt-freight/" class="coverage-country active">
-          <span>Egypt</span><span class="coverage-mode">Air · Sea</span>
-        </a>
-        <a href="#contact" class="coverage-country active">
-          <span>South Africa</span><span class="coverage-mode">Air · Sea</span>
-        </a>
-        <a href="#contact" class="coverage-country active">
-          <span>Nigeria</span><span class="coverage-mode">Sea</span>
-        </a>
-      </div>
+  <!-- Middle East & Africa -->
+  <div class="coverage-panel" data-panel="mea">
+    <div class="coverage-panel-grid">
+      <a href="turkey-uae-freight/" class="coverage-country active"><span>UAE</span><span class="coverage-mode">Air · Sea · Road</span></a>
+      <a href="turkey-saudi-arabia-freight/" class="coverage-country active"><span>Saudi Arabia</span><span class="coverage-mode">Air · Sea · Road</span></a>
+      <a href="turkey-qatar-freight/" class="coverage-country active"><span>Qatar</span><span class="coverage-mode">Air · Sea · Road</span></a>
+      <a href="turkey-iraq-freight/" class="coverage-country active"><span>Iraq</span><span class="coverage-mode">Air · Sea · Road</span></a>
+      <a href="turkey-syria-freight/" class="coverage-country active"><span>Syria</span><span class="coverage-mode">Air · Road</span></a>
+      <a href="turkey-egypt-freight/" class="coverage-country active"><span>Egypt</span><span class="coverage-mode">Air · Sea</span></a>
+      <a href="#contact" class="coverage-country active"><span>South Africa</span><span class="coverage-mode">Air · Sea</span></a>
+      <a href="#contact" class="coverage-country active"><span>Nigeria</span><span class="coverage-mode">Sea</span></a>
     </div>
-
   </div>
 
   <div class="coverage-note fade-up">
@@ -1091,7 +1298,12 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
+</div></div>
+<!-- ═══ END COVERAGE PANEL ═══ -->
+
+<!-- ═══ HOW PANEL ═══ -->
+<div class="page-panel" id="panel-how">
+<div class="panel-sections">
 <section class="how" id="how">
   <div class="section-label">
     <span data-lang="en">How It Works</span>
@@ -1135,7 +1347,12 @@
   </div>
 </section>
 
-<!-- CONTACT -->
+</div></div>
+<!-- ═══ END HOW PANEL ═══ -->
+
+<!-- ═══ CONTACT PANEL ═══ -->
+<div class="page-panel" id="panel-contact">
+<div class="panel-sections">
 <section class="contact" id="contact">
   <div class="contact-left">
     <div class="section-label">
@@ -1239,6 +1456,9 @@
     </form>
   </div>
 </section>
+
+</div></div>
+<!-- ═══ END CONTACT PANEL ═══ -->
 
 <!-- FOOTER -->
 <footer>
@@ -1368,6 +1588,71 @@
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── Panel switching ──
+  function showPanel(id) {
+    document.querySelectorAll('.page-panel').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('panel-' + id);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    document.querySelectorAll('.nav-link[data-section]').forEach(l => {
+      l.classList.toggle('active', l.dataset.section === id);
+    });
+  }
+
+  // Nav center links
+  document.querySelectorAll('.nav-link[data-section]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      showPanel(this.dataset.section);
+    });
+  });
+
+  // Logo → home
+  document.querySelector('.nav-logo').addEventListener('click', function(e) {
+    e.preventDefault();
+    showPanel('home');
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  });
+
+  // Get a Quote CTA → contact panel
+  document.querySelector('.nav-cta').addEventListener('click', function(e) {
+    e.preventDefault();
+    showPanel('contact');
+  });
+
+  // Tüm iç anchor linkleri panel'e yönlendir
+  const anchorMap = { '#contact': 'contact', '#services': 'services', '#corridors': 'corridors', '#coverage': 'coverage', '#how': 'how' };
+  document.querySelectorAll('a[href="#contact"], a[href="#services"], a[href="#corridors"], a[href="#coverage"], a[href="#how"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      showPanel(anchorMap[this.getAttribute('href')]);
+    });
+  });
+
+  // Action card: origin/dest → contact formuna taşı
+  document.getElementById('ac-quote-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    const origin = document.getElementById('ac-origin').value;
+    const dest   = document.getElementById('ac-dest').value;
+    showPanel('contact');
+    setTimeout(() => {
+      if (origin) { const el = document.querySelector('input[name="origin"]'); if (el) el.value = origin; }
+      if (dest)   { const el = document.querySelector('input[name="destination"]'); if (el) el.value = dest; }
+    }, 50);
+  });
+
+  // Coverage tabs
+  document.querySelectorAll('.coverage-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.coverage-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.coverage-panel').forEach(p => p.classList.remove('active'));
+      this.classList.add('active');
+      document.querySelector('.coverage-panel[data-panel="' + this.dataset.tab + '"]').classList.add('active');
+    });
+  });
 </script>
 
 <script src="https://unpkg.com/globe.gl@2"></script>
