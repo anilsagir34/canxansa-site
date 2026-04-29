@@ -18,6 +18,26 @@ Coverage tabları: `data-tab="europe|asia|americas|mea"`
 ## Mobil
 `<=1024px` hamburger `#nav-hamburger` · `<=640px` nav-cta gizlenir · `#mobile-menu` overlay
 
+## Sayfa Yenileme Durumu (2026-04-29)
+
+### Tamamlananlar
+| Sayfa | Format | Durum |
+|---|---|---|
+| `turkey-china-freight/` | "Freight from China" hub — 12 dest. kartı, hubs, cargo types, FAQ×8 | Canlı |
+| `turkey-germany-freight/` | Turkey ↔ Germany bilateral — road/air/sea, trade flows, ports, FAQ×8 | Canlı |
+
+### Bekleyen (öncelik sırası)
+Netherlands → Italy → France → Spain → UK → Poland → Belgium → UAE → Saudi Arabia → Qatar → Iraq
+
+### Sayfa Şablonu Kuralları
+- Emoji/bayrak yok
+- Çin sayfası: "Freight from [Ülke]" hub formatı (büyük ihracatçı ülkeler)
+- Avrupa sayfaları: "Turkey ↔ [Ülke]" bilateral format
+- Orta Doğu sayfaları: "Turkey ↔ [Ülke]" bilateral format
+- Her sayfada: Trade Flows + Ports & Airports + FAQ×8 + SVG ikonlar
+- Form'da direction dropdown (Turkey→X / X→Turkey)
+- Transit süreler gerçek veriye dayalı
+
 ## Kurallar
 - Renk & `showPanel()` değiştirme
 - Panel div'lerini (`<!-- ═══ ... PANEL ═══ -->`) koru
