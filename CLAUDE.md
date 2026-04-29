@@ -25,10 +25,12 @@ Coverage tabları: `data-tab="europe|asia|americas|mea"`
 |---|---|---|
 | `china-freight/` | "Freight from China" hub — 12 dest. kartı, hubs, cargo types, FAQ×8 | Canlı |
 | `india-freight/` | "Freight from India" hub — 12 dest. kartı, hubs, cargo types, FAQ×8 | Canlı |
+| `netherlands-freight/` | "Freight from Netherlands" hub — 12 dest. kartı, hubs, cargo types, FAQ×8 | Canlı |
+| `italy-freight/` | "Freight from Italy" hub — 12 dest. kartı, hubs, cargo types, FAQ×8 | Canlı |
 | `turkey-germany-freight/` | Turkey ↔ Germany bilateral — road/air/sea, trade flows, ports, FAQ×8 | Canlı |
 
 ### Bekleyen (öncelik sırası)
-Netherlands → Italy → France → Spain → UK → Poland → Belgium → UAE → Saudi Arabia → Qatar → Iraq
+France → Spain → UK → Poland → Belgium → UAE → Saudi Arabia → Qatar → Iraq
 
 ### Sayfa Şablonu Kuralları
 - Emoji/bayrak yok
