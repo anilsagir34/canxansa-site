@@ -10,7 +10,7 @@
 Coverage tabları: `data-tab="europe|asia|americas|mea"`
 
 ## Alt Sayfalar
-- 28 güzergah klasörü: `turkey-{ülke}-freight/index.html`
+- Güzergah klasörleri: `turkey-{ülke}-freight/index.html` (bilateral) + `china-freight/`, `india-freight/` (hub)
 - 3 koridor sayfası: `china-to-europe-via-turkey-freight/`, `central-asia-to-europe-freight/`, `estonia-turkey-freight/`
 - Alt sayfalarda nav: `showPanel()` yok, `../index.html` direkt link
 - Contact ikonlar: SVG inline (18×18, turuncu stroke)
@@ -23,7 +23,8 @@ Coverage tabları: `data-tab="europe|asia|americas|mea"`
 ### Tamamlananlar
 | Sayfa | Format | Durum |
 |---|---|---|
-| `turkey-china-freight/` | "Freight from China" hub — 12 dest. kartı, hubs, cargo types, FAQ×8 | Canlı |
+| `china-freight/` | "Freight from China" hub — 12 dest. kartı, hubs, cargo types, FAQ×8 | Canlı |
+| `india-freight/` | "Freight from India" hub — 12 dest. kartı, hubs, cargo types, FAQ×8 | Canlı |
 | `turkey-germany-freight/` | Turkey ↔ Germany bilateral — road/air/sea, trade flows, ports, FAQ×8 | Canlı |
 
 ### Bekleyen (öncelik sırası)
@@ -31,7 +32,7 @@ Netherlands → Italy → France → Spain → UK → Poland → Belgium → UAE
 
 ### Sayfa Şablonu Kuralları
 - Emoji/bayrak yok
-- Çin sayfası: "Freight from [Ülke]" hub formatı (büyük ihracatçı ülkeler)
+- Büyük ihracatçı ülkeler: "Freight from [Ülke]" hub formatı (`china-freight/`, `india-freight/` gibi)
 - Avrupa sayfaları: "Turkey ↔ [Ülke]" bilateral format
 - Orta Doğu sayfaları: "Turkey ↔ [Ülke]" bilateral format
 - Her sayfada: Trade Flows + Ports & Airports + FAQ×8 + SVG ikonlar
