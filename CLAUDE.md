@@ -10,7 +10,8 @@
 Coverage tabları: `data-tab="europe|asia|americas|mea"`
 
 ## Alt Sayfalar
-- Güzergah klasörleri: `turkey-{ülke}-freight/index.html` (bilateral) + `china-freight/`, `india-freight/` (hub)
+- Güzergah klasörleri: `turkey-{ülke}-freight/index.html` (bilateral) + hub sayfaları
+- Hub sayfaları: `{ülke}-freight/` formatı — "Freight from [Ülke]", 12 dest. kartı, hubs, cargo types, FAQ×8
 - 3 koridor sayfası: `china-to-europe-via-turkey-freight/`, `central-asia-to-europe-freight/`, `estonia-turkey-freight/`
 - Alt sayfalarda nav: `showPanel()` yok, `../index.html` direkt link
 - Contact ikonlar: SVG inline (18×18, turuncu stroke)
@@ -18,27 +19,41 @@ Coverage tabları: `data-tab="europe|asia|americas|mea"`
 ## Mobil
 `<=1024px` hamburger `#nav-hamburger` · `<=640px` nav-cta gizlenir · `#mobile-menu` overlay
 
-## Sayfa Yenileme Durumu (2026-04-29)
+## Sayfa Yenileme Durumu (2026-05-02)
 
-### Tamamlananlar
+### Hub Sayfaları (China formatı) — Tamamlananlar
+| Sayfa | İçerik | Durum |
+|---|---|---|
+| `china-freight/` | 12 dest. kartı, hubs, cargo types, FAQ×8, FAQPage schema | Canlı |
+| `india-freight/` | 12 dest. kartı, hubs, cargo types, FAQ×8, FAQPage schema | Canlı |
+| `netherlands-freight/` | 12 dest. kartı, hubs, cargo types, FAQ×8, FAQPage schema | Canlı |
+| `italy-freight/` | 12 dest. kartı, hubs, cargo types, FAQ×8, FAQPage schema | Canlı |
+| `france-freight/` | 12 dest. kartı, EU-Turkey Customs Union callout, FAQ×8, FAQPage schema | Canlı |
+| `spain-freight/` | 12 dest. kartı, Algeciras callout, FAQ×8, FAQPage schema | Canlı |
+| `uk-freight/` | 12 dest. kartı, Post-Brexit callout, FAQ×8, FAQPage schema | Canlı |
+| `poland-freight/` | 12 dest. kartı, Orta Avrupa hub callout, FAQ×8, FAQPage schema | Canlı |
+| `belgium-freight/` | 12 dest. kartı, Antwerp+Liege callout, FAQ×8, FAQPage schema | Canlı |
+
+### Bilateral Sayfalar — Tamamlananlar
 | Sayfa | Format | Durum |
 |---|---|---|
-| `china-freight/` | "Freight from China" hub — 12 dest. kartı, hubs, cargo types, FAQ×8 | Canlı |
-| `india-freight/` | "Freight from India" hub — 12 dest. kartı, hubs, cargo types, FAQ×8 | Canlı |
-| `netherlands-freight/` | "Freight from Netherlands" hub — 12 dest. kartı, hubs, cargo types, FAQ×8 | Canlı |
-| `italy-freight/` | "Freight from Italy" hub — 12 dest. kartı, hubs, cargo types, FAQ×8 | Canlı |
-| `turkey-germany-freight/` | Turkey ↔ Germany bilateral — road/air/sea, trade flows, ports, FAQ×8 | Canlı |
+| `turkey-germany-freight/` | Turkey ↔ Germany — trade flows, ports, FAQ×8, FAQPage schema | Canlı |
 
-### Bekleyen (öncelik sırası)
-France → Spain → UK → Poland → Belgium → UAE → Saudi Arabia → Qatar → Iraq
+### SEO — Tamamlananlar (2026-05-02)
+- Tüm 21 güzergah sayfasına FAQPage JSON-LD schema eklendi
+- Sitemap.xml güncel (28 URL)
+
+### Hub Sayfaları — Bekleyen (öncelik sırası)
+Orta Doğu: UAE → Saudi Arabia → Qatar → Iraq
+Uzak: USA → Japan → Egypt → Syria
 
 ### Sayfa Şablonu Kuralları
 - Emoji/bayrak yok
-- Büyük ihracatçı ülkeler: "Freight from [Ülke]" hub formatı (`china-freight/`, `india-freight/` gibi)
-- Avrupa sayfaları: "Turkey ↔ [Ülke]" bilateral format
-- Orta Doğu sayfaları: "Turkey ↔ [Ülke]" bilateral format
-- Her sayfada: Trade Flows + Ports & Airports + FAQ×8 + SVG ikonlar
-- Form'da direction dropdown (Turkey→X / X→Turkey)
+- TÜM ülkeler için: "Freight from [Ülke]" hub formatı (china-freight şablonu)
+- Bilateral sayfalar (`turkey-{ülke}-freight/`) eski formatta bırakılıyor, yanlarına hub sayfaları açılıyor
+- Her hub sayfasında: 12 dest. kartı + ülkeye özel callout + 4 servis kartı + 5 hub + 5 cargo type + FAQ×8 + FAQPage schema
+- China'da Rail var, Avrupa sayfalarında Rail yerine Road (TIR)
+- Orta Doğu sayfalarında Road (GCC trucking) + Air + Sea
 - Transit süreler gerçek veriye dayalı
 
 ## Kurallar
