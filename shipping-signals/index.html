@@ -103,19 +103,27 @@
   .live-terminal { border-top: 1px solid var(--gray-mid); border-bottom: 1px solid var(--gray-mid); }
   .terminal-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 64px; border-bottom: 1px solid var(--gray-mid); background: var(--gray); }
   .terminal-title { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 3px; color: var(--orange); }
-  .terminal-live { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 500; letter-spacing: 2px; color: var(--green); text-transform: uppercase; }
-  .terminal-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse-dot 1.5s ease-in-out infinite; }
-  @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .terminal-live { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 500; letter-spacing: 2px; color: var(--gray-light); text-transform: uppercase; }
+  .terminal-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); animation: pulse-dot 2s ease-in-out infinite; }
+  @keyframes pulse-dot { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(232,82,26,0.4); } 50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(232,82,26,0); } }
   .terminal-scroll { overflow-x: auto; }
   .terminal-table { min-width: 720px; }
   .terminal-row-head { display: grid; grid-template-columns: 2.2fr 0.7fr 1.3fr 1fr 1.2fr; padding: 10px 64px; background: var(--gray); border-bottom: 1px solid var(--gray-mid); font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-light); }
-  .terminal-row { display: grid; grid-template-columns: 2.2fr 0.7fr 1.3fr 1fr 1.2fr; align-items: center; padding: 7px 64px; border-bottom: 1px solid rgba(46,46,46,0.4); transition: background 0.3s; }
+  @keyframes rowEntry { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes rowScan { 0% { background: rgba(232,82,26,0.1); } 100% { background: transparent; } }
+  .terminal-row { display: grid; grid-template-columns: 2.2fr 0.7fr 1.3fr 1fr 1.2fr; align-items: center; padding: 7px 64px; border-bottom: 1px solid rgba(46,46,46,0.4); transition: background 0.4s; animation: rowEntry 0.5s ease both; }
+  .terminal-row.row-scan { animation: rowScan 0.8s ease; }
   .terminal-row:last-child { border-bottom: none; }
   .terminal-row:hover { background: rgba(30,30,30,0.6); }
   .t-route { font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 2px; }
   .t-arrow { color: var(--orange); }
   .t-mode { font-size: 11px; letter-spacing: 1px; color: var(--gray-light); font-weight: 500; }
-  .t-price { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; }
+  .t-price-wrap { overflow: hidden; }
+  .t-price { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; display: block; }
+  @keyframes slideInUp { from { transform: translateY(110%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  @keyframes slideInDown { from { transform: translateY(-110%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .anim-up { animation: slideInUp 0.38s cubic-bezier(0.2,0,0.2,1); }
+  .anim-down { animation: slideInDown 0.38s cubic-bezier(0.2,0,0.2,1); }
   .t-unit { font-size: 10px; color: var(--gray-light); letter-spacing: 0.5px; margin-top: 2px; }
   .t-change { font-size: 13px; font-weight: 500; letter-spacing: 0.5px; }
   .t-change.up { color: var(--green); }
@@ -125,10 +133,6 @@
   .t-spark.spark-up { color: var(--green); }
   .t-spark.spark-down { color: var(--red); }
   .t-spark.spark-flat { color: var(--gray-light); }
-  .flash-up { animation: flashG 0.5s ease; }
-  .flash-down { animation: flashR 0.5s ease; }
-  @keyframes flashG { 0% { background: rgba(34,197,94,0.2); } 100% { background: transparent; } }
-  @keyframes flashR { 0% { background: rgba(239,68,68,0.2); } 100% { background: transparent; } }
 
   .section-label { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
   .section-label::before { content: ''; width: 32px; height: 1px; background: var(--orange); }
@@ -282,8 +286,8 @@
 <!-- LIVE TERMINAL -->
 <section class="live-terminal">
   <div class="terminal-header">
-    <div class="terminal-title">LIVE FREIGHT RATES</div>
-    <div class="terminal-live"><span class="terminal-dot"></span>UPDATING LIVE</div>
+    <div class="terminal-title">FREIGHT RATE MONITOR</div>
+    <div class="terminal-live"><span class="terminal-dot"></span>INDICATIVE RATES</div>
   </div>
   <div class="terminal-scroll">
     <div class="terminal-table">
@@ -546,77 +550,69 @@ var R=[
 {route:'TALLINN > HAMBURG',mode:'FTL',unit:'per truck',min:1100,max:1700,dec:0}
 ];
 R.forEach(function(r){
-r.history=[];
-for(var i=0;i<10;i++){
-var p=r.min+Math.random()*(r.max-r.min);
-r.history.push(Number(p.toFixed(r.dec)));
-}
-r.price=r.history[r.history.length-1];
-r.prev=r.history[r.history.length-2];
+  r.history=[];
+  for(var i=0;i<10;i++){r.history.push(Number((r.min+Math.random()*(r.max-r.min)).toFixed(r.dec)));}
+  r.price=r.history[r.history.length-1];
+  r.prev=r.history[r.history.length-2];
 });
-function fmt(v,d){
-if(d>0)return '$'+v.toFixed(d);
-return '$'+v.toLocaleString('en-US');
-}
+function fmt(v,d){return d>0?'$'+v.toFixed(d):'$'+v.toLocaleString('en-US');}
 function spark(h){
-var mn=Math.min.apply(null,h),mx=Math.max.apply(null,h),rng=mx-mn||1;
-return h.map(function(v){return B[Math.min(7,Math.round(((v-mn)/rng)*7))];}).join('');
+  var mn=Math.min.apply(null,h),mx=Math.max.apply(null,h),rng=mx-mn||1;
+  return h.map(function(v){return B[Math.min(7,Math.round(((v-mn)/rng)*7))];}).join('');
 }
-function sparkCls(h){
-var d=h[h.length-1]-h[0];
-return d>0?'spark-up':d<0?'spark-down':'spark-flat';
-}
+function sparkCls(h){var d=h[h.length-1]-h[0];return d>0?'spark-up':d<0?'spark-down':'spark-flat';}
 function chg(p,prev){
-if(prev===0)return{t:'0.0%',c:'flat'};
-var pct=((p-prev)/prev*100).toFixed(1);
-if(p>prev)return{t:'▲ +'+pct+'%',c:'up'};
-if(p<prev)return{t:'▼ '+pct+'%',c:'down'};
-return{t:'0.0%',c:'flat'};
+  if(prev===0)return{t:'—',c:'flat'};
+  var pct=((p-prev)/prev*100).toFixed(1);
+  if(p>prev)return{t:'▲ +'+pct+'%',c:'up'};
+  if(p<prev)return{t:'▼ '+pct+'%',c:'down'};
+  return{t:'—',c:'flat'};
 }
 var tbl=document.getElementById('live-table');
 function mkRow(r,i){
-var c=chg(r.price,r.prev);
-var parts=r.route.split(' > ');
-return '<div class="terminal-row" id="trow-'+i+'">'+
-'<div class="t-route">'+parts[0]+' <span class="t-arrow">→</span> '+parts[1]+'</div>'+
-'<div class="t-mode">'+r.mode+'</div>'+
-'<div><span class="t-price">'+fmt(r.price,r.dec)+'</span><div class="t-unit">'+r.unit+'</div></div>'+
-'<div class="t-change '+c.c+'">'+c.t+'</div>'+
-'<div class="t-spark '+sparkCls(r.history)+'">'+spark(r.history)+'</div>'+
-'</div>';
+  var c=chg(r.price,r.prev),pts=r.route.split(' > ');
+  return '<div class="terminal-row" id="trow-'+i+'" style="animation-delay:'+(i*0.07)+'s">'+
+    '<div class="t-route">'+pts[0]+' <span class="t-arrow">→</span> '+pts[1]+'</div>'+
+    '<div class="t-mode">'+r.mode+'</div>'+
+    '<div class="t-price-cell"><div class="t-price-wrap"><span class="t-price">'+fmt(r.price,r.dec)+'</span></div><div class="t-unit">'+r.unit+'</div></div>'+
+    '<div class="t-change '+c.c+'">'+c.t+'</div>'+
+    '<div class="t-spark '+sparkCls(r.history)+'">'+spark(r.history)+'</div>'+
+    '</div>';
 }
-function render(){
 tbl.innerHTML=R.map(function(r,i){return mkRow(r,i);}).join('');
+
+function updateRoute(i){
+  var r=R[i];
+  r.prev=r.price;
+  var step=(r.max-r.min)*(0.006+Math.random()*0.02);
+  var next=r.price+step*(Math.random()>0.5?1:-1);
+  next=Math.max(r.min,Math.min(r.max,next));
+  r.price=Number(next.toFixed(r.dec));
+  r.history.push(r.price);
+  if(r.history.length>10)r.history.shift();
+  var row=document.getElementById('trow-'+i);
+  if(!row)return;
+  var dir=r.price>r.prev?'up':'down';
+  var c=chg(r.price,r.prev);
+  row.querySelector('.t-change').className='t-change '+c.c;
+  row.querySelector('.t-change').textContent=c.t;
+  var sp=row.querySelector('.t-spark');
+  sp.className='t-spark '+sparkCls(r.history);
+  sp.textContent=spark(r.history);
+  var priceEl=row.querySelector('.t-price');
+  priceEl.classList.remove('anim-up','anim-down');
+  void priceEl.offsetWidth;
+  priceEl.textContent=fmt(r.price,r.dec);
+  priceEl.classList.add(dir==='up'?'anim-up':'anim-down');
+  row.classList.remove('row-scan');
+  void row.offsetWidth;
+  row.classList.add('row-scan');
 }
-render();
-function update(){
-R.forEach(function(r,i){
-r.prev=r.price;
-var step=(r.max-r.min)*(0.005+Math.random()*0.03);
-var dir=Math.random()>0.5?1:-1;
-var next=r.price+step*dir;
-next=Math.max(r.min,Math.min(r.max,next));
-r.price=Number(next.toFixed(r.dec));
-r.history.push(r.price);
-if(r.history.length>10)r.history.shift();
-var el=document.getElementById('trow-'+i);
-if(!el)return;
-var c=chg(r.price,r.prev);
-var parts=r.route.split(' > ');
-el.innerHTML=
-'<div class="t-route">'+parts[0]+' <span class="t-arrow">→</span> '+parts[1]+'</div>'+
-'<div class="t-mode">'+r.mode+'</div>'+
-'<div><span class="t-price">'+fmt(r.price,r.dec)+'</span><div class="t-unit">'+r.unit+'</div></div>'+
-'<div class="t-change '+c.c+'">'+c.t+'</div>'+
-'<div class="t-spark '+sparkCls(r.history)+'">'+spark(r.history)+'</div>';
-el.classList.remove('flash-up','flash-down');
-void el.offsetWidth;
-if(r.price>r.prev)el.classList.add('flash-up');
-else if(r.price<r.prev)el.classList.add('flash-down');
-});
+
+function scheduleRoute(i){
+  setTimeout(function(){updateRoute(i);scheduleRoute(i);},6000+Math.random()*9000);
 }
-function tick(){update();setTimeout(tick,3000+Math.floor(Math.random()*2000));}
-setTimeout(tick,3000+Math.floor(Math.random()*2000));
+R.forEach(function(r,i){setTimeout(function(){scheduleRoute(i);},i*600+Math.random()*800);});
 })();
 </script>
 
