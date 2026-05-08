@@ -15,6 +15,7 @@ Coverage tabları: `data-tab="europe|asia|americas|mea"`
 - 3 koridor sayfası: `china-to-europe-via-turkey-freight/`, `central-asia-to-europe-freight/`, `estonia-turkey-freight/`
 - Alt sayfalarda nav: `showPanel()` yok, `../index.html` direkt link
 - Contact ikonlar: SVG inline (18×18, turuncu stroke)
+- `shipping-signals/` — Haftalık piyasa bülteni sayfası, fiyat aralıkları (kesin fiyat yok), trend bilgisi, Formspree abonelik formu
 
 ## Mobil
 `<=1024px` hamburger `#nav-hamburger` · `<=640px` nav-cta gizlenir · `#mobile-menu` overlay
@@ -33,6 +34,7 @@ Coverage tabları: `data-tab="europe|asia|americas|mea"`
 | `uk-freight/` | 12 dest. kartı, Post-Brexit callout, FAQ×8, FAQPage schema | Canlı |
 | `poland-freight/` | 12 dest. kartı, Orta Avrupa hub callout, FAQ×8, FAQPage schema | Canlı |
 | `belgium-freight/` | 12 dest. kartı, Antwerp+Liege callout, FAQ×8, FAQPage schema | Canlı |
+| `estonia-freight/` | 12 dest. kartı, CANXANSA OÜ registry callout, Muuga Port+Tallinn Airport, FAQ×8, FAQPage schema | Canlı |
 
 ### Bilateral Sayfalar — Tamamlananlar
 | Sayfa | Format | Durum |
