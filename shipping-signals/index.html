@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shipping Signals — Weekly Freight Market Report | CANXANSA</title>
-<meta name="description" content="Weekly freight rate trends and logistics market intelligence for Turkey-Europe and Turkey-Asia trade lanes. Container rates, air cargo pricing, and trade corridor analysis by CANXANSA.">
-<meta name="keywords" content="shipping signals, freight rates, container rates Turkey Europe, logistics market report, FCL rates, LCL rates, air cargo rates, freight market intelligence, Turkey freight rates, Europe freight rates">
+<title>Freight Rates Turkey Europe — Live Market Intelligence | CANXANSA</title>
+<meta name="description" content="Indicative freight rates for Turkey-Europe trade lanes. FCL rates from Mersin, Istanbul and Izmir to Hamburg, Rotterdam and Felixstowe. Road freight from Tallinn to Istanbul. Updated weekly by CANXANSA.">
+<meta name="keywords" content="freight rates Turkey Europe, FCL rates Mersin Hamburg, Istanbul Rotterdam freight, air freight Istanbul Dubai, road freight Turkey Germany, Tallinn Istanbul freight, Turkey Europe container rates, shipping rates Turkey">
 <link rel="canonical" href="https://canxansa.com/shipping-signals/">
 <link rel="alternate" hreflang="en" href="https://canxansa.com/shipping-signals/">
 <link rel="alternate" hreflang="x-default" href="https://canxansa.com/shipping-signals/">
@@ -23,11 +23,49 @@
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Shipping Signals — Weekly Freight Market Report",
-  "description": "Weekly freight rate trends and logistics market intelligence for Turkey-Europe and Turkey-Asia trade lanes.",
+  "name": "Freight Rates Turkey Europe — Live Market Intelligence",
+  "description": "Indicative freight rates for Turkey-Europe trade lanes. FCL, LCL, air and road rates updated weekly.",
   "url": "https://canxansa.com/shipping-signals/",
   "publisher": { "@type": "Organization", "name": "CANXANSA", "url": "https://canxansa.com" },
   "isPartOf": { "@type": "WebSite", "name": "CANXANSA", "url": "https://canxansa.com" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are current freight rates from Turkey to Europe?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Indicative FCL rates from Turkey to Northern Europe range from $1,300 to $2,200 per 40' container. Mersin to Hamburg rates are $1,500–2,200, Istanbul to Rotterdam $1,300–1,900, Izmir to Felixstowe $1,400–2,100. Contact CANXANSA for an exact quote." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to ship a container from Mersin to Hamburg?",
+      "acceptedAnswer": { "@type": "Answer", "text": "FCL rates from Mersin to Hamburg (40' container, port to port) are indicatively $1,500–2,200 depending on schedule and volume. Transit time is 12–14 days." }
+    },
+    {
+      "@type": "Question",
+      "name": "What are LCL freight rates from Istanbul to Rotterdam?",
+      "acceptedAnswer": { "@type": "Answer", "text": "LCL rates from Istanbul to Rotterdam are indicatively $32–52 per CBM. Final rates depend on volume, weight, and current schedule availability." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much is air freight from Istanbul to Dubai?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Air freight rates from Istanbul to Dubai are indicatively $2.60–3.80 per kg for general cargo shipments of 100+ kg." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the cost of road freight from Istanbul to Munich?",
+      "acceptedAnswer": { "@type": "Answer", "text": "FTL road freight from Istanbul to Munich ranges indicatively $2,600–3,800 per truck (Tautliner). Transit time is 4–5 days." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does freight from Tallinn to Istanbul cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Road freight (FTL) from Tallinn, Estonia to Istanbul ranges indicatively $2,200–3,200 per truck. CANXANSA offers competitive freight forwarding on the Baltic–Turkey corridor." }
+    }
+  ]
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -157,6 +195,33 @@
   /* Disclaimer */
   .disclaimer { padding: 40px 64px; text-align: center; font-size: 11px; color: var(--text-muted); line-height: 1.6; border-top: 1px solid var(--gray-mid); }
 
+  /* Route Info */
+  .route-info { padding: 56px 64px; background: var(--gray); }
+  .route-info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+  .route-info-item { border-left: 2px solid var(--gray-mid); padding-left: 16px; }
+  .route-info-item:hover { border-left-color: var(--orange); }
+  .route-info-item h3 { font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 2px; margin-bottom: 8px; }
+  .route-info-item p { font-size: 12px; line-height: 1.7; color: var(--gray-light); }
+
+  /* Quote Form */
+  .quote-section { padding: 80px 64px; }
+  .quote-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
+  .quote-left-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 4vw, 52px); line-height: 0.95; letter-spacing: 2px; margin-bottom: 16px; }
+  .quote-left-sub { font-size: 14px; color: var(--gray-light); line-height: 1.7; margin-bottom: 32px; }
+  .quote-contact-item { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 13px; color: var(--gray-light); }
+  .quote-contact-item a { color: var(--white); text-decoration: none; }
+  .quote-contact-item a:hover { color: var(--orange); }
+  .qf-group { margin-bottom: 14px; }
+  .qf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .qf-group label { display: block; font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-light); margin-bottom: 6px; }
+  .qf-group input, .qf-group select, .qf-group textarea { width: 100%; background: var(--black); border: 1px solid var(--gray-mid); padding: 11px 14px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; }
+  .qf-group input:focus, .qf-group select:focus, .qf-group textarea:focus { border-color: var(--orange); }
+  .qf-group select { appearance: none; cursor: pointer; }
+  .qf-group textarea { height: 90px; resize: vertical; }
+  .qf-submit { width: 100%; background: var(--orange); color: var(--white); border: none; padding: 14px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: background 0.2s; margin-top: 4px; }
+  .qf-submit:hover { background: var(--orange-dim); }
+  .qf-success { display: none; padding: 32px; border: 1px solid var(--green); color: var(--green); font-size: 14px; text-align: center; letter-spacing: 1px; }
+
   /* Footer */
   footer { padding: 48px 64px; border-top: 1px solid var(--gray-mid); display: flex; justify-content: space-between; align-items: center; }
   .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--white); text-decoration: none; }
@@ -174,6 +239,10 @@
     .terminal-header { padding: 14px 32px; }
     .terminal-row-head { padding: 10px 32px; }
     .terminal-row { padding: 12px 32px; }
+    .route-info { padding: 48px 32px; }
+    .route-info-grid { grid-template-columns: 1fr 1fr; }
+    .quote-section { padding: 60px 32px; }
+    .quote-grid { grid-template-columns: 1fr; gap: 40px; }
     .disclaimer { padding: 32px 24px; }
   }
   @media (max-width: 640px) {
@@ -186,6 +255,10 @@
     .terminal-header { padding: 12px 20px; }
     .terminal-row-head { padding: 8px 20px; }
     .terminal-row { padding: 10px 20px; }
+    .route-info { padding: 40px 20px; }
+    .route-info-grid { grid-template-columns: 1fr; }
+    .quote-section { padding: 48px 20px; }
+    .qf-row { grid-template-columns: 1fr; }
     .disclaimer { padding: 24px 20px; }
   }
 </style>
@@ -195,7 +268,7 @@
 <!-- NAV -->
 <nav>
   <a href="../index.html" class="nav-logo">CANX<span>A</span>NSA</a>
-  <a href="../index.html#contact" class="nav-cta">Get a Quote</a>
+  <a href="#quote" class="nav-cta">Get a Quote</a>
 </nav>
 
 <!-- HERO -->
@@ -218,6 +291,49 @@
         <span>ROUTE</span><span>MODE</span><span>PRICE</span><span>CHANGE</span><span>TREND</span>
       </div>
       <div id="live-table"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTE INFO (SEO) -->
+<section class="route-info">
+  <div class="section-label">Route Reference</div>
+  <div class="route-info-grid">
+    <div class="route-info-item">
+      <h3>Mersin &rarr; Hamburg — FCL</h3>
+      <p>40' container, port to port. Indicative range $1,500–2,200. Transit 12–14 days via Mediterranean–North Sea service.</p>
+    </div>
+    <div class="route-info-item">
+      <h3>Istanbul &rarr; Rotterdam — FCL</h3>
+      <p>40' container, port to port. Indicative range $1,300–1,900. One of Turkey's highest-volume European trade lanes.</p>
+    </div>
+    <div class="route-info-item">
+      <h3>Izmir &rarr; Felixstowe — FCL</h3>
+      <p>40' container, port to port. Indicative range $1,400–2,100. Key lane for Turkish textile and automotive exports to the UK.</p>
+    </div>
+    <div class="route-info-item">
+      <h3>Istanbul &rarr; Rotterdam — LCL</h3>
+      <p>Door-to-door consolidation. Indicative $32–52 per CBM. Suitable for shipments under one full container.</p>
+    </div>
+    <div class="route-info-item">
+      <h3>Istanbul &rarr; Dubai — Air Freight</h3>
+      <p>General cargo, 100+ kg. Indicative $2.60–3.80 per kg. 1-day transit. Main gateway for Turkey–Gulf trade.</p>
+    </div>
+    <div class="route-info-item">
+      <h3>Istanbul &rarr; Munich — FTL</h3>
+      <p>Full truck, Tautliner. Indicative $2,600–3,800 per truck. Transit 4–5 days via TIR corridor.</p>
+    </div>
+    <div class="route-info-item">
+      <h3>Mersin &rarr; Jeddah — FCL</h3>
+      <p>40' container, port to port. Indicative range $700–1,300. Transit 7–9 days. Stable Turkey–Gulf lane.</p>
+    </div>
+    <div class="route-info-item">
+      <h3>Tallinn &rarr; Istanbul — FTL</h3>
+      <p>Full truck from Estonia to Turkey. Indicative $2,200–3,200 per truck. Baltic–Turkey corridor served by CANXANSA OÜ, registered in Tallinn.</p>
+    </div>
+    <div class="route-info-item">
+      <h3>Tallinn &rarr; Hamburg — FTL</h3>
+      <p>Full truck, Estonia to Germany. Indicative $1,100–1,700 per truck. Transit 2–3 days via Baltic highway network.</p>
     </div>
   </div>
 </section>
@@ -290,12 +406,77 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section">
-  <div class="section-label">Ready to Ship?</div>
-  <div class="cta-title">GET LIVE RATES<br>FOR <span class="accent">YOUR CARGO</span></div>
-  <p class="cta-sub">Market ranges give you a ballpark. For an exact price based on your cargo, route and timeline, reach out to our team.</p>
-  <a href="../index.html#contact" class="btn-primary">Request a Quote</a>
+<!-- QUOTE FORM -->
+<section class="quote-section" id="quote">
+  <div class="quote-grid">
+    <div>
+      <div class="section-label">Ready to Ship?</div>
+      <div class="quote-left-title">GET AN<br>EXACT <span class="accent">QUOTE</span></div>
+      <p class="quote-left-sub">Market ranges are indicative. Tell us your cargo and we'll respond with a precise rate within 1 hour.</p>
+      <div class="quote-contact-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8521a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        <a href="mailto:info@canxansa.com">info@canxansa.com</a>
+      </div>
+      <div class="quote-contact-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8521a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+        <a href="https://wa.me/905353221318" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <div class="quote-contact-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8521a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span>Response within 1 hour</span>
+      </div>
+    </div>
+    <div>
+      <form id="signals-quote-form" class="qf-group" style="margin:0;">
+        <div class="qf-row">
+          <div class="qf-group">
+            <label>Full Name</label>
+            <input type="text" name="full_name" placeholder="John Smith" required>
+          </div>
+          <div class="qf-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="john@company.com" required>
+          </div>
+        </div>
+        <div class="qf-row">
+          <div class="qf-group">
+            <label>Phone</label>
+            <input type="tel" name="phone" placeholder="+1 555 000 0000">
+          </div>
+          <div class="qf-group">
+            <label>Company</label>
+            <input type="text" name="company" placeholder="ACME Corp">
+          </div>
+        </div>
+        <div class="qf-group">
+          <label>Transport Mode</label>
+          <select name="transport_mode">
+            <option value="">Select...</option>
+            <option value="sea-fcl">Sea Freight — FCL</option>
+            <option value="sea-lcl">Sea Freight — LCL</option>
+            <option value="air">Air Freight</option>
+            <option value="road">Road Freight — FTL</option>
+          </select>
+        </div>
+        <div class="qf-row">
+          <div class="qf-group">
+            <label>Origin</label>
+            <input type="text" name="origin" placeholder="City, Country">
+          </div>
+          <div class="qf-group">
+            <label>Destination</label>
+            <input type="text" name="destination" placeholder="City, Country">
+          </div>
+        </div>
+        <div class="qf-group">
+          <label>Cargo Details</label>
+          <textarea name="cargo_details" placeholder="Cargo type, weight, dimensions, special requirements..."></textarea>
+        </div>
+        <button type="submit" class="qf-submit">Send Request</button>
+      </form>
+      <div class="qf-success" id="signals-quote-success">Request received. We'll be in touch within 1 hour.</div>
+    </div>
+  </div>
 </section>
 
 <!-- SUBSCRIBE -->
@@ -323,6 +504,32 @@
   <a href="../index.html" class="footer-logo">CANX<span>A</span>NSA</a>
   <span class="footer-copy">&copy; 2026 CANXANSA O&Uuml; &middot; Tallinn, Estonia</span>
 </footer>
+
+<script>
+document.getElementById('signals-quote-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  var btn = this.querySelector('.qf-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  try {
+    var res = await fetch('https://formspree.io/f/mpqykzop', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.fromEntries(new FormData(this)))
+    });
+    if (res.ok) {
+      this.style.display = 'none';
+      document.getElementById('signals-quote-success').style.display = 'block';
+    } else {
+      btn.textContent = 'Error — try again';
+      btn.disabled = false;
+    }
+  } catch(err) {
+    btn.textContent = 'Error — try again';
+    btn.disabled = false;
+  }
+});
+</script>
 
 <script>
 (function(){
