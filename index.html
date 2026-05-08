@@ -761,6 +761,10 @@
   .nav-link.active { color: var(--white); }
   .nav-link.active::after, .nav-link:hover::after { transform: scaleX(1); }
 
+  .nav-badge { display: inline-flex; align-items: center; gap: 6px; }
+  .nav-badge-tag { font-size: 8px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; background: var(--orange); color: var(--white); padding: 2px 6px; border-radius: 2px; line-height: 1.4; animation: badge-pulse 2s ease-in-out infinite; }
+  @keyframes badge-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+
   /* ─── ACTION CARDS ─── */
   .action-cards-section {
     padding: 0 64px;
@@ -991,8 +995,9 @@
     <a href="#contact" class="nav-link" data-section="contact">
       <span data-lang="en">Contact</span><span data-lang="tr">İletişim</span>
     </a>
-    <a href="shipping-signals/" class="nav-link">
+    <a href="shipping-signals/" class="nav-link nav-badge">
       <span data-lang="en">Signals</span><span data-lang="tr">Sinyaller</span>
+      <span class="nav-badge-tag">LIVE</span>
     </a>
   </div>
   <div class="nav-right">
@@ -1024,8 +1029,9 @@
   <a href="#how" class="mobile-nav-link" data-section="how">
     <span data-lang="en">Process</span><span data-lang="tr">Süreç</span>
   </a>
-  <a href="shipping-signals/" class="mobile-nav-link">
+  <a href="shipping-signals/" class="mobile-nav-link nav-badge">
     <span data-lang="en">Signals</span><span data-lang="tr">Sinyaller</span>
+    <span class="nav-badge-tag">LIVE</span>
   </a>
   <a href="#contact" class="mobile-nav-link mobile-nav-cta" data-section="contact">
     <span data-lang="en">Get a Quote →</span><span data-lang="tr">Teklif Al →</span>
