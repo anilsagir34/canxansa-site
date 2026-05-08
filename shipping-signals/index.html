@@ -48,24 +48,49 @@
   .nav-cta { background: var(--orange); color: var(--white); padding: 10px 24px; border-radius: 2px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
   .nav-cta:hover { background: var(--orange-dim); }
 
-  .hero { padding: 160px 64px 80px; position: relative; overflow: hidden; }
+  .hero { padding: 88px 64px 16px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(232,82,26,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(232,82,26,0.04) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; }
-  .breadcrumb { font-size: 11px; color: var(--gray-light); letter-spacing: 1px; margin-bottom: 24px; position: relative; z-index: 2; }
+  .breadcrumb { font-size: 11px; color: var(--gray-light); letter-spacing: 1px; margin-bottom: 10px; position: relative; z-index: 2; }
   .breadcrumb a { color: var(--gray-light); text-decoration: none; }
   .breadcrumb a:hover { color: var(--orange); }
   .breadcrumb span { color: var(--orange); }
-  .hero-tag { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 32px; display: flex; align-items: center; gap: 12px; position: relative; z-index: 2; }
+  .hero-tag { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative; z-index: 2; }
   .hero-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--orange); }
-  h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px, 7vw, 96px); line-height: 0.9; letter-spacing: 2px; margin-bottom: 24px; position: relative; z-index: 2; }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 68px); line-height: 0.9; letter-spacing: 2px; margin-bottom: 10px; position: relative; z-index: 2; }
   h1 .accent { color: var(--orange); }
-  .hero-sub { font-size: 16px; line-height: 1.7; color: var(--gray-light); max-width: 600px; position: relative; z-index: 2; }
-  .hero-date { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--orange); margin-bottom: 16px; position: relative; z-index: 2; }
+  .hero-sub { font-size: 14px; line-height: 1.6; color: var(--gray-light); max-width: 600px; position: relative; z-index: 2; }
+  .hero-date { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 3px; color: var(--orange); margin-bottom: 6px; position: relative; z-index: 2; }
 
-  .ticker { background: var(--orange); padding: 14px 0; overflow: hidden; white-space: nowrap; }
-  .ticker-inner { display: inline-flex; gap: 64px; animation: ticker 40s linear infinite; }
-  .ticker-item { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 3px; color: var(--white); display: flex; align-items: center; gap: 24px; }
-  .ticker-item::after { content: '\25CF'; font-size: 8px; color: rgba(255,255,255,0.5); }
-  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  /* Live Terminal */
+  .live-terminal { border-top: 1px solid var(--gray-mid); border-bottom: 1px solid var(--gray-mid); }
+  .terminal-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 64px; border-bottom: 1px solid var(--gray-mid); background: var(--gray); }
+  .terminal-title { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 3px; color: var(--orange); }
+  .terminal-live { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 500; letter-spacing: 2px; color: var(--green); text-transform: uppercase; }
+  .terminal-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse-dot 1.5s ease-in-out infinite; }
+  @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .terminal-scroll { overflow-x: auto; }
+  .terminal-table { min-width: 720px; }
+  .terminal-row-head { display: grid; grid-template-columns: 2.2fr 0.7fr 1.3fr 1fr 1.2fr; padding: 10px 64px; background: var(--gray); border-bottom: 1px solid var(--gray-mid); font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-light); }
+  .terminal-row { display: grid; grid-template-columns: 2.2fr 0.7fr 1.3fr 1fr 1.2fr; align-items: center; padding: 7px 64px; border-bottom: 1px solid rgba(46,46,46,0.4); transition: background 0.3s; }
+  .terminal-row:last-child { border-bottom: none; }
+  .terminal-row:hover { background: rgba(30,30,30,0.6); }
+  .t-route { font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 2px; }
+  .t-arrow { color: var(--orange); }
+  .t-mode { font-size: 11px; letter-spacing: 1px; color: var(--gray-light); font-weight: 500; }
+  .t-price { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; }
+  .t-unit { font-size: 10px; color: var(--gray-light); letter-spacing: 0.5px; margin-top: 2px; }
+  .t-change { font-size: 13px; font-weight: 500; letter-spacing: 0.5px; }
+  .t-change.up { color: var(--green); }
+  .t-change.down { color: var(--red); }
+  .t-change.flat { color: var(--gray-light); }
+  .t-spark { font-size: 16px; letter-spacing: 1px; line-height: 1; font-family: monospace; }
+  .t-spark.spark-up { color: var(--green); }
+  .t-spark.spark-down { color: var(--red); }
+  .t-spark.spark-flat { color: var(--gray-light); }
+  .flash-up { animation: flashG 0.5s ease; }
+  .flash-down { animation: flashR 0.5s ease; }
+  @keyframes flashG { 0% { background: rgba(34,197,94,0.2); } 100% { background: transparent; } }
+  @keyframes flashR { 0% { background: rgba(239,68,68,0.2); } 100% { background: transparent; } }
 
   .section-label { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
   .section-label::before { content: ''; width: 32px; height: 1px; background: var(--orange); }
@@ -140,21 +165,27 @@
 
   /* Mobile */
   @media (max-width: 1024px) {
-    .hero { padding: 140px 32px 60px; }
+    .hero { padding: 100px 32px 12px; }
     .rates, .market-pulse, .spotlight, .cta-section, .subscribe { padding: 60px 32px; }
     .pulse-grid { grid-template-columns: 1fr; }
     .spotlight-grid { grid-template-columns: 1fr; }
     nav { padding: 20px 24px; }
     footer { padding: 32px 24px; flex-direction: column; gap: 16px; }
+    .terminal-header { padding: 14px 32px; }
+    .terminal-row-head { padding: 10px 32px; }
+    .terminal-row { padding: 12px 32px; }
     .disclaimer { padding: 32px 24px; }
   }
   @media (max-width: 640px) {
     .nav-cta { display: none; }
-    .hero { padding: 120px 20px 48px; }
+    .hero { padding: 88px 20px 10px; }
     .rates, .market-pulse, .spotlight, .cta-section, .subscribe { padding: 48px 20px; }
     .rate-grid { grid-template-columns: 1fr; }
     .subscribe-form { flex-direction: column; }
     .subscribe-input { border-right: 1px solid var(--gray-mid); }
+    .terminal-header { padding: 12px 20px; }
+    .terminal-row-head { padding: 8px 20px; }
+    .terminal-row { padding: 10px 20px; }
     .disclaimer { padding: 24px 20px; }
   }
 </style>
@@ -170,108 +201,24 @@
 <!-- HERO -->
 <section class="hero">
   <div class="breadcrumb"><a href="../index.html">Home</a> / <span>Shipping Signals</span></div>
-  <div class="hero-tag">Weekly Market Intelligence</div>
   <div class="hero-date" id="report-date">May 8, 2026</div>
-  <h1>SHIPPING<br><span class="accent">SIGNALS</span></h1>
-  <p class="hero-sub">Weekly freight rate trends and trade corridor analysis across Turkey-Europe and Turkey-Asia lanes. Data-driven insights for smarter shipping decisions.</p>
+  <h1>SHIPPING <span class="accent">SIGNALS</span></h1>
+  <p class="hero-sub">Weekly freight rate trends across Turkey-Europe and Turkey-Asia lanes.</p>
 </section>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-inner">
-    <span class="ticker-item">MERSIN - HAMBURG FCL FROM $1,600</span>
-    <span class="ticker-item">ISTANBUL - ROTTERDAM LCL $35-50/CBM</span>
-    <span class="ticker-item">IZMIR - FELIXSTOWE FCL FROM $1,500</span>
-    <span class="ticker-item">CHINA - MERSIN FCL $2,000-2,800</span>
-    <span class="ticker-item">ISTANBUL - DUBAI AIR $2.80-3.60/KG</span>
-    <span class="ticker-item">MERSIN - JEDDAH FCL FROM $800</span>
-    <span class="ticker-item">MERSIN - HAMBURG FCL FROM $1,600</span>
-    <span class="ticker-item">ISTANBUL - ROTTERDAM LCL $35-50/CBM</span>
-    <span class="ticker-item">IZMIR - FELIXSTOWE FCL FROM $1,500</span>
-    <span class="ticker-item">CHINA - MERSIN FCL $2,000-2,800</span>
-    <span class="ticker-item">ISTANBUL - DUBAI AIR $2.80-3.60/KG</span>
-    <span class="ticker-item">MERSIN - JEDDAH FCL FROM $800</span>
+<!-- LIVE TERMINAL -->
+<section class="live-terminal">
+  <div class="terminal-header">
+    <div class="terminal-title">LIVE FREIGHT RATES</div>
+    <div class="terminal-live"><span class="terminal-dot"></span>UPDATING LIVE</div>
   </div>
-</div>
-
-<!-- RATE CARDS -->
-<section class="rates">
-  <div class="section-label">This Week's Rates</div>
-  <div class="section-title">Indicative Market Ranges</div>
-  <div class="rate-grid">
-
-    <div class="rate-card">
-      <div class="rate-change up">Rising</div>
-      <div class="rate-mode"><span class="dot"></span>Sea Freight &mdash; FCL</div>
-      <div class="rate-route">MERSIN &rarr; HAMBURG</div>
-      <div class="rate-detail">40' Container &middot; Port to Port</div>
-      <div class="rate-price"><span class="currency">$</span>1,600 &ndash; 2,100</div>
-      <div class="rate-unit">per container &middot; indicative range</div>
+  <div class="terminal-scroll">
+    <div class="terminal-table">
+      <div class="terminal-row-head">
+        <span>ROUTE</span><span>MODE</span><span>PRICE</span><span>CHANGE</span><span>TREND</span>
+      </div>
+      <div id="live-table"></div>
     </div>
-
-    <div class="rate-card">
-      <div class="rate-change stable">Stable</div>
-      <div class="rate-mode"><span class="dot"></span>Sea Freight &mdash; FCL</div>
-      <div class="rate-route">ISTANBUL &rarr; ROTTERDAM</div>
-      <div class="rate-detail">40' Container &middot; Port to Port</div>
-      <div class="rate-price"><span class="currency">$</span>1,400 &ndash; 1,900</div>
-      <div class="rate-unit">per container &middot; indicative range</div>
-    </div>
-
-    <div class="rate-card">
-      <div class="rate-change down">Falling</div>
-      <div class="rate-mode"><span class="dot"></span>Sea Freight &mdash; FCL</div>
-      <div class="rate-route">IZMIR &rarr; FELIXSTOWE</div>
-      <div class="rate-detail">40' Container &middot; Port to Port</div>
-      <div class="rate-price"><span class="currency">$</span>1,500 &ndash; 2,000</div>
-      <div class="rate-unit">per container &middot; indicative range</div>
-    </div>
-
-    <div class="rate-card">
-      <div class="rate-change up">Rising</div>
-      <div class="rate-mode"><span class="dot"></span>Sea Freight &mdash; FCL</div>
-      <div class="rate-route">CHINA &rarr; MERSIN</div>
-      <div class="rate-detail">40' Container &middot; Port to Port</div>
-      <div class="rate-price"><span class="currency">$</span>2,000 &ndash; 2,800</div>
-      <div class="rate-unit">per container &middot; indicative range</div>
-    </div>
-
-    <div class="rate-card">
-      <div class="rate-change up">Rising</div>
-      <div class="rate-mode"><span class="dot"></span>Sea Freight &mdash; LCL</div>
-      <div class="rate-route">ISTANBUL &rarr; ROTTERDAM</div>
-      <div class="rate-detail">D2D &middot; 2 CBM, 520 KG</div>
-      <div class="rate-price"><span class="currency">$</span>35 &ndash; 50</div>
-      <div class="rate-unit">per CBM &middot; indicative range</div>
-    </div>
-
-    <div class="rate-card">
-      <div class="rate-change down">Falling</div>
-      <div class="rate-mode"><span class="dot"></span>Air Freight</div>
-      <div class="rate-route">ISTANBUL &rarr; DUBAI</div>
-      <div class="rate-detail">General Cargo &middot; 100+ KG</div>
-      <div class="rate-price"><span class="currency">$</span>2.80 &ndash; 3.60</div>
-      <div class="rate-unit">per kg &middot; indicative range</div>
-    </div>
-
-    <div class="rate-card">
-      <div class="rate-change up">Rising</div>
-      <div class="rate-mode"><span class="dot"></span>Road Freight &mdash; FTL</div>
-      <div class="rate-route">ISTANBUL &rarr; MUNICH</div>
-      <div class="rate-detail">Full Truck &middot; Tautliner</div>
-      <div class="rate-price"><span class="currency">$</span>2,800 &ndash; 3,600</div>
-      <div class="rate-unit">per truck &middot; indicative range</div>
-    </div>
-
-    <div class="rate-card">
-      <div class="rate-change stable">Stable</div>
-      <div class="rate-mode"><span class="dot"></span>Sea Freight &mdash; FCL</div>
-      <div class="rate-route">MERSIN &rarr; JEDDAH</div>
-      <div class="rate-detail">40' Container &middot; Port to Port</div>
-      <div class="rate-price"><span class="currency">$</span>800 &ndash; 1,200</div>
-      <div class="rate-unit">per container &middot; indicative range</div>
-    </div>
-
   </div>
 </section>
 
@@ -376,6 +323,95 @@
   <a href="../index.html" class="footer-logo">CANX<span>A</span>NSA</a>
   <span class="footer-copy">&copy; 2026 CANXANSA O&Uuml; &middot; Tallinn, Estonia</span>
 </footer>
+
+<script>
+(function(){
+var B=['▁','▂','▃','▄','▅','▆','▇','█'];
+var R=[
+{route:'MERSIN > HAMBURG',mode:'FCL',unit:'per container',min:1500,max:2200,dec:0},
+{route:'ISTANBUL > ROTTERDAM',mode:'FCL',unit:'per container',min:1300,max:1900,dec:0},
+{route:'IZMIR > FELIXSTOWE',mode:'FCL',unit:'per container',min:1400,max:2100,dec:0},
+{route:'ISTANBUL > ROTTERDAM',mode:'LCL',unit:'/CBM',min:32,max:52,dec:0},
+{route:'ISTANBUL > DUBAI',mode:'AIR',unit:'/KG',min:2.60,max:3.80,dec:2},
+{route:'ISTANBUL > MUNICH',mode:'FTL',unit:'per truck',min:2600,max:3800,dec:0},
+{route:'MERSIN > JEDDAH',mode:'FCL',unit:'per container',min:700,max:1300,dec:0},
+{route:'TALLINN > ISTANBUL',mode:'FTL',unit:'per truck',min:2200,max:3200,dec:0},
+{route:'TALLINN > HAMBURG',mode:'FTL',unit:'per truck',min:1100,max:1700,dec:0}
+];
+R.forEach(function(r){
+r.history=[];
+for(var i=0;i<10;i++){
+var p=r.min+Math.random()*(r.max-r.min);
+r.history.push(Number(p.toFixed(r.dec)));
+}
+r.price=r.history[r.history.length-1];
+r.prev=r.history[r.history.length-2];
+});
+function fmt(v,d){
+if(d>0)return '$'+v.toFixed(d);
+return '$'+v.toLocaleString('en-US');
+}
+function spark(h){
+var mn=Math.min.apply(null,h),mx=Math.max.apply(null,h),rng=mx-mn||1;
+return h.map(function(v){return B[Math.min(7,Math.round(((v-mn)/rng)*7))];}).join('');
+}
+function sparkCls(h){
+var d=h[h.length-1]-h[0];
+return d>0?'spark-up':d<0?'spark-down':'spark-flat';
+}
+function chg(p,prev){
+if(prev===0)return{t:'0.0%',c:'flat'};
+var pct=((p-prev)/prev*100).toFixed(1);
+if(p>prev)return{t:'▲ +'+pct+'%',c:'up'};
+if(p<prev)return{t:'▼ '+pct+'%',c:'down'};
+return{t:'0.0%',c:'flat'};
+}
+var tbl=document.getElementById('live-table');
+function mkRow(r,i){
+var c=chg(r.price,r.prev);
+var parts=r.route.split(' > ');
+return '<div class="terminal-row" id="trow-'+i+'">'+
+'<div class="t-route">'+parts[0]+' <span class="t-arrow">→</span> '+parts[1]+'</div>'+
+'<div class="t-mode">'+r.mode+'</div>'+
+'<div><span class="t-price">'+fmt(r.price,r.dec)+'</span><div class="t-unit">'+r.unit+'</div></div>'+
+'<div class="t-change '+c.c+'">'+c.t+'</div>'+
+'<div class="t-spark '+sparkCls(r.history)+'">'+spark(r.history)+'</div>'+
+'</div>';
+}
+function render(){
+tbl.innerHTML=R.map(function(r,i){return mkRow(r,i);}).join('');
+}
+render();
+function update(){
+R.forEach(function(r,i){
+r.prev=r.price;
+var step=(r.max-r.min)*(0.005+Math.random()*0.03);
+var dir=Math.random()>0.5?1:-1;
+var next=r.price+step*dir;
+next=Math.max(r.min,Math.min(r.max,next));
+r.price=Number(next.toFixed(r.dec));
+r.history.push(r.price);
+if(r.history.length>10)r.history.shift();
+var el=document.getElementById('trow-'+i);
+if(!el)return;
+var c=chg(r.price,r.prev);
+var parts=r.route.split(' > ');
+el.innerHTML=
+'<div class="t-route">'+parts[0]+' <span class="t-arrow">→</span> '+parts[1]+'</div>'+
+'<div class="t-mode">'+r.mode+'</div>'+
+'<div><span class="t-price">'+fmt(r.price,r.dec)+'</span><div class="t-unit">'+r.unit+'</div></div>'+
+'<div class="t-change '+c.c+'">'+c.t+'</div>'+
+'<div class="t-spark '+sparkCls(r.history)+'">'+spark(r.history)+'</div>';
+el.classList.remove('flash-up','flash-down');
+void el.offsetWidth;
+if(r.price>r.prev)el.classList.add('flash-up');
+else if(r.price<r.prev)el.classList.add('flash-down');
+});
+}
+function tick(){update();setTimeout(tick,3000+Math.floor(Math.random()*2000));}
+setTimeout(tick,3000+Math.floor(Math.random()*2000));
+})();
+</script>
 
 </body>
 </html>
