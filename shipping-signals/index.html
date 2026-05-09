@@ -83,8 +83,22 @@
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent); backdrop-filter: blur(4px); }
   .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 4px; color: var(--white); text-decoration: none; }
   .nav-logo span { color: var(--orange); }
+  .nav-center { display: flex; align-items: center; gap: 28px; }
+  .nav-link { color: var(--gray-light); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
+  .nav-link:hover { color: var(--white); }
+  .nav-right { display: flex; align-items: center; gap: 24px; }
   .nav-cta { background: var(--orange); color: var(--white); padding: 10px 24px; border-radius: 2px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
   .nav-cta:hover { background: var(--orange-dim); }
+  .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 200; }
+  .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: transform 0.3s, opacity 0.3s; transform-origin: center; }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .mobile-menu { display: none; position: fixed; inset: 0; background: var(--black); z-index: 90; flex-direction: column; justify-content: center; padding: 0 40px 48px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-nav-link { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 3px; color: var(--gray-light); text-decoration: none; padding: 16px 0; border-bottom: 1px solid var(--gray-mid); transition: color 0.2s, padding-left 0.2s; display: block; }
+  .mobile-nav-link:hover { color: var(--white); padding-left: 8px; }
+  .mobile-nav-cta { border: none; color: var(--orange); margin-top: 24px; }
 
   .hero { padding: 88px 64px 16px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(232,82,26,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(232,82,26,0.04) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; }
@@ -227,19 +241,32 @@
   .qf-success { display: none; padding: 32px; border: 1px solid var(--green); color: var(--green); font-size: 14px; text-align: center; letter-spacing: 1px; }
 
   /* Footer */
-  footer { padding: 48px 64px; border-top: 1px solid var(--gray-mid); display: flex; justify-content: space-between; align-items: center; }
-  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--white); text-decoration: none; }
+  footer { border-top: 1px solid var(--gray-mid); padding: 64px 64px 48px; }
+  .footer-top { display: grid; grid-template-columns: 1fr auto auto auto; gap: 64px; margin-bottom: 48px; align-items: start; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 4px; display: block; margin-bottom: 12px; }
   .footer-logo span { color: var(--orange); }
-  .footer-copy { font-size: 12px; color: var(--gray-light); }
+  .footer-tagline { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; line-height: 1.6; max-width: 200px; }
+  .footer-col-title { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+  .footer-col-links { display: flex; flex-direction: column; gap: 10px; }
+  .footer-col-links a { font-size: 12px; color: var(--gray-light); text-decoration: none; letter-spacing: 1px; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+  .footer-col-links a:hover { color: var(--orange); }
+  .footer-col-links a .arr { font-size: 10px; opacity: 0; transform: translateX(-4px); transition: all 0.2s; }
+  .footer-col-links a:hover .arr { opacity: 1; transform: translateX(0); }
+  .footer-bottom { border-top: 1px solid var(--gray-mid); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-copy { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; }
 
   /* Mobile */
   @media (max-width: 1024px) {
+    .nav-center { display: none; }
+    .nav-hamburger { display: flex; }
     .hero { padding: 100px 32px 12px; }
     .rates, .market-pulse, .spotlight, .cta-section, .subscribe { padding: 60px 32px; }
     .pulse-grid { grid-template-columns: 1fr; }
     .spotlight-grid { grid-template-columns: 1fr; }
     nav { padding: 20px 24px; }
-    footer { padding: 32px 24px; flex-direction: column; gap: 16px; }
+    footer { padding: 48px 24px 32px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
     .terminal-header { padding: 14px 32px; }
     .terminal-row-head { padding: 10px 32px; }
     .terminal-row { padding: 12px 32px; }
@@ -251,6 +278,7 @@
   }
   @media (max-width: 640px) {
     .nav-cta { display: none; }
+    .mobile-nav-link { font-size: 36px; padding: 14px 0; }
     .hero { padding: 88px 20px 10px; }
     .rates, .market-pulse, .spotlight, .cta-section, .subscribe { padding: 48px 20px; }
     .rate-grid { grid-template-columns: 1fr; }
@@ -272,8 +300,29 @@
 <!-- NAV -->
 <nav>
   <a href="../index.html" class="nav-logo">CANX<span>A</span>NSA</a>
-  <a href="#quote" class="nav-cta">Get a Quote</a>
+  <div class="nav-center">
+    <a href="../index.html" class="nav-link">Home</a>
+    <a href="../index.html#services" class="nav-link">Services</a>
+    <a href="../index.html#corridors" class="nav-link">Corridors</a>
+    <a href="../index.html#coverage" class="nav-link">Routes</a>
+    <a href="../index.html#contact" class="nav-link">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="#quote" class="nav-cta">Get a Quote</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../index.html" class="mobile-nav-link">Home</a>
+  <a href="../index.html#services" class="mobile-nav-link">Services</a>
+  <a href="../index.html#corridors" class="mobile-nav-link">Corridors</a>
+  <a href="../index.html#coverage" class="mobile-nav-link">Routes</a>
+  <a href="#quote" class="mobile-nav-link mobile-nav-cta">Get a Quote</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -505,8 +554,42 @@
 
 <!-- FOOTER -->
 <footer>
-  <a href="../index.html" class="footer-logo">CANX<span>A</span>NSA</a>
-  <span class="footer-copy">&copy; 2026 CANXANSA O&Uuml; &middot; Tallinn, Estonia</span>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="footer-logo">CAN<span>X</span>ANSA</span>
+      <p class="footer-tagline">Global freight forwarding. Air, sea &amp; road.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <div class="footer-col-links">
+        <a href="../index.html#services">Air Freight <span class="arr">&rarr;</span></a>
+        <a href="../index.html#services">Sea Freight <span class="arr">&rarr;</span></a>
+        <a href="../index.html#services">Road Freight <span class="arr">&rarr;</span></a>
+        <a href="../index.html#how">How It Works <span class="arr">&rarr;</span></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-col-links">
+        <a href="mailto:info@canxansa.com">info@canxansa.com <span class="arr">&rarr;</span></a>
+        <a href="https://wa.me/905353221318" target="_blank" rel="noopener">WhatsApp <span class="arr">&rarr;</span></a>
+        <a href="https://www.linkedin.com/company/canxansa/" target="_blank" rel="noopener">LinkedIn <span class="arr">&rarr;</span></a>
+        <a href="../index.html#contact">Get a Quote <span class="arr">&rarr;</span></a>
+        <a href="../terms/">Terms <span class="arr">&rarr;</span></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <div class="footer-col-links">
+        <a href="./">Shipping Signals <span class="arr">&rarr;</span></a>
+        <a href="../index.html#faq">FAQ <span class="arr">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 CANXANSA O&Uuml;. All rights reserved.</div>
+    <div class="footer-copy">Tallinn, Estonia &middot; info@canxansa.com</div>
+  </div>
 </footer>
 
 <script>
@@ -533,6 +616,27 @@ document.getElementById('signals-quote-form').addEventListener('submit', async f
     btn.disabled = false;
   }
 });
+</script>
+
+<script>
+(function(){
+  var hb = document.getElementById('nav-hamburger');
+  var mm = document.getElementById('mobile-menu');
+  if (hb && mm) {
+    hb.addEventListener('click', function() {
+      hb.classList.toggle('open');
+      mm.classList.toggle('open');
+      document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+    });
+    mm.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        hb.classList.remove('open');
+        mm.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+})();
 </script>
 
 <script>
