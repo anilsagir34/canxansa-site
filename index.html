@@ -839,11 +839,14 @@
   }
   .action-card-track input::placeholder { color: var(--text-muted); }
   .action-card-track button {
-    background: var(--gray-mid); border: none; color: var(--gray-light);
+    background: var(--orange); border: none; color: var(--white);
     padding: 14px 20px; border-radius: 2px;
     font-family: 'DM Sans', sans-serif; font-size: 11px;
-    letter-spacing: 1px; text-transform: uppercase; cursor: not-allowed;
+    letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s;
   }
+  .action-card-track button:hover { background: var(--orange-dim); }
+  .action-card-track input:focus { border-color: var(--orange); }
   .coming-soon-tag {
     display: inline-block;
     background: rgba(232,82,26,0.08); color: var(--orange);
