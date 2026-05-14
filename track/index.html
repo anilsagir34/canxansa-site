@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Shipment | CANXANSA</title>
+<meta name="description" content="Track your shipment in real time. Enter your CANXANSA reference number to see the current status and location of your cargo.">
+<link rel="canonical" href="https://canxansa.com/track/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CANXANSA">
+<meta property="og:title" content="Track Shipment | CANXANSA">
+<meta property="og:description" content="Track your shipment in real time with your CANXANSA reference number.">
+<meta property="og:url" content="https://canxansa.com/track/">
+<meta property="og:image" content="https://canxansa.com/og-image.jpg">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="shortcut icon" href="../favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X19NTBBWNQ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X19NTBBWNQ');</script>
+<style>
+  :root { --black: #0a0a0a; --white: #f5f0eb; --orange: #e8521a; --orange-dim: #c44010; --gray: #1a1a1a; --gray-mid: #2e2e2e; --gray-light: #888; --text-muted: #555; --green: #22c55e; --red: #ef4444; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent); backdrop-filter: blur(4px); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 4px; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--orange); }
+  .nav-center { display: flex; align-items: center; gap: 28px; }
+  .nav-link { color: var(--gray-light); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
+  .nav-link:hover { color: var(--white); }
+  .nav-right { display: flex; align-items: center; gap: 24px; }
+  .nav-cta { background: var(--orange); color: var(--white); padding: 10px 24px; border-radius: 2px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--orange-dim); }
+  .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 200; }
+  .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: transform 0.3s, opacity 0.3s; transform-origin: center; }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .mobile-menu { display: none; position: fixed; inset: 0; background: var(--black); z-index: 90; flex-direction: column; justify-content: center; padding: 0 40px 48px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-nav-link { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 3px; color: var(--gray-light); text-decoration: none; padding: 16px 0; border-bottom: 1px solid var(--gray-mid); transition: color 0.2s, padding-left 0.2s; display: block; }
+  .mobile-nav-link:hover { color: var(--white); padding-left: 8px; }
+  .mobile-nav-cta { border: none; color: var(--orange); margin-top: 24px; }
+
+  .hero { padding: 120px 64px 32px; }
+  .breadcrumb { font-size: 11px; color: var(--gray-light); letter-spacing: 1px; margin-bottom: 10px; }
+  .breadcrumb a { color: var(--gray-light); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--orange); }
+  .breadcrumb .current { color: var(--orange); }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 68px); line-height: 0.9; letter-spacing: 2px; margin-bottom: 10px; }
+  h1 .accent { color: var(--orange); }
+  .hero-sub { font-size: 14px; line-height: 1.6; color: var(--gray-light); max-width: 500px; }
+
+  /* Search */
+  .search-section { padding: 0 64px 48px; }
+  .search-box { display: flex; gap: 8px; max-width: 480px; }
+  .search-box input { flex: 1; background: var(--gray); border: 1px solid var(--gray-mid); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 14px 18px; letter-spacing: 1px; border-radius: 2px; outline: none; transition: border-color 0.2s; }
+  .search-box input::placeholder { color: var(--text-muted); }
+  .search-box input:focus { border-color: var(--orange); }
+  .search-box button { background: var(--orange); color: var(--white); border: none; padding: 14px 28px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; }
+  .search-box button:hover { background: var(--orange-dim); }
+
+  /* Result */
+  .result { padding: 0 64px 80px; display: none; }
+  .result.visible { display: block; }
+
+  .shipment-header { background: var(--gray); border: 1px solid var(--gray-mid); border-radius: 2px; padding: 32px; margin-bottom: 40px; }
+  .shipment-ref { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 3px; color: var(--orange); margin-bottom: 4px; }
+  .shipment-route { font-size: 18px; font-weight: 400; margin-bottom: 16px; }
+  .shipment-route .arrow { color: var(--orange); margin: 0 8px; }
+  .shipment-meta { display: flex; flex-wrap: wrap; gap: 32px; }
+  .meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .meta-label { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-light); }
+  .meta-value { font-size: 13px; color: var(--white); }
+
+  .current-status { display: flex; align-items: center; gap: 10px; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); border-radius: 2px; padding: 14px 20px; margin-bottom: 40px; }
+  .status-pulse { width: 10px; height: 10px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); } 50% { box-shadow: 0 0 0 8px rgba(34,197,94,0); } }
+  .status-text { font-size: 13px; font-weight: 500; color: var(--green); letter-spacing: 1px; text-transform: uppercase; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--gray-mid); }
+  .tl-item { position: relative; padding: 0 0 32px 24px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-dot { position: absolute; left: -25px; top: 4px; width: 15px; height: 15px; border-radius: 50%; border: 2px solid var(--gray-mid); background: var(--black); z-index: 1; }
+  .tl-item.done .tl-dot { background: var(--green); border-color: var(--green); }
+  .tl-item.active .tl-dot { background: var(--orange); border-color: var(--orange); animation: pulse-orange 2s infinite; }
+  @keyframes pulse-orange { 0%,100% { box-shadow: 0 0 0 0 rgba(232,82,26,0.4); } 50% { box-shadow: 0 0 0 8px rgba(232,82,26,0); } }
+  .tl-item.done .tl-dot::after { content: ''; position: absolute; left: 3px; top: 3px; width: 5px; height: 5px; background: var(--black); border-radius: 50%; }
+  .tl-status { font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 2px; }
+  .tl-item.pending .tl-status { color: var(--gray-light); }
+  .tl-detail { font-size: 12px; color: var(--gray-light); display: flex; gap: 12px; }
+  .tl-date { color: var(--orange); font-weight: 500; }
+
+  /* Error */
+  .error { display: none; padding: 0 64px 80px; }
+  .error.visible { display: block; }
+  .error-box { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 2px; padding: 20px 24px; max-width: 480px; }
+  .error-box p { font-size: 13px; color: var(--red); }
+  .error-box .hint { color: var(--gray-light); margin-top: 6px; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--gray-mid); padding: 64px 64px 48px; margin-top: auto; }
+  .footer-top { display: grid; grid-template-columns: 1fr auto auto auto; gap: 64px; margin-bottom: 48px; align-items: start; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 4px; display: block; margin-bottom: 12px; }
+  .footer-logo span { color: var(--orange); }
+  .footer-tagline { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; line-height: 1.6; max-width: 200px; }
+  .footer-col-title { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+  .footer-col-links { display: flex; flex-direction: column; gap: 10px; }
+  .footer-col-links a { font-size: 12px; color: var(--gray-light); text-decoration: none; letter-spacing: 1px; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+  .footer-col-links a:hover { color: var(--orange); }
+  .footer-col-links a .arr { font-size: 10px; opacity: 0; transform: translateX(-4px); transition: all 0.2s; }
+  .footer-col-links a:hover .arr { opacity: 1; transform: translateX(0); }
+  .footer-bottom { border-top: 1px solid var(--gray-mid); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-copy { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; }
+
+  @media (max-width: 1024px) {
+    .hero { padding: 100px 32px 24px; }
+    .search-section, .result, .error { padding-left: 32px; padding-right: 32px; }
+    nav { padding: 20px 24px; }
+    .nav-center { display: none; }
+    .nav-hamburger { display: flex; }
+    footer { padding: 48px 24px 32px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  }
+  @media (max-width: 640px) {
+    .nav-cta { display: none; }
+    .mobile-nav-link { font-size: 36px; padding: 14px 0; }
+    .hero { padding: 100px 20px 24px; }
+    .search-section, .result, .error { padding-left: 20px; padding-right: 20px; }
+    .shipment-header { padding: 20px; }
+    .shipment-meta { gap: 20px; }
+    .shipment-route { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">CANX<span>A</span>NSA</a>
+  <div class="nav-center">
+    <a href="../index.html" class="nav-link">Home</a>
+    <a href="../index.html#services" class="nav-link">Services</a>
+    <a href="../index.html#corridors" class="nav-link">Corridors</a>
+    <a href="../index.html#coverage" class="nav-link">Routes</a>
+    <a href="../index.html?panel=contact" class="nav-link">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="../index.html?panel=contact" class="nav-cta">Get a Quote</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../index.html" class="mobile-nav-link">Home</a>
+  <a href="../index.html#services" class="mobile-nav-link">Services</a>
+  <a href="../index.html#corridors" class="mobile-nav-link">Corridors</a>
+  <a href="../index.html#coverage" class="mobile-nav-link">Routes</a>
+  <a href="../shipping-signals/" class="mobile-nav-link">Signals</a>
+  <a href="../index.html?panel=contact" class="mobile-nav-link mobile-nav-cta">Get a Quote</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / <span class="current">Track Shipment</span></div>
+  <h1>TRACK YOUR <span class="accent">SHIPMENT</span></h1>
+  <p class="hero-sub">Enter your CANXANSA reference number to see the real-time status of your cargo.</p>
+</section>
+
+<!-- SEARCH -->
+<section class="search-section">
+  <div class="search-box">
+    <input type="text" id="track-input" placeholder="e.g. CX260001" autocomplete="off" spellcheck="false">
+    <button id="track-btn">Track</button>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section class="result" id="result">
+  <div class="shipment-header">
+    <div class="shipment-ref" id="res-ref"></div>
+    <div class="shipment-route"><span id="res-origin"></span><span class="arrow">&rarr;</span><span id="res-dest"></span></div>
+    <div class="shipment-meta">
+      <div class="meta-item"><span class="meta-label">Mode</span><span class="meta-value" id="res-mode"></span></div>
+      <div class="meta-item"><span class="meta-label">Cargo</span><span class="meta-value" id="res-cargo"></span></div>
+      <div class="meta-item"><span class="meta-label">Shipper</span><span class="meta-value" id="res-shipper"></span></div>
+      <div class="meta-item"><span class="meta-label">Consignee</span><span class="meta-value" id="res-consignee"></span></div>
+    </div>
+  </div>
+  <div class="current-status">
+    <div class="status-pulse"></div>
+    <div class="status-text" id="res-status"></div>
+  </div>
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<!-- ERROR -->
+<section class="error" id="error-section">
+  <div class="error-box">
+    <p>Shipment not found.</p>
+    <p class="hint">Check your reference number and try again. Format: CX followed by 6 digits.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="footer-logo">CAN<span>X</span>ANSA</span>
+      <p class="footer-tagline">Global freight forwarding. Air, sea &amp; road.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <div class="footer-col-links">
+        <a href="../index.html#services">Air Freight <span class="arr">&rarr;</span></a>
+        <a href="../index.html#services">Sea Freight <span class="arr">&rarr;</span></a>
+        <a href="../index.html#services">Road Freight <span class="arr">&rarr;</span></a>
+        <a href="../index.html#how">How It Works <span class="arr">&rarr;</span></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-col-links">
+        <a href="mailto:info@canxansa.com">info@canxansa.com <span class="arr">&rarr;</span></a>
+        <a href="https://wa.me/905353221318" target="_blank" rel="noopener">WhatsApp <span class="arr">&rarr;</span></a>
+        <a href="https://www.linkedin.com/company/canxansa/" target="_blank" rel="noopener">LinkedIn <span class="arr">&rarr;</span></a>
+        <a href="../index.html?panel=contact">Get a Quote <span class="arr">&rarr;</span></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <div class="footer-col-links">
+        <a href="../shipping-signals/">Shipping Signals <span class="arr">&rarr;</span></a>
+        <a href="../faq/">FAQ <span class="arr">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 CANXANSA O&Uuml;. All rights reserved.</div>
+    <div class="footer-copy">Tallinn, Estonia &middot; info@canxansa.com</div>
+  </div>
+</footer>
+
+<script src="shipments.js"></script>
+<script>
+(function(){
+  var input=document.getElementById('track-input');
+  var btn=document.getElementById('track-btn');
+  var result=document.getElementById('result');
+  var errorEl=document.getElementById('error-section');
+
+  var params=new URLSearchParams(window.location.search);
+  if(params.get('id')){
+    input.value=params.get('id').toUpperCase();
+    doTrack();
+  }
+
+  btn.addEventListener('click',doTrack);
+  input.addEventListener('keydown',function(e){if(e.key==='Enter')doTrack();});
+
+  function doTrack(){
+    var id=input.value.trim().toUpperCase();
+    if(!id)return;
+    result.classList.remove('visible');
+    errorEl.classList.remove('visible');
+    var s=SHIPMENTS[id];
+    if(!s){errorEl.classList.add('visible');return;}
+    document.getElementById('res-ref').textContent=id;
+    document.getElementById('res-origin').textContent=s.origin;
+    document.getElementById('res-dest').textContent=s.destination;
+    document.getElementById('res-mode').textContent=s.mode;
+    document.getElementById('res-cargo').textContent=s.cargo;
+    document.getElementById('res-shipper').textContent=s.shipper;
+    document.getElementById('res-consignee').textContent=s.consignee;
+
+    var lastDone=-1;
+    for(var i=0;i<s.events.length;i++){if(s.events[i].done)lastDone=i;}
+    var currentStatus=lastDone>=0?s.events[lastDone].status:'Pending';
+    document.getElementById('res-status').textContent=currentStatus;
+
+    var tl=document.getElementById('timeline');
+    tl.innerHTML='';
+    for(var i=0;i<s.events.length;i++){
+      var ev=s.events[i];
+      var cls='tl-item';
+      if(ev.done&&i===lastDone)cls+=' done active';
+      else if(ev.done)cls+=' done';
+      else cls+=' pending';
+      var dateStr=ev.date?formatDate(ev.date):'Pending';
+      var loc=ev.location?ev.location:'';
+      var detail='<span class="tl-date">'+dateStr+'</span>';
+      if(loc)detail+='<span>'+loc+'</span>';
+      tl.innerHTML+='<div class="'+cls+'"><div class="tl-dot"></div><div class="tl-status">'+ev.status+'</div><div class="tl-detail">'+detail+'</div></div>';
+    }
+    result.classList.add('visible');
+    result.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function formatDate(d){
+    var parts=d.split('-');
+    var dt=new Date(parts[0],parts[1]-1,parts[2]);
+    var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return months[dt.getMonth()]+' '+dt.getDate()+', '+dt.getFullYear();
+  }
+
+  var hamburger=document.getElementById('nav-hamburger');
+  var mobileMenu=document.getElementById('mobile-menu');
+  hamburger.addEventListener('click',function(){
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow=mobileMenu.classList.contains('open')?'hidden':'';
+  });
+})();
+</script>
+</body>
+</html>

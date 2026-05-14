@@ -1204,8 +1204,8 @@
       <div class="action-card-sub" data-lang="en">Enter your tracking ID to see real-time status updates for your cargo.</div>
       <div class="action-card-sub" data-lang="tr">Takip numaranızı girerek kargonuzun anlık durumunu görün.</div>
       <div class="action-card-track">
-        <input type="text" disabled data-placeholder-en="Enter Tracking ID" data-placeholder-tr="Takip Numarası" placeholder="Enter Tracking ID">
-        <button disabled>
+        <input type="text" id="home-track-input" data-placeholder-en="Enter Tracking ID" data-placeholder-tr="Takip Numarası" placeholder="Enter Tracking ID">
+        <button id="home-track-btn" onclick="var v=document.getElementById('home-track-input').value.trim();if(v)window.location.href='track/?id='+encodeURIComponent(v);">
           <span data-lang="en">Track</span>
           <span data-lang="tr">Takip Et</span>
         </button>
