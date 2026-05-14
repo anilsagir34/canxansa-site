@@ -327,7 +327,8 @@
 <!-- HERO -->
 <section class="hero">
   <div class="breadcrumb"><a href="../index.html">Home</a> / <span>Shipping Signals</span></div>
-  <div class="hero-date" id="report-date">May 11, 2026</div>
+  <div class="hero-date" id="report-date"></div>
+  <script>document.getElementById('report-date').textContent=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});</script>
   <h1>SHIPPING <span class="accent">SIGNALS</span></h1>
   <p class="hero-sub">Weekly freight rate trends across Turkey-Europe and Turkey-Asia lanes.</p>
 </section>
