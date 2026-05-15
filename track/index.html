@@ -177,7 +177,7 @@
 <!-- SEARCH -->
 <section class="search-section">
   <div class="search-box">
-    <input type="text" id="track-input" placeholder="e.g. CX260001" autocomplete="off" spellcheck="false">
+    <input type="text" id="track-input" placeholder="Enter your tracking number" autocomplete="off" spellcheck="false">
     <button id="track-btn">Track</button>
   </div>
 </section>
@@ -201,11 +201,19 @@
   <div class="timeline" id="timeline"></div>
 </section>
 
-<!-- ERROR -->
+<!-- ERROR: NOT FOUND -->
 <section class="error" id="error-section">
   <div class="error-box">
     <p>Shipment not found.</p>
-    <p class="hint">Check your reference number and try again. Format: CX followed by 6 digits.</p>
+    <p class="hint">Check your reference number and try again. Format: CX followed by 6 digits and a check digit (e.g. CX260001-3).</p>
+  </div>
+</section>
+
+<!-- ERROR: INVALID CHECK DIGIT -->
+<section class="error" id="error-invalid">
+  <div class="error-box">
+    <p>Invalid tracking number.</p>
+    <p class="hint">The check digit does not match. Please verify your tracking number and try again.</p>
   </div>
 </section>
 
@@ -255,10 +263,11 @@
   var btn=document.getElementById('track-btn');
   var result=document.getElementById('result');
   var errorEl=document.getElementById('error-section');
+  var errorInvalid=document.getElementById('error-invalid');
 
   var params=new URLSearchParams(window.location.search);
   if(params.get('id')){
-    input.value=params.get('id').toUpperCase();
+    input.value=params.get('id').toUpperCase().replace(/\s/g,'');
     doTrack();
   }
 
@@ -266,10 +275,26 @@
   input.addEventListener('keydown',function(e){if(e.key==='Enter')doTrack();});
 
   function doTrack(){
-    var id=input.value.trim().toUpperCase();
-    if(!id)return;
+    var raw=input.value.trim().toUpperCase();
+    if(!raw)return;
     result.classList.remove('visible');
     errorEl.classList.remove('visible');
+    errorInvalid.classList.remove('visible');
+
+    // Check digit dogrulama
+    var hasCheckFormat=raw.replace(/\s/g,'').match(/^CX\d{6}-?\d$/);
+    var id;
+    if(hasCheckFormat){
+      id=cxValidate(raw);
+      if(!id){errorInvalid.classList.add('visible');return;}
+    } else {
+      // Eski format denemesi (CX + 6 hane, check digit yok)
+      var base=raw.replace(/\s/g,'').match(/^CX(\d{6})$/);
+      if(!base){errorEl.classList.add('visible');return;}
+      var cd=cxCheckDigit(base[1]);
+      id="CX"+base[1]+"-"+cd;
+    }
+
     var s=SHIPMENTS[id];
     if(!s){errorEl.classList.add('visible');return;}
     document.getElementById('res-ref').textContent=id;

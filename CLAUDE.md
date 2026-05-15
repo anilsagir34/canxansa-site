@@ -45,6 +45,23 @@ Coverage tabları: `data-tab="europe|asia|americas|mea"`
 - Tüm 21 güzergah sayfasına FAQPage JSON-LD schema eklendi
 - Sitemap.xml güncel (28 URL)
 
+### Signals Sayfası Navigasyon (2026-05-09)
+- Masaüstü nav: Home, Services, Corridors, Routes, Contact + Get a Quote
+- Mobil: Hamburger menu (toggle JS), 640px altında nav-cta gizlenir
+- Footer: Ana sayfayla tutarlı 4 kolonlu zengin footer (Services, Contact, Resources)
+
+### Footer Resources Kolonu (2026-05-09)
+- Ana sayfa footer'a 4. kolon eklendi: Resources (EN) / Kaynaklar (TR)
+- İçerik: Shipping Signals + FAQ linkleri
+- Grid: `1fr auto auto auto`
+
+### FAQ Sayfası (2026-05-09)
+- `faq/index.html`: Ayrı FAQ sayfası, 16 soru-cevap, 4 kategori
+- Kategoriler: General, Quotes & Pricing, Shipping & Transit, Customs & Documentation
+- FAQPage JSON-LD schema (10 soru)
+- Nav + hamburger + zengin footer (signals sayfasıyla tutarlı)
+- Footer linkleri: `/faq/` (index.html ve signals'dan)
+
 ### Hub Sayfaları — Bekleyen (öncelik sırası)
 Orta Doğu: UAE → Saudi Arabia → Qatar → Iraq
 Uzak: USA → Japan → Egypt → Syria
