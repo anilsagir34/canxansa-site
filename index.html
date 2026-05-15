@@ -1208,11 +1208,12 @@
       <div class="action-card-sub" data-lang="tr">Takip numaranızı girerek kargonuzun anlık durumunu görün.</div>
       <div class="action-card-track">
         <input type="text" id="home-track-input" data-placeholder-en="Enter Tracking ID" data-placeholder-tr="Takip Numarası" placeholder="Enter Tracking ID">
-        <button id="home-track-btn" onclick="var v=document.getElementById('home-track-input').value.trim();if(v)window.location.href='track/?id='+encodeURIComponent(v);">
+        <button id="home-track-btn" onclick="(function(){var v=document.getElementById('home-track-input').value.trim().toUpperCase().replace(/\s/g,'');if(!v)return;var m=v.match(/^CX(\d{6})-?(\d)$/);if(!m){document.getElementById('home-track-error').style.display='block';return;}var w=[7,3,1,7,3,1],s=0;for(var i=0;i<6;i++)s+=parseInt(m[1][i])*w[i];if(s%10!==parseInt(m[2])){document.getElementById('home-track-error').style.display='block';return;}document.getElementById('home-track-error').style.display='none';window.location.href='track/?id=CX'+m[1]+'-'+m[2];})();">
           <span data-lang="en">Track</span>
           <span data-lang="tr">Takip Et</span>
         </button>
       </div>
+      <div id="home-track-error" style="display:none;margin-top:8px;font-size:12px;color:#ef4444;"><span data-lang="en">Invalid tracking number.</span><span data-lang="tr">Gecersiz takip numarasi.</span></div>
     </div>
 
   </div>
