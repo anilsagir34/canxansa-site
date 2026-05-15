@@ -256,7 +256,7 @@
   </div>
 </footer>
 
-<script src="shipments.js?v=2"></script>
+<script src="shipments.js?v=3"></script>
 <script>
 (function(){
   var input=document.getElementById('track-input');
@@ -281,19 +281,8 @@
     errorEl.classList.remove('visible');
     errorInvalid.classList.remove('visible');
 
-    // Check digit dogrulama
-    var hasCheckFormat=raw.replace(/\s/g,'').match(/^CX\d{6}-?\d$/);
-    var id;
-    if(hasCheckFormat){
-      id=cxValidate(raw);
-      if(!id){errorInvalid.classList.add('visible');return;}
-    } else {
-      // Eski format denemesi (CX + 6 hane, check digit yok)
-      var base=raw.replace(/\s/g,'').match(/^CX(\d{6})$/);
-      if(!base){errorEl.classList.add('visible');return;}
-      var cd=cxCheckDigit(base[1]);
-      id="CX"+base[1]+"-"+cd;
-    }
+    var id=cxValidate(raw);
+    if(!id){errorEl.classList.add('visible');return;}
 
     var s=SHIPMENTS[id];
     if(!s){errorEl.classList.add('visible');return;}
