@@ -175,6 +175,34 @@
 
   .hero-actions { display: flex; gap: 16px; align-items: center; }
 
+  .hero-track {
+    margin-top: 40px; display: flex; align-items: center; gap: 0;
+    max-width: 420px; border: 1px solid var(--gray-mid); border-radius: 2px;
+    overflow: hidden; transition: border-color 0.2s;
+  }
+  .hero-track:focus-within { border-color: var(--orange); }
+  .hero-track-icon {
+    padding: 0 14px; display: flex; align-items: center;
+    color: var(--gray-light); flex-shrink: 0;
+  }
+  .hero-track input {
+    flex: 1; background: none; border: none; outline: none;
+    color: var(--white); font-family: 'DM Sans', sans-serif;
+    font-size: 13px; padding: 14px 0; letter-spacing: 0.5px;
+  }
+  .hero-track input::placeholder { color: var(--gray-light); opacity: 0.6; }
+  .hero-track button {
+    background: var(--orange); border: none; color: var(--white);
+    font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+    padding: 14px 24px; transition: background 0.2s; flex-shrink: 0;
+  }
+  .hero-track button:hover { background: var(--orange-dim); }
+  .hero-track-error {
+    display: none; margin-top: 6px; font-size: 11px; color: #ef4444;
+    max-width: 420px;
+  }
+
   .btn-primary {
     background: var(--orange); color: var(--white);
     padding: 16px 36px; border: none; border-radius: 2px;
@@ -900,6 +928,7 @@
     .how-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
     .hero-stats { flex-wrap: wrap; gap: 24px; left: 20px; }
+    .hero-track { max-width: 100%; }
     .nav-right { gap: 16px; }
     .action-cards-section { padding: 0 20px; }
     .coverage-panel-grid { grid-template-columns: 1fr; }
@@ -995,9 +1024,6 @@
     <a href="#how" class="nav-link" data-section="how">
       <span data-lang="en">Process</span><span data-lang="tr">Süreç</span>
     </a>
-    <a href="track/" class="nav-link">
-      <span data-lang="en">Track</span><span data-lang="tr">Takip</span>
-    </a>
     <a href="#contact" class="nav-link" data-section="contact">
       <span data-lang="en">Contact</span><span data-lang="tr">İletişim</span>
     </a>
@@ -1035,9 +1061,6 @@
   <a href="#how" class="mobile-nav-link" data-section="how">
     <span data-lang="en">Process</span><span data-lang="tr">Süreç</span>
   </a>
-  <a href="track/" class="mobile-nav-link">
-    <span data-lang="en">Track</span><span data-lang="tr">Takip</span>
-  </a>
   <a href="shipping-signals/" class="mobile-nav-link nav-badge">
     <span data-lang="en">Signals</span><span data-lang="tr">Sinyaller</span>
     <span class="nav-badge-tag">LIVE</span>
@@ -1071,6 +1094,12 @@
         <span data-lang="tr">Hizmetler</span>
       </a>
     </div>
+    <div class="hero-track">
+      <div class="hero-track-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <input type="text" id="hero-track-input" data-placeholder-en="Track your shipment" data-placeholder-tr="Kargonu takip et" placeholder="Track your shipment">
+      <button id="hero-track-btn"><span data-lang="en">Track</span><span data-lang="tr">Takip</span></button>
+    </div>
+    <div class="hero-track-error" id="hero-track-error"><span data-lang="en">Invalid tracking number.</span><span data-lang="tr">Gecersiz takip numarasi.</span></div>
   </div>
   <div class="hero-right">
     <div class="hero-grid"></div>
@@ -1704,6 +1733,25 @@
         if ((navigator.language || '').toLowerCase().startsWith('tr')) setLang('tr');
       });
   }
+
+  // Hero track
+  document.getElementById('hero-track-btn').addEventListener('click', function() {
+    var v = document.getElementById('hero-track-input').value.trim().toUpperCase().replace(/\s/g, '');
+    if (!v) return;
+    var m = v.match(/^CX(\d{6})-?(\d)$/);
+    if (!m) { document.getElementById('hero-track-error').style.display = 'block'; return; }
+    var w = [7,3,1,7,3,1], s = 0;
+    for (var i = 0; i < 6; i++) s += parseInt(m[1][i]) * w[i];
+    if (s % 10 !== parseInt(m[2])) { document.getElementById('hero-track-error').style.display = 'block'; return; }
+    document.getElementById('hero-track-error').style.display = 'none';
+    window.location.href = 'track/?id=CX' + m[1] + '-' + m[2];
+  });
+  document.getElementById('hero-track-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') document.getElementById('hero-track-btn').click();
+  });
+  document.getElementById('hero-track-input').addEventListener('input', function() {
+    document.getElementById('hero-track-error').style.display = 'none';
+  });
 
   // Form submit
   document.getElementById('quote-form').addEventListener('submit', async function(e) {
