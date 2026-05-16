@@ -1,17 +1,166 @@
-<!doctype html>
-<html lang="tr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="robots" content="noindex" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Yönlendiriliyor...</title>
-    <script>
-      // Query string'i koruyarak ana sayfaya yönlendir
-      var qs = window.location.search || "";
-      window.location.replace("/" + qs);
-    </script>
-  </head>
-  <body>
-    Yönlendiriliyor...
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Page Not Found — CANXANSA</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f0eb;
+    --orange: #e8521a;
+    --gray: #1a1a1a;
+    --gray-mid: #2e2e2e;
+    --gray-light: #888;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--black); color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+  }
+  nav {
+    padding: 24px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--gray-mid);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px; letter-spacing: 2px; color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-back {
+    color: var(--gray-light);
+    font-size: 13px; letter-spacing: 1px;
+    text-transform: uppercase; text-decoration: none;
+  }
+  .nav-back:hover { color: var(--white); }
+  main {
+    flex: 1;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 48px 24px;
+    text-align: center;
+  }
+  .err-code {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 180px; line-height: 1;
+    color: var(--orange);
+    letter-spacing: -4px;
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px; letter-spacing: 2px;
+    margin: 16px 0 12px;
+  }
+  .err-sub {
+    font-size: 15px; color: var(--gray-light);
+    max-width: 480px; line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  .actions {
+    display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+    margin-bottom: 56px;
+  }
+  .btn {
+    padding: 14px 28px;
+    font-size: 13px; letter-spacing: 1px;
+    text-transform: uppercase; text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--orange); color: var(--white);
+  }
+  .btn-primary:hover { background: #c44010; }
+  .btn-ghost {
+    background: transparent; color: var(--white);
+    border: 1px solid var(--gray-mid);
+  }
+  .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+  .popular {
+    width: 100%; max-width: 720px;
+  }
+  .popular-title {
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gray-light); margin-bottom: 20px;
+  }
+  .popular-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .popular-card {
+    padding: 16px 20px;
+    background: var(--gray);
+    border: 1px solid var(--gray-mid);
+    border-radius: 6px;
+    text-decoration: none; color: var(--white);
+    font-size: 14px;
+    text-align: left;
+    transition: all 0.2s;
+  }
+  .popular-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-2px);
+  }
+  .popular-card .arr {
+    color: var(--orange); margin-left: 6px;
+  }
+  footer {
+    padding: 24px 48px;
+    border-top: 1px solid var(--gray-mid);
+    text-align: center;
+    font-size: 12px; color: var(--gray-light);
+    letter-spacing: 1px;
+  }
+  @media (max-width: 640px) {
+    nav { padding: 16px 20px; }
+    .err-code { font-size: 120px; }
+    h1 { font-size: 32px; }
+    main { padding: 32px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">CAN<span>X</span>ANSA</a>
+  <a href="/" class="nav-back">← Home</a>
+</nav>
+
+<main>
+  <div class="err-code">404</div>
+  <h1>PAGE NOT FOUND</h1>
+  <p class="err-sub">The page you're looking for doesn't exist or has been moved. Try one of the popular destinations below, or head back to our homepage.</p>
+
+  <div class="actions">
+    <a href="/" class="btn btn-primary">Go to Homepage</a>
+    <a href="/#contact" class="btn btn-ghost">Get a Quote</a>
+  </div>
+
+  <div class="popular">
+    <div class="popular-title">Popular Pages</div>
+    <div class="popular-grid">
+      <a href="/china-freight/" class="popular-card">Freight from China <span class="arr">→</span></a>
+      <a href="/india-freight/" class="popular-card">Freight from India <span class="arr">→</span></a>
+      <a href="/turkey-germany-freight/" class="popular-card">Turkey ↔ Germany <span class="arr">→</span></a>
+      <a href="/netherlands-freight/" class="popular-card">Freight from Netherlands <span class="arr">→</span></a>
+      <a href="/shipping-signals/" class="popular-card">Shipping Signals <span class="arr">→</span></a>
+      <a href="/faq/" class="popular-card">FAQ <span class="arr">→</span></a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © 2026 CANXANSA OÜ · Tallinn, Estonia · info@canxansa.com
+</footer>
+
+</body>
 </html>
