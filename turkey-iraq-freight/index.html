@@ -425,16 +425,16 @@
 <div class="form-row">
         <div class="form-group">
           <label>Phone</label>
-          <input type="tel" name="phone" placeholder="+372 5555 0000">
+          <input type="tel" name="phone" placeholder="+372 5555 0000" required> 
         </div>
         <div class="form-group">
           <label>Company</label>
-          <input type="text" name="company" placeholder="ACME Trading Co.">
+          <input type="text" name="company" placeholder="ACME Trading Co." required> 
         </div>
       </div>
       <div class="form-group">
         <label>Transport Mode</label>
-        <select name="transport_mode">
+        <select name="transport_mode" required>
           <option value="">Select...</option>
           <option value="road">Road Freight (FTL/LTL)</option>
           <option value="air">Air Freight</option>
@@ -443,10 +443,10 @@
       </div>
       <input type="hidden" name="route" value="Turkey to Iraq">
       <div class="form-row">
-        <div class="form-group"><label>Origin City</label><input type="text" name="origin" placeholder="Istanbul, Turkey"></div>
-        <div class="form-group"><label>Destination City</label><input type="text" name="destination" placeholder="Baghdad / Erbil / Basra"></div>
+        <div class="form-group"><label>Origin City</label><input type="text" name="origin" placeholder="Istanbul, Turkey" required> </div>
+        <div class="form-group"><label>Destination City</label><input type="text" name="destination" placeholder="Baghdad / Erbil / Basra" required></div>
       </div>
-      <div class="form-group"><label>Cargo Details</label><textarea name="cargo_details" placeholder="Cargo type, weight, dimensions, special requirements..."></textarea></div>
+      <div class="form-group"><label>Cargo Details</label><textarea name="cargo_details" placeholder="Cargo type, weight, dimensions, special requirements..." required> </textarea></div>
       <button type="submit" class="form-submit">Send Request — Get Quote in 1 Hour</button>
     </form>
   </div>

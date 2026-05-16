@@ -1550,18 +1550,18 @@
         <div class="form-group">
           <label data-lang="en">Phone</label>
           <label data-lang="tr">Telefon</label>
-          <input type="tel" name="phone" placeholder="+372 5555 0000">
+          <input type="tel" name="phone" placeholder="+372 5555 0000" required>
         </div>
         <div class="form-group">
           <label data-lang="en">Company</label>
           <label data-lang="tr">Şirket</label>
-          <input type="text" name="company" placeholder="ACME Corp">
+          <input type="text" name="company" placeholder="ACME Corp" required>
         </div>
       </div>
       <div class="form-group">
         <label data-lang="en">Transport Mode</label>
         <label data-lang="tr">Taşıma Modu</label>
-        <select name="transport_mode" id="transport-select">
+        <select name="transport_mode" id="transport-select" required>
           <option value="">Select...</option>
           <option value="air">Air Freight</option>
           <option value="sea">Sea Freight</option>
@@ -1572,18 +1572,18 @@
         <div class="form-group">
           <label data-lang="en">Origin</label>
           <label data-lang="tr">Kalkış</label>
-          <input type="text" name="origin" data-placeholder-en="City, Country" data-placeholder-tr="Şehir, Ülke" placeholder="City, Country">
+          <input type="text" name="origin" data-placeholder-en="City, Country" data-placeholder-tr="Şehir, Ülke" placeholder="City, Country" required>
         </div>
         <div class="form-group">
           <label data-lang="en">Destination</label>
           <label data-lang="tr">Varış</label>
-          <input type="text" name="destination" data-placeholder-en="City, Country" data-placeholder-tr="Şehir, Ülke" placeholder="City, Country">
+          <input type="text" name="destination" data-placeholder-en="City, Country" data-placeholder-tr="Şehir, Ülke" placeholder="City, Country" required>
         </div>
       </div>
       <div class="form-group">
         <label data-lang="en">Cargo Details</label>
         <label data-lang="tr">Yük Detayları</label>
-        <textarea name="cargo_details" data-placeholder-en="Cargo type, weight, dimensions, special requirements..." data-placeholder-tr="Yük tipi, ağırlık, boyutlar, özel gereksinimler..." placeholder="Cargo type, weight, dimensions, special requirements..."></textarea>
+        <textarea name="cargo_details" data-placeholder-en="Cargo type, weight, dimensions, special requirements..." data-placeholder-tr="Yük tipi, ağırlık, boyutlar, özel gereksinimler..." placeholder="Cargo type, weight, dimensions, special requirements..." required></textarea>
       </div>
       <button type="submit" class="form-submit">
         <span data-lang="en">Send Request</span>

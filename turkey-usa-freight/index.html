@@ -385,12 +385,12 @@
         </div>
       </div>
 <div class="form-row">
-        <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="+1 212 555 0000"></div>
-        <div class="form-group"><label>Company</label><input type="text" name="company" placeholder="Your Company"></div>
+        <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="+1 212 555 0000" required> </div>
+        <div class="form-group"><label>Company</label><input type="text" name="company" placeholder="Your Company" required> </div>
       </div>
       <div class="form-group">
         <label>Transport Mode</label>
-        <select name="transport_mode">
+        <select name="transport_mode" required>
           <option value="">Select...</option>
           <option value="air">Air Freight</option>
           <option value="sea-fcl">Sea Freight FCL</option>
@@ -399,10 +399,10 @@
       </div>
       <input type="hidden" name="route" value="Turkey to USA">
       <div class="form-row">
-        <div class="form-group"><label>Origin City</label><input type="text" name="origin" placeholder="Istanbul / Mersin, Turkey"></div>
-        <div class="form-group"><label>Destination</label><input type="text" name="destination" placeholder="New York / Los Angeles, USA"></div>
+        <div class="form-group"><label>Origin City</label><input type="text" name="origin" placeholder="Istanbul / Mersin, Turkey" required> </div>
+        <div class="form-group"><label>Destination</label><input type="text" name="destination" placeholder="New York / Los Angeles, USA" required></div>
       </div>
-      <div class="form-group"><label>Cargo Details</label><textarea name="cargo_details" placeholder="Cargo type, weight, dimensions, special requirements..."></textarea></div>
+      <div class="form-group"><label>Cargo Details</label><textarea name="cargo_details" placeholder="Cargo type, weight, dimensions, special requirements..." required> </textarea></div>
       <button type="submit" class="form-submit">Send Request — Get Quote in 1 Hour</button>
     </form>
   </div>

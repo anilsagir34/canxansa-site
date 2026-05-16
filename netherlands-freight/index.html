@@ -757,16 +757,16 @@
       <div class="form-row">
         <div class="form-group">
           <label>Phone</label>
-          <input type="tel" name="phone" placeholder="+31 ...">
+          <input type="tel" name="phone" placeholder="+31 ..." required> 
         </div>
         <div class="form-group">
           <label>Company</label>
-          <input type="text" name="company" placeholder="Your Company">
+          <input type="text" name="company" placeholder="Your Company" required> 
         </div>
       </div>
       <div class="form-group">
         <label>Destination</label>
-        <select name="destination">
+        <select name="destination" required>
           <option value="">Select destination...</option>
           <option value="Turkey">Turkey</option>
           <option value="Germany">Germany</option>
@@ -785,7 +785,7 @@
       </div>
       <div class="form-group">
         <label>Transport Mode</label>
-        <select name="transport_mode">
+        <select name="transport_mode" required>
           <option value="">Select mode...</option>
           <option value="air">Air Freight</option>
           <option value="road-ftl">Road — Full Truckload (FTL)</option>
@@ -799,16 +799,16 @@
       <div class="form-row">
         <div class="form-group">
           <label>Origin City (Netherlands)</label>
-          <input type="text" name="origin" placeholder="Rotterdam / Amsterdam...">
+          <input type="text" name="origin" placeholder="Rotterdam / Amsterdam..." required> 
         </div>
         <div class="form-group">
           <label>Destination City</label>
-          <input type="text" name="destination_city" placeholder="Istanbul / Dubai / Mumbai...">
+          <input type="text" name="destination_city" placeholder="Istanbul / Dubai / Mumbai..." required>
         </div>
       </div>
       <div class="form-group">
         <label>Cargo Details</label>
-        <textarea name="cargo_details" placeholder="Cargo type, weight, dimensions, special requirements..."></textarea>
+        <textarea name="cargo_details" placeholder="Cargo type, weight, dimensions, special requirements..." required> </textarea>
       </div>
       <button type="submit" class="form-submit">Send Request — Get Quote in 1 Hour</button>
     </form>
