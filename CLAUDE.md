@@ -2,6 +2,7 @@
 
 **Repo:** anilsagir34/canxansa-site → canxansa.com (GitHub Pages)
 **Stack:** Saf HTML/CSS/JS · Formspree `/f/mpqykzop` · GA4 `G-X19NTBBWNQ`
+**Dil:** Tek dilli — İngilizce (Türkçe katmanı 2026-05-16'da kaldırıldı: tutarsız UX + bakım yükü; bkz. son not)
 **Font:** Bebas Neue (başlık) · DM Sans (gövde)
 **Renkler:** `--black #0a0a0a` `--white #f5f0eb` `--orange #e8521a` `--orange-dim #c44010` `--gray #1a1a1a` `--gray-mid #2e2e2e` `--gray-light #888`
 

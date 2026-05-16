@@ -8,7 +8,6 @@
 <meta name="description" content="Turkey-based freight forwarder offering air, sea and road cargo to Europe and the Middle East. Get a quote in 1 hour. FCL, LCL and express air freight.">
 <link rel="canonical" href="https://canxansa.com/">
 <link rel="alternate" hreflang="en" href="https://canxansa.com/">
-<link rel="alternate" hreflang="tr" href="https://canxansa.com/">
 <link rel="alternate" hreflang="x-default" href="https://canxansa.com/">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -96,22 +95,6 @@
   }
 
   .nav-right { display: flex; align-items: center; gap: 32px; }
-
-  .lang-toggle {
-    display: flex; gap: 2px;
-    background: var(--gray); border-radius: 4px; overflow: hidden;
-  }
-
-  .lang-toggle button {
-    background: none; border: none; color: var(--gray-light);
-    font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
-    padding: 6px 12px; cursor: pointer; letter-spacing: 1px;
-    transition: all 0.2s;
-  }
-
-  .lang-toggle button.active {
-    background: var(--orange); color: var(--white);
-  }
 
   .nav-routes {
     color: var(--gray-light);
@@ -758,14 +741,6 @@
     transform: translateY(0);
   }
 
-  /* ─── LANG ─── */
-  [data-lang="tr"] { display: none; }
-  body.tr [data-lang="en"] { display: none; }
-  body.tr [data-lang="tr"] { display: block; }
-  body.tr span[data-lang="tr"] { display: inline; }
-  body.tr span[data-lang="en"] { display: none; }
-  span[data-lang="tr"] { display: none; }
-
   /* ─── NAV CENTER LINKS ─── */
   nav {
     justify-content: space-between;
@@ -1013,33 +988,28 @@
   <a href="#" class="nav-logo">CAN<span>X</span>ANSA<span class="nav-sub">· LOGISTICS</span></a>
   <div class="nav-center">
     <a href="#services" class="nav-link" data-section="services">
-      <span data-lang="en">Services</span><span data-lang="tr">Hizmetler</span>
+      Services
     </a>
     <a href="#corridors" class="nav-link" data-section="corridors">
-      <span data-lang="en">Corridors</span><span data-lang="tr">Koridorlar</span>
+      Corridors
     </a>
     <a href="#coverage" class="nav-link" data-section="coverage">
-      <span data-lang="en">Routes</span><span data-lang="tr">Güzergahlar</span>
+      Routes
     </a>
     <a href="#how" class="nav-link" data-section="how">
-      <span data-lang="en">Process</span><span data-lang="tr">Süreç</span>
+      Process
     </a>
     <a href="#contact" class="nav-link" data-section="contact">
-      <span data-lang="en">Contact</span><span data-lang="tr">İletişim</span>
+      Contact
     </a>
     <a href="shipping-signals/" class="nav-link nav-badge">
-      <span data-lang="en">Signals</span><span data-lang="tr">Sinyaller</span>
+      Signals
       <span class="nav-badge-tag">LIVE</span>
     </a>
   </div>
   <div class="nav-right">
-    <div class="lang-toggle">
-      <button class="active" id="btn-en">EN</button>
-      <button id="btn-tr">TR</button>
-    </div>
     <a href="#contact" class="nav-cta">
-      <span data-lang="en">Get a Quote</span>
-      <span data-lang="tr">Teklif Al</span>
+      Get a Quote
     </a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -1050,23 +1020,23 @@
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobile-menu">
   <a href="#services" class="mobile-nav-link" data-section="services">
-    <span data-lang="en">Services</span><span data-lang="tr">Hizmetler</span>
+    Services
   </a>
   <a href="#corridors" class="mobile-nav-link" data-section="corridors">
-    <span data-lang="en">Corridors</span><span data-lang="tr">Koridorlar</span>
+    Corridors
   </a>
   <a href="#coverage" class="mobile-nav-link" data-section="coverage">
-    <span data-lang="en">Routes</span><span data-lang="tr">Güzergahlar</span>
+    Routes
   </a>
   <a href="#how" class="mobile-nav-link" data-section="how">
-    <span data-lang="en">Process</span><span data-lang="tr">Süreç</span>
+    Process
   </a>
   <a href="shipping-signals/" class="mobile-nav-link nav-badge">
-    <span data-lang="en">Signals</span><span data-lang="tr">Sinyaller</span>
+    Signals
     <span class="nav-badge-tag">LIVE</span>
   </a>
   <a href="#contact" class="mobile-nav-link mobile-nav-cta" data-section="contact">
-    <span data-lang="en">Get a Quote →</span><span data-lang="tr">Teklif Al →</span>
+    Get a Quote →
   </a>
 </div>
 
@@ -1077,29 +1047,24 @@
 <section class="hero">
   <div class="hero-left">
     <div class="hero-tag">
-      <span data-lang="en">Global Logistics</span>
-      <span data-lang="tr">Global Lojistik</span>
+      Global Logistics
     </div>
-    <h1 data-lang="en">MOVE CARGO<br><span class="accent">ANYWHERE.</span></h1>
-    <h1 data-lang="tr">KARGOYU<br>HER YERE<span class="accent"> TAŞI.</span></h1>
-    <p class="hero-sub" data-lang="en">Air, sea or road — we connect importers and exporters with the right carrier at the right price, worldwide.</p>
-    <p class="hero-sub" data-lang="tr">Hava, deniz veya kara — ithalatçı ve ihracatçıları doğru taşıyıcıyla, doğru fiyata bağlıyoruz. Dünya genelinde.</p>
+    <h1>MOVE CARGO<br><span class="accent">ANYWHERE.</span></h1>
+    <p class="hero-sub">Air, sea or road — we connect importers and exporters with the right carrier at the right price, worldwide.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">
-        <span data-lang="en">Get a Quote</span>
-        <span data-lang="tr">Teklif Al</span>
+        Get a Quote
       </a>
       <a href="#services" class="btn-ghost">
-        <span data-lang="en">Our Services</span>
-        <span data-lang="tr">Hizmetler</span>
+        Our Services
       </a>
     </div>
     <div class="hero-track">
       <div class="hero-track-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-      <input type="text" id="hero-track-input" data-placeholder-en="Track your shipment" data-placeholder-tr="Kargonu takip et" placeholder="Track your shipment">
-      <button id="hero-track-btn"><span data-lang="en">Track</span><span data-lang="tr">Takip</span></button>
+      <input type="text" id="hero-track-input" placeholder="Track your shipment">
+      <button id="hero-track-btn">Track</button>
     </div>
-    <div class="hero-track-error" id="hero-track-error"><span data-lang="en">Invalid tracking number.</span><span data-lang="tr">Gecersiz takip numarasi.</span></div>
+    <div class="hero-track-error" id="hero-track-error">Invalid tracking number.</div>
   </div>
   <div class="hero-right">
     <div class="hero-grid"></div>
@@ -1109,18 +1074,15 @@
     <div class="hero-stats">
       <div class="stat">
         <div class="stat-num">150<span>+</span></div>
-        <div class="stat-label" data-lang="en">Countries</div>
-        <div class="stat-label" data-lang="tr">Ülke</div>
+        <div class="stat-label">Countries</div>
       </div>
       <div class="stat">
         <div class="stat-num">24<span>/7</span></div>
-        <div class="stat-label" data-lang="en">Support</div>
-        <div class="stat-label" data-lang="tr">Destek</div>
+        <div class="stat-label">Support</div>
       </div>
       <div class="stat">
         <div class="stat-num">3<span>+</span></div>
-        <div class="stat-label" data-lang="en">Transport Modes</div>
-        <div class="stat-label" data-lang="tr">Taşıma Modu</div>
+        <div class="stat-label">Transport Modes</div>
       </div>
     </div>
   </div>
@@ -1151,33 +1113,26 @@
     <!-- Card 1: Get a Quote -->
     <div class="action-card">
       <div class="action-card-label">
-        <span data-lang="en">Start Here</span>
-        <span data-lang="tr">Buradan Başla</span>
+        Start Here
       </div>
-      <div class="action-card-title" data-lang="en">Get a Quote</div>
-      <div class="action-card-title" data-lang="tr">Teklif Al</div>
-      <div class="action-card-sub" data-lang="en">Tell us your route — we respond within 1 hour.</div>
-      <div class="action-card-sub" data-lang="tr">Güzergahınızı bildirin, 1 saat içinde dönelim.</div>
+      <div class="action-card-title">Get a Quote</div>
+      <div class="action-card-sub">Tell us your route — we respond within 1 hour.</div>
       <div class="action-card-inputs">
-        <input type="text" id="ac-origin" data-placeholder-en="Origin — City, Country" data-placeholder-tr="Kalkış — Şehir, Ülke" placeholder="Origin — City, Country">
-        <input type="text" id="ac-dest" data-placeholder-en="Destination — City, Country" data-placeholder-tr="Varış — Şehir, Ülke" placeholder="Destination — City, Country">
+        <input type="text" id="ac-origin" placeholder="Origin — City, Country">
+        <input type="text" id="ac-dest" placeholder="Destination — City, Country">
       </div>
       <a href="#contact" class="action-card-btn" id="ac-quote-btn">
-        <span data-lang="en">Request a Quote →</span>
-        <span data-lang="tr">Teklif İste →</span>
+        Request a Quote →
       </a>
     </div>
 
     <!-- Card 2: Our Services -->
     <div class="action-card">
       <div class="action-card-label">
-        <span data-lang="en">Transport Modes</span>
-        <span data-lang="tr">Taşıma Modları</span>
+        Transport Modes
       </div>
-      <div class="action-card-title" data-lang="en">Our Services</div>
-      <div class="action-card-title" data-lang="tr">Hizmetlerimiz</div>
-      <div class="action-card-sub" data-lang="en">Air, sea or road — we find the right carrier at the right price.</div>
-      <div class="action-card-sub" data-lang="tr">Hava, deniz veya kara — doğru taşıyıcıyı, doğru fiyata buluruz.</div>
+      <div class="action-card-title">Our Services</div>
+      <div class="action-card-sub">Air, sea or road — we find the right carrier at the right price.</div>
       <div class="action-card-modes">
         <a href="#services" class="action-card-mode">
           <span class="action-card-mode-icon">
@@ -1188,10 +1143,8 @@
             </svg>
           </span>
           <span class="action-card-mode-label">
-            <span data-lang="en">Air Freight</span>
-            <span data-lang="tr">Hava Kargo</span>
-            <div class="action-card-mode-sub" data-lang="en">Express · Time-critical</div>
-            <div class="action-card-mode-sub" data-lang="tr">Ekspres · Acil teslimat</div>
+            Air Freight
+            <div class="action-card-mode-sub">Express · Time-critical</div>
           </span>
           <span class="action-card-mode-arr">→</span>
         </a>
@@ -1205,8 +1158,7 @@
             </svg>
           </span>
           <span class="action-card-mode-label">
-            <span data-lang="en">Sea Freight</span>
-            <span data-lang="tr">Deniz Kargo</span>
+            Sea Freight
             <div class="action-card-mode-sub">FCL · LCL</div>
           </span>
           <span class="action-card-mode-arr">→</span>
@@ -1224,10 +1176,8 @@
             </svg>
           </span>
           <span class="action-card-mode-label">
-            <span data-lang="en">Road Freight</span>
-            <span data-lang="tr">Kara Kargo</span>
-            <div class="action-card-mode-sub" data-lang="en">FTL · LTL · Cross-border</div>
-            <div class="action-card-mode-sub" data-lang="tr">Tam · Parsiyel · Sınır ötesi</div>
+            Road Freight
+            <div class="action-card-mode-sub">FTL · LTL · Cross-border</div>
           </span>
           <span class="action-card-mode-arr">→</span>
         </a>
@@ -1237,18 +1187,15 @@
     <!-- Card 3: Track Shipment -->
     <div class="action-card">
 
-      <div class="action-card-title" data-lang="en">Track Shipment</div>
-      <div class="action-card-title" data-lang="tr">Kargo Takip</div>
-      <div class="action-card-sub" data-lang="en">Enter your tracking ID to see real-time status updates for your cargo.</div>
-      <div class="action-card-sub" data-lang="tr">Takip numaranızı girerek kargonuzun anlık durumunu görün.</div>
+      <div class="action-card-title">Track Shipment</div>
+      <div class="action-card-sub">Enter your tracking ID to see real-time status updates for your cargo.</div>
       <div class="action-card-track">
-        <input type="text" id="home-track-input" data-placeholder-en="Enter Tracking ID" data-placeholder-tr="Takip Numarası" placeholder="Enter Tracking ID">
+        <input type="text" id="home-track-input" placeholder="Enter Tracking ID">
         <button id="home-track-btn" onclick="(function(){var v=document.getElementById('home-track-input').value.trim().toUpperCase().replace(/\s/g,'');if(!v)return;var m=v.match(/^CX(\d{6})-?(\d)$/);if(!m){document.getElementById('home-track-error').style.display='block';return;}var w=[7,3,1,7,3,1],s=0;for(var i=0;i<6;i++)s+=parseInt(m[1][i])*w[i];if(s%10!==parseInt(m[2])){document.getElementById('home-track-error').style.display='block';return;}document.getElementById('home-track-error').style.display='none';window.location.href='track/?id=CX'+m[1]+'-'+m[2];})();">
-          <span data-lang="en">Track</span>
-          <span data-lang="tr">Takip Et</span>
+          Track
         </button>
       </div>
-      <div id="home-track-error" style="display:none;margin-top:8px;font-size:12px;color:#ef4444;"><span data-lang="en">Invalid tracking number.</span><span data-lang="tr">Gecersiz takip numarasi.</span></div>
+      <div id="home-track-error" style="display:none;margin-top:8px;font-size:12px;color:#ef4444;">Invalid tracking number.</div>
     </div>
 
   </div>
@@ -1262,11 +1209,9 @@
 <div class="panel-sections">
 <section class="services" id="services">
   <div class="section-label">
-    <span data-lang="en">What We Do</span>
-    <span data-lang="tr">Hizmetlerimiz</span>
+    What We Do
   </div>
-  <h2 class="section-title" data-lang="en">THREE WAYS<br>TO SHIP.</h2>
-  <h2 class="section-title" data-lang="tr">ÜÇ FARKLI<br>TAŞIMA.</h2>
+  <h2 class="section-title">THREE WAYS<br>TO SHIP.</h2>
 
   <div class="services-grid">
     <div class="service-card fade-up">
@@ -1276,13 +1221,10 @@
         <path d="M4 27L21 23H27L44 27V29L27 25H21L4 29V27Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
         <path d="M13 40L21 37H27L35 40V41.5L27 38.5H21L13 41.5V40Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
       </svg></span>
-      <h3 class="service-title" data-lang="en">Air Freight</h3>
-      <h3 class="service-title" data-lang="tr">Hava Kargo</h3>
-      <p class="service-desc" data-lang="en">Time-critical shipments delivered fast. We source competitive rates from global airlines for your urgent cargo needs.</p>
-      <p class="service-desc" data-lang="tr">Zaman hassasiyeti olan yükler için hızlı teslimat. Acil kargo ihtiyaçlarınız için global havayollarından rekabetçi fiyatlar sunuyoruz.</p>
+      <h3 class="service-title">Air Freight</h3>
+      <p class="service-desc">Time-critical shipments delivered fast. We source competitive rates from global airlines for your urgent cargo needs.</p>
       <a href="#contact" class="service-link">
-        <span data-lang="en">Get a Quote →</span>
-        <span data-lang="tr">Teklif Al →</span>
+        Get a Quote →
       </a>
     </div>
 
@@ -1294,13 +1236,10 @@
         <rect x="18" y="15" width="12" height="7" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5"/>
         <rect x="22" y="9" width="4" height="6" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/>
       </svg></span>
-      <h3 class="service-title" data-lang="en">Sea Freight</h3>
-      <h3 class="service-title" data-lang="tr">Deniz Kargo</h3>
-      <p class="service-desc" data-lang="en">FCL and LCL options for all cargo types. Cost-effective ocean freight solutions connecting major ports worldwide.</p>
-      <p class="service-desc" data-lang="tr">Tüm yük tipleri için FCL ve LCL seçenekleri. Dünya genelindeki büyük limanları birbirine bağlayan maliyet etkin deniz taşımacılığı.</p>
+      <h3 class="service-title">Sea Freight</h3>
+      <p class="service-desc">FCL and LCL options for all cargo types. Cost-effective ocean freight solutions connecting major ports worldwide.</p>
       <a href="#contact" class="service-link">
-        <span data-lang="en">Get a Quote →</span>
-        <span data-lang="tr">Teklif Al →</span>
+        Get a Quote →
       </a>
     </div>
 
@@ -1315,13 +1254,10 @@
         <circle cx="38" cy="36" r="4.5" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/>
         <circle cx="38" cy="36" r="1.5" fill="#e8521a"/>
       </svg></span>
-      <h3 class="service-title" data-lang="en">Road Freight</h3>
-      <h3 class="service-title" data-lang="tr">Kara Kargo</h3>
-      <p class="service-desc" data-lang="en">Cross-border road transport across Europe and beyond. Flexible options for full and partial truck loads.</p>
-      <p class="service-desc" data-lang="tr">Avrupa ve ötesinde sınır ötesi kara taşımacılığı. Tam ve parsiyel yükler için esnek çözümler.</p>
+      <h3 class="service-title">Road Freight</h3>
+      <p class="service-desc">Cross-border road transport across Europe and beyond. Flexible options for full and partial truck loads.</p>
       <a href="#contact" class="service-link">
-        <span data-lang="en">Get a Quote →</span>
-        <span data-lang="tr">Teklif Al →</span>
+        Get a Quote →
       </a>
     </div>
   </div>
@@ -1335,35 +1271,30 @@
 <div class="panel-sections">
 <section class="corridors" id="corridors">
   <div class="section-label">
-    <span data-lang="en">Specialty Corridors</span>
-    <span data-lang="tr">Özel Koridorlar</span>
+    Specialty Corridors
   </div>
-  <h2 class="section-title" data-lang="en">SPECIALTY<br>CORRIDORS.</h2>
-  <h2 class="section-title" data-lang="tr">ÖZEL<br>KORİDORLAR.</h2>
+  <h2 class="section-title">SPECIALTY<br>CORRIDORS.</h2>
 
   <div class="corridor-grid">
 
     <a href="china-to-europe-via-turkey-freight/" class="corridor-card fade-up">
       <div class="corridor-route">CHINA → TURKEY → EUROPE</div>
       <div class="corridor-title">China → Europe</div>
-      <div class="corridor-subtitle" data-lang="en">via Turkey hub. Belt &amp; Road alternative — Middle Corridor rail, multimodal sea and air freight from Shanghai, Ningbo, Shenzhen to Frankfurt, Hamburg, Madrid.</div>
-      <div class="corridor-subtitle" data-lang="tr">Türkiye hub üzerinden. Belt &amp; Road alternatifi — Orta Koridor demiryolu, çok modlu deniz ve hava kargo.</div>
+      <div class="corridor-subtitle">via Turkey hub. Belt &amp; Road alternative — Middle Corridor rail, multimodal sea and air freight from Shanghai, Ningbo, Shenzhen to Frankfurt, Hamburg, Madrid.</div>
       <div class="corridor-modes">RAIL · SEA · AIR · MULTIMODAL</div>
     </a>
 
     <a href="central-asia-to-europe-freight/" class="corridor-card fade-up">
       <div class="corridor-route">CENTRAL ASIA → TURKEY → EUROPE</div>
       <div class="corridor-title">Central Asia → Europe</div>
-      <div class="corridor-subtitle" data-lang="en">Kazakhstan, Uzbekistan, Turkmenistan, Kyrgyzstan and Tajikistan to Europe via Caspian crossing and Turkey hub. The fastest route bypassing Russia.</div>
-      <div class="corridor-subtitle" data-lang="tr">Kazakistan, Özbekistan, Türkmenistan, Kırgızistan ve Tacikistan'dan Avrupa'ya — Hazar geçişi ve Türkiye hub üzerinden.</div>
+      <div class="corridor-subtitle">Kazakhstan, Uzbekistan, Turkmenistan, Kyrgyzstan and Tajikistan to Europe via Caspian crossing and Turkey hub. The fastest route bypassing Russia.</div>
       <div class="corridor-modes">RAIL · SEA · ROAD</div>
     </a>
 
     <a href="estonia-turkey-freight/" class="corridor-card fade-up">
       <div class="corridor-route">ESTONIA — TURKEY</div>
       <div class="corridor-title">Estonia — Turkey</div>
-      <div class="corridor-subtitle" data-lang="en">Direct freight between Estonia and Turkey. Dual-hub advantage — EU customs in Tallinn, Turkish customs in Istanbul. One contract, one team, no agent margins.</div>
-      <div class="corridor-subtitle" data-lang="tr">Estonya ile Türkiye arasında doğrudan kargo. İkili hub avantajı — Tallinn'de AB gümrüğü, İstanbul'da Türk gümrüğü.</div>
+      <div class="corridor-subtitle">Direct freight between Estonia and Turkey. Dual-hub advantage — EU customs in Tallinn, Turkish customs in Istanbul. One contract, one team, no agent margins.</div>
       <div class="corridor-modes">AIR · SEA · ROAD</div>
     </a>
 
@@ -1378,22 +1309,20 @@
 <div class="panel-sections">
 <section class="coverage" id="coverage">
   <div class="section-label">
-    <span data-lang="en">Global Coverage</span>
-    <span data-lang="tr">Global Kapsam</span>
+    Global Coverage
   </div>
-  <h2 class="section-title" data-lang="en">WE MOVE CARGO<br>ANYWHERE.</h2>
-  <h2 class="section-title" data-lang="tr">HER YERE<br>TAŞIYORUZ.</h2>
+  <h2 class="section-title">WE MOVE CARGO<br>ANYWHERE.</h2>
 
   <div class="coverage-tabs">
     <button class="coverage-tab active" data-tab="europe">
-      <span data-lang="en">Europe</span><span data-lang="tr">Avrupa</span>
+      Europe
     </button>
     <button class="coverage-tab" data-tab="asia">
-      <span data-lang="en">Asia Pacific</span><span data-lang="tr">Asya Pasifik</span>
+      Asia Pacific
     </button>
     <button class="coverage-tab" data-tab="americas">Americas</button>
     <button class="coverage-tab" data-tab="mea">
-      <span data-lang="en">Middle East &amp; Africa</span><span data-lang="tr">Orta Doğu &amp; Afrika</span>
+      Middle East &amp; Africa
     </button>
   </div>
 
@@ -1452,8 +1381,7 @@
   </div>
 
   <div class="coverage-note fade-up">
-    <span data-lang="en">Don't see your destination? We ship to 150+ countries. <a href="#contact">Get in touch →</a></span>
-    <span data-lang="tr">Hedef ülkenizi görmüyor musunuz? 150'den fazla ülkeye gönderim yapıyoruz. <a href="#contact">İletişime geçin →</a></span>
+    <span>Don't see your destination? We ship to 150+ countries. <a href="#contact">Get in touch →</a></span>
   </div>
 </section>
 
@@ -1465,43 +1393,33 @@
 <div class="panel-sections">
 <section class="how" id="how">
   <div class="section-label">
-    <span data-lang="en">How It Works</span>
-    <span data-lang="tr">Nasıl Çalışır</span>
+    How It Works
   </div>
-  <h2 class="section-title" data-lang="en">SIMPLE<br>PROCESS.</h2>
-  <h2 class="section-title" data-lang="tr">BASIT<br>SÜREÇ.</h2>
+  <h2 class="section-title">SIMPLE<br>PROCESS.</h2>
 
   <div class="how-grid">
     <div class="how-step fade-up">
       <div class="step-num">01</div>
-      <h3 class="step-title" data-lang="en">Send Your Request</h3>
-      <h3 class="step-title" data-lang="tr">Talebini Gönder</h3>
-      <p class="step-desc" data-lang="en">Fill in the quote form with your shipment details — origin, destination, cargo type and timeline.</p>
-      <p class="step-desc" data-lang="tr">Teklif formunu gönderi detaylarınızla doldurun — kalkış, varış, yük tipi ve zaman çizelgesi.</p>
+      <h3 class="step-title">Send Your Request</h3>
+      <p class="step-desc">Fill in the quote form with your shipment details — origin, destination, cargo type and timeline.</p>
       <div class="step-connector"></div>
     </div>
     <div class="how-step fade-up">
       <div class="step-num">02</div>
-      <h3 class="step-title" data-lang="en">Quote Delivered</h3>
-      <h3 class="step-title" data-lang="tr">Teklifiniz İletilir</h3>
-      <p class="step-desc" data-lang="en">We get back to you with the best available rate within 1 hour.</p>
-      <p class="step-desc" data-lang="tr">En uygun fiyatı 1 saat içinde size iletiyoruz.</p>
+      <h3 class="step-title">Quote Delivered</h3>
+      <p class="step-desc">We get back to you with the best available rate within 1 hour.</p>
       <div class="step-connector"></div>
     </div>
     <div class="how-step fade-up">
       <div class="step-num">03</div>
-      <h3 class="step-title" data-lang="en">You Approve</h3>
-      <h3 class="step-title" data-lang="tr">Onaylarsın</h3>
-      <p class="step-desc" data-lang="en">Review the quote, compare options and confirm. No hidden fees, no surprises.</p>
-      <p class="step-desc" data-lang="tr">Teklifi inceleyin, seçenekleri karşılaştırın ve onaylayın. Gizli ücret yok, sürpriz yok.</p>
+      <h3 class="step-title">You Approve</h3>
+      <p class="step-desc">Review the quote, compare options and confirm. No hidden fees, no surprises.</p>
       <div class="step-connector"></div>
     </div>
     <div class="how-step fade-up">
       <div class="step-num">04</div>
-      <h3 class="step-title" data-lang="en">Cargo Moves</h3>
-      <h3 class="step-title" data-lang="tr">Yük Hareket Eder</h3>
-      <p class="step-desc" data-lang="en">We coordinate with the carrier and keep you updated until your shipment reaches its destination.</p>
-      <p class="step-desc" data-lang="tr">Taşıyıcıyla koordinasyon sağlar, yükünüz hedefe ulaşana kadar sizi bilgilendiririz.</p>
+      <h3 class="step-title">Cargo Moves</h3>
+      <p class="step-desc">We coordinate with the carrier and keep you updated until your shipment reaches its destination.</p>
     </div>
   </div>
 </section>
@@ -1515,13 +1433,10 @@
 <section class="contact" id="contact">
   <div class="contact-left">
     <div class="section-label">
-      <span data-lang="en">Get in Touch</span>
-      <span data-lang="tr">İletişime Geç</span>
+      Get in Touch
     </div>
-    <h2 class="section-title" data-lang="en">REQUEST<br>A QUOTE.</h2>
-    <h2 class="section-title" data-lang="tr">TEKLİF<br>İSTEYİN.</h2>
-    <p class="contact-intro" data-lang="en">Tell us about your shipment and we'll get back to you with a competitive quote within 1 hour.</p>
-    <p class="contact-intro" data-lang="tr">Gönderiniz hakkında bilgi verin, 1 saat içinde rekabetçi bir teklifle dönelim.</p>
+    <h2 class="section-title">REQUEST<br>A QUOTE.</h2>
+    <p class="contact-intro">Tell us about your shipment and we'll get back to you with a competitive quote within 1 hour.</p>
 
     <div class="contact-detail">
       <div class="contact-detail-icon">
@@ -1540,11 +1455,9 @@
       </div>
       <div class="contact-detail-text">
         <div class="contact-detail-label">
-          <span data-lang="en">Coverage</span>
-          <span data-lang="tr">Kapsam</span>
+          Coverage
         </div>
-        <div class="contact-detail-value" data-lang="en">Worldwide</div>
-        <div class="contact-detail-value" data-lang="tr">Dünya Geneli</div>
+        <div class="contact-detail-value">Worldwide</div>
       </div>
     </div>
     <div class="contact-detail">
@@ -1553,11 +1466,9 @@
       </div>
       <div class="contact-detail-text">
         <div class="contact-detail-label">
-          <span data-lang="en">Response Time</span>
-          <span data-lang="tr">Yanıt Süresi</span>
+          Response Time
         </div>
-        <div class="contact-detail-value" data-lang="en">Within 1 hour</div>
-        <div class="contact-detail-value" data-lang="tr">1 saat içinde</div>
+        <div class="contact-detail-value">Within 1 hour</div>
       </div>
     </div>
   </div>
@@ -1566,8 +1477,7 @@
     <form id="quote-form">
       <div class="form-row">
         <div class="form-group">
-          <label data-lang="en">Full Name</label>
-          <label data-lang="tr">Ad Soyad</label>
+          <label>Full Name</label>
           <input type="text" name="full_name" placeholder="John Smith" required>
         </div>
         <div class="form-group">
@@ -1577,19 +1487,16 @@
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label data-lang="en">Phone</label>
-          <label data-lang="tr">Telefon</label>
+          <label>Phone</label>
           <input type="tel" name="phone" placeholder="+372 5555 0000" required>
         </div>
         <div class="form-group">
-          <label data-lang="en">Company</label>
-          <label data-lang="tr">Şirket</label>
+          <label>Company</label>
           <input type="text" name="company" placeholder="ACME Corp" required>
         </div>
       </div>
       <div class="form-group">
-        <label data-lang="en">Transport Mode</label>
-        <label data-lang="tr">Taşıma Modu</label>
+        <label>Transport Mode</label>
         <select name="transport_mode" id="transport-select" required>
           <option value="">Select...</option>
           <option value="air">Air Freight</option>
@@ -1599,24 +1506,20 @@
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label data-lang="en">Origin</label>
-          <label data-lang="tr">Kalkış</label>
-          <input type="text" name="origin" data-placeholder-en="City, Country" data-placeholder-tr="Şehir, Ülke" placeholder="City, Country" required>
+          <label>Origin</label>
+          <input type="text" name="origin" placeholder="City, Country" required>
         </div>
         <div class="form-group">
-          <label data-lang="en">Destination</label>
-          <label data-lang="tr">Varış</label>
-          <input type="text" name="destination" data-placeholder-en="City, Country" data-placeholder-tr="Şehir, Ülke" placeholder="City, Country" required>
+          <label>Destination</label>
+          <input type="text" name="destination" placeholder="City, Country" required>
         </div>
       </div>
       <div class="form-group">
-        <label data-lang="en">Cargo Details</label>
-        <label data-lang="tr">Yük Detayları</label>
-        <textarea name="cargo_details" data-placeholder-en="Cargo type, weight, dimensions, special requirements..." data-placeholder-tr="Yük tipi, ağırlık, boyutlar, özel gereksinimler..." placeholder="Cargo type, weight, dimensions, special requirements..." required></textarea>
+        <label>Cargo Details</label>
+        <textarea name="cargo_details" placeholder="Cargo type, weight, dimensions, special requirements..." required></textarea>
       </div>
       <button type="submit" class="form-submit">
-        <span data-lang="en">Send Request</span>
-        <span data-lang="tr">Talep Gönder</span>
+        Send Request
       </button>
     </form>
   </div>
@@ -1635,34 +1538,30 @@
 
     <div>
       <div class="footer-col-title">
-        <span data-lang="en">Services</span>
-        <span data-lang="tr">Hizmetler</span>
+        Services
       </div>
       <div class="footer-col-links">
-        <a href="#services"><span data-lang="en">Air Freight</span><span data-lang="tr">Hava Kargo</span><span class="arr">→</span></a>
-        <a href="#services"><span data-lang="en">Sea Freight</span><span data-lang="tr">Deniz Kargo</span><span class="arr">→</span></a>
-        <a href="#services"><span data-lang="en">Road Freight</span><span data-lang="tr">Kara Kargo</span><span class="arr">→</span></a>
-        <a href="#how"><span data-lang="en">How It Works</span><span data-lang="tr">Nasıl Çalışır</span><span class="arr">→</span></a>
+        <a href="#services">Air Freight<span class="arr">→</span></a>
+        <a href="#services">Sea Freight<span class="arr">→</span></a>
+        <a href="#services">Road Freight<span class="arr">→</span></a>
+        <a href="#how">How It Works<span class="arr">→</span></a>
       </div>
     </div>
 
     <div>
       <div class="footer-col-title">
-        <span data-lang="en">Contact</span>
-        <span data-lang="tr">İletişim</span>
+        Contact
       </div>
       <div class="footer-col-links">
         <a href="mailto:info@canxansa.com">info@canxansa.com <span class="arr">→</span></a>
 <a href="https://wa.me/905353221318" target="_blank" rel="noopener" onclick="gtag('event', 'whatsapp_click', { event_category: 'contact', event_label: 'footer' })">WhatsApp <span class="arr">→</span></a>
         <a href="https://www.linkedin.com/company/canxansa/" target="_blank" rel="noopener">LinkedIn <span class="arr">→</span></a>
         <a href="#contact">
-          <span data-lang="en">Get a Quote</span>
-          <span data-lang="tr">Teklif Al</span>
+          Get a Quote
           <span class="arr">→</span>
         </a>
         <a href="/terms/">
-          <span data-lang="en">Terms</span>
-          <span data-lang="tr">Koşullar</span>
+          Terms
           <span class="arr">→</span>
         </a>
       </div>
@@ -1670,18 +1569,15 @@
 
     <div>
       <div class="footer-col-title">
-        <span data-lang="en">Resources</span>
-        <span data-lang="tr">Kaynaklar</span>
+        Resources
       </div>
       <div class="footer-col-links">
         <a href="shipping-signals/">
-          <span data-lang="en">Shipping Signals</span>
-          <span data-lang="tr">Nakliye Sinyalleri</span>
+          Shipping Signals
           <span class="arr">→</span>
         </a>
         <a href="faq/">
-          <span data-lang="en">FAQ</span>
-          <span data-lang="tr">SSS</span>
+          FAQ
           <span class="arr">→</span>
         </a>
       </div>
@@ -1695,45 +1591,6 @@
 </footer>
 
 <script>
-  // Language toggle
-  function setLang(lang) {
-    document.documentElement.lang = lang;
-    document.body.classList.toggle('tr', lang === 'tr');
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
-    document.querySelectorAll('[data-placeholder-en], [data-placeholder-tr]').forEach(el => {
-      const val = el.dataset['placeholder' + lang.charAt(0).toUpperCase() + lang.slice(1)];
-      if (val) el.placeholder = val;
-    });
-    const sel = document.getElementById('transport-select');
-    if (sel) {
-      const isTr = lang === 'tr';
-      sel.options[0].text = isTr ? 'Seçin...' : 'Select...';
-      sel.options[1].text = isTr ? 'Hava Kargo' : 'Air Freight';
-      sel.options[2].text = isTr ? 'Deniz Kargo' : 'Sea Freight';
-      sel.options[3].text = isTr ? 'Kara Kargo' : 'Road Freight';
-    }
-    localStorage.setItem('canxansa-lang', lang);
-  }
-
-  document.getElementById('btn-en').addEventListener('click', () => setLang('en'));
-  document.getElementById('btn-tr').addEventListener('click', () => setLang('tr'));
-
-  // Restore saved lang or auto-detect by country
-  const savedLang = localStorage.getItem('canxansa-lang');
-  if (savedLang) {
-    if (savedLang === 'tr') setLang('tr');
-  } else {
-    fetch('https://ipapi.co/country/')
-      .then(r => r.text())
-      .then(country => {
-        if (country.trim() === 'TR') setLang('tr');
-      })
-      .catch(() => {
-        if ((navigator.language || '').toLowerCase().startsWith('tr')) setLang('tr');
-      });
-  }
-
   // Hero track
   document.getElementById('hero-track-btn').addEventListener('click', function() {
     var v = document.getElementById('hero-track-input').value.trim().toUpperCase().replace(/\s/g, '');
