@@ -42,8 +42,23 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="shortcut icon" href="../favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Google Analytics GA4 with Consent Mode v2 (default denied until user accepts) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-X19NTBBWNQ', { 'anonymize_ip': true });
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X19NTBBWNQ"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X19NTBBWNQ');</script>
 <style>
   :root { --black: #0a0a0a; --white: #f5f0eb; --orange: #e8521a; --orange-dim: #c44010; --gray: #1a1a1a; --gray-mid: #2e2e2e; --gray-light: #888; --text-muted: #555; --green: #22c55e; --red: #ef4444; }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -294,6 +309,9 @@
       <div class="footer-col-links">
         <a href="../shipping-signals/">Shipping Signals <span class="arr">&rarr;</span></a>
         <a href="../faq/">FAQ <span class="arr">&rarr;</span></a>
+        <a href="../terms/">Terms <span class="arr">&rarr;</span></a>
+        <a href="../privacy/">Privacy Policy <span class="arr">&rarr;</span></a>
+        <a href="#" onclick="if(window.CanxansaConsent){window.CanxansaConsent.open();}return false;">Cookie Settings <span class="arr">&rarr;</span></a>
       </div>
     </div>
   </div>
@@ -380,5 +398,6 @@
   });
 })();
 </script>
+<script src="/cookie-consent.js" defer></script>
 </body>
 </html>

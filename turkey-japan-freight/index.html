@@ -148,8 +148,23 @@
   .fade-up { animation: fadeUpAuto 0.6s ease forwards; }
   @keyframes fadeUpAuto { to { opacity: 1; transform: translateY(0); } }
 </style>
+<!-- Google Analytics GA4 with Consent Mode v2 (default denied until user accepts) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-X19NTBBWNQ', { 'anonymize_ip': true });
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X19NTBBWNQ"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X19NTBBWNQ');</script>
 
 <script type="application/ld+json">
 {
@@ -466,6 +481,8 @@
     <a href="../index.html">Home</a>
     <a href="../index.html#services">Services</a>
     <a href="#contact">Contact</a>
+    <a href="../privacy/">Privacy</a>
+    <a href="#" onclick="if(window.CanxansaConsent){window.CanxansaConsent.open();}return false;">Cookies</a>
   </div>
 </footer>
 
@@ -481,5 +498,6 @@
     } catch { btn.textContent = 'Error — try again'; btn.disabled = false; }
   });
 </script>
+<script src="/cookie-consent.js" defer></script>
 </body>
 </html>
