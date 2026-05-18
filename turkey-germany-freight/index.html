@@ -23,11 +23,57 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
+  "serviceType": "Freight Forwarding",
   "name": "Turkey–Germany Freight Forwarding",
-  "provider": { "@type": "Organization", "name": "CANXANSA", "url": "https://canxansa.com" },
-  "areaServed": ["TR", "DE"],
+  "provider": {
+    "@type": "Organization",
+    "name": "CANXANSA OÜ",
+    "url": "https://canxansa.com/",
+    "logo": "https://canxansa.com/favicon.svg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tallinn",
+      "addressCountry": "EE"
+    },
+    "vatID": "EE102968134",
+    "taxID": "17286174",
+    "sameAs": [
+      "https://www.linkedin.com/company/canxansa/"
+    ]
+  },
+  "areaServed": [
+    "TR",
+    "DE"
+  ],
   "description": "Freight forwarding between Turkey and Germany in both directions. Air, road and sea freight. Quotes in 1 hour.",
-  "url": "https://canxansa.com/turkey-germany-freight/"
+  "url": "https://canxansa.com/turkey-germany-freight/",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Transport Modes",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Air Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Sea Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Road Freight"
+        }
+      }
+    ]
+  }
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">

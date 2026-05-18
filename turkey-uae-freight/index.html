@@ -26,15 +26,57 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
+  "serviceType": "Freight Forwarding",
   "name": "Turkey to UAE Freight Forwarding",
   "provider": {
     "@type": "Organization",
-    "name": "CANXANSA",
-    "url": "https://canxansa.com"
+    "name": "CANXANSA OÜ",
+    "url": "https://canxansa.com/",
+    "logo": "https://canxansa.com/favicon.svg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tallinn",
+      "addressCountry": "EE"
+    },
+    "vatID": "EE102968134",
+    "taxID": "17286174",
+    "sameAs": [
+      "https://www.linkedin.com/company/canxansa/"
+    ]
   },
-  "areaServed": ["TR", "AE"],
+  "areaServed": [
+    "TR",
+    "AE"
+  ],
   "description": "Freight forwarding from Turkey to UAE (Dubai, Abu Dhabi). Air and sea freight quotes within 1 hour. Competitive rates, FCL, LCL, express air cargo to Jebel Ali.",
-  "url": "https://canxansa.com/turkey-uae-freight/"
+  "url": "https://canxansa.com/turkey-uae-freight/",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Transport Modes",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Air Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Sea Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Road Freight"
+        }
+      }
+    ]
+  }
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">

@@ -25,15 +25,73 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
+  "serviceType": "Freight Forwarding",
   "name": "Central Asia to Europe Freight Forwarding",
   "provider": {
     "@type": "Organization",
-    "name": "CANXANSA",
-    "url": "https://canxansa.com"
+    "name": "CANXANSA OÜ",
+    "url": "https://canxansa.com/",
+    "logo": "https://canxansa.com/favicon.svg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tallinn",
+      "addressCountry": "EE"
+    },
+    "vatID": "EE102968134",
+    "taxID": "17286174",
+    "sameAs": [
+      "https://www.linkedin.com/company/canxansa/"
+    ]
   },
-  "areaServed": ["KZ", "UZ", "TM", "KG", "TJ", "AZ", "GE", "TR", "DE", "NL", "PL"],
+  "areaServed": [
+    "KZ",
+    "UZ",
+    "TM",
+    "KG",
+    "TJ",
+    "AZ",
+    "GE",
+    "TR",
+    "DE",
+    "NL",
+    "PL"
+  ],
   "description": "Freight forwarding from Central Asia (Kazakhstan, Uzbekistan, Turkmenistan, Kyrgyzstan, Tajikistan) to Europe via Caspian crossing and Turkey hub. Rail, sea and road.",
-  "url": "https://canxansa.com/central-asia-to-europe-freight/"
+  "url": "https://canxansa.com/central-asia-to-europe-freight/",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Transport Modes",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Air Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Sea Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Road Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Rail Freight"
+        }
+      }
+    ]
+  }
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">

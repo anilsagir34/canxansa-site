@@ -23,11 +23,75 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
+  "serviceType": "Freight Forwarding",
   "name": "Freight from China — International Freight Forwarding",
-  "provider": { "@type": "Organization", "name": "CANXANSA", "url": "https://canxansa.com" },
-  "areaServed": ["CN","TR","DE","NL","IT","FR","ES","GB","PL","BE","AE","SA","QA"],
+  "provider": {
+    "@type": "Organization",
+    "name": "CANXANSA OÜ",
+    "url": "https://canxansa.com/",
+    "logo": "https://canxansa.com/favicon.svg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tallinn",
+      "addressCountry": "EE"
+    },
+    "vatID": "EE102968134",
+    "taxID": "17286174",
+    "sameAs": [
+      "https://www.linkedin.com/company/canxansa/"
+    ]
+  },
+  "areaServed": [
+    "CN",
+    "TR",
+    "DE",
+    "NL",
+    "IT",
+    "FR",
+    "ES",
+    "GB",
+    "PL",
+    "BE",
+    "AE",
+    "SA",
+    "QA"
+  ],
   "description": "International freight from China to Turkey, Europe and the Middle East. Air, sea and Middle Corridor rail. End-to-end export management.",
-  "url": "https://canxansa.com/china-freight/"
+  "url": "https://canxansa.com/china-freight/",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Transport Modes",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Air Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Sea Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Road Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Rail Freight"
+        }
+      }
+    ]
+  }
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">

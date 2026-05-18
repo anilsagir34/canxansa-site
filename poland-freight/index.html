@@ -23,11 +23,69 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
+  "serviceType": "Freight Forwarding",
   "name": "Freight from Poland — International Freight Forwarding",
-  "provider": { "@type": "Organization", "name": "CANXANSA", "url": "https://canxansa.com" },
-  "areaServed": ["PL","TR","DE","NL","IT","FR","ES","GB","BE","AE","SA","QA","US","CN"],
+  "provider": {
+    "@type": "Organization",
+    "name": "CANXANSA OÜ",
+    "url": "https://canxansa.com/",
+    "logo": "https://canxansa.com/favicon.svg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tallinn",
+      "addressCountry": "EE"
+    },
+    "vatID": "EE102968134",
+    "taxID": "17286174",
+    "sameAs": [
+      "https://www.linkedin.com/company/canxansa/"
+    ]
+  },
+  "areaServed": [
+    "PL",
+    "TR",
+    "DE",
+    "NL",
+    "IT",
+    "FR",
+    "ES",
+    "GB",
+    "BE",
+    "AE",
+    "SA",
+    "QA",
+    "US",
+    "CN"
+  ],
   "description": "International freight from Poland to Turkey, the Middle East and beyond. Air, road and sea from Warsaw, Gdansk and Katowice.",
-  "url": "https://canxansa.com/poland-freight/"
+  "url": "https://canxansa.com/poland-freight/",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Transport Modes",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Air Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Sea Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Road Freight"
+        }
+      }
+    ]
+  }
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">

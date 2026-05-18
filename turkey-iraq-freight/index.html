@@ -26,15 +26,57 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
+  "serviceType": "Freight Forwarding",
   "name": "Turkey to Iraq Freight Forwarding",
   "provider": {
     "@type": "Organization",
-    "name": "CANXANSA",
-    "url": "https://canxansa.com"
+    "name": "CANXANSA OÜ",
+    "url": "https://canxansa.com/",
+    "logo": "https://canxansa.com/favicon.svg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tallinn",
+      "addressCountry": "EE"
+    },
+    "vatID": "EE102968134",
+    "taxID": "17286174",
+    "sameAs": [
+      "https://www.linkedin.com/company/canxansa/"
+    ]
   },
-  "areaServed": ["TR", "IQ"],
+  "areaServed": [
+    "TR",
+    "IQ"
+  ],
   "description": "Freight forwarding from Turkey to Iraq. Road freight via Habur border gate, air cargo to Baghdad and Erbil, sea freight to Basra. Quotes within 1 hour.",
-  "url": "https://canxansa.com/turkey-iraq-freight/"
+  "url": "https://canxansa.com/turkey-iraq-freight/",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Transport Modes",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Air Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Sea Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Road Freight"
+        }
+      }
+    ]
+  }
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">

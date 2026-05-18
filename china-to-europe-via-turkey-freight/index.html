@@ -25,15 +25,70 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
+  "serviceType": "Freight Forwarding",
   "name": "China to Europe Freight via Turkey",
   "provider": {
     "@type": "Organization",
-    "name": "CANXANSA",
-    "url": "https://canxansa.com"
+    "name": "CANXANSA OÜ",
+    "url": "https://canxansa.com/",
+    "logo": "https://canxansa.com/favicon.svg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tallinn",
+      "addressCountry": "EE"
+    },
+    "vatID": "EE102968134",
+    "taxID": "17286174",
+    "sameAs": [
+      "https://www.linkedin.com/company/canxansa/"
+    ]
   },
-  "areaServed": ["CN", "TR", "DE", "NL", "PL", "ES", "IT", "FR"],
+  "areaServed": [
+    "CN",
+    "TR",
+    "DE",
+    "NL",
+    "PL",
+    "ES",
+    "IT",
+    "FR"
+  ],
   "description": "China to Europe freight forwarding via Turkey hub. Belt & Road alternative — Middle Corridor. Trans-Caspian rail, Mediterranean sea freight, air and multimodal options.",
-  "url": "https://canxansa.com/china-to-europe-via-turkey-freight/"
+  "url": "https://canxansa.com/china-to-europe-via-turkey-freight/",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Transport Modes",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Air Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Sea Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Road Freight"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Rail Freight"
+        }
+      }
+    ]
+  }
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
