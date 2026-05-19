@@ -1,0 +1,54 @@
+name: Shipment Tracking Scan
+
+on:
+  schedule:
+    - cron: '0 7 * * *'    # 10:00 Turkey time (UTC+3)
+    - cron: '15 13 * * *'  # 16:15 Turkey time (UTC+3)
+  workflow_dispatch:        # Manuel tetikleme
+
+jobs:
+  tracking:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure git
+        run: |
+          git config user.name "CANXANSA Tracking Bot"
+          git config user.email "operations@canxansa.com"
+
+      - name: Run Tracking Routine
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          mcp_config: ${{ secrets.MCP_CONFIG }}
+          allowed_tools: "Bash,Read,Edit,mcp__Microsoft_365__outlook_email_search,mcp__Microsoft_365__read_resource"
+          prompt: |
+            Bu CANXANSA OÜ sevkiyat takip rutinidir.
+
+            1. track/shipments.js dosyasını oku. Aktif (done:false eventi olan) sevkiyatları bul.
+
+            2. Microsoft 365 araçlarıyla operations@canxansa.com mailbox'ını tara.
+               Son 13 saatte gelen maillerde ara:
+               - Fevzi Gandur konum mailleri: gönderen noreply@fevzigandur.com, konu "CANXANSA OU KONUM BILGILENDIRME"
+               - Aktif sevkiyatların referans numaraları (CX..., SMR...)
+               - Gönderici/alıcı firma isimleri
+               Arama: query ile mailboxOwnerEmail birlikte KULLANMA. query yalnız veya afterDateTime yalnız kullan.
+
+            3. Yeni konum veya durum bilgisi var mı kontrol et.
+               Mevcut son done:true event ile karşılaştır.
+               Aynıysa: hiçbir şey yapma, çık.
+
+            4. Yeni event varsa:
+               - track/shipments.js içindeki ilgili sevkiyatın events array'ine yeni event ekle: {status:"...", date:"YYYY-MM-DD", location:"...", done:true}
+               - git add track/shipments.js
+               - git commit -m "track: CX... [konum] güncellendi"
+               - git push -u origin HEAD:main
+
+            Commit mesajı Türkçe, kısa olsun. Örnek: "track: CX260001-3 Romanya güzergahı güncellendi"
+            ASLA başka dosya değiştirme. ASLA mail gönderme.
