@@ -82,3 +82,11 @@ Uzak: USA → Japan → Egypt → Syria
 - Mobil menüye link eklenince `#mobile-menu`'ya da ekle
 - Commit mesajı Türkçe
 - Track Shipment kartı hazır bekliyor (Supabase planı: `research/tracking_system_plan.md`)
+
+## Sevkiyat Takip Rutini
+- Taranacak tek mailbox: **operations@canxansa.com** (info ve anil mailboxlarını tarama)
+- Fevzi Gandur otomatik konum maili: `noreply@fevzigandur.com` → "CANXANSA OU KONUM BILGILENDIRME" (HTML tablo: Yük No, Çekici/Romork Plaka, Konum, Çıkış/Varış)
+- Mail eşleştirmesi için `Yük No` (örn. SMR2602177EX) sevkiyatın referansı; CX numarası başlıkta geçer
+- Yeni konum bilgisi gelirse: TASLAK MAİL OLUŞTURMA. Doğrudan `track/shipments.js` içindeki ilgili sevkiyatın events array'ine yeni event ekle (veya pending event'i done:true yap), commit'le, push'la
+- Çoklu "In Transit" event'i desteklenir (timeline render duplicate status'lere izin verir)
+- Commit mesajı Türkçe, kısa: "track: CX260001-3 Bulgaristan güzergahı güncellendi" gibi

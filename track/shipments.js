@@ -33,6 +33,7 @@ var SHIPMENTS={
     {status:"Customs Clearance",date:"2026-05-16",location:"Istanbul",done:true},
     {status:"Departed",date:"2026-05-16",location:"Istanbul",done:true},
     {status:"In Transit",date:"2026-05-18",location:"Hamzabeyli Border, Turkey",done:true},
+    {status:"In Transit",date:"2026-05-19",location:"Ivanovo, Bulgaria",done:true},
     {status:"At Destination",date:null,location:"Nove Mesto Nad Vahom",done:false},
     {status:"Delivered",date:null,location:"Nove Mesto Nad Vahom, Slovakia",done:false}
   ]
