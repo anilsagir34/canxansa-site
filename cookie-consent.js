@@ -62,12 +62,10 @@
 
   // ---- 3. Banner DOM ----
   function getPrivacyHref() {
-    var path = window.location.pathname || '/';
-    // From "/" → "/privacy/", from "/foo/" → "../privacy/"
-    if (path === '/' || path === '/index.html' || /^\/[^\/]*\.html$/.test(path)) {
-      return '/privacy/';
-    }
     return '/privacy/';
+  }
+  function getCookiePolicyHref() {
+    return '/cookie-policy/';
   }
 
   function buildBanner() {
@@ -79,7 +77,7 @@
     banner.innerHTML =
       '<div class="cxc-title">COOKIES.</div>' +
       '<p>We use cookies to operate this site and, only with your consent, Google Analytics to understand how visitors use it. No advertising or tracking. ' +
-      'See our <a href="' + getPrivacyHref() + '">Privacy Policy</a>.</p>' +
+      'See our <a href="' + getCookiePolicyHref() + '">Cookie Policy</a> and <a href="' + getPrivacyHref() + '">Privacy Policy</a>.</p>' +
       '<div class="cxc-actions">' +
         '<button type="button" class="cxc-accept" data-action="accept">Accept</button>' +
         '<button type="button" data-action="reject">Reject</button>' +
