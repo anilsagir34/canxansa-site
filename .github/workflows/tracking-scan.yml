@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write
 
     steps:
       - uses: actions/checkout@v4
@@ -28,7 +29,7 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           mcp_config: ${{ secrets.MCP_CONFIG }}
           allowed_tools: "Bash,Read,Edit,mcp__Microsoft_365__outlook_email_search,mcp__Microsoft_365__read_resource"
-          prompt: |
+          direct_prompt: |
             Bu CANXANSA OÜ sevkiyat takip rutinidir.
 
             1. track/shipments.js dosyasını oku. Aktif (done:false eventi olan) sevkiyatları bul.
