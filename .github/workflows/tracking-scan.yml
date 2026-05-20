@@ -23,12 +23,17 @@ jobs:
           git config user.name "CANXANSA Tracking Bot"
           git config user.email "operations@canxansa.com"
 
+      - name: Write MCP config
+        env:
+          MCP_CONFIG: ${{ secrets.MCP_CONFIG }}
+        run: printf '%s' "$MCP_CONFIG" > /tmp/mcp.json
+
       - name: Run Tracking Routine
         uses: anthropics/claude-code-action@v1
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          mcp_config: ${{ secrets.MCP_CONFIG }}
-          allowed_tools: "Bash,Read,Edit,mcp__Microsoft_365__outlook_email_search,mcp__Microsoft_365__read_resource"
+          claude_args: '--mcp-config /tmp/mcp.json --allowed-tools "Bash Read Edit mcp__Microsoft_365__outlook_email_search mcp__Microsoft_365__read_resource"'
           prompt: |
             Bu CANXANSA OÜ sevkiyat takip rutinidir.
 
