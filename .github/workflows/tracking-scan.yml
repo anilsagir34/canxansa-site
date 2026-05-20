@@ -33,6 +33,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           claude_args: '--mcp-config /tmp/mcp.json --allowed-tools "Bash Read Edit mcp__Microsoft_365__outlook_email_search mcp__Microsoft_365__read_resource"'
           prompt: |
             Bu CANXANSA OÜ sevkiyat takip rutinidir.
