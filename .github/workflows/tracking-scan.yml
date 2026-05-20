@@ -24,12 +24,12 @@ jobs:
           git config user.email "operations@canxansa.com"
 
       - name: Run Tracking Routine
-        uses: anthropics/claude-code-action@beta
+        uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           mcp_config: ${{ secrets.MCP_CONFIG }}
           allowed_tools: "Bash,Read,Edit,mcp__Microsoft_365__outlook_email_search,mcp__Microsoft_365__read_resource"
-          direct_prompt: |
+          prompt: |
             Bu CANXANSA OÜ sevkiyat takip rutinidir.
 
             1. track/shipments.js dosyasını oku. Aktif (done:false eventi olan) sevkiyatları bul.
