@@ -140,6 +140,16 @@
   }
   .nav-cta:hover { background: var(--orange-dim); }
 
+  .nav-track {
+    background: transparent; color: var(--orange);
+    border: 1.5px solid var(--orange); padding: 8.5px 22px; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    letter-spacing: 1px; cursor: pointer; text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+  }
+  .nav-track:hover { background: var(--orange); color: var(--white); }
+
   /* HERO */
   .hero {
     min-height: 100vh;
@@ -643,6 +653,7 @@
 <nav>
   <a href="../index.html" class="nav-logo">CAN<span>X</span>ANSA</a>
   <div style="display:flex;align-items:center;gap:16px;">
+    <a href="../track/" class="nav-track">Track</a>
     <a href="#contact" class="nav-cta">Get a Quote</a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -654,6 +665,7 @@
   <a href="../index.html" class="mobile-nav-link">Home</a>
   <a href="../index.html" class="mobile-nav-link">Services</a>
   <a href="../index.html" class="mobile-nav-link">Corridors</a>
+  <a href="../track/" class="mobile-nav-link">Track</a>
   <a href="#contact" class="mobile-nav-link mobile-nav-cta" id="mobile-cta">Get a Quote →</a>
 </div>
 

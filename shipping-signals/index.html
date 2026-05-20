@@ -103,6 +103,16 @@
   .nav-right { display: flex; align-items: center; gap: 24px; }
   .nav-cta { background: var(--orange); color: var(--white); padding: 10px 24px; border-radius: 2px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
   .nav-cta:hover { background: var(--orange-dim); }
+
+  .nav-track {
+    background: transparent; color: var(--orange);
+    border: 1.5px solid var(--orange); padding: 8.5px 22px; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    letter-spacing: 1px; cursor: pointer; text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+  }
+  .nav-track:hover { background: var(--orange); color: var(--white); }
   .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 200; }
   .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: transform 0.3s, opacity 0.3s; transform-origin: center; }
   .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
@@ -292,6 +302,7 @@
   }
   @media (max-width: 640px) {
     .nav-cta { display: none; }
+    .nav-track { display: none; }
     .mobile-nav-link { font-size: 36px; padding: 14px 0; }
     .hero { padding: 88px 20px 10px; }
     .rates, .market-pulse, .spotlight, .cta-section, .subscribe { padding: 48px 20px; }
@@ -342,6 +353,7 @@
     <a href="../index.html?panel=contact" class="nav-link">Contact</a>
   </div>
   <div class="nav-right">
+    <a href="../track/" class="nav-track">Track</a>
     <a href="#quote" class="nav-cta">Get a Quote</a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -355,6 +367,7 @@
   <a href="../index.html#services" class="mobile-nav-link">Services</a>
   <a href="../index.html#corridors" class="mobile-nav-link">Corridors</a>
   <a href="../index.html#coverage" class="mobile-nav-link">Routes</a>
+  <a href="../track/" class="mobile-nav-link">Track</a>
   <a href="#quote" class="mobile-nav-link mobile-nav-cta">Get a Quote</a>
 </div>
 

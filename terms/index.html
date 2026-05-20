@@ -109,6 +109,16 @@
     text-decoration: none;
   }
   .nav-cta:hover { background: var(--orange-dim); }
+
+  .nav-track {
+    background: transparent; color: var(--orange);
+    border: 1.5px solid var(--orange); padding: 8.5px 22px; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    letter-spacing: 1px; cursor: pointer; text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+  }
+  .nav-track:hover { background: var(--orange); color: var(--white); }
  
   /* ─── PAGE HEADER ─── */
   .page-header {
@@ -412,6 +422,7 @@
       Home
       
     </a>
+    <a href="../track/" class="nav-track">Track</a>
     <a href="../#contact" class="nav-cta">
       Get a Quote
       
