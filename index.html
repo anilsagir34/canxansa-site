@@ -24,27 +24,56 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "LocalBusiness",
+  "@id": "https://canxansa.com/#organization",
   "name": "CANXANSA",
   "legalName": "CANXANSA OÜ",
   "url": "https://canxansa.com",
   "logo": "https://canxansa.com/favicon.svg",
+  "image": "https://canxansa.com/images/og-image.jpg",
   "description": "Estonia-based freight forwarder offering air, sea and road cargo connecting Europe, Turkey, Middle East and Asia.",
+  "telephone": "+372 523 3191",
+  "email": "info@canxansa.com",
+  "priceRange": "$$",
+  "foundingDate": "2025",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Tornimäe tn 5",
     "addressLocality": "Tallinn",
+    "addressRegion": "Harju maakond",
+    "postalCode": "10145",
     "addressCountry": "EE"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 59.4339,
+    "longitude": 24.7585
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "09:00",
+    "closes": "18:00"
+  }],
   "vatID": "EE102968134",
+  "taxID": "17286174",
   "areaServed": ["EE","DE","FR","IT","NL","PL","ES","BE","GB","TR","CN","IN","AE","SA","QA","IQ","SY","EG","JP","US"],
   "serviceType": ["Air Freight","Sea Freight","Road Freight","FCL","LCL"],
-  "sameAs": ["https://www.linkedin.com/company/canxansa"],
-  "contactPoint": {
+  "sameAs": ["https://www.linkedin.com/company/canxansa/"],
+  "contactPoint": [{
     "@type": "ContactPoint",
     "contactType": "sales",
+    "telephone": "+372 523 3191",
     "email": "info@canxansa.com",
-    "availableLanguage": ["English"]
-  }
+    "areaServed": ["EE","EU","TR","CN","ME"],
+    "availableLanguage": ["English","Turkish","Estonian"]
+  },{
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "telephone": "+372 523 3191",
+    "email": "info@canxansa.com",
+    "availableLanguage": ["English","Turkish","Estonian"]
+  }]
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -1643,7 +1672,7 @@
 
   <div class="footer-bottom">
     <div class="footer-copy">© 2026 CANXANSA OÜ. All rights reserved.</div>
-    <div class="footer-copy">Tallinn, Estonia · info@canxansa.com</div>
+    <div class="footer-copy">Tornimäe tn 5, 10145 Tallinn, Estonia · <a href="tel:+3725233191" style="color:inherit;text-decoration:none;">+372 523 3191</a> · <a href="mailto:info@canxansa.com" style="color:inherit;text-decoration:none;">info@canxansa.com</a></div>
   </div>
   <div class="footer-routes" style="width:100%;margin:32px 0 0;padding:24px 0 0;border-top:1px solid var(--gray-mid);text-align:center;">
     <div style="font-size:10px;font-weight:500;letter-spacing:2.5px;color:var(--orange);text-transform:uppercase;margin-bottom:16px;">Popular Routes</div>
