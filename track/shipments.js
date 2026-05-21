@@ -36,6 +36,7 @@ var SHIPMENTS={
     {status:"In Transit",date:"2026-05-19",location:"Ivanovo, Bulgaria",done:true},
     {status:"In Transit",date:"2026-05-19",location:"Corbii Mari, Romania",done:true},
     {status:"In Transit",date:"2026-05-20",location:"Arad, Romania",done:true},
+    {status:"In Transit",date:"2026-05-21",location:"Trnava, Slovakia",done:true},
     {status:"At Destination",date:null,location:"Nove Mesto Nad Vahom",done:false},
     {status:"Delivered",date:null,location:"Nove Mesto Nad Vahom, Slovakia",done:false}
   ]
