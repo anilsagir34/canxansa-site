@@ -40,5 +40,23 @@ var SHIPMENTS={
     {status:"At Destination",date:null,location:"Nove Mesto Nad Vahom",done:false},
     {status:"Delivered",date:null,location:"Nove Mesto Nad Vahom, Slovakia",done:false}
   ]
+},
+"CX260002-4":{
+  origin:"Istanbul, Turkey",
+  destination:"Nove Mesto Nad Vahom, Slovakia",
+  mode:"Road Freight",
+  cargo:"4 Pallets — 2,084 kg — MCC 102 (Accent)",
+  shipper:"MKT KIMYEVI MADDELER VE GIDA SAN. TIC. A.S.",
+  consignee:"ECOPRODUCT ENERGY S.R.O.",
+  events:[
+    {status:"Booking Confirmed",date:"2026-05-15",location:"Istanbul",done:true},
+    {status:"Cargo Collected",date:"2026-05-18",location:"Ikitelli, Istanbul",done:true},
+    {status:"At Warehouse",date:"2026-05-18",location:"Esenler Depo, Istanbul",done:true},
+    {status:"Customs Clearance",date:"2026-05-20",location:"Istanbul",done:true},
+    {status:"Departed",date:"2026-05-22",location:"Istanbul",done:true},
+    {status:"In Transit",date:null,location:"Kapikule Border, Turkey",done:false},
+    {status:"At Destination",date:null,location:"Nove Mesto Nad Vahom",done:false},
+    {status:"Delivered",date:null,location:"Nove Mesto Nad Vahom, Slovakia",done:false}
+  ]
 }
 };
