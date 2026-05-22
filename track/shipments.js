@@ -53,7 +53,6 @@ var SHIPMENTS={
     {status:"Cargo Collected",date:"2026-05-18",location:"Ikitelli, Istanbul",done:true},
     {status:"At Warehouse",date:"2026-05-18",location:"Buyukcekmece Depo, Istanbul",done:true},
     {status:"Customs Clearance",date:null,location:"Istanbul",done:false},
-    {status:"Departed",date:null,location:"Istanbul",done:false},
     {status:"In Transit",date:null,location:"Kapikule Border, Turkey",done:false},
     {status:"At Destination",date:null,location:"Nove Mesto Nad Vahom",done:false},
     {status:"Delivered",date:null,location:"Nove Mesto Nad Vahom, Slovakia",done:false}
