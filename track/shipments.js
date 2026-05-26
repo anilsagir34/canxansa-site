@@ -57,6 +57,7 @@ var SHIPMENTS={
     {status:"Departed",date:"2026-05-22",location:"Istanbul",done:true},
     {status:"In Transit",date:"2026-05-23",location:"Hamzabeyli Border, Turkey",done:true},
     {status:"In Transit",date:"2026-05-25",location:"Elhovo, Bulgaria",done:true},
+    {status:"In Transit",date:"2026-05-26",location:"Arges, Romania",done:true},
     {status:"At Destination",date:null,location:"Nove Mesto Nad Vahom",done:false},
     {status:"Delivered",date:null,location:"Nove Mesto Nad Vahom, Slovakia",done:false}
   ]
