@@ -51,8 +51,8 @@
   </url>
 
   <url>
-    <loc>https://canxansa.com/turkey-germany-freight/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <loc>https://canxansa.com/germany-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -107,85 +107,57 @@
   </url>
 
   <url>
-    <loc>https://canxansa.com/turkey-china-freight/</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://canxansa.com/turkey-india-freight/</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://canxansa.com/turkey-netherlands-freight/</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://canxansa.com/turkey-italy-freight/</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://canxansa.com/turkey-uae-freight/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <loc>https://canxansa.com/uae-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://canxansa.com/turkey-saudi-arabia-freight/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <loc>https://canxansa.com/saudi-arabia-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://canxansa.com/turkey-qatar-freight/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <loc>https://canxansa.com/qatar-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://canxansa.com/turkey-iraq-freight/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <loc>https://canxansa.com/iraq-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://canxansa.com/turkey-syria-freight/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <loc>https://canxansa.com/syria-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://canxansa.com/turkey-egypt-freight/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <loc>https://canxansa.com/egypt-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://canxansa.com/turkey-usa-freight/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <loc>https://canxansa.com/usa-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://canxansa.com/turkey-japan-freight/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <loc>https://canxansa.com/japan-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -236,6 +208,62 @@
     <loc>https://canxansa.com/faq/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://canxansa.com/south-korea-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://canxansa.com/vietnam-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://canxansa.com/bangladesh-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://canxansa.com/canada-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://canxansa.com/mexico-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://canxansa.com/brazil-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://canxansa.com/south-africa-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://canxansa.com/nigeria-freight/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 

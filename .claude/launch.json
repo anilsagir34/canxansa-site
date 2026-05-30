@@ -4,7 +4,7 @@
     {
       "name": "canxansa",
       "runtimeExecutable": "bash",
-      "runtimeArgs": ["-c", "cd /Users/anil/Desktop/canxansa-site && python3 -m http.server 8080"],
+      "runtimeArgs": ["-c", "cd '/Users/anil/Documents/New project/canxansa-site' && python3 -m http.server 8080"],
       "port": 8080
     }
   ]
