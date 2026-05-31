@@ -5,5 +5,5 @@
       .cx-c { fill: #f5f0eb; }
     }
   </style>
-  <text x="16" y="23" font-family="Arial Black, sans-serif" font-size="18" font-weight="900" text-anchor="middle" letter-spacing="-1"><tspan class="cx-c">C</tspan><tspan fill="#e8521a">X</tspan></text>
+  <text x="16" y="24" font-family="Arial Black, sans-serif" font-size="23" font-weight="900" text-anchor="middle" textLength="26" lengthAdjust="spacingAndGlyphs"><tspan class="cx-c">C</tspan><tspan fill="#e8521a">X</tspan></text>
 </svg>
