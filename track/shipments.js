@@ -62,7 +62,7 @@ var SHIPMENTS={
     {status:"Customs Clearance",date:"2026-05-27",location:"Trnava, Slovakia",done:true},
     {status:"At Destination",date:"2026-06-02",location:"Nove Mesto Nad Vahom",done:true},
     {status:"Customs Cleared",date:"2026-06-02",location:"Nove Mesto Nad Vahom, Slovakia",done:true},
-    {status:"Delivered",date:null,location:"Nove Mesto Nad Vahom, Slovakia",done:false}
+    {status:"Delivered",date:"2026-06-02",location:"Nove Mesto Nad Vahom, Slovakia",done:true}
   ]
 }
 };
