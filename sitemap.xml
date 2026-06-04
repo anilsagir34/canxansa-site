@@ -177,6 +177,13 @@
   </url>
 
   <url>
+    <loc>https://canxansa.com/feedback/</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
     <loc>https://canxansa.com/terms/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>yearly</changefreq>
