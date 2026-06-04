@@ -155,9 +155,12 @@
   .footer-note a { color: var(--orange); text-decoration: none; }
 
   /* Lang */
-  .en-content, .tr-content { display: none; }
+  .en-content, .tr-content, .feedback-content { display: none; }
   body.lang-en .en-content { display: block; }
   body.lang-tr .tr-content { display: block; }
+  /* Feedback variant overrides quote content */
+  body.type-feedback .en-content, body.type-feedback .tr-content { display: none !important; }
+  body.type-feedback .feedback-content { display: block; }
 </style>
 </head>
 <body>
@@ -182,6 +185,28 @@
       <div class="step">
         <div class="step-num">03</div>
         <div class="step-text"><strong>Cargo Moves</strong>You approve, we ship</div>
+      </div>
+    </div>
+    <a href="index.html" class="btn">Back to Home</a>
+    <p class="footer-note">Questions? <a href="mailto:info@canxansa.com">info@canxansa.com</a></p>
+  </div>
+
+  <!-- FEEDBACK (EN) -->
+  <div class="feedback-content">
+    <h1>THANK<br><span>YOU.</span></h1>
+    <p class="subtitle">Your feedback has been received. We truly appreciate you taking the time &mdash; it helps us deliver a better service on every shipment.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-text"><strong>Feedback Received</strong>Shared with our team</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-text"><strong>We Review</strong>Every comment counts</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-text"><strong>We Improve</strong>On your next shipment</div>
       </div>
     </div>
     <a href="index.html" class="btn">Back to Home</a>
@@ -215,6 +240,10 @@
   const params = new URLSearchParams(window.location.search);
   const lang = params.get('lang') === 'tr' ? 'tr' : 'en';
   document.body.classList.add('lang-' + lang);
+  if (params.get('type') === 'feedback') {
+    document.body.classList.add('type-feedback');
+    document.title = 'CANXANSA — Thank You';
+  }
 </script>
 <!-- Floating WhatsApp -->
 <a href="https://wa.me/3725233191" target="_blank" rel="noopener" aria-label="WhatsApp" onclick="gtag('event', 'whatsapp_click', { event_category: 'contact', event_label: 'floating_button' })" style="

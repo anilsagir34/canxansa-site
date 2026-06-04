@@ -378,7 +378,7 @@
       });
       if(res.ok){
         gtag('event','feedback_submit',{event_category:'engagement',event_label:'feedback_form'});
-        window.location.href='../thank-you.html?lang=en';
+        window.location.href='../thank-you.html?lang=en&type=feedback';
       }else{
         throw new Error('bad response');
       }
