@@ -24,8 +24,8 @@ var SHIPMENTS={
   destination:"Nove Mesto Nad Vahom, Slovakia",
   mode:"Road Freight",
   cargo:"2 Pallets — 1,573 kg — PVC",
-  shipper:"FABAMED KOZMETIK",
-  consignee:"AURONIS S.R.O",
+  shipper:"F. Kozmetik",
+  consignee:"Auronis",
   events:[
     {status:"Booking Confirmed",date:"2026-05-12",location:"Istanbul",done:true},
     {status:"Cargo Collected",date:"2026-05-13",location:"Istanbul",done:true},
@@ -47,8 +47,8 @@ var SHIPMENTS={
   destination:"Nove Mesto Nad Vahom, Slovakia",
   mode:"Road Freight",
   cargo:"4 Pallets — 2,084 kg — MCC 102 (Accent)",
-  shipper:"MKT KIMYEVI MADDELER VE GIDA SAN. TIC. A.S.",
-  consignee:"ECOPRODUCT ENERGY S.R.O.",
+  shipper:"MKT",
+  consignee:"Ecoproduct",
   events:[
     {status:"Booking Confirmed",date:"2026-05-15",location:"Istanbul",done:true},
     {status:"Cargo Collected",date:"2026-05-18",location:"Ikitelli, Istanbul",done:true},
