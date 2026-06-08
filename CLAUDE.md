@@ -90,3 +90,11 @@ Uzak: USA → Japan → Egypt → Syria
 - Yeni konum bilgisi gelirse: TASLAK MAİL OLUŞTURMA. Doğrudan `track/shipments.js` içindeki ilgili sevkiyatın events array'ine yeni event ekle (veya pending event'i done:true yap), commit'le, push'la
 - Çoklu "In Transit" event'i desteklenir (timeline render duplicate status'lere izin verir)
 - Commit mesajı Türkçe, kısa: "track: CX260001-3 Bulgaristan güzergahı güncellendi" gibi
+
+## Buluttan Otonom Çalışma Prensibi (Boris Cherny / Claude Code yaratıcısı — 2026-06-08)
+Opus uzun süreli (saatler/günler) otonom işler için tercih edilen model. Bu projede buluttan çalışıyoruz; aşağıdaki prensiplere göre hareket et:
+1. **Auto mode (izinler):** Onay beklemeden ilerle; gereksiz yere izin sorma, makul varsayılanlarla devam et.
+2. **Dinamik workflow / agent orkestrasyonu:** Büyük/dağıtılabilir işlerde alt-agent'ları (Agent tool) paralel kullan, işi parçala.
+3. **/goal veya /loop:** İş bitene kadar devam et; yarım bırakma, terminal duruma kadar sür.
+4. **Bulutta çalışma:** Kullanıcı laptopu kapatabilir; oturum buluttan sürer. İş bittiğinde commit + push şart (container ephemeral).
+5. **Kendi kendini doğrula (self-verify):** Yaptığın işi uçtan uca kontrol et — web için tarayıcıda doğrula, backend için servisi ayağa kaldır, çıktıyı gözlemle. Sadece "yazdım" deme, çalıştığını teyit et.
