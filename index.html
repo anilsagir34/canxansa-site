@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,17 +78,26 @@
 </script>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="shortcut icon" href="favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #0a0a0a;
-    --white: #f5f0eb;
+    --ink: #0b0a09;
+    --ink-2: #121110;
+    --ink-3: #1b1917;
+    --bone: #f5f0eb;
+    --bone-dim: #8d8780;
+    --muted: #595550;
     --orange: #e8521a;
-    --orange-dim: #c44010;
-    --gray: #1a1a1a;
-    --gray-mid: #2e2e2e;
-    --gray-light: #888;
-    --text-muted: #555;
+    --orange-deep: #b53c0e;
+    --hair: rgba(245,240,235,0.09);
+    --hair-soft: rgba(245,240,235,0.05);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --disp: 'Bebas Neue', sans-serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -97,929 +105,553 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
+    background: var(--ink);
+    color: var(--bone);
+    font-family: var(--sans);
     font-weight: 300;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--orange); color: var(--ink); }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb { background: #2c2925; border-radius: 5px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--orange-deep); }
+
+  a:focus-visible, button:focus-visible,
+  input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--orange); outline-offset: 2px;
+  }
+
+  /* grain */
+  .grain {
+    position: fixed; inset: 0; z-index: 2000; pointer-events: none;
+    opacity: 0.05; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* page rails */
+  .rails {
+    position: fixed; top: 0; bottom: 0; left: 28px; right: 28px;
+    border-left: 1px solid var(--hair-soft);
+    border-right: 1px solid var(--hair-soft);
+    pointer-events: none; z-index: 1;
+  }
+
+  /* scroll progress */
+  .progress {
+    position: fixed; top: 0; left: 0; height: 2px; width: 0;
+    background: var(--orange); z-index: 1001;
+  }
+
+  .wrap { padding-left: 64px; padding-right: 64px; position: relative; z-index: 2; }
+
+  .mono-tag {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--orange);
   }
 
   /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 24px 48px;
-    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
-    backdrop-filter: blur(4px);
+    padding: 22px 64px;
+    border-bottom: 1px solid transparent;
+    transition: padding 0.35s var(--ease), background 0.35s, border-color 0.35s;
+  }
+  nav.scrolled {
+    padding: 13px 64px;
+    background: rgba(11,10,9,0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom-color: var(--hair);
   }
 
   .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 4px;
-    color: var(--white);
-    text-decoration: none;
+    font-family: var(--disp); font-size: 26px; letter-spacing: 4px;
+    color: var(--bone); text-decoration: none; line-height: 1;
+    display: flex; align-items: baseline; gap: 10px;
   }
-
-  .nav-logo span { color: var(--orange); }
-
-  .nav-sub {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: var(--gray-light);
-    margin-left: 8px;
-    vertical-align: middle;
-  }
-
-  .nav-right { display: flex; align-items: center; gap: 32px; }
-
-  .nav-routes {
-    color: var(--gray-light);
-    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-    letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-routes:hover { color: var(--white); }
-
-  .nav-cta {
-    background: var(--orange); color: var(--white);
-    border: none; padding: 10px 24px; border-radius: 2px;
-    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-    letter-spacing: 1px; cursor: pointer; text-transform: uppercase;
-    transition: background 0.2s;
-    text-decoration: none;
-  }
-
-  .nav-cta:hover { background: var(--orange-dim); }
-
-  .nav-track {
-    background: transparent; color: var(--orange);
-    border: 1.5px solid var(--orange); padding: 8.5px 22px; border-radius: 2px;
-    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-    letter-spacing: 1px; cursor: pointer; text-transform: uppercase;
-    transition: background 0.2s, color 0.2s;
-    text-decoration: none;
-  }
-  .nav-track:hover { background: var(--orange); color: var(--white); }
-
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: grid; grid-template-columns: 1fr 1fr;
-    position: relative; overflow: hidden;
-  }
-
-  .hero-left {
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 140px 64px 80px;
-    position: relative; z-index: 2;
-  }
-
-  .hero-tag {
-    font-size: 11px; font-weight: 500; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--orange);
-    margin-bottom: 32px;
-    display: flex; align-items: center; gap: 12px;
-  }
-
-  .hero-tag::before {
-    content: ''; display: block;
-    width: 32px; height: 1px; background: var(--orange);
-  }
-
-  h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(72px, 8vw, 120px);
-    line-height: 0.9;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-  }
-
-  h1 .accent { color: var(--orange); }
-
-  .hero-sub {
-    font-size: 16px; line-height: 1.7;
-    color: var(--gray-light); max-width: 420px;
-    margin-bottom: 56px;
-  }
-
-  .hero-actions { display: flex; gap: 16px; align-items: center; }
-
-  .hero-track {
-    margin-top: 40px; display: flex; align-items: center; gap: 0;
-    max-width: 420px; border: 1px solid var(--gray-mid); border-radius: 2px;
-    overflow: hidden; transition: border-color 0.2s;
-  }
-  .hero-track:focus-within { border-color: var(--orange); }
-  .hero-track-icon {
-    padding: 0 14px; display: flex; align-items: center;
-    color: var(--gray-light); flex-shrink: 0;
-  }
-  .hero-track input {
-    flex: 1; background: none; border: none; outline: none;
-    color: var(--white); font-family: 'DM Sans', sans-serif;
-    font-size: 13px; padding: 14px 0; letter-spacing: 0.5px;
-  }
-  .hero-track input::placeholder { color: var(--gray-light); opacity: 0.6; }
-  .hero-track button {
-    background: var(--orange); border: none; color: var(--white);
-    font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
-    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
-    padding: 14px 24px; transition: background 0.2s; flex-shrink: 0;
-  }
-  .hero-track button:hover { background: var(--orange-dim); }
-  .hero-track-error {
-    display: none; margin-top: 6px; font-size: 11px; color: #ef4444;
-    max-width: 420px;
-  }
-
-  .btn-primary {
-    background: var(--orange); color: var(--white);
-    padding: 16px 36px; border: none; border-radius: 2px;
-    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
-    transition: all 0.2s; text-decoration: none; display: inline-block;
-  }
-
-  .btn-primary:hover { background: var(--orange-dim); transform: translateY(-1px); }
-
-  .btn-ghost {
-    color: var(--white); background: none;
-    border: 1px solid var(--gray-mid);
-    padding: 16px 36px; border-radius: 2px;
-    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
-    transition: all 0.2s; text-decoration: none; display: inline-block;
-  }
-
-  .btn-ghost:hover { border-color: var(--white); }
-
-  .hero-right {
-    position: relative; overflow: hidden;
-  }
-
-  .hero-right::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(232,82,26,0.15) 0%, transparent 60%);
-    z-index: 1;
-  }
-
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(232,82,26,0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(232,82,26,0.08) 1px, transparent 1px);
-    background-size: 60px 60px;
-    animation: gridPulse 8s ease-in-out infinite;
-  }
-
-  @keyframes gridPulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-  }
-
-  .hero-visual {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    z-index: 2;
-  }
-
-  #globe-el {
-    width: 480px;
-    height: 480px;
-    max-width: 90vw;
-    max-height: 90vw;
-  }
-
-  .hero-stats {
-    position: absolute; bottom: 48px; left: 48px; right: 48px;
-    display: flex; gap: 48px; z-index: 3;
-  }
-
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 42px; color: var(--white);
-    line-height: 1;
-  }
-  .stat-num span { color: var(--orange); }
-  .stat-label {
-    font-size: 11px; color: var(--gray-light);
-    letter-spacing: 2px; text-transform: uppercase;
-    margin-top: 4px;
-  }
-
-  /* ─── TICKER ─── */
-  .ticker {
-    background: var(--orange);
-    padding: 14px 0; overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .ticker-inner {
-    display: inline-flex; gap: 64px;
-    animation: ticker 25s linear infinite;
-  }
-
-  .ticker-item {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px; letter-spacing: 3px;
-    color: var(--white);
-    display: flex; align-items: center; gap: 24px;
-  }
-
-  .ticker-item::after {
-    content: '●'; font-size: 8px; color: rgba(255,255,255,0.5);
-  }
-
-  @keyframes ticker {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  /* ─── SERVICES ─── */
-  .services {
-    padding: 120px 64px;
-    position: relative;
-  }
-
-  .section-label {
-    font-size: 11px; font-weight: 500; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--orange);
-    margin-bottom: 24px;
-    display: flex; align-items: center; gap: 12px;
-  }
-
-  .section-label::before {
-    content: ''; width: 32px; height: 1px; background: var(--orange);
-  }
-
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(48px, 5vw, 72px);
-    line-height: 0.95; letter-spacing: 2px;
-    margin-bottom: 80px;
-    max-width: 600px;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-
-  .service-card {
-    background: var(--gray);
-    padding: 48px 40px;
-    position: relative; overflow: hidden;
-    transition: all 0.3s;
-    cursor: default;
-  }
-
-  .service-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: var(--orange);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.3s;
-  }
-
-  .service-card:hover::before { transform: scaleX(1); }
-  .service-card:hover { background: #1f1f1f; }
-
-  .service-icon {
-    display: block;
-    width: 56px;
-    height: 56px;
-    margin-bottom: 32px;
-  }
-
-  .service-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 72px; color: rgba(255,255,255,0.05);
-    position: absolute; top: 16px; right: 24px;
-    line-height: 1;
-  }
-
-  .service-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px; letter-spacing: 2px;
-    margin-bottom: 16px;
-  }
-
-  .service-desc {
-    font-size: 14px; line-height: 1.7;
-    color: var(--gray-light);
-  }
-
-  .service-link {
-    display: inline-flex; align-items: center; gap: 8px;
-    margin-top: 32px; font-size: 12px; font-weight: 500;
-    letter-spacing: 2px; text-transform: uppercase;
-    color: var(--orange); text-decoration: none;
-    transition: gap 0.2s;
-  }
-
-  .service-link:hover { gap: 16px; }
-
-  /* ─── COVERAGE ─── */
-  .coverage {
-    padding: 120px 64px;
-    background: var(--gray);
-  }
-
-  .coverage-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    margin-bottom: 32px;
-  }
-
-  .coverage-region {
-    background: var(--black);
-    padding: 40px 32px;
-  }
-
-  .coverage-region-header {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 28px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--gray-mid);
-  }
-
-  .coverage-flag { font-size: 14px; color: var(--orange); line-height: 1; }
-
-  .coverage-region-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px; letter-spacing: 2px;
-  }
-
-  .coverage-countries {
-    display: flex; flex-direction: column; gap: 2px;
-  }
-
-  .coverage-country {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 10px 12px;
-    background: var(--gray);
-    text-decoration: none;
-    color: var(--gray-light);
-    font-size: 13px;
-    transition: all 0.2s;
-    border-left: 2px solid transparent;
-  }
-
-  .coverage-country:hover {
-    color: var(--white);
-    border-left-color: var(--orange);
-    background: #222;
-    padding-left: 16px;
-  }
-
-  .coverage-country.active {
-    color: var(--white);
-    border-left-color: var(--orange);
-  }
-
-  .coverage-mode {
-    font-size: 10px; letter-spacing: 1px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-  }
-
-  .coverage-country.active .coverage-mode,
-  .coverage-country:hover .coverage-mode {
-    color: var(--orange);
-  }
-
-  .coverage-note {
-    text-align: center;
-    font-size: 13px; color: var(--gray-light);
-    padding: 24px;
-    border: 1px solid var(--gray-mid);
-    background: var(--black);
-  }
-
-  .coverage-note a {
-    color: var(--orange); text-decoration: none;
-  }
-
-  .coverage-note a:hover { text-decoration: underline; }
-
-  /* ─── SPECIALTY CORRIDORS ─── */
-  .corridors {
-    padding: 120px 64px;
-    background: var(--gray);
-    position: relative;
-  }
-
-  .corridor-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    margin-top: 48px;
-  }
-
-  .corridor-card {
-    background: var(--black);
-    padding: 48px 36px;
-    text-decoration: none;
-    color: var(--white);
-    display: flex; flex-direction: column;
-    border-top: 2px solid var(--orange);
-    position: relative; overflow: hidden;
-    transition: all 0.3s;
-  }
-
-  .corridor-card::after {
-    content: '→';
-    position: absolute; top: 36px; right: 36px;
-    color: var(--orange); font-size: 24px;
-    opacity: 0; transform: translateX(-8px);
-    transition: all 0.3s;
-  }
-
-  .corridor-card:hover {
-    background: #1f1f1f;
-    transform: translateY(-2px);
-  }
-
-  .corridor-card:hover::after {
-    opacity: 1; transform: translateX(0);
-  }
-
-  .corridor-route {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--orange);
-    margin-bottom: 28px;
-  }
-
-  .corridor-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px; letter-spacing: 2px;
-    margin-bottom: 12px;
-    color: var(--white);
-  }
-
-  .corridor-subtitle {
-    font-size: 13px; color: var(--gray-light);
-    line-height: 1.6;
-    margin-bottom: 24px;
-    flex: 1;
-  }
-
-  .corridor-modes {
-    font-size: 11px; letter-spacing: 2px;
-    color: var(--orange);
-    text-transform: uppercase;
-    padding-top: 20px;
-    border-top: 1px solid var(--gray-mid);
-  }
-
-  /* ─── HOW IT WORKS ─── */
-  .how {
-    padding: 120px 64px;
-    background: var(--black);
-    position: relative; overflow: hidden;
-  }
-
-  .how::before {
-    content: 'PROCESS';
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 200px; letter-spacing: 8px;
-    color: rgba(255,255,255,0.02);
-    position: absolute; bottom: -20px; right: -20px;
-    white-space: nowrap; pointer-events: none;
-  }
-
-  .how-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 2px; margin-top: 80px;
-    position: relative; z-index: 1;
-  }
-
-  .how-step {
-    padding: 48px 32px;
-    background: var(--gray);
-    position: relative;
-  }
-
-  .step-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 80px; line-height: 1;
-    color: var(--orange); opacity: 0.3;
-    margin-bottom: 24px;
-  }
-
-  .step-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px; letter-spacing: 2px;
-    margin-bottom: 12px;
-  }
-
-  .step-desc {
-    font-size: 13px; line-height: 1.7;
-    color: var(--gray-light);
-  }
-
-  .step-connector {
-    position: absolute; top: 80px; right: -1px;
-    width: 2px; height: 40px;
-    background: var(--orange); opacity: 0.4;
-  }
-
-  /* ─── CONTACT ─── */
-  .contact {
-    padding: 120px 64px;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: start;
-  }
-
-  .contact-intro {
-    font-size: 15px; line-height: 1.8;
-    color: var(--gray-light); margin-bottom: 48px;
-    max-width: 480px;
-  }
-
-  .contact-detail {
-    display: flex; align-items: flex-start; gap: 16px;
-    margin-bottom: 24px;
-  }
-
-  .contact-detail-icon {
-    width: 40px; height: 40px;
-    background: var(--gray); border-radius: 2px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; flex-shrink: 0;
-  }
-
-  .contact-detail-label {
-    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--orange); margin-bottom: 4px;
-  }
-  .contact-detail-value {
-    font-size: 14px; color: var(--white);
-  }
-
-  .form-group { margin-bottom: 20px; }
-
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
-  label {
-    display: block; font-size: 11px; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--gray-light);
-    margin-bottom: 8px;
-  }
-
-  input, select, textarea {
-    width: 100%;
-    background: var(--gray); border: 1px solid var(--gray-mid);
-    color: var(--white); padding: 14px 16px;
-    font-family: 'DM Sans', sans-serif; font-size: 14px;
-    border-radius: 2px; outline: none;
-    transition: border-color 0.2s;
-    -webkit-appearance: none;
-  }
-
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--orange);
-  }
-
-  select option { background: var(--gray); }
-
-  textarea { resize: vertical; min-height: 120px; }
-
-  .form-submit {
-    width: 100%; padding: 18px;
-    background: var(--orange); border: none;
-    color: var(--white); font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 500; letter-spacing: 2px;
-    text-transform: uppercase; cursor: pointer; border-radius: 2px;
-    transition: background 0.2s;
-    margin-top: 8px;
-  }
-
-  .form-submit:hover { background: var(--orange-dim); }
-
-  /* ─── FOOTER ─── */
-  footer {
-    border-top: 1px solid var(--gray-mid);
-    padding: 64px 64px 48px;
-  }
-
-  .footer-top {
-    display: grid;
-    grid-template-columns: 1fr auto auto auto;
-    gap: 64px;
-    margin-bottom: 48px;
-    align-items: start;
-  }
-
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px; letter-spacing: 4px;
-    display: block; margin-bottom: 12px;
-  }
-
-  .footer-logo span { color: var(--orange); }
-
-  .footer-tagline {
-    font-size: 12px; color: var(--text-muted);
-    letter-spacing: 1px; line-height: 1.6;
-    max-width: 200px;
-  }
-
-  .footer-col-title {
-    font-size: 11px; font-weight: 500;
-    letter-spacing: 2px; text-transform: uppercase;
-    color: var(--orange); margin-bottom: 16px;
-  }
-
-  .footer-col-links {
-    display: flex; flex-direction: column; gap: 10px;
-  }
-
-  .footer-col-links a {
-    font-size: 12px; color: var(--gray-light); text-decoration: none;
-    letter-spacing: 1px; transition: color 0.2s;
-    display: flex; align-items: center; gap: 6px;
-  }
-
-  .footer-col-links a:hover { color: var(--orange); }
-
-  .footer-col-links a .arr { font-size: 10px; opacity: 0; transform: translateX(-4px); transition: all 0.2s; }
-  .footer-col-links a:hover .arr { opacity: 1; transform: translateX(0); }
-
-  .footer-bottom {
-    border-top: 1px solid var(--gray-mid);
-    padding-top: 24px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-
-  .footer-copy {
-    font-size: 12px; color: var(--text-muted);
-    letter-spacing: 1px;
-  }
-
-  /* ─── PAGE PANELS ─── */
-  .page-panel { display: none; }
-  .page-panel.active {
-    display: block;
-    animation: panelIn 0.35s ease;
-  }
-  @keyframes panelIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .panel-sections { padding-top: 80px; }
-
-  /* ─── FADE UP ANIMATION ─── */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
+  .nav-logo b { color: var(--orange); font-weight: 400; }
+  .nav-logo small {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 3px;
+    color: var(--bone-dim); text-transform: uppercase;
   }
 
-  /* ─── NAV CENTER LINKS ─── */
-  nav {
-    justify-content: space-between;
-  }
-  .nav-center {
-    display: flex; align-items: center; gap: 28px;
-    position: absolute; left: 50%; transform: translateX(-50%);
-  }
+  .nav-center { display: flex; gap: 26px; position: absolute; left: 50%; transform: translateX(-50%); }
   .nav-link {
-    color: var(--gray-light);
-    font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
-    letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none;
-    transition: color 0.2s; position: relative; padding-bottom: 3px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--bone-dim); text-decoration: none;
+    transition: color 0.2s; position: relative; padding: 4px 0;
   }
   .nav-link::after {
-    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
-    height: 1px; background: var(--orange);
-    transform: scaleX(0); transition: transform 0.25s;
+    content: ''; position: absolute; left: 0; right: 100%; bottom: 0;
+    height: 1px; background: var(--orange); transition: right 0.3s var(--ease);
   }
-  .nav-link:hover { color: var(--white); }
-  .nav-link.active { color: var(--white); }
-  .nav-link.active::after, .nav-link:hover::after { transform: scaleX(1); }
+  .nav-link:hover, .nav-link.active { color: var(--bone); }
+  .nav-link:hover::after, .nav-link.active::after { right: 0; }
 
-  .nav-badge { display: inline-flex; align-items: center; gap: 6px; }
-  .nav-badge-tag { font-size: 8px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; background: var(--orange); color: var(--white); padding: 2px 6px; border-radius: 2px; line-height: 1.4; animation: badge-pulse 2s ease-in-out infinite; }
-  @keyframes badge-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+  .nav-badge-tag {
+    font-size: 8px; background: var(--orange); color: var(--ink);
+    padding: 2px 5px; margin-left: 5px; border-radius: 1px;
+    animation: pulse 2.4s ease-in-out infinite; vertical-align: 2px;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.45; } }
 
-  /* ─── ACTION CARDS ─── */
-  .action-cards-section {
-    padding: 0 64px;
-    position: relative; z-index: 10;
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  .nav-track, .nav-cta {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; text-decoration: none; cursor: pointer;
+    padding: 10px 20px; border-radius: 1px; transition: all 0.25s var(--ease);
   }
-  .action-cards-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-  }
-  .action-card {
-    background: var(--gray); padding: 40px 36px;
-    border-top: 2px solid var(--orange);
-  }
-  .action-card-label {
-    font-size: 10px; font-weight: 500; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--orange);
-    margin-bottom: 20px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .action-card-label::before {
-    content: ''; width: 20px; height: 1px; background: var(--orange);
-  }
-  .action-card-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px; letter-spacing: 2px; margin-bottom: 6px;
-  }
-  .action-card-sub {
-    font-size: 12px; color: var(--gray-light);
-    margin-bottom: 24px; letter-spacing: 0.5px; line-height: 1.6;
-  }
-  .action-card-inputs { display: flex; flex-direction: column; gap: 8px; }
-  .action-card-inputs input {
-    background: var(--black); border: 1px solid var(--gray-mid);
-    color: var(--white); padding: 12px 14px;
-    font-family: 'DM Sans', sans-serif; font-size: 13px;
-    border-radius: 2px; outline: none; transition: border-color 0.2s;
-    width: 100%;
-  }
-  .action-card-inputs input:focus { border-color: var(--orange); }
-  .action-card-inputs input::placeholder { color: var(--text-muted); }
-  .action-card-btn {
-    display: block; width: 100%; margin-top: 12px;
-    background: var(--orange); color: var(--white); border: none;
-    padding: 14px; font-family: 'DM Sans', sans-serif;
-    font-size: 12px; font-weight: 500; letter-spacing: 1.5px;
-    text-transform: uppercase; cursor: pointer; border-radius: 2px;
-    transition: background 0.2s; text-decoration: none; text-align: center;
-  }
-  .action-card-btn:hover { background: var(--orange-dim); }
-  .action-card-modes { display: flex; flex-direction: column; gap: 2px; }
-  .action-card-mode {
-    display: flex; align-items: center; gap: 14px;
-    padding: 14px 16px; background: var(--black);
-    color: var(--gray-light); font-size: 13px;
-    text-decoration: none; border-left: 2px solid transparent;
-    transition: all 0.2s;
-  }
-  .action-card-mode:hover {
-    color: var(--white); border-left-color: var(--orange);
-    padding-left: 20px; background: #111;
-  }
-  .action-card-mode-icon { display: flex; align-items: center; flex-shrink: 0; }
-  .action-card-mode-label { flex: 1; }
-  .action-card-mode-sub { font-size: 11px; color: var(--text-muted); letter-spacing: 0.5px; }
-  .action-card-mode-arr { color: var(--orange); opacity: 0; transition: opacity 0.2s; font-size: 14px; }
-  .action-card-mode:hover .action-card-mode-arr { opacity: 1; }
-  .action-card-track { display: flex; gap: 8px; margin-top: 8px; }
-  .action-card-track input {
-    flex: 1; background: var(--black); border: 1px solid var(--gray-mid);
-    color: var(--white); padding: 14px 16px;
-    font-family: 'DM Sans', sans-serif; font-size: 13px;
-    border-radius: 2px; outline: none;
-  }
-  .action-card-track input::placeholder { color: var(--text-muted); }
-  .action-card-track button {
-    background: var(--orange); border: none; color: var(--white);
-    padding: 14px 20px; border-radius: 2px;
-    font-family: 'DM Sans', sans-serif; font-size: 11px;
-    letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
-    transition: background 0.2s;
-  }
-  .action-card-track button:hover { background: var(--orange-dim); }
-  .action-card-track input:focus { border-color: var(--orange); }
-  .coming-soon-tag {
-    display: inline-block;
-    background: rgba(232,82,26,0.08); color: var(--orange);
-    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-    padding: 4px 10px; border: 1px solid rgba(232,82,26,0.25);
-    border-radius: 2px; margin-bottom: 20px;
-  }
+  .nav-track { color: var(--bone); border: 1px solid var(--hair); }
+  .nav-track:hover { border-color: var(--orange); color: var(--orange); }
+  .nav-cta { background: var(--orange); color: var(--ink); border: 1px solid var(--orange); font-weight: 500; }
+  .nav-cta:hover { background: var(--bone); border-color: var(--bone); }
 
-  /* ─── COVERAGE TABS ─── */
-  .coverage-tabs {
-    display: flex; gap: 2px; margin-bottom: 2px; flex-wrap: wrap;
-  }
-  .coverage-tab {
-    background: var(--black); border: none;
-    color: var(--gray-light); padding: 12px 28px;
-    font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
-    letter-spacing: 2px; text-transform: uppercase;
-    cursor: pointer; transition: all 0.2s;
-  }
-  .coverage-tab:hover { color: var(--white); background: #1f1f1f; }
-  .coverage-tab.active { background: var(--orange); color: var(--white); }
-  .coverage-panel { display: none; }
-  .coverage-panel.active { display: block; }
-  .coverage-panel-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
-  }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 1024px) {
-    nav { padding: 20px 32px; }
-    .nav-center { display: none; }
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 120px 32px 60px; }
-    .hero-right { height: 400px; }
-    .services, .how, .contact, .coverage, .corridors { padding: 80px 32px; }
-    .corridor-grid { grid-template-columns: 1fr; }
-    .services-grid { grid-template-columns: 1fr; }
-    .how-grid { grid-template-columns: 1fr 1fr; }
-    .contact { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
-    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-    .action-cards-section { padding: 0 32px; }
-    .action-cards-grid { grid-template-columns: 1fr; }
-    .coverage-panel-grid { grid-template-columns: 1fr 1fr; }
-  }
-
-  @media (max-width: 640px) {
-    nav { padding: 16px 20px; }
-    .hero-left { padding: 100px 20px 48px; }
-    .services, .how, .contact, .coverage, .corridors { padding: 60px 20px; }
-    .how-grid { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-    .hero-stats { flex-wrap: wrap; gap: 24px; left: 20px; }
-    .hero-track { max-width: 100%; }
-    .nav-right { gap: 16px; }
-    .action-cards-section { padding: 0 20px; }
-    .coverage-panel-grid { grid-template-columns: 1fr; }
-    .coverage-tabs { gap: 4px; }
-    .coverage-tab { padding: 10px 16px; font-size: 10px; }
-    .nav-cta { display: none; }
-    .nav-track { display: none; }
-    .mobile-nav-link { font-size: 36px; padding: 14px 0; }
-  }
-
-  /* ─── HAMBURGER ─── */
   .nav-hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    z-index: 200;
+    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 6px; z-index: 200;
   }
   .nav-hamburger span {
-    display: block;
-    width: 22px;
-    height: 1.5px;
-    background: var(--white);
-    transition: transform 0.3s, opacity 0.3s;
-    transform-origin: center;
+    display: block; width: 24px; height: 1.5px; background: var(--bone);
+    transition: transform 0.3s, opacity 0.3s; transform-origin: center;
   }
   .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
   .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
   .mobile-menu {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: var(--black);
-    z-index: 90;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 40px 48px;
-    animation: panelIn 0.25s ease;
+    display: none; position: fixed; inset: 0; background: var(--ink);
+    z-index: 90; flex-direction: column; justify-content: center; padding: 0 40px;
   }
   .mobile-menu.open { display: flex; }
-
   .mobile-nav-link {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    letter-spacing: 3px;
-    color: var(--gray-light);
-    text-decoration: none;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--gray-mid);
+    font-family: var(--disp); font-size: 44px; letter-spacing: 3px;
+    color: var(--bone-dim); text-decoration: none; padding: 12px 0;
+    border-bottom: 1px solid var(--hair); display: flex; align-items: center; gap: 14px;
     transition: color 0.2s, padding-left 0.2s;
-    display: block;
   }
-  .mobile-nav-link:hover { color: var(--white); padding-left: 8px; }
-  .mobile-nav-cta {
-    border: none;
-    color: var(--orange);
-    margin-top: 24px;
+  .mobile-nav-link:hover { color: var(--bone); padding-left: 8px; }
+  .mobile-nav-link .idx { font-family: var(--mono); font-size: 11px; color: var(--orange); letter-spacing: 1px; }
+  .mobile-nav-cta { color: var(--orange); border-bottom: none; margin-top: 16px; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh; position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding-bottom: 0;
   }
 
+  .hero-globe {
+    position: absolute; top: 50%; right: -12%; transform: translateY(-58%);
+    width: 920px; height: 920px; max-width: none;
+    opacity: 0.95; pointer-events: none; z-index: 1;
+  }
+  .hero-globe::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 40%, var(--ink) 78%);
+  }
+  .hero-veil {
+    position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background: linear-gradient(90deg, var(--ink) 22%, rgba(11,10,9,0.55) 55%, rgba(11,10,9,0.15) 100%);
+  }
+
+  .hero-body { position: relative; z-index: 3; padding: 160px 64px 56px; }
+
+  .hero-meta {
+    display: flex; gap: 28px; align-items: center; margin-bottom: 36px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--bone-dim);
+  }
+  .hero-meta .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); animation: pulse 2s infinite; }
+  .hero-meta b { color: var(--orange); font-weight: 400; }
+
+  h1 {
+    font-family: var(--disp); font-weight: 400;
+    font-size: clamp(84px, 12.5vw, 196px);
+    line-height: 0.86; letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  h1 .ln { display: block; overflow: hidden; }
+  h1 .ln > span { display: inline-block; transform: translateY(112%); animation: rise 1s var(--ease) forwards; }
+  h1 .ln:nth-child(2) > span { animation-delay: 0.12s; }
+  h1 .hollow {
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(245,240,235,0.85);
+  }
+  h1 .accent { color: var(--orange); }
+  @keyframes rise { to { transform: translateY(0); } }
+
+  .hero-foot {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 48px; margin-top: 48px; flex-wrap: wrap;
+  }
+  .hero-sub {
+    max-width: 360px; font-size: 15px; line-height: 1.75; color: var(--bone-dim);
+    opacity: 0; animation: fadeUp 0.9s var(--ease) 0.35s forwards;
+  }
+  .hero-sub strong { color: var(--bone); font-weight: 400; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  .hero-cta-block { display: flex; flex-direction: column; gap: 14px; opacity: 0; animation: fadeUp 0.9s var(--ease) 0.5s forwards; }
+  .hero-actions { display: flex; gap: 12px; }
+
+  .btn-solid, .btn-line {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 1.5px;
+    text-transform: uppercase; text-decoration: none; cursor: pointer;
+    padding: 17px 34px; border-radius: 1px; display: inline-flex; align-items: center; gap: 10px;
+    transition: all 0.25s var(--ease); border: 1px solid transparent;
+  }
+  .btn-solid { background: var(--orange); color: var(--ink); font-weight: 500; border-color: var(--orange); }
+  .btn-solid:hover { background: var(--bone); border-color: var(--bone); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(232,82,26,0.25); }
+  .btn-line { color: var(--bone); border-color: var(--hair); }
+  .btn-line:hover { border-color: var(--bone); transform: translateY(-2px); }
+
+  .hero-track {
+    display: flex; border: 1px solid var(--hair); border-radius: 1px;
+    overflow: hidden; transition: border-color 0.2s; background: rgba(11,10,9,0.6);
+    backdrop-filter: blur(8px);
+  }
+  .hero-track:focus-within { border-color: var(--orange); }
+  .hero-track input {
+    flex: 1; background: none; border: none; outline: none; min-width: 0;
+    color: var(--bone); font-family: var(--mono); font-size: 12px;
+    letter-spacing: 1px; padding: 14px 16px;
+  }
+  .hero-track input::placeholder { color: var(--muted); }
+  .hero-track button {
+    background: none; border: none; border-left: 1px solid var(--hair);
+    color: var(--orange); font-family: var(--mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+    padding: 14px 22px; transition: background 0.2s, color 0.2s;
+  }
+  .hero-track button:hover { background: var(--orange); color: var(--ink); }
+  .hero-track-error { display: none; font-family: var(--mono); font-size: 11px; color: #ef4444; letter-spacing: 1px; }
+
+  /* data strip */
+  .datastrip {
+    position: relative; z-index: 3;
+    border-top: 1px solid var(--hair);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .ds-cell {
+    padding: 26px 64px 26px 64px; border-right: 1px solid var(--hair);
+    display: flex; align-items: baseline; gap: 14px;
+    opacity: 0; animation: fadeUp 0.8s var(--ease) forwards;
+  }
+  .ds-cell:nth-child(1) { animation-delay: 0.55s; }
+  .ds-cell:nth-child(2) { animation-delay: 0.65s; }
+  .ds-cell:nth-child(3) { animation-delay: 0.75s; }
+  .ds-cell:nth-child(4) { animation-delay: 0.85s; border-right: none; }
+  .ds-num { font-family: var(--disp); font-size: 44px; line-height: 1; color: var(--bone); }
+  .ds-num em { font-style: normal; color: var(--orange); }
+  .ds-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--bone-dim); }
+
+  /* ─── MARQUEE ─── */
+  .mq { border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); overflow: hidden; padding: 18px 0; position: relative; z-index: 2; background: var(--ink); }
+  .mq-inner { display: inline-flex; gap: 56px; white-space: nowrap; animation: mq 30s linear infinite; align-items: center; }
+  .mq:hover .mq-inner { animation-play-state: paused; }
+  .mq-item {
+    font-family: var(--disp); font-size: 54px; letter-spacing: 4px; line-height: 1;
+    color: transparent; -webkit-text-stroke: 1px rgba(245,240,235,0.3);
+    display: flex; align-items: center; gap: 56px;
+  }
+  .mq-item::after { content: '✦'; -webkit-text-stroke: 0; color: var(--orange); font-size: 16px; }
+  .mq-item.solid { color: var(--orange); -webkit-text-stroke: 0; }
+  @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ─── SECTION SCAFFOLD ─── */
+  section { position: relative; z-index: 2; }
+  .sec-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 96px 64px 56px; gap: 32px; flex-wrap: wrap;
+  }
+  .sec-title {
+    font-family: var(--disp); font-weight: 400;
+    font-size: clamp(56px, 7vw, 110px); line-height: 0.9; letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .sec-title em { font-style: normal; color: transparent; -webkit-text-stroke: 1px rgba(245,240,235,0.7); }
+  .sec-index { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; }
+  .sec-index::before { content: '['; color: var(--muted); margin-right: 6px; }
+  .sec-index::after { content: ']'; color: var(--muted); margin-left: 6px; }
+
+  /* ─── SERVICES ROWS ─── */
+  .svc-list { border-top: 1px solid var(--hair); }
+  .svc-row {
+    display: grid; grid-template-columns: 110px 1.1fr 1.3fr auto;
+    align-items: center; gap: 40px;
+    padding: 44px 64px; border-bottom: 1px solid var(--hair);
+    text-decoration: none; position: relative; overflow: hidden;
+    transition: color 0.35s;
+  }
+  .svc-row::before {
+    content: ''; position: absolute; inset: 0; background: var(--orange);
+    transform: scaleY(0); transform-origin: bottom;
+    transition: transform 0.45s var(--ease); z-index: 0;
+  }
+  .svc-row:hover::before { transform: scaleY(1); }
+  .svc-row > * { position: relative; z-index: 1; }
+  .svc-idx { font-family: var(--mono); font-size: 12px; letter-spacing: 2px; color: var(--orange); transition: color 0.35s; }
+  .svc-row:hover .svc-idx { color: var(--ink); }
+  .svc-name {
+    font-family: var(--disp); font-size: clamp(40px, 4.6vw, 68px);
+    letter-spacing: 2px; line-height: 0.95; color: var(--bone);
+    text-transform: uppercase; transition: color 0.35s, transform 0.45s var(--ease);
+  }
+  .svc-row:hover .svc-name { color: var(--ink); transform: translateX(12px); }
+  .svc-desc { font-size: 14px; line-height: 1.7; color: var(--bone-dim); max-width: 480px; transition: color 0.35s; }
+  .svc-row:hover .svc-desc { color: rgba(11,10,9,0.75); }
+  .svc-modes { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 10px; transition: color 0.35s; }
+  .svc-row:hover .svc-modes { color: rgba(11,10,9,0.6); }
+  .svc-arr {
+    font-family: var(--disp); font-size: 36px; color: var(--orange);
+    transition: color 0.35s, transform 0.45s var(--ease);
+  }
+  .svc-row:hover .svc-arr { color: var(--ink); transform: translateX(8px); }
+
+  /* ─── CORRIDORS ─── */
+  .corridors-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--hair); border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
+  }
+  .cor-card {
+    background: var(--ink); padding: 52px 44px 44px;
+    text-decoration: none; display: flex; flex-direction: column; min-height: 380px;
+    position: relative; overflow: hidden; transition: background 0.35s;
+  }
+  .cor-card:hover { background: var(--ink-3); }
+  .cor-route {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2.5px;
+    color: var(--orange); text-transform: uppercase; margin-bottom: 36px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .cor-route::before { content: ''; width: 26px; height: 1px; background: var(--orange); }
+  .cor-big {
+    font-family: var(--disp); font-size: clamp(44px, 4vw, 64px);
+    line-height: 0.92; letter-spacing: 1px; color: var(--bone); text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .cor-big em { font-style: normal; color: transparent; -webkit-text-stroke: 1px rgba(245,240,235,0.6); }
+  .cor-sub { font-size: 13px; line-height: 1.7; color: var(--bone-dim); flex: 1; }
+  .cor-foot {
+    margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--hair);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .cor-foot .go { color: var(--orange); transition: transform 0.3s var(--ease); font-size: 16px; }
+  .cor-card:hover .go { transform: translateX(8px); }
+  .cor-watermark {
+    position: absolute; right: -8px; bottom: -26px;
+    font-family: var(--disp); font-size: 150px; line-height: 1;
+    color: rgba(245,240,235,0.025); pointer-events: none; letter-spacing: 0;
+  }
+
+  /* ─── COVERAGE ─── */
+  .coverage { background: var(--ink-2); border-top: 1px solid var(--hair); }
+  .cov-tabs { display: flex; gap: 8px; padding: 0 64px 36px; flex-wrap: wrap; }
+  .cov-tab {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--bone-dim);
+    background: none; border: 1px solid var(--hair); border-radius: 999px;
+    padding: 10px 24px; cursor: pointer; transition: all 0.25s var(--ease);
+  }
+  .cov-tab:hover { color: var(--bone); border-color: var(--bone-dim); }
+  .cov-tab.active { background: var(--orange); border-color: var(--orange); color: var(--ink); font-weight: 500; }
+  .cov-panel { display: none; }
+  .cov-panel.active { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--hair); border-left: 1px solid var(--hair); margin: 0 64px 24px; }
+  .cov-link {
+    background: var(--ink-2); padding: 22px 24px;
+    border-right: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    text-decoration: none; transition: background 0.25s;
+    position: relative;
+  }
+  .cov-link::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+    background: var(--orange); transform: scaleY(0); transition: transform 0.25s var(--ease);
+  }
+  .cov-link:hover { background: var(--ink-3); }
+  .cov-link:hover::before { transform: scaleY(1); }
+  .cov-name { font-size: 14px; color: var(--bone); letter-spacing: 0.5px; }
+  .cov-mode { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: right; }
+  .cov-link:hover .cov-mode { color: var(--orange); }
+  .cov-note {
+    margin: 0 64px; padding: 22px 28px 96px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 1px; color: var(--bone-dim);
+  }
+  .cov-note a { color: var(--orange); text-decoration: none; }
+  .cov-note a:hover { text-decoration: underline; }
+
+  /* ─── PROCESS ─── */
+  .how-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--hair); border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
+    counter-reset: step;
+  }
+  .how-step { background: var(--ink); padding: 52px 40px 60px; position: relative; transition: background 0.3s; }
+  .how-step:hover { background: var(--ink-2); }
+  .how-step::before {
+    counter-increment: step; content: counter(step, decimal-leading-zero);
+    font-family: var(--disp); font-size: 110px; line-height: 1;
+    color: transparent; -webkit-text-stroke: 1px rgba(232,82,26,0.5);
+    display: block; margin-bottom: 28px;
+  }
+  .how-title { font-family: var(--disp); font-size: 26px; letter-spacing: 2px; margin-bottom: 12px; text-transform: uppercase; }
+  .how-desc { font-size: 13px; line-height: 1.75; color: var(--bone-dim); }
+  .how-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; position: absolute; top: 24px; right: 24px; }
+
+  /* ─── CTA BAND ─── */
+  .band {
+    background: var(--orange); color: var(--ink);
+    padding: 88px 64px; position: relative; overflow: hidden;
+  }
+  .band::before {
+    content: 'CANXANSA'; position: absolute; right: -30px; top: 50%; transform: translateY(-50%);
+    font-family: var(--disp); font-size: 280px; letter-spacing: 4px;
+    color: rgba(11,10,9,0.07); pointer-events: none; line-height: 1;
+  }
+  .band-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; position: relative; }
+  .band h2 { font-family: var(--disp); font-weight: 400; font-size: clamp(52px, 6.5vw, 104px); line-height: 0.88; letter-spacing: 1px; text-transform: uppercase; }
+  .band p { font-family: var(--mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-top: 18px; color: rgba(11,10,9,0.7); }
+  .band-btn {
+    font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    background: var(--ink); color: var(--bone);
+    padding: 22px 44px; border-radius: 1px; white-space: nowrap;
+    transition: transform 0.3s var(--ease), box-shadow 0.3s;
+  }
+  .band-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(11,10,9,0.35); }
+
+  /* ─── CONTACT ─── */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1.15fr; gap: 80px;
+    padding: 0 64px 110px; align-items: start;
+  }
+  .contact-intro { font-size: 15px; line-height: 1.8; color: var(--bone-dim); max-width: 420px; margin-bottom: 44px; }
+  .cd { display: flex; align-items: baseline; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--hair-soft); }
+  .cd-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); width: 110px; flex-shrink: 0; }
+  .cd-value { font-size: 14px; color: var(--bone); }
+  .cd-value a { color: inherit; text-decoration: none; }
+  .cd-value a:hover { color: var(--orange); }
+
+  .qform { border: 1px solid var(--hair); padding: 44px; background: var(--ink-2); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .form-group { margin-bottom: 18px; }
+  label {
+    display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--bone-dim); margin-bottom: 8px;
+  }
+  input, select, textarea {
+    width: 100%; background: var(--ink); border: 1px solid var(--hair);
+    color: var(--bone); padding: 14px 16px;
+    font-family: var(--sans); font-size: 14px; border-radius: 1px; outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s; -webkit-appearance: none;
+  }
+  input:hover, select:hover, textarea:hover { border-color: rgba(245,240,235,0.2); }
+  input:focus, select:focus, textarea:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(232,82,26,0.12); }
+  select option { background: var(--ink-2); }
+  textarea { resize: vertical; min-height: 110px; }
+  .form-submit {
+    width: 100%; padding: 19px; margin-top: 6px;
+    background: var(--orange); border: 1px solid var(--orange); color: var(--ink);
+    font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 2px;
+    text-transform: uppercase; cursor: pointer; border-radius: 1px;
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .form-submit:hover { background: var(--bone); border-color: var(--bone); }
+
+  /* ─── FOOTER ─── */
+  footer { border-top: 1px solid var(--hair); position: relative; z-index: 2; }
+  .footer-top {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 48px; padding: 72px 64px 56px;
+  }
+  .footer-logo { font-family: var(--disp); font-size: 30px; letter-spacing: 4px; display: block; margin-bottom: 14px; color: var(--bone); }
+  .footer-logo b { color: var(--orange); font-weight: 400; }
+  .footer-tagline { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 1.5px; line-height: 1.8; text-transform: uppercase; max-width: 240px; }
+  .fcol-title { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 18px; }
+  .fcol-links { display: flex; flex-direction: column; gap: 10px; }
+  .fcol-links a {
+    font-size: 13px; color: var(--bone-dim); text-decoration: none;
+    letter-spacing: 0.5px; transition: color 0.2s, padding-left 0.2s;
+  }
+  .fcol-links a:hover { color: var(--bone); padding-left: 6px; }
+  .footer-bottom {
+    border-top: 1px solid var(--hair); padding: 26px 64px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1px; color: var(--muted);
+  }
+  .footer-bottom a { color: inherit; text-decoration: none; }
+  .footer-bottom a:hover { color: var(--orange); }
+
+  /* ─── REVEAL ─── */
+  .rv { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+  .rv.in { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1180px) {
+    .hero-globe { right: -34%; opacity: 0.55; }
+  }
   @media (max-width: 1024px) {
+    .nav-center { display: none; }
     .nav-hamburger { display: flex; }
+    nav, nav.scrolled { padding-left: 32px; padding-right: 32px; }
+    .hero-body { padding: 130px 32px 48px; }
+    .sec-head { padding: 72px 32px 40px; }
+    .svc-row { grid-template-columns: 1fr; gap: 14px; padding: 36px 32px; }
+    .svc-arr { display: none; }
+    .corridors-grid { grid-template-columns: 1fr; }
+    .datastrip { grid-template-columns: 1fr 1fr; }
+    .ds-cell { padding: 22px 32px; }
+    .ds-cell:nth-child(2) { border-right: none; }
+    .ds-cell:nth-child(1), .ds-cell:nth-child(2) { border-bottom: 1px solid var(--hair); }
+    .cov-tabs { padding: 0 32px 28px; }
+    .cov-panel.active { grid-template-columns: 1fr 1fr; margin: 0 32px 20px; }
+    .cov-note { margin: 0 32px; padding-bottom: 72px; }
+    .how-grid { grid-template-columns: 1fr 1fr; }
+    .band { padding: 64px 32px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; padding: 0 32px 80px; }
+    .footer-top { grid-template-columns: 1fr 1fr; padding: 56px 32px 40px; }
+    .footer-bottom { padding: 22px 32px; }
+    .rails { left: 14px; right: 14px; }
+    .hero-globe { width: 680px; height: 680px; right: -45%; }
+  }
+  @media (max-width: 640px) {
+    nav, nav.scrolled { padding-left: 20px; padding-right: 20px; }
+    .nav-cta, .nav-track { display: none; }
+    .hero-body { padding: 110px 20px 40px; }
+    .hero-foot { margin-top: 36px; }
+    .sec-head { padding: 60px 20px 32px; }
+    .svc-row { padding: 30px 20px; }
+    .ds-cell { padding: 18px 20px; }
+    .ds-num { font-size: 34px; }
+    .cov-tabs { padding: 0 20px 24px; }
+    .cov-panel.active { grid-template-columns: 1fr; margin: 0 20px 18px; }
+    .cov-note { margin: 0 20px; }
+    .how-grid { grid-template-columns: 1fr; }
+    .band { padding: 56px 20px; }
+    .contact-grid { padding: 0 20px 64px; }
+    .qform { padding: 28px 20px; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    .footer-top { grid-template-columns: 1fr; padding: 48px 20px 36px; }
+    .footer-bottom { padding: 20px; }
+    .mq-item { font-size: 38px; }
+    .hero-globe { width: 480px; height: 480px; right: -55%; opacity: 0.4; }
+    .band::before { font-size: 150px; }
+  }
+
+  /* ─── REDUCED MOTION ─── */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .mq-inner, .nav-badge-tag, .hero-meta .dot { animation: none; }
+    h1 .ln > span { animation: none; transform: none; }
+    .hero-sub, .hero-cta-block, .ds-cell { animation: none; opacity: 1; }
+    .rv { opacity: 1; transform: none; transition: none; }
+    .svc-row::before, .btn-solid, .btn-line { transition: none; }
   }
 </style>
 <!-- Google Analytics GA4 with Consent Mode v2 (default denied until user accepts) -->
@@ -1042,40 +674,25 @@
 </head>
 <body>
 
+<div class="grain"></div>
+<div class="rails"></div>
+<div class="progress" id="progress"></div>
+
 <!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">CAN<span>X</span>ANSA<span class="nav-sub">· LOGISTICS</span></a>
+<nav id="nav">
+  <a href="#top" class="nav-logo">CAN<b>X</b>ANSA <small>Logistics</small></a>
   <div class="nav-center">
-    <a href="#services" class="nav-link" data-section="services">
-      Services
-    </a>
-    <a href="#corridors" class="nav-link" data-section="corridors">
-      Corridors
-    </a>
-    <a href="#coverage" class="nav-link" data-section="coverage">
-      Routes
-    </a>
-    <a href="#how" class="nav-link" data-section="how">
-      Process
-    </a>
-    <a href="about/" class="nav-link">
-      About
-    </a>
-    <a href="#contact" class="nav-link" data-section="contact">
-      Contact
-    </a>
-    <a href="shipping-signals/" class="nav-link nav-badge">
-      Signals
-      <span class="nav-badge-tag">LIVE</span>
-    </a>
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#corridors" class="nav-link">Corridors</a>
+    <a href="#coverage" class="nav-link">Routes</a>
+    <a href="#how" class="nav-link">Process</a>
+    <a href="about/" class="nav-link">About</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    <a href="shipping-signals/" class="nav-link">Signals<span class="nav-badge-tag">LIVE</span></a>
   </div>
   <div class="nav-right">
-    <a href="track/" class="nav-track">
-      Track
-    </a>
-    <a href="#contact" class="nav-cta">
-      Get a Quote
-    </a>
+    <a href="track/" class="nav-track">Track</a>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -1084,468 +701,274 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#services" class="mobile-nav-link" data-section="services">
-    Services
-  </a>
-  <a href="#corridors" class="mobile-nav-link" data-section="corridors">
-    Corridors
-  </a>
-  <a href="#coverage" class="mobile-nav-link" data-section="coverage">
-    Routes
-  </a>
-  <a href="#how" class="mobile-nav-link" data-section="how">
-    Process
-  </a>
-  <a href="about/" class="mobile-nav-link">
-    About
-  </a>
-  <a href="shipping-signals/" class="mobile-nav-link nav-badge">
-    Signals
-    <span class="nav-badge-tag">LIVE</span>
-  </a>
-  <a href="track/" class="mobile-nav-link">
-    Track
-  </a>
-  <a href="#contact" class="mobile-nav-link mobile-nav-cta" data-section="contact">
-    Get a Quote →
-  </a>
+  <a href="#services" class="mobile-nav-link"><span class="idx">01</span>Services</a>
+  <a href="#corridors" class="mobile-nav-link"><span class="idx">02</span>Corridors</a>
+  <a href="#coverage" class="mobile-nav-link"><span class="idx">03</span>Routes</a>
+  <a href="#how" class="mobile-nav-link"><span class="idx">04</span>Process</a>
+  <a href="about/" class="mobile-nav-link"><span class="idx">05</span>About</a>
+  <a href="shipping-signals/" class="mobile-nav-link"><span class="idx">06</span>Signals<span class="nav-badge-tag">LIVE</span></a>
+  <a href="track/" class="mobile-nav-link"><span class="idx">07</span>Track</a>
+  <a href="#contact" class="mobile-nav-link mobile-nav-cta">Get a Quote →</a>
 </div>
-
-<!-- ═══ HOME PANEL ═══ -->
-<div class="page-panel active" id="panel-home">
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-left">
-    <div class="hero-tag">
-      Global Logistics
-    </div>
-    <h1>MOVE CARGO<br><span class="accent">ANYWHERE.</span></h1>
-    <p class="hero-sub">Air, sea or road — we connect importers and exporters with the right carrier at the right price, worldwide.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">
-        Get a Quote
-      </a>
-      <a href="#services" class="btn-ghost">
-        Our Services
-      </a>
-    </div>
-    <div class="hero-track">
-      <div class="hero-track-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-      <input type="text" id="hero-track-input" placeholder="Track your shipment">
-      <button id="hero-track-btn">Track</button>
-    </div>
-    <div class="hero-track-error" id="hero-track-error">Invalid tracking number.</div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-grid"></div>
-    <div class="hero-visual">
-      <div id="globe-el"></div>
-    </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">150<span>+</span></div>
-        <div class="stat-label">Countries</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">24<span>/7</span></div>
-        <div class="stat-label">Support</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">3<span>+</span></div>
-        <div class="stat-label">Transport Modes</div>
-      </div>
-    </div>
-  </div>
-</section>
+<header class="hero" id="top">
+  <div id="globe-el" class="hero-globe"></div>
+  <div class="hero-veil"></div>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-inner">
-    <span class="ticker-item">AIR FREIGHT</span>
-    <span class="ticker-item">SEA FREIGHT</span>
-    <span class="ticker-item">ROAD FREIGHT</span>
-    <span class="ticker-item">IMPORT &amp; EXPORT</span>
-    <span class="ticker-item">GLOBAL COVERAGE</span>
-    <span class="ticker-item">REAL-TIME QUOTES</span>
-    <span class="ticker-item">AIR FREIGHT</span>
-    <span class="ticker-item">SEA FREIGHT</span>
-    <span class="ticker-item">ROAD FREIGHT</span>
-    <span class="ticker-item">IMPORT &amp; EXPORT</span>
-    <span class="ticker-item">GLOBAL COVERAGE</span>
-    <span class="ticker-item">REAL-TIME QUOTES</span>
+  <div class="hero-body">
+    <div class="hero-meta">
+      <span class="dot"></span>
+      <span>Freight Forwarding</span>
+      <span><b>TLL</b> Tallinn — <b>IST</b> Istanbul</span>
+      <span>EST. 2025</span>
+    </div>
+    <h1>
+      <span class="ln"><span>MOVE CARGO</span></span>
+      <span class="ln"><span><em class="hollow" style="font-style:normal;">ANY</em><span class="accent">WHERE.</span></span></span>
+    </h1>
+    <div class="hero-foot">
+      <p class="hero-sub"><strong>Air, sea or road</strong> — we connect importers and exporters with the right carrier at the right price, worldwide. Quote in your inbox within <strong>1 hour</strong>.</p>
+      <div class="hero-cta-block">
+        <div class="hero-actions">
+          <a href="#contact" class="btn-solid">Get a Quote ↗</a>
+          <a href="#services" class="btn-line">Our Services</a>
+        </div>
+        <div class="hero-track">
+          <input type="text" id="hero-track-input" placeholder="TRACK — e.g. CX123456-7">
+          <button id="hero-track-btn">Track</button>
+        </div>
+        <div class="hero-track-error" id="hero-track-error">Invalid tracking number.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="datastrip">
+    <div class="ds-cell"><span class="ds-num" data-count="150">150<em>+</em></span><span class="ds-label">Countries served</span></div>
+    <div class="ds-cell"><span class="ds-num" data-count="24">24<em>/7</em></span><span class="ds-label">Support</span></div>
+    <div class="ds-cell"><span class="ds-num" data-count="3">3<em>+</em></span><span class="ds-label">Transport modes</span></div>
+    <div class="ds-cell"><span class="ds-num"><em>&lt;</em>1H</span><span class="ds-label">Quote response</span></div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="mq" aria-hidden="false">
+  <div class="mq-inner">
+    <span class="mq-item">AIR FREIGHT</span>
+    <span class="mq-item solid">SEA FREIGHT</span>
+    <span class="mq-item">ROAD FREIGHT</span>
+    <span class="mq-item solid">IMPORT &amp; EXPORT</span>
+    <span class="mq-item">GLOBAL COVERAGE</span>
+    <span class="mq-item solid">REAL-TIME QUOTES</span>
+    <span class="mq-item" aria-hidden="true">AIR FREIGHT</span>
+    <span class="mq-item solid" aria-hidden="true">SEA FREIGHT</span>
+    <span class="mq-item" aria-hidden="true">ROAD FREIGHT</span>
+    <span class="mq-item solid" aria-hidden="true">IMPORT &amp; EXPORT</span>
+    <span class="mq-item" aria-hidden="true">GLOBAL COVERAGE</span>
+    <span class="mq-item solid" aria-hidden="true">REAL-TIME QUOTES</span>
   </div>
 </div>
 
-<!-- ACTION CARDS -->
-<section class="action-cards-section">
-  <div class="action-cards-grid">
-
-    <!-- Card 1: Get a Quote -->
-    <div class="action-card">
-      <div class="action-card-label">
-        Start Here
-      </div>
-      <div class="action-card-title">Get a Quote</div>
-      <div class="action-card-sub">Tell us your route — we respond within 1 hour.</div>
-      <div class="action-card-inputs">
-        <input type="text" id="ac-origin" placeholder="Origin — City, Country">
-        <input type="text" id="ac-dest" placeholder="Destination — City, Country">
-      </div>
-      <a href="#contact" class="action-card-btn" id="ac-quote-btn">
-        Request a Quote →
-      </a>
-    </div>
-
-    <!-- Card 2: Our Services -->
-    <div class="action-card">
-      <div class="action-card-label">
-        Transport Modes
-      </div>
-      <div class="action-card-title">Our Services</div>
-      <div class="action-card-sub">Air, sea or road — we find the right carrier at the right price.</div>
-      <div class="action-card-modes">
-        <a href="#services" class="action-card-mode">
-          <span class="action-card-mode-icon">
-            <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M24 4C25.5 4 27 8 27 24C27 40 25.5 44 24 44C22.5 44 21 40 21 24C21 8 22.5 4 24 4Z" fill="rgba(232,82,26,0.15)" stroke="#e8521a" stroke-width="1.5"/>
-              <path d="M4 27L21 23H27L44 27V29L27 25H21L4 29V27Z" fill="rgba(232,82,26,0.15)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M13 40L21 37H27L35 40V41.5L27 38.5H21L13 41.5V40Z" fill="rgba(232,82,26,0.15)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          <span class="action-card-mode-label">
-            Air Freight
-            <div class="action-card-mode-sub">Express · Time-critical</div>
-          </span>
-          <span class="action-card-mode-arr">→</span>
-        </a>
-        <a href="#services" class="action-card-mode">
-          <span class="action-card-mode-icon">
-            <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 36L7 28H41L43 36Q24 44 5 36Z" fill="rgba(232,82,26,0.15)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
-              <rect x="10" y="22" width="28" height="6" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5"/>
-              <rect x="18" y="15" width="12" height="7" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5"/>
-              <rect x="22" y="9" width="4" height="6" fill="rgba(232,82,26,0.15)" stroke="#e8521a" stroke-width="1.5"/>
-            </svg>
-          </span>
-          <span class="action-card-mode-label">
-            Sea Freight
-            <div class="action-card-mode-sub">FCL · LCL</div>
-          </span>
-          <span class="action-card-mode-arr">→</span>
-        </a>
-        <a href="#services" class="action-card-mode">
-          <span class="action-card-mode-icon">
-            <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="13" width="26" height="21" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M28 18H37Q44 20 44 29V34H28V18Z" fill="rgba(232,82,26,0.15)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M28 18H37V27H28" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
-              <circle cx="10" cy="36" r="4.5" fill="rgba(232,82,26,0.15)" stroke="#e8521a" stroke-width="1.5"/>
-              <circle cx="10" cy="36" r="1.5" fill="#e8521a"/>
-              <circle cx="38" cy="36" r="4.5" fill="rgba(232,82,26,0.15)" stroke="#e8521a" stroke-width="1.5"/>
-              <circle cx="38" cy="36" r="1.5" fill="#e8521a"/>
-            </svg>
-          </span>
-          <span class="action-card-mode-label">
-            Road Freight
-            <div class="action-card-mode-sub">FTL · LTL · Cross-border</div>
-          </span>
-          <span class="action-card-mode-arr">→</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Card 3: Track Shipment -->
-    <div class="action-card">
-
-      <div class="action-card-title">Track Shipment</div>
-      <div class="action-card-sub">Enter your tracking ID to see real-time status updates for your cargo.</div>
-      <div class="action-card-track">
-        <input type="text" id="home-track-input" placeholder="Enter Tracking ID">
-        <button id="home-track-btn" onclick="(function(){var v=document.getElementById('home-track-input').value.trim().toUpperCase().replace(/\s/g,'');if(!v)return;var m=v.match(/^CX(\d{6})-?(\d)$/);if(!m){document.getElementById('home-track-error').style.display='block';return;}var w=[7,3,1,7,3,1],s=0;for(var i=0;i<6;i++)s+=parseInt(m[1][i])*w[i];if(s%10!==parseInt(m[2])){document.getElementById('home-track-error').style.display='block';return;}document.getElementById('home-track-error').style.display='none';window.location.href='track/?id=CX'+m[1]+'-'+m[2];})();">
-          Track
-        </button>
-      </div>
-      <div id="home-track-error" style="display:none;margin-top:8px;font-size:12px;color:#ef4444;">Invalid tracking number.</div>
-    </div>
-
+<!-- SERVICES -->
+<section id="services">
+  <div class="sec-head">
+    <h2 class="sec-title rv">THREE WAYS<br><em>TO SHIP.</em></h2>
+    <span class="sec-index">001 — What we do</span>
+  </div>
+  <div class="svc-list">
+    <a href="#contact" class="svc-row rv">
+      <span class="svc-idx">/ 01</span>
+      <span class="svc-name">Air Freight</span>
+      <span>
+        <span class="svc-desc">Time-critical shipments delivered fast. We source competitive rates from global airlines for your urgent cargo needs.</span>
+        <span class="svc-modes">Express · Time-critical · Door-to-door</span>
+      </span>
+      <span class="svc-arr">→</span>
+    </a>
+    <a href="#contact" class="svc-row rv">
+      <span class="svc-idx">/ 02</span>
+      <span class="svc-name">Sea Freight</span>
+      <span>
+        <span class="svc-desc">FCL and LCL options for all cargo types. Cost-effective ocean freight solutions connecting major ports worldwide.</span>
+        <span class="svc-modes">FCL · LCL · Port-to-port</span>
+      </span>
+      <span class="svc-arr">→</span>
+    </a>
+    <a href="#contact" class="svc-row rv">
+      <span class="svc-idx">/ 03</span>
+      <span class="svc-name">Road Freight</span>
+      <span>
+        <span class="svc-desc">Cross-border road transport across Europe and beyond. Flexible options for full and partial truck loads.</span>
+        <span class="svc-modes">FTL · LTL · Cross-border</span>
+      </span>
+      <span class="svc-arr">→</span>
+    </a>
   </div>
 </section>
 
-</div>
-<!-- ═══ END HOME PANEL ═══ -->
-
-<!-- ═══ SERVICES PANEL ═══ -->
-<div class="page-panel" id="panel-services">
-<div class="panel-sections">
-<section class="services" id="services">
-  <div class="section-label">
-    What We Do
+<!-- CORRIDORS -->
+<section id="corridors">
+  <div class="sec-head">
+    <h2 class="sec-title rv">SPECIALTY<br><em>CORRIDORS.</em></h2>
+    <span class="sec-index">002 — Trade lanes</span>
   </div>
-  <h2 class="section-title">THREE WAYS<br>TO SHIP.</h2>
-
-  <div class="services-grid">
-    <div class="service-card fade-up">
-      <span class="service-num">01</span>
-      <span class="service-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M24 4C25.5 4 27 8 27 24C27 40 25.5 44 24 44C22.5 44 21 40 21 24C21 8 22.5 4 24 4Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/>
-        <path d="M4 27L21 23H27L44 27V29L27 25H21L4 29V27Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
-        <path d="M13 40L21 37H27L35 40V41.5L27 38.5H21L13 41.5V40Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
-      </svg></span>
-      <h3 class="service-title">Air Freight</h3>
-      <p class="service-desc">Time-critical shipments delivered fast. We source competitive rates from global airlines for your urgent cargo needs.</p>
-      <a href="#contact" class="service-link">
-        Get a Quote →
-      </a>
-    </div>
-
-    <div class="service-card fade-up">
-      <span class="service-num">02</span>
-      <span class="service-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 36L7 28H41L43 36Q24 44 5 36Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
-        <rect x="10" y="22" width="28" height="6" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5"/>
-        <rect x="18" y="15" width="12" height="7" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5"/>
-        <rect x="22" y="9" width="4" height="6" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/>
-      </svg></span>
-      <h3 class="service-title">Sea Freight</h3>
-      <p class="service-desc">FCL and LCL options for all cargo types. Cost-effective ocean freight solutions connecting major ports worldwide.</p>
-      <a href="#contact" class="service-link">
-        Get a Quote →
-      </a>
-    </div>
-
-    <div class="service-card fade-up">
-      <span class="service-num">03</span>
-      <span class="service-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="13" width="26" height="21" fill="rgba(232,82,26,0.08)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
-        <path d="M28 18H37Q44 20 44 29V34H28V18Z" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
-        <path d="M28 18H37V27H28" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/>
-        <circle cx="10" cy="36" r="4.5" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/>
-        <circle cx="10" cy="36" r="1.5" fill="#e8521a"/>
-        <circle cx="38" cy="36" r="4.5" fill="rgba(232,82,26,0.12)" stroke="#e8521a" stroke-width="1.5"/>
-        <circle cx="38" cy="36" r="1.5" fill="#e8521a"/>
-      </svg></span>
-      <h3 class="service-title">Road Freight</h3>
-      <p class="service-desc">Cross-border road transport across Europe and beyond. Flexible options for full and partial truck loads.</p>
-      <a href="#contact" class="service-link">
-        Get a Quote →
-      </a>
-    </div>
+  <div class="corridors-grid">
+    <a href="china-to-europe-via-turkey-freight/" class="cor-card rv">
+      <span class="cor-route">China → Turkey → Europe</span>
+      <span class="cor-big">CHINA<br><em>→ EUROPE</em></span>
+      <span class="cor-sub">via Turkey hub. Belt &amp; Road alternative — Middle Corridor rail, multimodal sea and air freight from Shanghai, Ningbo, Shenzhen to Frankfurt, Hamburg, Madrid.</span>
+      <span class="cor-foot"><span>Rail · Sea · Air · Multimodal</span><span class="go">→</span></span>
+      <span class="cor-watermark">CN</span>
+    </a>
+    <a href="central-asia-to-europe-freight/" class="cor-card rv">
+      <span class="cor-route">Central Asia → Turkey → Europe</span>
+      <span class="cor-big">CENTRAL ASIA<br><em>→ EUROPE</em></span>
+      <span class="cor-sub">Kazakhstan, Uzbekistan, Turkmenistan, Kyrgyzstan and Tajikistan to Europe via Caspian crossing and Turkey hub. The fastest route bypassing Russia.</span>
+      <span class="cor-foot"><span>Rail · Sea · Road</span><span class="go">→</span></span>
+      <span class="cor-watermark">KZ</span>
+    </a>
+    <a href="estonia-turkey-freight/" class="cor-card rv">
+      <span class="cor-route">Estonia — Turkey</span>
+      <span class="cor-big">ESTONIA<br><em>— TURKEY</em></span>
+      <span class="cor-sub">Direct freight between Estonia and Turkey. Dual-hub advantage — EU customs in Tallinn, Turkish customs in Istanbul. One contract, one team, no agent margins.</span>
+      <span class="cor-foot"><span>Air · Sea · Road</span><span class="go">→</span></span>
+      <span class="cor-watermark">EE</span>
+    </a>
   </div>
 </section>
 
-</div></div>
-<!-- ═══ END SERVICES PANEL ═══ -->
-
-<!-- ═══ CORRIDORS PANEL ═══ -->
-<div class="page-panel" id="panel-corridors">
-<div class="panel-sections">
-<section class="corridors" id="corridors">
-  <div class="section-label">
-    Specialty Corridors
-  </div>
-  <h2 class="section-title">SPECIALTY<br>CORRIDORS.</h2>
-
-  <div class="corridor-grid">
-
-    <a href="china-to-europe-via-turkey-freight/" class="corridor-card fade-up">
-      <div class="corridor-route">CHINA → TURKEY → EUROPE</div>
-      <div class="corridor-title">China → Europe</div>
-      <div class="corridor-subtitle">via Turkey hub. Belt &amp; Road alternative — Middle Corridor rail, multimodal sea and air freight from Shanghai, Ningbo, Shenzhen to Frankfurt, Hamburg, Madrid.</div>
-      <div class="corridor-modes">RAIL · SEA · AIR · MULTIMODAL</div>
-    </a>
-
-    <a href="central-asia-to-europe-freight/" class="corridor-card fade-up">
-      <div class="corridor-route">CENTRAL ASIA → TURKEY → EUROPE</div>
-      <div class="corridor-title">Central Asia → Europe</div>
-      <div class="corridor-subtitle">Kazakhstan, Uzbekistan, Turkmenistan, Kyrgyzstan and Tajikistan to Europe via Caspian crossing and Turkey hub. The fastest route bypassing Russia.</div>
-      <div class="corridor-modes">RAIL · SEA · ROAD</div>
-    </a>
-
-    <a href="estonia-turkey-freight/" class="corridor-card fade-up">
-      <div class="corridor-route">ESTONIA — TURKEY</div>
-      <div class="corridor-title">Estonia — Turkey</div>
-      <div class="corridor-subtitle">Direct freight between Estonia and Turkey. Dual-hub advantage — EU customs in Tallinn, Turkish customs in Istanbul. One contract, one team, no agent margins.</div>
-      <div class="corridor-modes">AIR · SEA · ROAD</div>
-    </a>
-
-  </div>
-</section>
-
-</div></div>
-<!-- ═══ END CORRIDORS PANEL ═══ -->
-
-<!-- ═══ COVERAGE PANEL ═══ -->
-<div class="page-panel" id="panel-coverage">
-<div class="panel-sections">
+<!-- COVERAGE -->
 <section class="coverage" id="coverage">
-  <div class="section-label">
-    Global Coverage
-  </div>
-  <h2 class="section-title">WE MOVE CARGO<br>ANYWHERE.</h2>
-
-  <div class="coverage-tabs">
-    <button class="coverage-tab active" data-tab="europe">
-      Europe
-    </button>
-    <button class="coverage-tab" data-tab="asia">
-      Asia Pacific
-    </button>
-    <button class="coverage-tab" data-tab="americas">Americas</button>
-    <button class="coverage-tab" data-tab="mea">
-      Middle East &amp; Africa
-    </button>
+  <div class="sec-head">
+    <h2 class="sec-title rv">WE MOVE CARGO<br><em>ANYWHERE.</em></h2>
+    <span class="sec-index">003 — Global coverage</span>
   </div>
 
-  <!-- Europe -->
-  <div class="coverage-panel active" data-panel="europe">
-    <div class="coverage-panel-grid">
-      <a href="/germany-freight/" class="coverage-country active"><span>Germany</span><span class="coverage-mode">Air · Sea · Road</span></a>
-      <a href="france-freight/" class="coverage-country active"><span>France</span><span class="coverage-mode">Air · Sea · Road</span></a>
-      <a href="netherlands-freight/" class="coverage-country active"><span>Netherlands</span><span class="coverage-mode">Air · Sea · Road</span></a>
-      <a href="italy-freight/" class="coverage-country active"><span>Italy</span><span class="coverage-mode">Air · Sea · Road</span></a>
-      <a href="spain-freight/" class="coverage-country active"><span>Spain</span><span class="coverage-mode">Air · Sea · Road</span></a>
-      <a href="poland-freight/" class="coverage-country active"><span>Poland</span><span class="coverage-mode">Air · Sea · Road</span></a>
-      <a href="belgium-freight/" class="coverage-country active"><span>Belgium</span><span class="coverage-mode">Air · Sea · Road</span></a>
-      <a href="uk-freight/" class="coverage-country active"><span>UK</span><span class="coverage-mode">Air · Sea · Road</span></a>
-      <a href="turkey-freight/" class="coverage-country active"><span>Turkey</span><span class="coverage-mode">Air · Sea · Road</span></a>
-      <a href="estonia-freight/" class="coverage-country active"><span>Estonia</span><span class="coverage-mode">Air · Sea · Road</span></a>
-    </div>
+  <div class="cov-tabs rv">
+    <button class="cov-tab active" data-tab="europe">Europe</button>
+    <button class="cov-tab" data-tab="asia">Asia Pacific</button>
+    <button class="cov-tab" data-tab="americas">Americas</button>
+    <button class="cov-tab" data-tab="mea">Middle East &amp; Africa</button>
   </div>
 
-  <!-- Asia Pacific -->
-  <div class="coverage-panel" data-panel="asia">
-    <div class="coverage-panel-grid">
-      <a href="china-freight/" class="coverage-country active"><span>China</span><span class="coverage-mode">Air · Sea · Rail</span></a>
-      <a href="india-freight/" class="coverage-country active"><span>India</span><span class="coverage-mode">Air · Sea</span></a>
-      <a href="/japan-freight/" class="coverage-country active"><span>Japan</span><span class="coverage-mode">Air · Sea</span></a>
-      <a href="/south-korea-freight/" class="coverage-country active"><span>South Korea</span><span class="coverage-mode">Air · Sea</span></a>
-      <a href="/vietnam-freight/" class="coverage-country active"><span>Vietnam</span><span class="coverage-mode">Sea</span></a>
-      <a href="/bangladesh-freight/" class="coverage-country active"><span>Bangladesh</span><span class="coverage-mode">Air · Sea</span></a>
-      <a href="central-asia-to-europe-freight/" class="coverage-country active"><span>Kazakhstan</span><span class="coverage-mode">Rail · Road</span></a>
-      <a href="central-asia-to-europe-freight/" class="coverage-country active"><span>Uzbekistan</span><span class="coverage-mode">Rail · Road</span></a>
-    </div>
+  <div class="cov-panel active" data-panel="europe">
+    <a href="/germany-freight/" class="cov-link"><span class="cov-name">Germany</span><span class="cov-mode">Air · Sea · Road</span></a>
+    <a href="france-freight/" class="cov-link"><span class="cov-name">France</span><span class="cov-mode">Air · Sea · Road</span></a>
+    <a href="netherlands-freight/" class="cov-link"><span class="cov-name">Netherlands</span><span class="cov-mode">Air · Sea · Road</span></a>
+    <a href="italy-freight/" class="cov-link"><span class="cov-name">Italy</span><span class="cov-mode">Air · Sea · Road</span></a>
+    <a href="spain-freight/" class="cov-link"><span class="cov-name">Spain</span><span class="cov-mode">Air · Sea · Road</span></a>
+    <a href="poland-freight/" class="cov-link"><span class="cov-name">Poland</span><span class="cov-mode">Air · Sea · Road</span></a>
+    <a href="belgium-freight/" class="cov-link"><span class="cov-name">Belgium</span><span class="cov-mode">Air · Sea · Road</span></a>
+    <a href="uk-freight/" class="cov-link"><span class="cov-name">UK</span><span class="cov-mode">Air · Sea · Road</span></a>
+    <a href="turkey-freight/" class="cov-link"><span class="cov-name">Turkey</span><span class="cov-mode">Air · Sea · Road</span></a>
+    <a href="estonia-freight/" class="cov-link"><span class="cov-name">Estonia</span><span class="cov-mode">Air · Sea · Road</span></a>
   </div>
 
-  <!-- Americas -->
-  <div class="coverage-panel" data-panel="americas">
-    <div class="coverage-panel-grid">
-      <a href="/usa-freight/" class="coverage-country active"><span>USA</span><span class="coverage-mode">Air · Sea</span></a>
-      <a href="/canada-freight/" class="coverage-country active"><span>Canada</span><span class="coverage-mode">Air · Sea</span></a>
-      <a href="/brazil-freight/" class="coverage-country active"><span>Brazil</span><span class="coverage-mode">Air · Sea</span></a>
-      <a href="/mexico-freight/" class="coverage-country active"><span>Mexico</span><span class="coverage-mode">Air · Sea</span></a>
-    </div>
+  <div class="cov-panel" data-panel="asia">
+    <a href="china-freight/" class="cov-link"><span class="cov-name">China</span><span class="cov-mode">Air · Sea · Rail</span></a>
+    <a href="india-freight/" class="cov-link"><span class="cov-name">India</span><span class="cov-mode">Air · Sea</span></a>
+    <a href="/japan-freight/" class="cov-link"><span class="cov-name">Japan</span><span class="cov-mode">Air · Sea</span></a>
+    <a href="/south-korea-freight/" class="cov-link"><span class="cov-name">South Korea</span><span class="cov-mode">Air · Sea</span></a>
+    <a href="/vietnam-freight/" class="cov-link"><span class="cov-name">Vietnam</span><span class="cov-mode">Sea</span></a>
+    <a href="/bangladesh-freight/" class="cov-link"><span class="cov-name">Bangladesh</span><span class="cov-mode">Air · Sea</span></a>
+    <a href="central-asia-to-europe-freight/" class="cov-link"><span class="cov-name">Kazakhstan</span><span class="cov-mode">Rail · Road</span></a>
+    <a href="central-asia-to-europe-freight/" class="cov-link"><span class="cov-name">Uzbekistan</span><span class="cov-mode">Rail · Road</span></a>
   </div>
 
-  <!-- Middle East & Africa -->
-  <div class="coverage-panel" data-panel="mea">
-    <div class="coverage-panel-grid">
-      <a href="/uae-freight/" class="coverage-country active"><span>UAE</span><span class="coverage-mode">Air · Sea · Road</span></a>
-      <a href="/saudi-arabia-freight/" class="coverage-country active"><span>Saudi Arabia</span><span class="coverage-mode">Air · Sea · Road</span></a>
-      <a href="/qatar-freight/" class="coverage-country active"><span>Qatar</span><span class="coverage-mode">Air · Sea · Road</span></a>
-      <a href="/iraq-freight/" class="coverage-country active"><span>Iraq</span><span class="coverage-mode">Air · Sea · Road</span></a>
-      <a href="/syria-freight/" class="coverage-country active"><span>Syria</span><span class="coverage-mode">Air · Road</span></a>
-      <a href="/egypt-freight/" class="coverage-country active"><span>Egypt</span><span class="coverage-mode">Air · Sea</span></a>
-      <a href="/south-africa-freight/" class="coverage-country active"><span>South Africa</span><span class="coverage-mode">Air · Sea</span></a>
-      <a href="/nigeria-freight/" class="coverage-country active"><span>Nigeria</span><span class="coverage-mode">Sea</span></a>
-    </div>
+  <div class="cov-panel" data-panel="americas">
+    <a href="/usa-freight/" class="cov-link"><span class="cov-name">USA</span><span class="cov-mode">Air · Sea</span></a>
+    <a href="/canada-freight/" class="cov-link"><span class="cov-name">Canada</span><span class="cov-mode">Air · Sea</span></a>
+    <a href="/brazil-freight/" class="cov-link"><span class="cov-name">Brazil</span><span class="cov-mode">Air · Sea</span></a>
+    <a href="/mexico-freight/" class="cov-link"><span class="cov-name">Mexico</span><span class="cov-mode">Air · Sea</span></a>
   </div>
 
-  <div class="coverage-note fade-up">
-    <span>Don't see your destination? We ship to 150+ countries. <a href="#contact">Get in touch →</a></span>
+  <div class="cov-panel" data-panel="mea">
+    <a href="/uae-freight/" class="cov-link"><span class="cov-name">UAE</span><span class="cov-mode">Air · Sea · Road</span></a>
+    <a href="/saudi-arabia-freight/" class="cov-link"><span class="cov-name">Saudi Arabia</span><span class="cov-mode">Air · Sea · Road</span></a>
+    <a href="/qatar-freight/" class="cov-link"><span class="cov-name">Qatar</span><span class="cov-mode">Air · Sea · Road</span></a>
+    <a href="/iraq-freight/" class="cov-link"><span class="cov-name">Iraq</span><span class="cov-mode">Air · Sea · Road</span></a>
+    <a href="/syria-freight/" class="cov-link"><span class="cov-name">Syria</span><span class="cov-mode">Air · Road</span></a>
+    <a href="/egypt-freight/" class="cov-link"><span class="cov-name">Egypt</span><span class="cov-mode">Air · Sea</span></a>
+    <a href="/south-africa-freight/" class="cov-link"><span class="cov-name">South Africa</span><span class="cov-mode">Air · Sea</span></a>
+    <a href="/nigeria-freight/" class="cov-link"><span class="cov-name">Nigeria</span><span class="cov-mode">Sea</span></a>
   </div>
+
+  <div class="cov-note rv">// Don't see your destination? We ship to 150+ countries. <a href="#contact">Get in touch →</a></div>
 </section>
 
-</div></div>
-<!-- ═══ END COVERAGE PANEL ═══ -->
-
-<!-- ═══ HOW PANEL ═══ -->
-<div class="page-panel" id="panel-how">
-<div class="panel-sections">
-<section class="how" id="how">
-  <div class="section-label">
-    How It Works
+<!-- PROCESS -->
+<section id="how">
+  <div class="sec-head">
+    <h2 class="sec-title rv">SIMPLE<br><em>PROCESS.</em></h2>
+    <span class="sec-index">004 — How it works</span>
   </div>
-  <h2 class="section-title">SIMPLE<br>PROCESS.</h2>
-
   <div class="how-grid">
-    <div class="how-step fade-up">
-      <div class="step-num">01</div>
-      <h3 class="step-title">Send Your Request</h3>
-      <p class="step-desc">Fill in the quote form with your shipment details — origin, destination, cargo type and timeline.</p>
-      <div class="step-connector"></div>
+    <div class="how-step rv">
+      <span class="how-tag">Step</span>
+      <h3 class="how-title">Send Your Request</h3>
+      <p class="how-desc">Fill in the quote form with your shipment details — origin, destination, cargo type and timeline.</p>
     </div>
-    <div class="how-step fade-up">
-      <div class="step-num">02</div>
-      <h3 class="step-title">Quote Delivered</h3>
-      <p class="step-desc">We get back to you with the best available rate within 1 hour.</p>
-      <div class="step-connector"></div>
+    <div class="how-step rv">
+      <span class="how-tag">&lt; 1 hour</span>
+      <h3 class="how-title">Quote Delivered</h3>
+      <p class="how-desc">We get back to you with the best available rate within 1 hour.</p>
     </div>
-    <div class="how-step fade-up">
-      <div class="step-num">03</div>
-      <h3 class="step-title">You Approve</h3>
-      <p class="step-desc">Review the quote, compare options and confirm. No hidden fees, no surprises.</p>
-      <div class="step-connector"></div>
+    <div class="how-step rv">
+      <span class="how-tag">No hidden fees</span>
+      <h3 class="how-title">You Approve</h3>
+      <p class="how-desc">Review the quote, compare options and confirm. No hidden fees, no surprises.</p>
     </div>
-    <div class="how-step fade-up">
-      <div class="step-num">04</div>
-      <h3 class="step-title">Cargo Moves</h3>
-      <p class="step-desc">We coordinate with the carrier and keep you updated until your shipment reaches its destination.</p>
+    <div class="how-step rv">
+      <span class="how-tag">Tracked</span>
+      <h3 class="how-title">Cargo Moves</h3>
+      <p class="how-desc">We coordinate with the carrier and keep you updated until your shipment reaches its destination.</p>
     </div>
   </div>
 </section>
 
-</div></div>
-<!-- ═══ END HOW PANEL ═══ -->
-
-<!-- ═══ CONTACT PANEL ═══ -->
-<div class="page-panel" id="panel-contact">
-<div class="panel-sections">
-<section class="contact" id="contact">
-  <div class="contact-left">
-    <div class="section-label">
-      Get in Touch
+<!-- CTA BAND -->
+<div class="band">
+  <div class="band-inner">
+    <div class="rv">
+      <h2>READY<br>TO SHIP?</h2>
+      <p>// Quote in your inbox within 1 hour</p>
     </div>
-    <h2 class="section-title">REQUEST<br>A QUOTE.</h2>
-    <p class="contact-intro">Tell us about your shipment and we'll get back to you with a competitive quote within 1 hour.</p>
-
-    <div class="contact-detail">
-      <div class="contact-detail-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e8521a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-      </div>
-      <div class="contact-detail-text">
-        <div class="contact-detail-label">Email</div>
-        <div class="contact-detail-value">
-          <a href="mailto:info@canxansa.com" style="color:inherit;text-decoration:none;">info@canxansa.com</a>
-        </div>
-      </div>
-    </div>
-    <div class="contact-detail">
-      <div class="contact-detail-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e8521a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      </div>
-      <div class="contact-detail-text">
-        <div class="contact-detail-label">
-          Coverage
-        </div>
-        <div class="contact-detail-value">Worldwide</div>
-      </div>
-    </div>
-    <div class="contact-detail">
-      <div class="contact-detail-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e8521a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-      </div>
-      <div class="contact-detail-text">
-        <div class="contact-detail-label">
-          Response Time
-        </div>
-        <div class="contact-detail-value">Within 1 hour</div>
-      </div>
-    </div>
+    <a href="#contact" class="band-btn rv">Request a Quote →</a>
   </div>
+</div>
 
-  <div class="contact-right">
-    <form id="quote-form">
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-head">
+    <h2 class="sec-title rv">REQUEST<br><em>A QUOTE.</em></h2>
+    <span class="sec-index">005 — Get in touch</span>
+  </div>
+  <div class="contact-grid">
+    <div class="rv">
+      <p class="contact-intro">Tell us about your shipment and we'll get back to you with a competitive quote within 1 hour.</p>
+      <div class="cd">
+        <span class="cd-label">Email</span>
+        <span class="cd-value"><a href="mailto:info@canxansa.com">info@canxansa.com</a></span>
+      </div>
+      <div class="cd">
+        <span class="cd-label">Phone / WA</span>
+        <span class="cd-value"><a href="https://wa.me/3725233191" target="_blank" rel="noopener" onclick="gtag('event', 'whatsapp_click', { event_category: 'contact', event_label: 'contact_section' })">+372 523 3191</a></span>
+      </div>
+      <div class="cd">
+        <span class="cd-label">Coverage</span>
+        <span class="cd-value">Worldwide — 150+ countries</span>
+      </div>
+      <div class="cd">
+        <span class="cd-label">Response</span>
+        <span class="cd-value">Within 1 hour</span>
+      </div>
+      <div class="cd">
+        <span class="cd-label">HQ</span>
+        <span class="cd-value">Tornimäe tn 5, 10145 Tallinn, Estonia</span>
+      </div>
+    </div>
+
+    <form id="quote-form" class="qform rv">
       <div class="form-row">
         <div class="form-group">
           <label>Full Name</label>
@@ -1589,122 +1012,123 @@
         <label>Cargo Details</label>
         <textarea name="cargo_details" placeholder="Cargo type, weight, dimensions, special requirements..." required></textarea>
       </div>
-      <button type="submit" class="form-submit">
-        Send Request
-      </button>
+      <button type="submit" class="form-submit">Send Request</button>
     </form>
   </div>
 </section>
 
-</div></div>
-<!-- ═══ END CONTACT PANEL ═══ -->
-
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
-    <div class="footer-brand">
-      <span class="footer-logo">CAN<span>X</span>ANSA<span style="font-family:'DM Sans',sans-serif;font-weight:300;font-size:10px;letter-spacing:2px;color:#888;margin-left:6px;">· LOGISTICS</span></span>
-      <p class="footer-tagline">Global freight forwarding. Air, sea &amp; road.</p>
-    </div>
-
     <div>
-      <div class="footer-col-title">
-        Services
-      </div>
-      <div class="footer-col-links">
-        <a href="#services">Air Freight<span class="arr">→</span></a>
-        <a href="#services">Sea Freight<span class="arr">→</span></a>
-        <a href="#services">Road Freight<span class="arr">→</span></a>
-        <a href="#how">How It Works<span class="arr">→</span></a>
+      <span class="footer-logo">CAN<b>X</b>ANSA</span>
+      <p class="footer-tagline">Global freight forwarding.<br>Air, sea &amp; road.</p>
+    </div>
+    <div>
+      <div class="fcol-title">Services</div>
+      <div class="fcol-links">
+        <a href="#services">Air Freight</a>
+        <a href="#services">Sea Freight</a>
+        <a href="#services">Road Freight</a>
+        <a href="#how">How It Works</a>
       </div>
     </div>
-
     <div>
-      <div class="footer-col-title">
-        Contact
-      </div>
-      <div class="footer-col-links">
-        <a href="mailto:info@canxansa.com">info@canxansa.com <span class="arr">→</span></a>
-<a href="https://wa.me/3725233191" target="_blank" rel="noopener" onclick="gtag('event', 'whatsapp_click', { event_category: 'contact', event_label: 'footer' })">WhatsApp <span class="arr">→</span></a>
-        <a href="https://www.linkedin.com/company/canxansa/" target="_blank" rel="noopener">LinkedIn <span class="arr">→</span></a>
-        <a href="#contact">
-          Get a Quote
-          <span class="arr">→</span>
-        </a>
-        <a href="/about/">
-          About
-          <span class="arr">→</span>
-        </a>
-        <a href="/terms/">
-          Terms
-          <span class="arr">→</span>
-        </a>
-        <a href="/privacy/">
-          Privacy Policy
-          <span class="arr">→</span>
-        </a>
-        <a href="/cookie-policy/">
-          Cookie Policy
-          <span class="arr">→</span>
-        </a>
-        <a href="#" onclick="if(window.CanxansaConsent){window.CanxansaConsent.open();}return false;">
-          Cookie Settings
-          <span class="arr">→</span>
-        </a>
+      <div class="fcol-title">Contact</div>
+      <div class="fcol-links">
+        <a href="mailto:info@canxansa.com">info@canxansa.com</a>
+        <a href="https://wa.me/3725233191" target="_blank" rel="noopener" onclick="gtag('event', 'whatsapp_click', { event_category: 'contact', event_label: 'footer' })">WhatsApp</a>
+        <a href="https://www.linkedin.com/company/canxansa/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#contact">Get a Quote</a>
+        <a href="/about/">About</a>
+        <a href="/terms/">Terms</a>
+        <a href="/privacy/">Privacy Policy</a>
+        <a href="/cookie-policy/">Cookie Policy</a>
+        <a href="#" onclick="if(window.CanxansaConsent){window.CanxansaConsent.open();}return false;">Cookie Settings</a>
       </div>
     </div>
-
     <div>
-      <div class="footer-col-title">
-        Resources
-      </div>
-      <div class="footer-col-links">
-        <a href="shipping-signals/">
-          Shipping Signals
-          <span class="arr">→</span>
-        </a>
-        <a href="faq/">
-          FAQ
-          <span class="arr">→</span>
-        </a>
+      <div class="fcol-title">Resources</div>
+      <div class="fcol-links">
+        <a href="shipping-signals/">Shipping Signals</a>
+        <a href="faq/">FAQ</a>
       </div>
     </div>
   </div>
-
   <div class="footer-bottom">
-    <div class="footer-copy">© 2026 CANXANSA OÜ. All rights reserved.</div>
-    <div class="footer-copy">Tornimäe tn 5, 10145 Tallinn, Estonia · <a href="tel:+3725233191" style="color:inherit;text-decoration:none;">+372 523 3191</a> · <a href="mailto:info@canxansa.com" style="color:inherit;text-decoration:none;">info@canxansa.com</a></div>
-  </div></footer>
+    <span>© 2026 CANXANSA OÜ. All rights reserved.</span>
+    <span>Tornimäe tn 5, 10145 Tallinn, Estonia · <a href="tel:+3725233191">+372 523 3191</a> · <a href="mailto:info@canxansa.com">info@canxansa.com</a></span>
+  </div>
+</footer>
 
 <script>
-  // Hero track
-  document.getElementById('hero-track-btn').addEventListener('click', function() {
-    var v = document.getElementById('hero-track-input').value.trim().toUpperCase().replace(/\s/g, '');
+  // Scroll progress + nav state
+  const navEl = document.getElementById('nav');
+  const progressEl = document.getElementById('progress');
+  function onScroll() {
+    const st = window.scrollY;
+    navEl.classList.toggle('scrolled', st > 40);
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    progressEl.style.width = (h > 0 ? (st / h) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Reveal on scroll
+  const rvObs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('in'), i * 90);
+        rvObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
+
+  // Scrollspy
+  const spyTargets = ['services','corridors','coverage','how','contact'];
+  const spyObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.nav-center .nav-link').forEach(l => {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  spyTargets.forEach(id => { const el = document.getElementById(id); if (el) spyObs.observe(el); });
+
+  // ?panel= deep links from other pages
+  const urlPanel = new URLSearchParams(window.location.search).get('panel');
+  if (urlPanel && document.getElementById(urlPanel)) {
+    setTimeout(() => document.getElementById(urlPanel).scrollIntoView(), 60);
+  }
+
+  // Tracking check
+  function checkTrack(inputId, errId) {
+    var v = document.getElementById(inputId).value.trim().toUpperCase().replace(/\s/g, '');
     if (!v) return;
     var m = v.match(/^CX(\d{6})-?(\d)$/);
-    if (!m) { document.getElementById('hero-track-error').style.display = 'block'; return; }
+    var err = document.getElementById(errId);
+    if (!m) { err.style.display = 'block'; return; }
     var w = [7,3,1,7,3,1], s = 0;
     for (var i = 0; i < 6; i++) s += parseInt(m[1][i]) * w[i];
-    if (s % 10 !== parseInt(m[2])) { document.getElementById('hero-track-error').style.display = 'block'; return; }
-    document.getElementById('hero-track-error').style.display = 'none';
+    if (s % 10 !== parseInt(m[2])) { err.style.display = 'block'; return; }
+    err.style.display = 'none';
     window.location.href = 'track/?id=CX' + m[1] + '-' + m[2];
-  });
-  document.getElementById('hero-track-input').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') document.getElementById('hero-track-btn').click();
-  });
-  document.getElementById('hero-track-input').addEventListener('input', function() {
-    document.getElementById('hero-track-error').style.display = 'none';
-  });
+  }
+  document.getElementById('hero-track-btn').addEventListener('click', () => checkTrack('hero-track-input', 'hero-track-error'));
+  document.getElementById('hero-track-input').addEventListener('keydown', e => { if (e.key === 'Enter') checkTrack('hero-track-input', 'hero-track-error'); });
+  document.getElementById('hero-track-input').addEventListener('input', () => { document.getElementById('hero-track-error').style.display = 'none'; });
 
-  // Form submit
+  // Quote form → Formspree
   document.getElementById('quote-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const lang = document.body.classList.contains('tr') ? 'tr' : 'en';
     const btn = this.querySelector('.form-submit');
     btn.disabled = true;
-    btn.textContent = lang === 'tr' ? 'Gönderiliyor...' : 'Sending...';
-
     const originalHTML = btn.innerHTML;
+    btn.textContent = lang === 'tr' ? 'Gönderiliyor...' : 'Sending...';
     try {
       const res = await fetch('https://formspree.io/f/mpqykzop', {
         method: 'POST',
@@ -1714,9 +1138,7 @@
       if (res.ok) {
         gtag('event', 'generate_lead', { event_category: 'form', event_label: 'quote_form' });
         window.location.href = 'thank-you.html?lang=' + lang;
-      } else {
-        throw new Error('failed');
-      }
+      } else { throw new Error('failed'); }
     } catch {
       btn.disabled = false;
       btn.innerHTML = originalHTML;
@@ -1725,159 +1147,71 @@
     }
   });
 
-  // Scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 100);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // ── Panel switching ──
-  function showPanel(id) {
-    document.querySelectorAll('.page-panel').forEach(p => p.classList.remove('active'));
-    const target = document.getElementById('panel-' + id);
-    if (target) {
-      target.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    document.querySelectorAll('.nav-link[data-section]').forEach(l => {
-      l.classList.toggle('active', l.dataset.section === id);
-    });
-  }
-
-  // Nav center links
-  document.querySelectorAll('.nav-link[data-section]').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      showPanel(this.dataset.section);
-    });
-  });
-
-  // Logo → home
-  document.querySelector('.nav-logo').addEventListener('click', function(e) {
-    e.preventDefault();
-    showPanel('home');
-    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-  });
-
-  // Get a Quote CTA → contact panel
-  document.querySelector('.nav-cta').addEventListener('click', function(e) {
-    e.preventDefault();
-    showPanel('contact');
-  });
-
-  // Tüm iç anchor linkleri panel'e yönlendir
-  const anchorMap = { '#contact': 'contact', '#services': 'services', '#corridors': 'corridors', '#coverage': 'coverage', '#how': 'how' };
-  document.querySelectorAll('a[href="#contact"], a[href="#services"], a[href="#corridors"], a[href="#coverage"], a[href="#how"]').forEach(a => {
-    a.addEventListener('click', function(e) {
-      e.preventDefault();
-      showPanel(anchorMap[this.getAttribute('href')]);
-    });
-  });
-
-  // Action card: origin/dest → contact formuna taşı
-  document.getElementById('ac-quote-btn').addEventListener('click', function(e) {
-    e.preventDefault();
-    const origin = document.getElementById('ac-origin').value;
-    const dest   = document.getElementById('ac-dest').value;
-    showPanel('contact');
-    setTimeout(() => {
-      if (origin) { const el = document.querySelector('input[name="origin"]'); if (el) el.value = origin; }
-      if (dest)   { const el = document.querySelector('input[name="destination"]'); if (el) el.value = dest; }
-    }, 50);
-  });
-
-  // Hamburger menu
+  // Hamburger
   const hamburger = document.getElementById('nav-hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
-
   hamburger.addEventListener('click', function() {
     this.classList.toggle('open');
     mobileMenu.classList.toggle('open');
     document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
   });
-
-  document.querySelectorAll('.mobile-nav-link[data-section]').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
       hamburger.classList.remove('open');
       mobileMenu.classList.remove('open');
       document.body.style.overflow = '';
-      showPanel(this.dataset.section);
     });
   });
-
-  // Dis sayfalardan ?panel=contact ile dogrudan panel acma
-  const urlPanel = new URLSearchParams(window.location.search).get('panel');
-  if (urlPanel && document.getElementById('panel-' + urlPanel)) {
-    showPanel(urlPanel);
-  }
 
   // Coverage tabs
-  document.querySelectorAll('.coverage-tab').forEach(tab => {
+  document.querySelectorAll('.cov-tab').forEach(tab => {
     tab.addEventListener('click', function() {
-      document.querySelectorAll('.coverage-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.coverage-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.cov-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.cov-panel').forEach(p => p.classList.remove('active'));
       this.classList.add('active');
-      document.querySelector('.coverage-panel[data-panel="' + this.dataset.tab + '"]').classList.add('active');
+      document.querySelector('.cov-panel[data-panel="' + this.dataset.tab + '"]').classList.add('active');
     });
   });
+
+  // Stat count-up
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reducedMotion) {
+    document.querySelectorAll('.ds-num[data-count]').forEach(el => {
+      const node = el.firstChild;
+      const target = parseInt(el.dataset.count, 10);
+      if (isNaN(target)) return;
+      const start = performance.now(), dur = 1600;
+      function tick(now) {
+        const p = Math.min((now - start) / dur, 1);
+        node.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
 </script>
 
 <script src="https://unpkg.com/globe.gl@2"></script>
 <script>
   const IST = { lat: 41.01, lng: 28.97 };
   const cities = [
-    // Avrupa
-    { lat: 25.20, lng: 55.27 }, // Dubai
-    { lat: 52.52, lng: 13.40 }, // Berlin
-    { lat: 48.85, lng:  2.35 }, // Paris
-    { lat: 51.92, lng:  4.47 }, // Rotterdam
-    { lat: 52.23, lng: 21.01 }, // Warsaw
-    { lat: 40.41, lng: -3.70 }, // Madrid
-    { lat: 41.90, lng: 12.49 }, // Rome
-    { lat: 51.50, lng: -0.12 }, // London
-    { lat: 59.91, lng: 10.75 }, // Oslo
-    { lat: 55.67, lng: 12.56 }, // Copenhagen
-    { lat: 48.20, lng: 16.37 }, // Vienna
-    { lat: 50.08, lng: 14.43 }, // Prague
-    { lat: 47.37, lng:  8.54 }, // Zurich
-    { lat: 45.46, lng:  9.19 }, // Milan
-    // Ortadoğu & Afrika
-    { lat: 24.68, lng: 46.72 }, // Riyadh
-    { lat: 25.28, lng: 51.53 }, // Doha
-    { lat: 33.31, lng: 44.36 }, // Baghdad
-    { lat: 33.51, lng: 36.27 }, // Damascus
-    { lat: 30.06, lng: 31.25 }, // Cairo
-    { lat: 33.89, lng: 35.50 }, // Beirut
-    { lat: 15.55, lng: 32.53 }, // Khartoum
-    { lat: -26.2, lng: 28.04 }, // Johannesburg
-    { lat:  6.45, lng:  3.39 }, // Lagos
-    // Asya
-    { lat: 28.63, lng: 77.21 }, // New Delhi
-    { lat: 19.07, lng: 72.87 }, // Mumbai
-    { lat: 39.90, lng:116.40 }, // Beijing
-    { lat: 31.23, lng:121.47 }, // Shanghai
-    { lat: 22.30, lng:114.17 }, // Hong Kong
-    { lat: 35.68, lng:139.69 }, // Tokyo
-    { lat:  1.35, lng:103.82 }, // Singapore
-    { lat: 13.75, lng:100.51 }, // Bangkok
-    // Amerika
-    { lat: 40.71, lng: -74.0 }, // New York
-    { lat: 34.05, lng:-118.24 }, // Los Angeles
-    { lat: 43.65, lng: -79.38 }, // Toronto
-    { lat:-23.55, lng: -46.63 }, // São Paulo
-    // Avustralya
-    { lat:-33.86, lng:151.20 }, // Sydney
+    { lat: 25.20, lng: 55.27 }, { lat: 52.52, lng: 13.40 }, { lat: 48.85, lng: 2.35 },
+    { lat: 51.92, lng: 4.47 }, { lat: 52.23, lng: 21.01 }, { lat: 40.41, lng: -3.70 },
+    { lat: 41.90, lng: 12.49 }, { lat: 51.50, lng: -0.12 }, { lat: 59.91, lng: 10.75 },
+    { lat: 55.67, lng: 12.56 }, { lat: 48.20, lng: 16.37 }, { lat: 50.08, lng: 14.43 },
+    { lat: 47.37, lng: 8.54 }, { lat: 45.46, lng: 9.19 }, { lat: 24.68, lng: 46.72 },
+    { lat: 25.28, lng: 51.53 }, { lat: 33.31, lng: 44.36 }, { lat: 33.51, lng: 36.27 },
+    { lat: 30.06, lng: 31.25 }, { lat: 33.89, lng: 35.50 }, { lat: 15.55, lng: 32.53 },
+    { lat: -26.2, lng: 28.04 }, { lat: 6.45, lng: 3.39 }, { lat: 28.63, lng: 77.21 },
+    { lat: 19.07, lng: 72.87 }, { lat: 39.90, lng: 116.40 }, { lat: 31.23, lng: 121.47 },
+    { lat: 22.30, lng: 114.17 }, { lat: 35.68, lng: 139.69 }, { lat: 1.35, lng: 103.82 },
+    { lat: 13.75, lng: 100.51 }, { lat: 40.71, lng: -74.0 }, { lat: 34.05, lng: -118.24 },
+    { lat: 43.65, lng: -79.38 }, { lat: -23.55, lng: -46.63 }, { lat: -33.86, lng: 151.20 }
   ];
 
   const arcs = cities.flatMap(c => [
-    { slat: IST.lat, slng: IST.lng, elat: c.lat, elng: c.lng, color: ['rgba(255,255,255,0.9)', 'rgba(232,82,26,0.2)'] },
-    { slat: c.lat, slng: c.lng, elat: IST.lat, elng: IST.lng, color: ['rgba(232,82,26,0.2)', 'rgba(255,255,255,0.9)'] },
+    { slat: IST.lat, slng: IST.lng, elat: c.lat, elng: c.lng, color: ['rgba(245,240,235,0.9)', 'rgba(232,82,26,0.2)'] },
+    { slat: c.lat, slng: c.lng, elat: IST.lat, elng: IST.lng, color: ['rgba(232,82,26,0.2)', 'rgba(245,240,235,0.9)'] },
   ]);
 
   const points = [
@@ -1885,13 +1219,15 @@
     ...cities.map(c => ({ lat: c.lat, lng: c.lng, size: 0.3, color: '#e8521a' }))
   ];
 
+  const globeContainer = document.getElementById('globe-el');
+  const globeSize = Math.min(920, Math.max(420, globeContainer.clientWidth || 920));
   const globe = Globe()
-    (document.getElementById('globe-el'))
-    .width(480).height(480)
+    (globeContainer)
+    .width(globeSize).height(globeSize)
     .backgroundColor('rgba(0,0,0,0)')
     .showAtmosphere(true)
     .atmosphereColor('#e8521a')
-    .atmosphereAltitude(0.1)
+    .atmosphereAltitude(0.12)
     .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
     .arcsData(arcs)
     .arcStartLat('slat').arcStartLng('slng')
@@ -1908,8 +1244,8 @@
     .pointAltitude(0.01)
     .pointRadius('size');
 
-  globe.controls().autoRotate = true;
-  globe.controls().autoRotateSpeed = 0.4;
+  globe.controls().autoRotate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  globe.controls().autoRotateSpeed = 0.35;
   globe.controls().enableZoom = false;
   globe.pointOfView({ lat: IST.lat, lng: IST.lng, altitude: 2 }, 0);
 </script>
@@ -1917,12 +1253,12 @@
 <!-- Floating WhatsApp -->
 <a href="https://wa.me/3725233191" target="_blank" rel="noopener" aria-label="WhatsApp" onclick="gtag('event', 'whatsapp_click', { event_category: 'contact', event_label: 'floating_button' })" style="
   position:fixed; bottom:28px; right:28px; z-index:999;
-  background:#25D366; width:60px; height:60px; border-radius:50%;
+  background:#25D366; width:58px; height:58px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
   box-shadow:0 4px 24px rgba(37,211,102,0.45);
   text-decoration:none; transition:transform 0.2s;
 " onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-  <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+  <svg width="29" height="29" viewBox="0 0 24 24" fill="white">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
   </svg>
 </a>
@@ -1931,4 +1267,3 @@
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "84af88cb512e4afe921a0e56f09ee105"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
-
