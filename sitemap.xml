@@ -295,4 +295,25 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://canxansa.com/blog/middle-corridor-china-to-europe/</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://canxansa.com/blog/estonia-turkey-freight-guide/</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://canxansa.com/blog/fcl-vs-lcl/</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
