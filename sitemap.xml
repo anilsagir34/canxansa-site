@@ -281,4 +281,18 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://canxansa.com/blog/</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://canxansa.com/blog/turkey-to-germany-road-freight/</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
