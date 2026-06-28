@@ -63,9 +63,10 @@ Coverage tabları: `data-tab="europe|asia|americas|mea"`
 - Nav + hamburger + zengin footer (signals sayfasıyla tutarlı)
 - Footer linkleri: `/faq/` (index.html ve signals'dan)
 
-### Hub Sayfaları — Bekleyen (öncelik sırası)
-Orta Doğu: UAE → Saudi Arabia → Qatar → Iraq
-Uzak: USA → Japan → Egypt → Syria
+### Hub Sayfaları — Migrasyon TAMAMLANDI (2026-06-28)
+- Tüm tek-ülke `{ülke}-freight/` sayfaları origin ülke-hub şablonunda (v2.css). Bekleyen ülke yok.
+- Son taşınanlar: Iraq, Egypt, Syria (2026-06-28) — bunlar v2.css boyası almış ama eski sade yapıda (destinations grid'i yoktu) kalmıştı; tam hub formatına geçirildi.
+- Bilateral `turkey-{ülke}-freight/` sayfaları redirect stub'ı (kendi hub'ına `meta refresh` + canonical + noindex).
 
 ### Sayfa Şablonu Kuralları
 - Emoji/bayrak yok
