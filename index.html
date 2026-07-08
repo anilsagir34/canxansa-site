@@ -288,6 +288,22 @@
   h1 .accent { color: var(--orange); }
   @keyframes rise { to { transform: translateY(0); } }
 
+  .hero-modes {
+    display: flex; align-items: center; gap: 22px; margin-top: 30px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--bone-dim);
+    opacity: 0; animation: fadeUp 0.9s var(--ease) 0.25s forwards;
+  }
+  .hero-modes .mode { display: inline-flex; align-items: center; gap: 9px; }
+  .hero-modes .mode svg { width: 19px; height: 19px; stroke: var(--orange); flex-shrink: 0; }
+  .hero-modes .mode-sep { width: 26px; height: 1px; background: var(--hair); }
+
+  .globe-ph-wrap { z-index: 1; transition: opacity 1s var(--ease); }
+  .globe-ph-wrap.done { opacity: 0; }
+  .globe-ph-wrap svg { width: 100%; height: 100%; display: block; }
+  .globe-ph-wrap .rt { stroke-dasharray: 5 9; animation: routeflow 2.4s linear infinite; }
+  @keyframes routeflow { to { stroke-dashoffset: -56; } }
+
   .hero-foot {
     display: flex; align-items: flex-end; justify-content: space-between;
     gap: 48px; margin-top: 48px; flex-wrap: wrap;
@@ -645,6 +661,8 @@
     .footer-bottom { padding: 20px; }
     .mq-item { font-size: 38px; }
     .hero-globe { width: 480px; height: 480px; right: -55%; opacity: 0.4; }
+    .hero-modes { gap: 14px; margin-top: 24px; font-size: 10px; letter-spacing: 1.5px; }
+    .hero-modes .mode-sep { display: none; }
     .band::before { font-size: 150px; }
   }
 
@@ -654,6 +672,8 @@
     .mq-inner, .nav-badge-tag, .hero-meta .dot { animation: none; }
     h1 .ln > span { animation: none; transform: none; }
     .hero-sub, .hero-cta-block, .ds-cell { animation: none; opacity: 1; }
+    .hero-modes { animation: none; opacity: 1; }
+    .globe-ph-wrap .rt { animation: none; }
     .rv { opacity: 1; transform: none; transition: none; }
     .svc-row::before, .btn-solid, .btn-line { transition: none; }
   }
@@ -718,6 +738,21 @@
 <!-- HERO -->
 <header class="hero" id="top">
   <div id="globe-el" class="hero-globe"></div>
+  <div class="hero-globe globe-ph-wrap" id="globe-ph" aria-hidden="true">
+    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="172" stroke="rgba(245,240,235,0.16)"/>
+      <ellipse cx="200" cy="200" rx="172" ry="66" stroke="rgba(245,240,235,0.10)"/>
+      <ellipse cx="200" cy="200" rx="172" ry="126" stroke="rgba(245,240,235,0.07)"/>
+      <ellipse cx="200" cy="200" rx="66" ry="172" stroke="rgba(245,240,235,0.10)"/>
+      <ellipse cx="200" cy="200" rx="126" ry="172" stroke="rgba(245,240,235,0.07)"/>
+      <path class="rt" d="M96 236 Q 200 96 306 210" stroke="#e8521a" stroke-width="1.5"/>
+      <path class="rt" d="M132 292 Q 226 208 292 264" stroke="#e8521a" stroke-width="1.2" opacity="0.7"/>
+      <circle cx="96" cy="236" r="4" fill="#e8521a"/>
+      <circle cx="306" cy="210" r="3" fill="#e8521a"/>
+      <circle cx="132" cy="292" r="3" fill="#e8521a"/>
+      <circle cx="292" cy="264" r="3" fill="#e8521a"/>
+    </svg>
+  </div>
   <div class="hero-veil"></div>
 
   <div class="hero-body">
@@ -731,6 +766,13 @@
       <span class="ln"><span>MOVE CARGO</span></span>
       <span class="ln"><span><em class="hollow" style="font-style:normal;">ANY</em><span class="accent">WHERE.</span></span></span>
     </h1>
+    <div class="hero-modes">
+      <span class="mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>Air Freight</span>
+      <span class="mode-sep"></span>
+      <span class="mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>Sea Freight</span>
+      <span class="mode-sep"></span>
+      <span class="mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>Road Freight</span>
+    </div>
     <div class="hero-foot">
       <p class="hero-sub"><strong>Air, sea or road</strong> — we connect importers and exporters with the right carrier at the right price, worldwide. Quote in your inbox within <strong>1 hour</strong>.</p>
       <div class="hero-cta-block">
@@ -1250,7 +1292,11 @@ function initGlobe() {
     .pointsData(points)
     .pointColor('color')
     .pointAltitude(0.01)
-    .pointRadius('size');
+    .pointRadius('size')
+    .onGlobeReady(function () {
+      var ph = document.getElementById('globe-ph');
+      if (ph) ph.classList.add('done');
+    });
 
   globe.controls().autoRotate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   globe.controls().autoRotateSpeed = 0.35;
