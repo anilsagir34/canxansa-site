@@ -180,3 +180,11 @@ footer { border-top: 1px solid var(--hair); }
   .fade-up { opacity: 1; transform: none; transition: none; }
   .btn-primary:hover, .form-submit:hover, .btn-ghost:hover { transform: none; }
 }
+
+/* ─── FOOTER SOCIAL ICONS ─── */
+.footer-social { display: flex; gap: 16px; margin-top: 24px; }
+.footer-social a { color: var(--gray-light); display: inline-flex; transition: color 0.25s var(--ease), transform 0.25s var(--ease); }
+.footer-social a:hover { color: var(--orange); transform: translateY(-2px); }
+.footer-social svg { width: 18px; height: 18px; fill: currentColor; }
+.footer-links .footer-social { margin: 0; gap: 14px; align-items: center; display: inline-flex; }
+.footer-links .footer-social svg { width: 16px; height: 16px; }

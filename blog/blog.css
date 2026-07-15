@@ -149,3 +149,9 @@
     .data-table th, .data-table td { padding: 11px 12px; }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Footer social icons */
+footer .footer-social { display: inline-flex; gap: 14px; align-items: center; }
+footer .footer-social a { display: inline-flex; color: inherit; transition: color 0.2s; }
+footer .footer-social a:hover { color: var(--orange); }
+footer .footer-social svg { width: 16px; height: 16px; fill: currentColor; }
