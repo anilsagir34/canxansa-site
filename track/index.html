@@ -327,7 +327,7 @@
   </div>
 </footer>
 
-<script src="shipments.js?v=6"></script>
+<script src="shipments.js?v=7"></script>
 <script>
 (function(){
   var input=document.getElementById('track-input');
@@ -355,8 +355,13 @@
     var id=cxValidate(raw);
     if(!id){errorEl.classList.add('visible');return;}
 
-    var s=SHIPMENTS[id];
-    if(!s){errorEl.classList.add('visible');return;}
+    cxLookup(id).then(function(s){
+      if(!s){errorEl.classList.add('visible');return;}
+      render(id,s);
+    }).catch(function(){errorEl.classList.add('visible');});
+  }
+
+  function render(id,s){
     document.getElementById('res-ref').textContent=id;
     document.getElementById('res-origin').textContent=s.origin;
     document.getElementById('res-dest').textContent=s.destination;
@@ -380,9 +385,16 @@
       else cls+=' pending';
       var dateStr=ev.date?formatDate(ev.date):'Pending';
       var loc=ev.location?ev.location:'';
-      var detail='<span class="tl-date">'+dateStr+'</span>';
-      if(loc)detail+='<span>'+loc+'</span>';
-      tl.innerHTML+='<div class="'+cls+'"><div class="tl-dot"></div><div class="tl-status">'+ev.status+'</div><div class="tl-detail">'+detail+'</div></div>';
+      var item=document.createElement('div');
+      item.className=cls;
+      var dot=document.createElement('div');dot.className='tl-dot';
+      var st=document.createElement('div');st.className='tl-status';st.textContent=ev.status;
+      var det=document.createElement('div');det.className='tl-detail';
+      var dspan=document.createElement('span');dspan.className='tl-date';dspan.textContent=dateStr;
+      det.appendChild(dspan);
+      if(loc){var lspan=document.createElement('span');lspan.textContent=loc;det.appendChild(lspan);}
+      item.appendChild(dot);item.appendChild(st);item.appendChild(det);
+      tl.appendChild(item);
     }
     result.classList.add('visible');
     result.scrollIntoView({behavior:'smooth',block:'start'});
