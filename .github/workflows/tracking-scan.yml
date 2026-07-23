@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read   # LLM step is read-only; it no longer commits/pushes (see note below)
-      id-token: write
+      # id-token removed (F6): no step mints an OIDC token, so this job needs contents:read only.
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4, pinned to commit SHA (F4)
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -29,7 +29,7 @@ jobs:
         run: printf '%s' "$MCP_CONFIG" > /tmp/mcp.json
 
       - name: Run Tracking Routine
-        uses: anthropics/claude-code-action@v1
+        uses: anthropics/claude-code-action@44423bdec74b97d67543eb16c110546762c110b2  # v1, pinned to commit SHA (F4)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         with:
