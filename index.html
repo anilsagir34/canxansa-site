@@ -624,7 +624,10 @@
     .nav-center { display: none; }
     .nav-hamburger { display: flex; }
     nav, nav.scrolled { padding-left: 32px; padding-right: 32px; }
-    .hero-body { padding: 130px 32px 48px; }
+    /* Tablet viewports are tall enough that a 100vh hero leaves dead space above
+       the bottom-anchored content. Let the hero size to its content instead. */
+    .hero { min-height: auto; }
+    .hero-body { padding: 104px 32px 48px; }
     .sec-head { padding: 72px 32px 40px; }
     .svc-row { grid-template-columns: 1fr; gap: 14px; padding: 36px 32px; }
     .svc-arr { display: none; }
