@@ -53,8 +53,16 @@
     '#cxc-banner button.cxc-accept{background:#e8521a;border-color:#e8521a;color:#f5f0eb;}' +
     '#cxc-banner button.cxc-accept:hover{background:#c44010;border-color:#c44010;}' +
     '@media (max-width:1024px){#cxc-banner{left:auto;right:24px;bottom:100px;max-width:300px;}}' +
-    '@media (max-width:640px){#cxc-banner{left:12px;right:12px;bottom:12px;width:auto;max-width:none;padding:14px 16px;}' +
-    '#cxc-banner button{flex:1;min-width:0;padding:9px 12px;}}';
+    // Mobile: the bottom of the viewport is taken by the hero CTAs and the floating
+    // WhatsApp button, with no gap wide enough for the banner. Dock it to the top
+    // instead, where it only overlaps the (non-interactive) hero headline.
+    '@media (max-width:640px){#cxc-banner{left:12px;right:12px;top:76px;bottom:auto;' +
+    'width:auto;max-width:none;padding:12px 14px;font-size:11.5px;line-height:1.5;' +
+    'transform:translateY(-20px);}' +
+    '#cxc-banner.cxc-show{transform:translateY(0);}' +
+    '#cxc-banner .cxc-title{display:none;}' +
+    '#cxc-banner p{margin:0 0 9px;}' +
+    '#cxc-banner button{flex:1;min-width:0;padding:8px 10px;font-size:10.5px;}}';
 
   var style = document.createElement('style');
   style.id = 'cxc-style';
