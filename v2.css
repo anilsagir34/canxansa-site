@@ -15,7 +15,9 @@
   --hair: rgba(245,240,235,0.09);
   --hair-soft: rgba(245,240,235,0.05);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --mono: 'DM Mono', monospace;
+  --mono: 'Archivo', sans-serif;
+  --sans: 'Archivo', sans-serif;
+  --disp: 'Archivo', sans-serif;
 }
 
 body { -webkit-font-smoothing: antialiased; }
@@ -189,7 +191,7 @@ footer { border-top: 1px solid var(--hair); }
 /* ─── COUNTRY PAGE FULL FOOTER ─── */
 .cx-footer { display: block; border-top: 1px solid var(--gray-mid); padding: 64px 64px 40px; text-align: left; }
 .cx-footer .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; align-items: start; }
-.cx-footer .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 4px; display: block; margin-bottom: 12px; color: var(--white); text-decoration: none; }
+.cx-footer .footer-logo { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 20px; letter-spacing: 2px; display: block; margin-bottom: 12px; color: var(--white); text-decoration: none; }
 .cx-footer .footer-logo span { color: var(--orange); }
 .cx-footer .footer-tagline { font-family: var(--mono); font-size: 12px; color: var(--text-muted); letter-spacing: 1px; line-height: 1.6; max-width: 220px; }
 .cx-footer .footer-col-title { font-family: var(--mono); font-size: 10px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }

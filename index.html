@@ -81,10 +81,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://unpkg.com" crossorigin>
-<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/bebasneue/v16/JTUSjIg69CK48gW7PXoo9WlhyyTh89Y.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/dmsans/v17/rP2Yp2ywxg089UriI5-g4vlH9VoD8Cmcqbu0-K6z9mXg.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/dmmono/v16/aFTU7PB1QTsUX8KYthqQBK6PYK0.woff2">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdnoLmvDIaI.woff2">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #0b0a09;
@@ -98,9 +96,9 @@
     --hair: rgba(245,240,235,0.09);
     --hair-soft: rgba(245,240,235,0.05);
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
-    --mono: 'DM Mono', monospace;
-    --sans: 'DM Sans', sans-serif;
-    --disp: 'Bebas Neue', sans-serif;
+    --mono: 'Archivo', sans-serif;
+    --sans: 'Archivo', sans-serif;
+    --disp: 'Archivo', sans-serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -172,7 +170,7 @@
   }
 
   .nav-logo {
-    font-family: var(--disp); font-size: 26px; letter-spacing: 4px;
+    font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 19px; letter-spacing: 2px;
     color: var(--bone); text-decoration: none; line-height: 1;
     display: inline-block;
   }
@@ -232,7 +230,7 @@
   }
   .mobile-menu.open { display: flex; }
   .mobile-nav-link {
-    font-family: var(--disp); font-size: 44px; letter-spacing: 3px;
+    font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 32px; letter-spacing: 1px;
     color: var(--bone-dim); text-decoration: none; padding: 12px 0;
     border-bottom: 1px solid var(--hair); display: flex; align-items: center; gap: 14px;
     transition: color 0.2s, padding-left 0.2s;
@@ -273,9 +271,9 @@
   .hero-meta b { color: var(--orange); font-weight: 400; }
 
   h1 {
-    font-family: var(--disp); font-weight: 400;
-    font-size: clamp(84px, 12.5vw, 196px);
-    line-height: 0.86; letter-spacing: 1px;
+    font-family: var(--disp); font-stretch: 125%; font-weight: 800;
+    font-size: clamp(44px, 12vw, 141px);
+    line-height: 1; letter-spacing: 0;
     text-transform: uppercase;
   }
   h1 .ln { display: block; overflow: hidden; }
@@ -365,7 +363,7 @@
   .ds-cell:nth-child(2) { animation-delay: 0.65s; }
   .ds-cell:nth-child(3) { animation-delay: 0.75s; }
   .ds-cell:nth-child(4) { animation-delay: 0.85s; border-right: none; }
-  .ds-num { font-family: var(--disp); font-size: 44px; line-height: 1; color: var(--bone); }
+  .ds-num { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 32px; line-height: 1; color: var(--bone); }
   .ds-num em { font-style: normal; color: var(--orange); }
   .ds-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--bone-dim); }
 
@@ -374,7 +372,7 @@
   .mq-inner { display: inline-flex; gap: 56px; white-space: nowrap; animation: mq 30s linear infinite; align-items: center; }
   .mq:hover .mq-inner { animation-play-state: paused; }
   .mq-item {
-    font-family: var(--disp); font-size: 54px; letter-spacing: 4px; line-height: 1;
+    font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 39px; letter-spacing: 2px; line-height: 1;
     color: transparent; -webkit-text-stroke: 1px rgba(245,240,235,0.3);
     display: flex; align-items: center; gap: 56px;
   }
@@ -389,8 +387,8 @@
     padding: 96px 64px 56px; gap: 32px; flex-wrap: wrap;
   }
   .sec-title {
-    font-family: var(--disp); font-weight: 400;
-    font-size: clamp(56px, 7vw, 110px); line-height: 0.9; letter-spacing: 1px;
+    font-family: var(--disp); font-stretch: 125%; font-weight: 800;
+    font-size: clamp(40px, 5vw, 79px); line-height: 1; letter-spacing: 0;
     text-transform: uppercase;
   }
   .sec-title em { font-style: normal; color: transparent; -webkit-text-stroke: 1px rgba(245,240,235,0.7); }
@@ -417,8 +415,8 @@
   .svc-idx { font-family: var(--mono); font-size: 12px; letter-spacing: 2px; color: var(--orange); transition: color 0.35s; }
   .svc-row:hover .svc-idx { color: var(--ink); }
   .svc-name {
-    font-family: var(--disp); font-size: clamp(40px, 4.6vw, 68px);
-    letter-spacing: 2px; line-height: 0.95; color: var(--bone);
+    font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: clamp(29px, 3.3vw, 49px);
+    letter-spacing: 0; line-height: 1; color: var(--bone);
     text-transform: uppercase; transition: color 0.35s, transform 0.45s var(--ease);
   }
   .svc-row:hover .svc-name { color: var(--ink); transform: translateX(12px); }
@@ -427,7 +425,7 @@
   .svc-modes { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 10px; transition: color 0.35s; }
   .svc-row:hover .svc-modes { color: rgba(11,10,9,0.6); }
   .svc-arr {
-    font-family: var(--disp); font-size: 36px; color: var(--orange);
+    font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 26px; color: var(--orange);
     transition: color 0.35s, transform 0.45s var(--ease);
   }
   .svc-row:hover .svc-arr { color: var(--ink); transform: translateX(8px); }
@@ -450,8 +448,8 @@
   }
   .cor-route::before { content: ''; width: 26px; height: 1px; background: var(--orange); }
   .cor-big {
-    font-family: var(--disp); font-size: clamp(44px, 4vw, 64px);
-    line-height: 0.92; letter-spacing: 1px; color: var(--bone); text-transform: uppercase;
+    font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: clamp(32px, 2.9vw, 46px);
+    line-height: 1; letter-spacing: 0; color: var(--bone); text-transform: uppercase;
     margin-bottom: 18px;
   }
   .cor-big em { font-style: normal; color: transparent; -webkit-text-stroke: 1px rgba(245,240,235,0.6); }
@@ -466,7 +464,7 @@
   .cor-card:hover .go { transform: translateX(8px); }
   .cor-watermark {
     position: absolute; right: -8px; bottom: -26px;
-    font-family: var(--disp); font-size: 150px; line-height: 1;
+    font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 108px; line-height: 1;
     color: rgba(245,240,235,0.025); pointer-events: none; letter-spacing: 0;
   }
 
@@ -516,11 +514,11 @@
   .how-step:hover { background: var(--ink-2); }
   .how-step::before {
     counter-increment: step; content: counter(step, decimal-leading-zero);
-    font-family: var(--disp); font-size: 110px; line-height: 1;
+    font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 79px; line-height: 1;
     color: transparent; -webkit-text-stroke: 1px rgba(232,82,26,0.5);
     display: block; margin-bottom: 28px;
   }
-  .how-title { font-family: var(--disp); font-size: 26px; letter-spacing: 2px; margin-bottom: 12px; text-transform: uppercase; }
+  .how-title { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 19px; letter-spacing: 0; margin-bottom: 12px; text-transform: uppercase; }
   .how-desc { font-size: 13px; line-height: 1.75; color: var(--bone-dim); }
   .how-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; position: absolute; top: 24px; right: 24px; }
 
@@ -531,11 +529,11 @@
   }
   .band::before {
     content: 'CANXANSA'; position: absolute; right: -30px; top: 50%; transform: translateY(-50%);
-    font-family: var(--disp); font-size: 280px; letter-spacing: 4px;
+    font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 202px; letter-spacing: 2px;
     color: rgba(11,10,9,0.07); pointer-events: none; line-height: 1;
   }
   .band-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; position: relative; }
-  .band h2 { font-family: var(--disp); font-weight: 400; font-size: clamp(52px, 6.5vw, 104px); line-height: 0.88; letter-spacing: 1px; text-transform: uppercase; }
+  .band h2 { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: clamp(37px, 4.7vw, 75px); line-height: 1; letter-spacing: 0; text-transform: uppercase; }
   .band p { font-family: var(--mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-top: 18px; color: rgba(11,10,9,0.7); }
   .band-btn {
     font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 2px;
@@ -590,7 +588,7 @@
     display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
     gap: 48px; padding: 72px 64px 56px;
   }
-  .footer-logo { font-family: var(--disp); font-size: 30px; letter-spacing: 4px; display: block; margin-bottom: 14px; color: var(--bone); }
+  .footer-logo { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 22px; letter-spacing: 2px; display: block; margin-bottom: 14px; color: var(--bone); }
   .footer-logo b { color: var(--orange); font-weight: 400; }
   .footer-tagline { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 1.5px; line-height: 1.8; text-transform: uppercase; max-width: 240px; }
   .footer-social { display: flex; gap: 16px; margin-top: 24px; }
@@ -655,7 +653,7 @@
     .sec-head { padding: 60px 20px 32px; }
     .svc-row { padding: 30px 20px; }
     .ds-cell { padding: 18px 20px; }
-    .ds-num { font-size: 34px; }
+    .ds-num { font-size: 24px; }
     .cov-tabs { padding: 0 20px 24px; }
     .cov-panel.active { grid-template-columns: 1fr; margin: 0 20px 18px; }
     .cov-note { margin: 0 20px; }
@@ -666,11 +664,11 @@
     .form-row { grid-template-columns: 1fr; gap: 0; }
     .footer-top { grid-template-columns: 1fr; padding: 48px 20px 36px; }
     .footer-bottom { padding: 20px; }
-    .mq-item { font-size: 38px; }
+    .mq-item { font-size: 27px; }
     .hero-globe { width: 480px; height: 480px; right: -55%; opacity: 0.4; }
     .hero-modes { gap: 14px; margin-top: 24px; font-size: 10px; letter-spacing: 1.5px; }
     .hero-modes .mode-sep { display: none; }
-    .band::before { font-size: 150px; }
+    .band::before { font-size: 108px; }
   }
 
   /* ─── REDUCED MOTION ─── */
