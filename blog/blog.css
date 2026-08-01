@@ -33,7 +33,7 @@
     font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 19px; letter-spacing: 2px;
     color: var(--bone); text-decoration: none; line-height: 1; display: inline-block;
   }
-  .nav-logo b { color: var(--orange); font-weight: 400; }
+  .nav-logo b { color: var(--orange); font-weight: 800; }
   .nav-logo small { font-family: var(--mono); font-size: 9px; letter-spacing: 3px; color: var(--bone-dim); text-transform: uppercase; margin-left: 10px; }
   .nav-right { display: flex; align-items: center; gap: 12px; }
   .nav-track, .nav-cta {
