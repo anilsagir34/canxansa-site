@@ -264,13 +264,15 @@
     background:
       /* scrim behind the headline, so the photo keeps its sunset elsewhere */
       radial-gradient(118% 88% at 0% 100%,
-        rgba(11,10,9,0.95) 0%, rgba(11,10,9,0.66) 36%, rgba(11,10,9,0.10) 72%, rgba(11,10,9,0) 100%),
-      linear-gradient(0deg, rgba(11,10,9,0.70) 0%, rgba(11,10,9,0.28) 16%, rgba(11,10,9,0) 34%),
-      linear-gradient(180deg, rgba(11,10,9,0.52) 0%, rgba(11,10,9,0.20) 10%, rgba(11,10,9,0) 22%),
-      rgba(11,10,9,0.10);
+        rgba(11,10,9,0.88) 0%, rgba(11,10,9,0.50) 36%, rgba(11,10,9,0.04) 72%, rgba(11,10,9,0) 100%),
+      linear-gradient(0deg, rgba(11,10,9,0.84) 0%, rgba(11,10,9,0.35) 16%, rgba(11,10,9,0) 34%),
+      linear-gradient(180deg, rgba(11,10,9,0.40) 0%, rgba(11,10,9,0.16) 10%, rgba(11,10,9,0) 22%);
   }
 
   .hero-body { position: relative; z-index: 3; padding: 160px 64px 56px; }
+  .hero h1, .hero-meta, .hero-sub {
+    text-shadow: 0 1px 2px rgba(11,10,9,0.55), 0 10px 30px rgba(11,10,9,0.45);
+  }
 
   .hero-meta {
     display: flex; gap: 28px; align-items: center; margin-bottom: 36px;
