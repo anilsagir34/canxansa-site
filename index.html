@@ -84,8 +84,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdnoLmvDIaI.woff2">
-<link rel="preload" as="image" href="/images/hero-port.webp" type="image/webp" fetchpriority="high" media="(min-width: 761px)">
-<link rel="preload" as="image" href="/images/hero-port-960.webp" type="image/webp" fetchpriority="high" media="(max-width: 760px)">
+<link rel="preload" as="image" href="/images/hero-port.webp" type="image/webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -93,8 +92,9 @@
     --ink-2: #121110;
     --ink-3: #1b1917;
     --bone: #f5f0eb;
-    --bone-dim: #8d8780;
-    --muted: #595550;
+    --bone-dim: #a29b93;
+    --bone-hero: #cdc6bd;   /* fotograf uzerindeki ikincil yazi */
+    --muted: #7e786f;   /* 9-11px etiketler: 2.7:1 -> 4.5:1 */
     --orange: #e8521a;
     --orange-deep: #b53c0e;
     --hair: rgba(245,240,235,0.09);
@@ -270,14 +270,15 @@
   }
 
   .hero-body { position: relative; z-index: 3; padding: 160px 64px 56px; }
-  .hero h1, .hero-meta, .hero-sub {
-    text-shadow: 0 1px 2px rgba(11,10,9,0.55), 0 10px 30px rgba(11,10,9,0.45);
-  }
+  .hero h1 { text-shadow: 0 1px 3px rgba(11,10,9,0.62), 0 3px 10px rgba(11,10,9,0.30); }
+  /* ici bos harf saydam doldurulur; golge onun arkasinda dolu bir leke birakir */
+  .hero h1 .hollow { text-shadow: none; }
+  .hero-meta, .hero-sub, .hero-modes { text-shadow: 0 1px 3px rgba(11,10,9,0.78); }
 
   .hero-meta {
     display: flex; gap: 28px; align-items: center; margin-bottom: 36px;
     font-family: var(--mono); font-size: 11px; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--bone-dim);
+    text-transform: uppercase; color: var(--bone-hero);
   }
   .hero-meta .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); animation: pulse 2s infinite; }
   .hero-meta b { color: var(--orange); font-weight: 400; }
@@ -301,7 +302,7 @@
   .hero-modes {
     display: flex; align-items: center; gap: 22px; margin-top: 30px; flex-wrap: wrap;
     font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--bone-dim);
+    color: var(--bone-hero);
     opacity: 0; animation: fadeUp 0.9s var(--ease) 0.25s forwards;
   }
   .hero-modes .mode { display: inline-flex; align-items: center; gap: 9px; }
@@ -314,7 +315,7 @@
     gap: 48px; margin-top: 48px; flex-wrap: wrap;
   }
   .hero-sub {
-    max-width: 360px; font-size: 15px; line-height: 1.75; color: var(--bone-dim);
+    max-width: 360px; font-size: 15px; line-height: 1.75; color: var(--bone-hero);
     opacity: 0; animation: fadeUp 0.9s var(--ease) 0.35s forwards;
   }
   .hero-sub strong { color: var(--bone); font-weight: 400; }
@@ -750,9 +751,8 @@
 <header class="hero" id="top">
   <div class="hero-port" id="hero-port" aria-hidden="true">
     <picture>
-      <source media="(max-width: 760px)" srcset="/images/hero-port-960.webp" type="image/webp">
       <source srcset="/images/hero-port.webp" type="image/webp">
-      <img src="/images/hero-port.jpg" alt="" width="1920" height="1280" fetchpriority="high" decoding="async">
+      <img src="/images/hero-port.jpg" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">
     </picture>
   </div>
   <div class="hero-veil"></div>
@@ -1266,7 +1266,6 @@
     try {
       const s = initHeroPort(host, {
         photo: '/images/hero-port.webp',
-        photoSmall: '/images/hero-port-960.webp',
         masks: '/images/hero-port-masks.png',
         onReady: () => host.classList.add('live')
       });

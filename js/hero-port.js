@@ -26,6 +26,7 @@ uniform float uImgAspect;
 uniform vec2  uPointer;
 uniform float uIntro;      // 0..1 fade-in of the motion
 uniform float uAmp;        // global motion amount (0 = frozen)
+uniform float uSharpen;    // upscale telafisi (dikey kadrajda devreye girer)
 
 const float PI2 = 6.2831853;
 
@@ -91,6 +92,17 @@ void main(){
   // both textures are uploaded top-row-first, so v matches image-space y
   vec2 suv = uv + disp;
   vec3 col = texture(uPhoto, suv).rgb;
+
+  // Dikey kadrajda fotoğrafın yalnızca ~%31'i ekranı doldurur, yani kaynak
+  // 2-3 kat büyütülür ve yumuşar. Hafif bir unsharp mask kenarları geri getirir.
+  if (uSharpen > 0.001) {
+    vec2 px = 1.0 / vec2(textureSize(uPhoto, 0));
+    vec3 blur = texture(uPhoto, suv + vec2( px.x, 0.0)).rgb
+              + texture(uPhoto, suv + vec2(-px.x, 0.0)).rgb
+              + texture(uPhoto, suv + vec2(0.0,  px.y)).rgb
+              + texture(uPhoto, suv + vec2(0.0, -px.y)).rgb;
+    col = clamp(col + (col - blur * 0.25) * uSharpen, 0.0, 1.0);
+  }
 
   // sparse sun glints on the water, strongest in the sun's column
   if (mWater > 0.002) {
@@ -202,21 +214,23 @@ export function initHeroPort(host, opts = {}) {
   gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
 
   const U = {};
-  for (const n of ['uPhoto', 'uMask', 'uRes', 'uTime', 'uImgAspect', 'uPointer', 'uIntro', 'uAmp']) {
+  for (const n of ['uPhoto', 'uMask', 'uRes', 'uTime', 'uImgAspect', 'uPointer', 'uIntro', 'uAmp', 'uSharpen']) {
     U[n] = gl.getUniformLocation(prog, n);
   }
   gl.uniform1i(U.uPhoto, 0);
   gl.uniform1i(U.uMask, 1);
   gl.uniform1f(U.uAmp, reduced ? 0 : 1);
 
-  // Kaynak fotoğraf 1920px geniş; retina ekranda 2x çizmek dokuyu büyütmekten
-  // başka bir şey yapmaz, sadece dolgu maliyeti olur. 1.5 hem kaynağa yakın
-  // hem de parıltı/gren için yeterli örnekleme bırakır.
-  const DPR_CAP = 1.5;
-  let w = 1, h = 1;
+  // Çözünürlüğü cihaz oranıyla değil piksel bütçesiyle sınırla. Geniş
+  // masaüstünde 2x çizmek kaynağı büyütmekten başka iş yapmaz; buna karşılık
+  // dikey telefonda (dpr 3, küçük alan) düşük tavan kareyi iki kez büyütür ve
+  // fotoğraf soluklaşır. Bütçe ikisini de doğru yere oturtuyor.
+  const PIXEL_BUDGET = 3.2e6, DPR_CEIL = 2.5;
+  let w = 1, h = 1, texW = 0, imgAspect = 0;
   function resize() {
     const r = host.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, DPR_CAP);
+    const area = Math.max(1, r.width * r.height);
+    const dpr = Math.min(window.devicePixelRatio || 1, DPR_CEIL, Math.sqrt(PIXEL_BUDGET / area));
     w = Math.max(1, Math.round(r.width * dpr));
     h = Math.max(1, Math.round(r.height * dpr));
     if (canvas.width !== w || canvas.height !== h) {
@@ -224,6 +238,13 @@ export function initHeroPort(host, opts = {}) {
     }
     gl.viewport(0, 0, w, h);
     gl.uniform2f(U.uRes, w, h);
+    // kac kat buyutuyoruz? kaynagin kadrajda kalan genisligine gore
+    if (texW) {
+      const ca = w / h, ia = imgAspect || 1.5;
+      const visible = ca > ia ? 1 : ca / ia;
+      const upscale = w / Math.max(1, texW * visible);
+      gl.uniform1f(U.uSharpen, Math.min(0.55, Math.max(0, (upscale - 1.15) * 0.42)));
+    }
   }
   const ro = new ResizeObserver(resize);
   ro.observe(host);
@@ -276,7 +297,9 @@ export function initHeroPort(host, opts = {}) {
     loadTexture(gl, useSmall ? smallUrl : photoUrl, 0, false),
     loadTexture(gl, maskUrl, 1, false)
   ]).then(([photo]) => {
-    gl.uniform1f(U.uImgAspect, photo.img.width / photo.img.height);
+    texW = photo.img.width;
+    imgAspect = photo.img.width / photo.img.height;
+    gl.uniform1f(U.uImgAspect, imgAspect);
     resize();
     ready = true;
     canvas.style.opacity = '1';
