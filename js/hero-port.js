@@ -136,6 +136,12 @@ function compile(gl, type, src) {
   return sh;
 }
 
+/*
+ * Dokular RGBA8 olarak yüklenir, SRGB8_ALPHA8 olarak DEĞİL: sRGB iç formatı
+ * örneklemede doğrusal uzaya çevirir, bu shader ise çıkışta geri kodlamaz —
+ * o yüzden sRGB formatı kareyi yaklaşık gama kadar koyultur. Pass-through
+ * fotoğrafı olduğu gibi gösterir.
+ */
 function loadTexture(gl, url, unit, srgb) {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -264,7 +270,7 @@ export function initHeroPort(host, opts = {}) {
 
   const useSmall = window.matchMedia('(max-width: 760px)').matches;
   Promise.all([
-    loadTexture(gl, useSmall ? smallUrl : photoUrl, 0, true),
+    loadTexture(gl, useSmall ? smallUrl : photoUrl, 0, false),
     loadTexture(gl, maskUrl, 1, false)
   ]).then(([photo]) => {
     gl.uniform1f(U.uImgAspect, photo.img.width / photo.img.height);
