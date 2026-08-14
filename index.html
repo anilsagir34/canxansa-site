@@ -83,8 +83,9 @@
 <meta name="theme-color" content="#0b0a09">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdnoLmvDIaI.woff2">
+<link rel="preload" as="image" href="/images/hero-port.webp" type="image/webp" fetchpriority="high" media="(min-width: 761px)">
+<link rel="preload" as="image" href="/images/hero-port-960.webp" type="image/webp" fetchpriority="high" media="(max-width: 760px)">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -249,18 +250,24 @@
     padding-bottom: 0;
   }
 
-  .hero-globe {
-    position: absolute; top: 50%; right: -12%; transform: translateY(-58%);
-    width: 920px; height: 920px; max-width: none;
-    opacity: 0.95; pointer-events: none; z-index: 1;
+  .hero-port {
+    position: absolute; inset: 0; z-index: 1; overflow: hidden;
+    pointer-events: none; background: var(--ink);
   }
-  .hero-globe::after {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 50% 50%, transparent 40%, var(--ink) 78%);
+  .hero-port img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 50%;
   }
+  .hero-port canvas { position: absolute; inset: 0; }
   .hero-veil {
     position: absolute; inset: 0; z-index: 2; pointer-events: none;
-    background: linear-gradient(90deg, var(--ink) 22%, rgba(11,10,9,0.55) 55%, rgba(11,10,9,0.15) 100%);
+    background:
+      /* scrim behind the headline, so the photo keeps its sunset elsewhere */
+      radial-gradient(118% 88% at 0% 100%,
+        rgba(11,10,9,0.95) 0%, rgba(11,10,9,0.66) 36%, rgba(11,10,9,0.10) 72%, rgba(11,10,9,0) 100%),
+      linear-gradient(0deg, rgba(11,10,9,0.70) 0%, rgba(11,10,9,0.28) 16%, rgba(11,10,9,0) 34%),
+      linear-gradient(180deg, rgba(11,10,9,0.52) 0%, rgba(11,10,9,0.20) 10%, rgba(11,10,9,0) 22%),
+      rgba(11,10,9,0.10);
   }
 
   .hero-body { position: relative; z-index: 3; padding: 160px 64px 56px; }
@@ -299,11 +306,6 @@
   .hero-modes .mode svg { width: 19px; height: 19px; stroke: var(--orange); flex-shrink: 0; }
   .hero-modes .mode-sep { width: 26px; height: 1px; background: var(--hair); }
 
-  .globe-ph-wrap { z-index: 1; transition: opacity 1s var(--ease); }
-  .globe-ph-wrap.done { opacity: 0; }
-  .globe-ph-wrap svg { width: 100%; height: 100%; display: block; }
-  .globe-ph-wrap .rt { stroke-dasharray: 5 9; animation: routeflow 2.4s linear infinite; }
-  @keyframes routeflow { to { stroke-dashoffset: -56; } }
 
   .hero-foot {
     display: flex; align-items: flex-end; justify-content: space-between;
@@ -354,6 +356,8 @@
   /* data strip */
   .datastrip {
     position: relative; z-index: 3;
+    background: linear-gradient(0deg, rgba(11,10,9,0.97) 0%, rgba(11,10,9,0.84) 100%);
+    backdrop-filter: blur(2px);
     border-top: 1px solid var(--hair);
     display: grid; grid-template-columns: repeat(4, 1fr);
   }
@@ -619,7 +623,6 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 1180px) {
-    .hero-globe { right: -34%; opacity: 0.55; }
   }
   @media (max-width: 1024px) {
     .nav-center { display: none; }
@@ -646,7 +649,6 @@
     .footer-top { grid-template-columns: 1fr 1fr; padding: 56px 32px 40px; }
     .footer-bottom { padding: 22px 32px; }
     .rails { left: 14px; right: 14px; }
-    .hero-globe { width: 680px; height: 680px; right: -45%; }
   }
   @media (max-width: 640px) {
     nav, nav.scrolled { padding-left: 20px; padding-right: 20px; }
@@ -668,7 +670,7 @@
     .footer-top { grid-template-columns: 1fr; padding: 48px 20px 36px; }
     .footer-bottom { padding: 20px; }
     .mq-item { font-size: 27px; }
-    .hero-globe { width: 480px; height: 480px; right: -55%; opacity: 0.4; }
+    .hero-port img { object-position: 20% 50%; }
     .hero-modes { gap: 14px; margin-top: 24px; font-size: 10px; letter-spacing: 1.5px; }
     .hero-modes .mode-sep { display: none; }
     .band::before { font-size: 108px; }
@@ -681,7 +683,6 @@
     h1 .ln > span { animation: none; transform: none; }
     .hero-sub, .hero-cta-block, .ds-cell { animation: none; opacity: 1; }
     .hero-modes { animation: none; opacity: 1; }
-    .globe-ph-wrap .rt { animation: none; }
     .rv { opacity: 1; transform: none; transition: none; }
     .svc-row::before, .btn-solid, .btn-line { transition: none; }
   }
@@ -745,21 +746,12 @@
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <div id="globe-el" class="hero-globe"></div>
-  <div class="hero-globe globe-ph-wrap" id="globe-ph" aria-hidden="true">
-    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="200" cy="200" r="172" stroke="rgba(245,240,235,0.16)"/>
-      <ellipse cx="200" cy="200" rx="172" ry="66" stroke="rgba(245,240,235,0.10)"/>
-      <ellipse cx="200" cy="200" rx="172" ry="126" stroke="rgba(245,240,235,0.07)"/>
-      <ellipse cx="200" cy="200" rx="66" ry="172" stroke="rgba(245,240,235,0.10)"/>
-      <ellipse cx="200" cy="200" rx="126" ry="172" stroke="rgba(245,240,235,0.07)"/>
-      <path class="rt" d="M96 236 Q 200 96 306 210" stroke="#e8521a" stroke-width="1.5"/>
-      <path class="rt" d="M132 292 Q 226 208 292 264" stroke="#e8521a" stroke-width="1.2" opacity="0.7"/>
-      <circle cx="96" cy="236" r="4" fill="#e8521a"/>
-      <circle cx="306" cy="210" r="3" fill="#e8521a"/>
-      <circle cx="132" cy="292" r="3" fill="#e8521a"/>
-      <circle cx="292" cy="264" r="3" fill="#e8521a"/>
-    </svg>
+  <div class="hero-port" id="hero-port" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 760px)" srcset="/images/hero-port-960.webp" type="image/webp">
+      <source srcset="/images/hero-port.webp" type="image/webp">
+      <img src="/images/hero-port.jpg" alt="" width="1920" height="1280" fetchpriority="high" decoding="async">
+    </picture>
   </div>
   <div class="hero-veil"></div>
 
@@ -1265,84 +1257,22 @@
   }
 </script>
 
-<script>
-function initGlobe() {
-  const IST = { lat: 41.01, lng: 28.97 };
-  const cities = [
-    { lat: 25.20, lng: 55.27 }, { lat: 52.52, lng: 13.40 }, { lat: 48.85, lng: 2.35 },
-    { lat: 51.92, lng: 4.47 }, { lat: 52.23, lng: 21.01 }, { lat: 40.41, lng: -3.70 },
-    { lat: 41.90, lng: 12.49 }, { lat: 51.50, lng: -0.12 }, { lat: 59.91, lng: 10.75 },
-    { lat: 55.67, lng: 12.56 }, { lat: 48.20, lng: 16.37 }, { lat: 50.08, lng: 14.43 },
-    { lat: 47.37, lng: 8.54 }, { lat: 45.46, lng: 9.19 }, { lat: 24.68, lng: 46.72 },
-    { lat: 25.28, lng: 51.53 }, { lat: 33.31, lng: 44.36 }, { lat: 33.51, lng: 36.27 },
-    { lat: 30.06, lng: 31.25 }, { lat: 33.89, lng: 35.50 }, { lat: 15.55, lng: 32.53 },
-    { lat: -26.2, lng: 28.04 }, { lat: 6.45, lng: 3.39 }, { lat: 28.63, lng: 77.21 },
-    { lat: 19.07, lng: 72.87 }, { lat: 39.90, lng: 116.40 }, { lat: 31.23, lng: 121.47 },
-    { lat: 22.30, lng: 114.17 }, { lat: 35.68, lng: 139.69 }, { lat: 1.35, lng: 103.82 },
-    { lat: 13.75, lng: 100.51 }, { lat: 40.71, lng: -74.0 }, { lat: 34.05, lng: -118.24 },
-    { lat: 43.65, lng: -79.38 }, { lat: -23.55, lng: -46.63 }, { lat: -33.86, lng: 151.20 }
-  ];
-
-  const arcs = cities.flatMap(c => [
-    { slat: IST.lat, slng: IST.lng, elat: c.lat, elng: c.lng, color: ['rgba(245,240,235,0.9)', 'rgba(232,82,26,0.2)'] },
-    { slat: c.lat, slng: c.lng, elat: IST.lat, elng: IST.lng, color: ['rgba(232,82,26,0.2)', 'rgba(245,240,235,0.9)'] },
-  ]);
-
-  const points = [
-    { lat: IST.lat, lng: IST.lng, size: 0.6, color: '#e8521a' },
-    ...cities.map(c => ({ lat: c.lat, lng: c.lng, size: 0.3, color: '#e8521a' }))
-  ];
-
-  const globeContainer = document.getElementById('globe-el');
-  const globeSize = Math.min(920, Math.max(420, globeContainer.clientWidth || 920));
-  const globe = Globe()
-    (globeContainer)
-    .width(globeSize).height(globeSize)
-    .backgroundColor('rgba(0,0,0,0)')
-    .showAtmosphere(true)
-    .atmosphereColor('#e8521a')
-    .atmosphereAltitude(0.12)
-    .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
-    .arcsData(arcs)
-    .arcStartLat('slat').arcStartLng('slng')
-    .arcEndLat('elat').arcEndLng('elng')
-    .arcColor('color')
-    .arcAltitudeAutoScale(0.3)
-    .arcStroke(0.4)
-    .arcDashLength(0.4)
-    .arcDashGap(2)
-    .arcDashInitialGap(() => Math.random() * 2)
-    .arcDashAnimateTime(2000)
-    .pointsData(points)
-    .pointColor('color')
-    .pointAltitude(0.01)
-    .pointRadius('size')
-    .onGlobeReady(function () {
-      var ph = document.getElementById('globe-ph');
-      if (ph) ph.classList.add('done');
-    });
-
-  globe.controls().autoRotate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  globe.controls().autoRotateSpeed = 0.35;
-  globe.controls().enableZoom = false;
-  globe.pointOfView({ lat: IST.lat, lng: IST.lng, altitude: 2 }, 0);
-}
-
-// Globe'u ana yukleme yolundan cikar: load sonrasi bosta yukle.
-(function () {
-  function loadGlobe() {
-    var s = document.createElement('script');
-    s.src = 'https://unpkg.com/globe.gl@2';
-    s.onload = initGlobe;
-    document.body.appendChild(s);
+<script type="module">
+  import { initHeroPort } from '/js/hero-port.js';
+  const host = document.getElementById('hero-port');
+  function boot() {
+    try {
+      const s = initHeroPort(host, {
+        photo: '/images/hero-port.webp',
+        photoSmall: '/images/hero-port-960.webp',
+        masks: '/images/hero-port-masks.png',
+        onReady: () => host.classList.add('live')
+      });
+      if (!s) host.classList.add('static');
+    } catch (e) { host.classList.add('static'); }
   }
-  function whenIdle() {
-    if ('requestIdleCallback' in window) requestIdleCallback(loadGlobe, { timeout: 2000 });
-    else setTimeout(loadGlobe, 1);
-  }
-  if (document.readyState === 'complete') whenIdle();
-  else window.addEventListener('load', whenIdle);
-})();
+  if ('requestIdleCallback' in window) requestIdleCallback(boot, { timeout: 1500 });
+  else setTimeout(boot, 200);
 </script>
 
 <!-- Floating WhatsApp -->
