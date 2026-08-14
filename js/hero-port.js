@@ -42,12 +42,12 @@ float hash(vec2 p){ return fract(sin(dot(p, vec2(41.3, 289.1))) * 43758.5453); }
 
 void main(){
   // ── cover-fit the photo into the viewport ──
-  // on narrow screens the crop slides left so the sun, the ship and the
-  // container's left end stay in frame instead of a featureless middle band
+  // on narrow screens the crop slides so the CX mark on the container stays
+  // in frame — the reason the photo is there in the first place
   float ca = uRes.x / uRes.y;
   vec2 s = (ca > uImgAspect) ? vec2(1.0, uImgAspect / ca) : vec2(ca / uImgAspect, 1.0);
   float portrait = smoothstep(1.15, 0.62, ca);
-  float cx = clamp(mix(0.5, 0.205, portrait), s.x * 0.5, 1.0 - s.x * 0.5);
+  float cx = clamp(mix(0.5, 0.37, portrait), s.x * 0.5, 1.0 - s.x * 0.5);
   vec2 uv = (vUV - 0.5) * s + vec2(cx, 0.5);
   uv.y = 1.0 - uv.y;                       // to image space (y down)
 
