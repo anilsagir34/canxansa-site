@@ -209,11 +209,14 @@ export function initHeroPort(host, opts = {}) {
   gl.uniform1i(U.uMask, 1);
   gl.uniform1f(U.uAmp, reduced ? 0 : 1);
 
-  const dprCap = window.matchMedia('(max-width: 900px)').matches ? 1.5 : 2;
+  // Kaynak fotoğraf 1920px geniş; retina ekranda 2x çizmek dokuyu büyütmekten
+  // başka bir şey yapmaz, sadece dolgu maliyeti olur. 1.5 hem kaynağa yakın
+  // hem de parıltı/gren için yeterli örnekleme bırakır.
+  const DPR_CAP = 1.5;
   let w = 1, h = 1;
   function resize() {
     const r = host.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, dprCap);
+    const dpr = Math.min(window.devicePixelRatio || 1, DPR_CAP);
     w = Math.max(1, Math.round(r.width * dpr));
     h = Math.max(1, Math.round(r.height * dpr));
     if (canvas.width !== w || canvas.height !== h) {
