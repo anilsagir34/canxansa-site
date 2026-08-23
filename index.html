@@ -185,7 +185,7 @@
     margin-left: 10px;
   }
 
-  .nav-center { display: flex; gap: 26px; position: absolute; left: 50%; transform: translateX(-50%); }
+  .nav-center { display: flex; align-items: center; justify-content: center; gap: 20px; flex: 1 1 auto; margin: 0 24px; }
   .nav-link {
     font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px;
     text-transform: uppercase; color: var(--bone-dim); text-decoration: none;
@@ -198,6 +198,7 @@
   .nav-link:hover, .nav-link.active { color: var(--bone); }
   .nav-link:hover::after, .nav-link.active::after { right: 0; }
 
+  .nav-div { width: 1px; height: 12px; background: currentColor; opacity: 0.28; align-self: center; }
   .nav-badge-tag {
     font-size: 8px; background: var(--orange); color: var(--ink);
     padding: 2px 5px; margin-left: 5px; border-radius: 1px;
@@ -231,7 +232,7 @@
   .mobile-menu {
     display: none; position: fixed; inset: 0; background: var(--ink);
     z-index: 90; flex-direction: column; justify-content: center; padding: 0 40px;
-  }
+   overflow-y: auto; }
   .mobile-menu.open { display: flex; }
   .mobile-nav-link {
     font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 32px; letter-spacing: 1px;
@@ -625,11 +626,11 @@
   .rv.in { opacity: 1; transform: translateY(0); }
 
   /* ─── RESPONSIVE ─── */
-  @media (max-width: 1180px) {
-  }
-  @media (max-width: 1024px) {
+  @media (max-width: 1200px) {
     .nav-center { display: none; }
     .nav-hamburger { display: flex; }
+  }
+  @media (max-width: 1024px) {
     nav, nav.scrolled { padding-left: 32px; padding-right: 32px; }
     /* Tablet viewports are tall enough that a 100vh hero leaves dead space above
        the bottom-anchored content. Let the hero size to its content instead. */
@@ -722,8 +723,9 @@
     <a href="#services" class="nav-link">Services</a>
     <a href="#corridors" class="nav-link">Corridors</a>
     <a href="#how" class="nav-link">Process</a>
-    <a href="about/" class="nav-link">About</a>
     <a href="#contact" class="nav-link">Contact</a>
+    <span class="nav-div" aria-hidden="true"></span>
+    <a href="about/" class="nav-link">About</a>
     <a href="shipping-signals/" class="nav-link">Signals<span class="nav-badge-tag">LIVE</span></a>
   </div>
   <div class="nav-right">
