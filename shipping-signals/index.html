@@ -3,28 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Freight Rates Turkey Europe — Live Market Intelligence | CANXANSA Logistics</title>
-<meta name="description" content="Indicative freight rates for Turkey-Europe trade lanes. FCL rates from Mersin, Istanbul and Izmir to Hamburg, Rotterdam and Felixstowe. Road freight from Tallinn to Istanbul. Updated weekly by CANXANSA.">
+<title>Freight Rates Turkey Europe — Indicative Rate Reference | CANXANSA Logistics</title>
+<meta name="description" content="Indicative freight rates for Turkey-Europe trade lanes. FCL rates from Mersin, Istanbul and Izmir to Hamburg, Rotterdam and Felixstowe. Road freight from Tallinn to Istanbul. Indicative ranges with transit times, last reviewed August 2026.">
 <meta name="keywords" content="freight rates Turkey Europe, FCL rates Mersin Hamburg, Istanbul Rotterdam freight, air freight Istanbul Dubai, road freight Turkey Germany, Tallinn Istanbul freight, Turkey Europe container rates, shipping rates Turkey">
 <link rel="canonical" href="https://canxansa.com/shipping-signals/">
 <link rel="alternate" hreflang="en" href="https://canxansa.com/shipping-signals/">
 <link rel="alternate" hreflang="x-default" href="https://canxansa.com/shipping-signals/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="CANXANSA">
-<meta property="og:title" content="Shipping Signals — Weekly Freight Market Report | CANXANSA">
-<meta property="og:description" content="Weekly freight rate trends and logistics market intelligence for Turkey-Europe and Turkey-Asia trade lanes.">
+<meta property="og:title" content="Shipping Signals — Freight Rate Reference | CANXANSA">
+<meta property="og:description" content="Indicative freight rate ranges and transit times for Turkey-Europe, Baltic and Turkey-Gulf trade lanes.">
 <meta property="og:url" content="https://canxansa.com/shipping-signals/">
 <meta property="og:image" content="https://canxansa.com/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Shipping Signals — Weekly Freight Market Report | CANXANSA">
-<meta name="twitter:description" content="Weekly freight rate trends and logistics market intelligence for Turkey-Europe and Turkey-Asia trade lanes.">
+<meta name="twitter:title" content="Shipping Signals — Freight Rate Reference | CANXANSA">
+<meta name="twitter:description" content="Indicative freight rate ranges and transit times for Turkey-Europe, Baltic and Turkey-Gulf trade lanes.">
 <meta name="twitter:image" content="https://canxansa.com/og-image.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Freight Rates Turkey Europe — Live Market Intelligence",
-  "description": "Indicative freight rates for Turkey-Europe trade lanes. FCL, LCL, air and road rates updated weekly.",
+  "name": "Freight Rates Turkey Europe — Indicative Rate Reference",
+  "description": "Indicative freight rate ranges and transit times for Turkey-Europe, Baltic and Turkey-Gulf trade lanes.",
   "url": "https://canxansa.com/shipping-signals/",
   "publisher": { "@type": "Organization", "name": "CANXANSA", "url": "https://canxansa.com" },
   "isPartOf": { "@type": "WebSite", "name": "CANXANSA", "url": "https://canxansa.com" }
@@ -145,60 +145,35 @@
   .hero-date { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 12px; letter-spacing: 1px; color: var(--orange); margin-bottom: 6px; position: relative; z-index: 2; }
 
   /* Live Terminal */
-  .live-terminal { border-top: 1px solid var(--gray-mid); border-bottom: 1px solid var(--gray-mid); }
-  .terminal-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 64px; border-bottom: 1px solid var(--gray-mid); background: var(--gray); }
-  .terminal-title { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 12px; letter-spacing: 1px; color: var(--orange); }
-  .terminal-live { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 500; letter-spacing: 2px; color: var(--gray-light); text-transform: uppercase; }
-  .terminal-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); animation: pulse-dot 2s ease-in-out infinite; }
-  @keyframes pulse-dot { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(232,82,26,0.4); } 50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(232,82,26,0); } }
-  .terminal-scroll { overflow-x: auto; }
-  .terminal-table { min-width: 720px; }
-  .terminal-row-head { display: grid; grid-template-columns: 2.2fr 0.7fr 1.3fr 1fr 1.2fr; padding: 10px 64px; background: var(--gray); border-bottom: 1px solid var(--gray-mid); font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-light); }
-  @keyframes rowEntry { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
-  @keyframes rowScan { 0% { background: rgba(232,82,26,0.1); } 100% { background: transparent; } }
-  .terminal-row { display: grid; grid-template-columns: 2.2fr 0.7fr 1.3fr 1fr 1.2fr; align-items: center; padding: 7px 64px; border-bottom: 1px solid rgba(46,46,46,0.4); transition: background 0.4s; animation: rowEntry 0.5s ease both; }
-  .terminal-row.row-scan { animation: rowScan 0.8s ease; }
-  .terminal-row:last-child { border-bottom: none; }
-  .terminal-row:hover { background: rgba(30,30,30,0.6); }
-  .t-route { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 12px; letter-spacing: 0; }
-  .t-arrow { color: var(--orange); }
-  .t-mode { font-size: 11px; letter-spacing: 1px; color: var(--gray-light); font-weight: 500; }
-  .t-price-wrap { overflow: hidden; }
-  .t-price { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 16px; letter-spacing: 0; display: block; }
-  @keyframes slideInUp { from { transform: translateY(110%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-  @keyframes slideInDown { from { transform: translateY(-110%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-  .anim-up { animation: slideInUp 0.38s cubic-bezier(0.2,0,0.2,1); }
-  .anim-down { animation: slideInDown 0.38s cubic-bezier(0.2,0,0.2,1); }
-  .t-unit { font-size: 10px; color: var(--gray-light); letter-spacing: 0.5px; margin-top: 2px; }
-  .t-change { font-size: 13px; font-weight: 500; letter-spacing: 0.5px; }
-  .t-change.up { color: var(--green); }
-  .t-change.down { color: var(--red); }
-  .t-change.flat { color: var(--gray-light); }
-  .t-spark { font-size: 16px; letter-spacing: 1px; line-height: 1; font-family: monospace; }
-  .t-spark.spark-up { color: var(--green); }
-  .t-spark.spark-down { color: var(--red); }
-  .t-spark.spark-flat { color: var(--gray-light); }
+
+  /* ── RATE REFERENCE ── */
+  .rates { padding: 0; border-top: 1px solid var(--gray-mid); border-bottom: 1px solid var(--gray-mid); }
+  .rates-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; padding: 22px 64px; background: var(--gray); border-bottom: 1px solid var(--gray-mid); flex-wrap: wrap; }
+  .rates-title { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+  .rates-basis { font-size: 12px; line-height: 1.7; color: var(--gray-light); max-width: 620px; }
+  .rates-stamp { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-light); white-space: nowrap; padding-top: 2px; }
+  .rates-scroll { overflow-x: auto; }
+  .rates-table { width: 100%; min-width: 900px; border-collapse: collapse; }
+  .rates-table th { text-align: left; font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-light); background: var(--gray); border-bottom: 1px solid var(--gray-mid); padding: 11px 16px 11px 0; }
+  .rates-table th:first-child, .rates-table td:first-child { padding-left: 64px; }
+  .rates-table th:last-child, .rates-table td:last-child { padding-right: 64px; }
+  .rates-table td { padding: 15px 16px 15px 0; border-bottom: 1px solid rgba(46,46,46,0.4); vertical-align: top; }
+  .rates-table tbody tr { transition: background 0.25s; }
+  .rates-table tbody tr:hover { background: rgba(30,30,30,0.55); }
+  .rates-table tbody tr:last-child td { border-bottom: none; }
+  .r-route { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 13px; letter-spacing: 0.5px; white-space: nowrap; }
+  .r-route .arrow { color: var(--orange); margin: 0 7px; }
+  .r-mode { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 1.5px; color: var(--gray-light); border: 1px solid var(--gray-mid); border-radius: 2px; padding: 3px 8px; white-space: nowrap; }
+  .r-range { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 16px; letter-spacing: 0; white-space: nowrap; }
+  .r-unit { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
+  .r-transit { font-size: 12px; color: var(--gray-light); white-space: nowrap; }
+  .r-note { font-size: 12px; line-height: 1.65; color: var(--gray-light); min-width: 240px; }
+  .pulse-stamp { font-size: 12px; line-height: 1.7; color: var(--text-muted); max-width: 620px; margin: -32px 0 40px; }
 
   .section-label { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
   .section-label::before { content: ''; width: 32px; height: 1px; background: var(--orange); }
   .section-title { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: clamp(23px, 2.9vw, 40px); line-height: 1; letter-spacing: 0; margin-bottom: 48px; }
 
-  /* Rate Cards */
-  .rates { padding: 80px 64px; }
-  .rate-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; }
-  .rate-card { background: var(--gray); border: 1px solid var(--gray-mid); padding: 32px; position: relative; transition: border-color 0.2s; }
-  .rate-card:hover { border-color: var(--orange); }
-  .rate-mode { font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-  .rate-mode .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
-  .rate-route { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 16px; letter-spacing: 0; margin-bottom: 4px; }
-  .rate-detail { font-size: 12px; color: var(--gray-light); letter-spacing: 1px; margin-bottom: 20px; }
-  .rate-price { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 29px; line-height: 1; }
-  .rate-price .currency { font-size: 20px; color: var(--gray-light); }
-  .rate-unit { font-size: 11px; color: var(--gray-light); letter-spacing: 1px; margin-top: 4px; }
-  .rate-change { position: absolute; top: 32px; right: 32px; font-size: 12px; font-weight: 500; letter-spacing: 1px; padding: 4px 10px; border-radius: 2px; }
-  .rate-change.up { background: rgba(239,68,68,0.15); color: var(--red); }
-  .rate-change.down { background: rgba(34,197,94,0.15); color: var(--green); }
-  .rate-change.stable { background: rgba(136,136,136,0.15); color: var(--gray-light); }
 
   /* Market Pulse */
   .market-pulse { padding: 80px 64px; background: var(--gray); }
@@ -245,12 +220,6 @@
   .disclaimer { padding: 40px 64px; text-align: center; font-size: 11px; color: var(--text-muted); line-height: 1.6; border-top: 1px solid var(--gray-mid); }
 
   /* Route Info */
-  .route-info { padding: 56px 64px; background: var(--gray); }
-  .route-info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
-  .route-info-item { border-left: 2px solid var(--gray-mid); padding-left: 16px; }
-  .route-info-item:hover { border-left-color: var(--orange); }
-  .route-info-item h3 { font-family: var(--disp); font-stretch: 125%; font-weight: 800; font-size: 11px; letter-spacing: 0; margin-bottom: 8px; }
-  .route-info-item p { font-size: 12px; line-height: 1.7; color: var(--gray-light); }
 
   /* Quote Form */
   .quote-section { padding: 80px 64px; }
@@ -288,37 +257,33 @@
 
   /* Mobile */
   @media (max-width: 1024px) {
+    .rates-head { padding: 20px 32px; }
+    .rates-table th:first-child, .rates-table td:first-child { padding-left: 32px; }
+    .rates-table th:last-child, .rates-table td:last-child { padding-right: 32px; }
     .hero { padding: 100px 32px 12px; }
-    .rates, .market-pulse, .spotlight, .cta-section, .subscribe { padding: 60px 32px; }
+    .market-pulse, .spotlight, .cta-section, .subscribe { padding: 60px 32px; }
     .pulse-grid { grid-template-columns: 1fr; }
     .spotlight-grid { grid-template-columns: 1fr; }
     nav { padding: 20px 24px; }
     footer { padding: 48px 24px 32px; }
     .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-    .terminal-header { padding: 14px 32px; }
-    .terminal-row-head { padding: 10px 32px; }
-    .terminal-row { padding: 12px 32px; }
-    .route-info { padding: 48px 32px; }
-    .route-info-grid { grid-template-columns: 1fr 1fr; }
     .quote-section { padding: 60px 32px; }
     .quote-grid { grid-template-columns: 1fr; gap: 40px; }
     .disclaimer { padding: 32px 24px; }
   }
   @media (max-width: 640px) {
+    .rates-head { padding: 18px 20px; gap: 16px; }
+    .rates-table th:first-child, .rates-table td:first-child { padding-left: 20px; }
+    .rates-table th:last-child, .rates-table td:last-child { padding-right: 20px; }
+    .pulse-stamp { margin: -24px 0 32px; }
     .nav-cta { display: none; }
     .nav-track { display: none; }
     .mobile-nav-link { font-size: 36px; padding: 14px 0; }
     .hero { padding: 88px 20px 10px; }
-    .rates, .market-pulse, .spotlight, .cta-section, .subscribe { padding: 48px 20px; }
-    .rate-grid { grid-template-columns: 1fr; }
+    .market-pulse, .spotlight, .cta-section, .subscribe { padding: 48px 20px; }
     .subscribe-form { flex-direction: column; }
     .subscribe-input { border-right: 1px solid var(--gray-mid); }
-    .terminal-header { padding: 12px 20px; }
-    .terminal-row-head { padding: 8px 20px; }
-    .terminal-row { padding: 10px 20px; }
-    .route-info { padding: 40px 20px; }
-    .route-info-grid { grid-template-columns: 1fr; }
     .quote-section { padding: 48px 20px; }
     .qf-row { grid-template-columns: 1fr; }
     .disclaimer { padding: 24px 20px; }
@@ -386,83 +351,113 @@
 <!-- HERO -->
 <section class="hero">
   <div class="breadcrumb"><a href="../index.html">Home</a> / <span>Shipping Signals</span></div>
-  <div class="hero-date" id="report-date"></div>
-  <script>document.getElementById('report-date').textContent=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});</script>
+  <div class="hero-date">Rate reference &middot; last updated 23 August 2026</div>
   <h1>SHIPPING <span class="accent">SIGNALS</span></h1>
-  <p class="hero-sub">Weekly freight rate trends across Turkey-Europe and Turkey-Asia lanes.</p>
+  <p class="hero-sub">Indicative rate ranges and transit times across Turkey&ndash;Europe, Baltic and Turkey&ndash;Gulf lanes. These are planning bands, not quotations.</p>
 </section>
 
-<!-- LIVE TERMINAL -->
-<section class="live-terminal">
-  <div class="terminal-header">
-    <div class="terminal-title">FREIGHT RATE MONITOR</div>
-    <div class="terminal-live"><span class="terminal-dot"></span>INDICATIVE RATES</div>
+<!-- RATE REFERENCE -->
+<section class="rates" id="rates">
+  <div class="rates-head">
+    <div>
+      <div class="rates-title">Freight Rate Reference</div>
+      <p class="rates-basis">Ranges we would expect to price against on these lanes today, drawn from rates we have quoted and booked. What you actually pay moves with equipment availability, fuel, season and the cargo itself.</p>
+    </div>
+    <div class="rates-stamp">Updated <time datetime="2026-08-23">23 August 2026</time></div>
   </div>
-  <div class="terminal-scroll">
-    <div class="terminal-table">
-      <div class="terminal-row-head">
-        <span>ROUTE</span><span>MODE</span><span>PRICE</span><span>CHANGE</span><span>TREND</span>
-      </div>
-      <div id="live-table"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ROUTE INFO (SEO) -->
-<section class="route-info">
-  <div class="section-label">Route Reference</div>
-  <div class="route-info-grid">
-    <div class="route-info-item">
-      <h3>Mersin &rarr; Hamburg — FCL</h3>
-      <p>40' container, port to port. Indicative range $1,500–2,200. Transit 12–14 days via Mediterranean–North Sea service.</p>
-    </div>
-    <div class="route-info-item">
-      <h3>Istanbul &rarr; Rotterdam — FCL</h3>
-      <p>40' container, port to port. Indicative range $1,300–1,900. One of Turkey's highest-volume European trade lanes.</p>
-    </div>
-    <div class="route-info-item">
-      <h3>Izmir &rarr; Felixstowe — FCL</h3>
-      <p>40' container, port to port. Indicative range $1,400–2,100. Key lane for Turkish textile and automotive exports to the UK.</p>
-    </div>
-    <div class="route-info-item">
-      <h3>Istanbul &rarr; Rotterdam — LCL</h3>
-      <p>Door-to-door consolidation. Indicative $32–52 per CBM. Suitable for shipments under one full container.</p>
-    </div>
-    <div class="route-info-item">
-      <h3>Istanbul &rarr; Dubai — Air Freight</h3>
-      <p>General cargo, 100+ kg. Indicative $2.60–3.80 per kg. 1-day transit. Main gateway for Turkey–Gulf trade.</p>
-    </div>
-    <div class="route-info-item">
-      <h3>Istanbul &rarr; Munich — FTL</h3>
-      <p>Full truck, Tautliner. Indicative $2,600–3,800 per truck. Transit 4–5 days via TIR corridor.</p>
-    </div>
-    <div class="route-info-item">
-      <h3>Mersin &rarr; Jeddah — FCL</h3>
-      <p>40' container, port to port. Indicative range $700–1,300. Transit 7–9 days. Stable Turkey–Gulf lane.</p>
-    </div>
-    <div class="route-info-item">
-      <h3>Tallinn &rarr; Istanbul — FTL</h3>
-      <p>Full truck from Estonia to Turkey. Indicative $2,200–3,200 per truck. Baltic–Turkey corridor served by CANXANSA OÜ, registered in Tallinn.</p>
-    </div>
-    <div class="route-info-item">
-      <h3>Tallinn &rarr; Hamburg — FTL</h3>
-      <p>Full truck, Estonia to Germany. Indicative $1,100–1,700 per truck. Transit 2–3 days via Baltic highway network.</p>
-    </div>
-    <div class="route-info-item">
-      <h3>Mersin &rarr; Barcelona — FCL</h3>
-      <p>40' container, port to port. Indicative range $1,400–2,000. Transit 8–10 days via Western Mediterranean service. Key lane for Turkish textile and ceramics exports to Spain.</p>
-    </div>
-    <div class="route-info-item">
-      <h3>Istanbul &rarr; London — Air Freight</h3>
-      <p>General cargo, 100+ kg. Indicative $3.20–4.80 per kg. 1-day transit. Major corridor for time-sensitive Turkish exports to the UK market post-Brexit.</p>
-    </div>
+  <div class="rates-scroll">
+    <table class="rates-table">
+      <thead>
+        <tr><th>Route</th><th>Mode</th><th>Indicative range</th><th>Transit</th><th>Basis</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><div class="r-route">Mersin<span class="arrow">&rarr;</span>Hamburg</div></td>
+        <td><span class="r-mode">FCL</span></td>
+        <td><div class="r-range">$1,500 &ndash; 2,200</div><div class="r-unit">per 40' container</div></td>
+        <td class="r-transit">12&ndash;14 days</td>
+        <td class="r-note">Port to port on the Mediterranean&ndash;North Sea service.</td>
+      </tr>
+      <tr>
+        <td><div class="r-route">Istanbul<span class="arrow">&rarr;</span>Rotterdam</div></td>
+        <td><span class="r-mode">FCL</span></td>
+        <td><div class="r-range">$1,300 &ndash; 1,900</div><div class="r-unit">per 40' container</div></td>
+        <td class="r-transit">on request</td>
+        <td class="r-note">Port to port. One of Turkey's highest-volume European lanes.</td>
+      </tr>
+      <tr>
+        <td><div class="r-route">Izmir<span class="arrow">&rarr;</span>Felixstowe</div></td>
+        <td><span class="r-mode">FCL</span></td>
+        <td><div class="r-range">$1,400 &ndash; 2,100</div><div class="r-unit">per 40' container</div></td>
+        <td class="r-transit">on request</td>
+        <td class="r-note">Port to port. Textile and automotive exports to the UK.</td>
+      </tr>
+      <tr>
+        <td><div class="r-route">Istanbul<span class="arrow">&rarr;</span>Rotterdam</div></td>
+        <td><span class="r-mode">LCL</span></td>
+        <td><div class="r-range">$32 &ndash; 52</div><div class="r-unit">per CBM</div></td>
+        <td class="r-transit">on request</td>
+        <td class="r-note">Door-to-door consolidation for volumes below a full container.</td>
+      </tr>
+      <tr>
+        <td><div class="r-route">Istanbul<span class="arrow">&rarr;</span>Dubai</div></td>
+        <td><span class="r-mode">AIR</span></td>
+        <td><div class="r-range">$2.60 &ndash; 3.80</div><div class="r-unit">per kg</div></td>
+        <td class="r-transit">1 day</td>
+        <td class="r-note">General cargo from 100 kg. Main gateway for Turkey&ndash;Gulf trade.</td>
+      </tr>
+      <tr>
+        <td><div class="r-route">Istanbul<span class="arrow">&rarr;</span>Munich</div></td>
+        <td><span class="r-mode">FTL</span></td>
+        <td><div class="r-range">$2,600 &ndash; 3,800</div><div class="r-unit">per truck</div></td>
+        <td class="r-transit">4&ndash;5 days</td>
+        <td class="r-note">Tautliner on the TIR corridor.</td>
+      </tr>
+      <tr>
+        <td><div class="r-route">Mersin<span class="arrow">&rarr;</span>Jeddah</div></td>
+        <td><span class="r-mode">FCL</span></td>
+        <td><div class="r-range">$700 &ndash; 1,300</div><div class="r-unit">per 40' container</div></td>
+        <td class="r-transit">7&ndash;9 days</td>
+        <td class="r-note">Port to port. Steady Turkey&ndash;Gulf lane.</td>
+      </tr>
+      <tr>
+        <td><div class="r-route">Tallinn<span class="arrow">&rarr;</span>Istanbul</div></td>
+        <td><span class="r-mode">FTL</span></td>
+        <td><div class="r-range">$2,200 &ndash; 3,200</div><div class="r-unit">per truck</div></td>
+        <td class="r-transit">on request</td>
+        <td class="r-note">Baltic&ndash;Turkey corridor, run from our own Tallinn base.</td>
+      </tr>
+      <tr>
+        <td><div class="r-route">Tallinn<span class="arrow">&rarr;</span>Hamburg</div></td>
+        <td><span class="r-mode">FTL</span></td>
+        <td><div class="r-range">$1,100 &ndash; 1,700</div><div class="r-unit">per truck</div></td>
+        <td class="r-transit">2&ndash;3 days</td>
+        <td class="r-note">Baltic highway network.</td>
+      </tr>
+      <tr>
+        <td><div class="r-route">Mersin<span class="arrow">&rarr;</span>Barcelona</div></td>
+        <td><span class="r-mode">FCL</span></td>
+        <td><div class="r-range">$1,400 &ndash; 2,000</div><div class="r-unit">per 40' container</div></td>
+        <td class="r-transit">8&ndash;10 days</td>
+        <td class="r-note">Port to port on the Western Mediterranean service.</td>
+      </tr>
+      <tr>
+        <td><div class="r-route">Istanbul<span class="arrow">&rarr;</span>London</div></td>
+        <td><span class="r-mode">AIR</span></td>
+        <td><div class="r-range">$3.20 &ndash; 4.80</div><div class="r-unit">per kg</div></td>
+        <td class="r-transit">1 day</td>
+        <td class="r-note">General cargo from 100 kg. Time-sensitive exports to the UK.</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
 <!-- MARKET PULSE -->
 <section class="market-pulse">
-  <div class="section-label">Market Pulse</div>
-  <div class="section-title">What's Moving the Market</div>
+  <div class="section-label">Market Pulse &middot; May 2026</div>
+  <div class="section-title">What Was Moving the Market</div>
+  <p class="pulse-stamp">These notes were written for the May 2026 cycle and are kept as background. For current conditions on a specific lane, ask us.</p>
   <div class="pulse-grid">
     <div>
       <div class="pulse-item">
@@ -499,11 +494,10 @@
 
     <div class="spotlight-card">
       <div class="spotlight-route">TURKEY <span class="spotlight-arrow">&harr;</span> GERMANY</div>
-      <div class="spotlight-stat"><span class="spotlight-stat-label">FCL (Mersin-Hamburg)</span><span class="spotlight-stat-value">$1,600 &ndash; 2,200</span></div>
+      <div class="spotlight-stat"><span class="spotlight-stat-label">FCL (Mersin-Hamburg)</span><span class="spotlight-stat-value">$1,500 &ndash; 2,200</span></div>
       <div class="spotlight-stat"><span class="spotlight-stat-label">FTL (Istanbul-Munich)</span><span class="spotlight-stat-value">$3,000 &ndash; 3,800</span></div>
       <div class="spotlight-stat"><span class="spotlight-stat-label">Transit (Sea)</span><span class="spotlight-stat-value">12-14 days</span></div>
       <div class="spotlight-stat"><span class="spotlight-stat-label">Transit (Road)</span><span class="spotlight-stat-value">4-5 days</span></div>
-      <div class="spotlight-stat"><span class="spotlight-stat-label">Trend</span><span class="spotlight-stat-value" style="color:var(--red)">Rising</span></div>
     </div>
 
     <div class="spotlight-card">
@@ -512,16 +506,14 @@
       <div class="spotlight-stat"><span class="spotlight-stat-label">LCL (Shanghai-Istanbul)</span><span class="spotlight-stat-value">$40 &ndash; 58/CBM</span></div>
       <div class="spotlight-stat"><span class="spotlight-stat-label">Transit (Sea)</span><span class="spotlight-stat-value">22-26 days</span></div>
       <div class="spotlight-stat"><span class="spotlight-stat-label">Transit (Rail)</span><span class="spotlight-stat-value">18-22 days</span></div>
-      <div class="spotlight-stat"><span class="spotlight-stat-label">Trend</span><span class="spotlight-stat-value" style="color:var(--gray-light)">Stable</span></div>
     </div>
 
     <div class="spotlight-card">
       <div class="spotlight-route">TURKEY <span class="spotlight-arrow">&rarr;</span> GULF</div>
-      <div class="spotlight-stat"><span class="spotlight-stat-label">FCL (Mersin-Jeddah)</span><span class="spotlight-stat-value">$900 &ndash; 1,300</span></div>
+      <div class="spotlight-stat"><span class="spotlight-stat-label">FCL (Mersin-Jeddah)</span><span class="spotlight-stat-value">$700 &ndash; 1,300</span></div>
       <div class="spotlight-stat"><span class="spotlight-stat-label">Air (IST-DXB)</span><span class="spotlight-stat-value">$2.80 &ndash; 3.60/kg</span></div>
       <div class="spotlight-stat"><span class="spotlight-stat-label">Transit (Sea)</span><span class="spotlight-stat-value">7-9 days</span></div>
       <div class="spotlight-stat"><span class="spotlight-stat-label">Transit (Air)</span><span class="spotlight-stat-value">1 day</span></div>
-      <div class="spotlight-stat"><span class="spotlight-stat-label">Trend</span><span class="spotlight-stat-value" style="color:var(--red)">Rising</span></div>
     </div>
 
   </div>
@@ -610,7 +602,7 @@
       <input type="email" name="email" class="subscribe-input" placeholder="your@email.com" required>
       <button type="submit" class="subscribe-btn">Subscribe</button>
     </form>
-    <p class="subscribe-note">Weekly updates. No spam. Unsubscribe anytime.</p>
+    <p class="subscribe-note">We write when the rate reference changes. No spam, unsubscribe anytime.</p>
   </div>
 </section>
 
@@ -711,88 +703,6 @@ document.getElementById('signals-quote-form').addEventListener('submit', async f
 })();
 </script>
 
-<script>
-(function(){
-var B=['▁','▂','▃','▄','▅','▆','▇','█'];
-var R=[
-{route:'MERSIN > HAMBURG',mode:'FCL',unit:'per container',min:1500,max:2200,dec:0},
-{route:'ISTANBUL > ROTTERDAM',mode:'FCL',unit:'per container',min:1300,max:1900,dec:0},
-{route:'IZMIR > FELIXSTOWE',mode:'FCL',unit:'per container',min:1400,max:2100,dec:0},
-{route:'ISTANBUL > ROTTERDAM',mode:'LCL',unit:'/CBM',min:32,max:52,dec:0},
-{route:'ISTANBUL > DUBAI',mode:'AIR',unit:'/KG',min:2.60,max:3.80,dec:2},
-{route:'ISTANBUL > MUNICH',mode:'FTL',unit:'per truck',min:2600,max:3800,dec:0},
-{route:'MERSIN > JEDDAH',mode:'FCL',unit:'per container',min:900,max:1300,dec:0},
-{route:'TALLINN > ISTANBUL',mode:'FTL',unit:'per truck',min:2200,max:3200,dec:0},
-{route:'TALLINN > HAMBURG',mode:'FTL',unit:'per truck',min:1100,max:1700,dec:0},
-{route:'MERSIN > BARCELONA',mode:'FCL',unit:'per container',min:1400,max:2000,dec:0},
-{route:'ISTANBUL > LONDON',mode:'AIR',unit:'/KG',min:3.20,max:4.80,dec:2}
-];
-R.forEach(function(r){
-  r.history=[];
-  for(var i=0;i<10;i++){r.history.push(Number((r.min+Math.random()*(r.max-r.min)).toFixed(r.dec)));}
-  r.price=r.history[r.history.length-1];
-  r.prev=r.history[r.history.length-2];
-});
-function fmt(v,d){return d>0?'$'+v.toFixed(d):'$'+v.toLocaleString('en-US');}
-function spark(h){
-  var mn=Math.min.apply(null,h),mx=Math.max.apply(null,h),rng=mx-mn||1;
-  return h.map(function(v){return B[Math.min(7,Math.round(((v-mn)/rng)*7))];}).join('');
-}
-function sparkCls(h){var d=h[h.length-1]-h[0];return d>0?'spark-up':d<0?'spark-down':'spark-flat';}
-function chg(p,prev){
-  if(prev===0)return{t:'—',c:'flat'};
-  var pct=((p-prev)/prev*100).toFixed(1);
-  if(p>prev)return{t:'▲ +'+pct+'%',c:'up'};
-  if(p<prev)return{t:'▼ '+pct+'%',c:'down'};
-  return{t:'—',c:'flat'};
-}
-var tbl=document.getElementById('live-table');
-function mkRow(r,i){
-  var c=chg(r.price,r.prev),pts=r.route.split(' > ');
-  return '<div class="terminal-row" id="trow-'+i+'" style="animation-delay:'+(i*0.07)+'s">'+
-    '<div class="t-route">'+pts[0]+' <span class="t-arrow">→</span> '+pts[1]+'</div>'+
-    '<div class="t-mode">'+r.mode+'</div>'+
-    '<div class="t-price-cell"><div class="t-price-wrap"><span class="t-price">'+fmt(r.price,r.dec)+'</span></div><div class="t-unit">'+r.unit+'</div></div>'+
-    '<div class="t-change '+c.c+'">'+c.t+'</div>'+
-    '<div class="t-spark '+sparkCls(r.history)+'">'+spark(r.history)+'</div>'+
-    '</div>';
-}
-tbl.innerHTML=R.map(function(r,i){return mkRow(r,i);}).join('');
-
-function updateRoute(i){
-  var r=R[i];
-  r.prev=r.price;
-  var step=(r.max-r.min)*(0.006+Math.random()*0.02);
-  var next=r.price+step*(Math.random()>0.5?1:-1);
-  next=Math.max(r.min,Math.min(r.max,next));
-  r.price=Number(next.toFixed(r.dec));
-  r.history.push(r.price);
-  if(r.history.length>10)r.history.shift();
-  var row=document.getElementById('trow-'+i);
-  if(!row)return;
-  var dir=r.price>r.prev?'up':'down';
-  var c=chg(r.price,r.prev);
-  row.querySelector('.t-change').className='t-change '+c.c;
-  row.querySelector('.t-change').textContent=c.t;
-  var sp=row.querySelector('.t-spark');
-  sp.className='t-spark '+sparkCls(r.history);
-  sp.textContent=spark(r.history);
-  var priceEl=row.querySelector('.t-price');
-  priceEl.classList.remove('anim-up','anim-down');
-  void priceEl.offsetWidth;
-  priceEl.textContent=fmt(r.price,r.dec);
-  priceEl.classList.add(dir==='up'?'anim-up':'anim-down');
-  row.classList.remove('row-scan');
-  void row.offsetWidth;
-  row.classList.add('row-scan');
-}
-
-function scheduleRoute(i){
-  setTimeout(function(){updateRoute(i);scheduleRoute(i);},6000+Math.random()*9000);
-}
-R.forEach(function(r,i){setTimeout(function(){scheduleRoute(i);},i*600+Math.random()*800);});
-})();
-</script>
 
 <script src="/cookie-consent.js" defer></script>
 <!-- Floating WhatsApp -->
