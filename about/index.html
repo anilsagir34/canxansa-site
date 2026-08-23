@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About CANXANSA — Estonia-Based Freight Forwarder | CANXANSA OÜ</title>
-<meta name="description" content="CANXANSA OÜ is an Estonia-registered freight forwarder organising air, sea and road shipments across 30+ countries — Europe, Turkey, the Middle East, Central Asia and the Far East.">
+<meta name="description" content="CANXANSA OÜ is an Estonia-registered freight forwarder organising air, sea and road shipments across 40+ countries — Europe, Turkey, the Middle East, Central Asia and the Far East.">
 <link rel="canonical" href="https://canxansa.com/about/">
 <meta property="og:title" content="About CANXANSA | Estonia-Based Freight Forwarder">
 <meta property="og:description" content="Estonia-registered freight forwarder. Air, sea and road shipments across 30+ countries. Quote in one hour.">
@@ -124,15 +124,34 @@
     color: var(--white); text-decoration: none;
   }
   .nav-logo span { color: var(--orange); }
-  .nav-right { display: flex; align-items: center; gap: 32px; }
-  .nav-back {
+  .nav-right { display: flex; align-items: center; gap: 24px; }
+  .nav-center { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
     color: var(--gray-light);
     font-family: 'Archivo', sans-serif; font-size: 13px; font-weight: 500;
     letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
     transition: color 0.2s;
-    display: flex; align-items: center; gap: 8px;
   }
-  .nav-back:hover { color: var(--white); }
+  .nav-link:hover { color: var(--white); }
+  .nav-hamburger {
+    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px; z-index: 200;
+  }
+  .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: transform 0.3s, opacity 0.3s; transform-origin: center; }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .mobile-menu { display: none; position: fixed; inset: 0; background: var(--black); z-index: 90; flex-direction: column; justify-content: center; padding: 0 40px 48px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-nav-link {
+    font-family: var(--disp); font-stretch: 125%; font-weight: 800;
+    font-size: 35px; letter-spacing: 1px; color: var(--gray-light);
+    text-decoration: none; padding: 16px 0;
+    border-bottom: 1px solid var(--gray-mid);
+    transition: color 0.2s, padding-left 0.2s; display: block;
+  }
+  .mobile-nav-link:hover { color: var(--white); padding-left: 8px; }
+  .mobile-nav-cta { border: none; color: var(--orange); margin-top: 24px; }
   .nav-cta {
     background: var(--orange); color: var(--white);
     border: none; padding: 10px 24px; border-radius: 2px;
@@ -181,6 +200,13 @@
   .section-label::before {
     content: ''; width: 32px; height: 1px; background: var(--orange);
   }
+  .breadcrumb {
+    font-size: 11px; color: var(--gray-light); letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+  .breadcrumb a { color: var(--gray-light); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--orange); }
+  .breadcrumb span { color: var(--orange); }
   .page-title {
     font-family: var(--disp); font-stretch: 125%; font-weight: 800;
     font-size: clamp(40px, 5vw, 69px);
@@ -207,6 +233,20 @@
   .content-wrapper {
     max-width: 1100px; margin: 0 auto;
     padding: 80px 64px 40px;
+  }
+
+  /* ── PORT BAND ── */
+  .port-band { margin: 0 0 96px; }
+  .port-band picture { display: block; }
+  .port-band img {
+    display: block; width: 100%; height: 340px;
+    object-fit: cover; object-position: 50% 62%;
+    filter: saturate(0.85) contrast(1.05);
+    border-top: 2px solid var(--orange);
+  }
+  .port-band figcaption {
+    font-size: 12px; line-height: 1.7; color: var(--text-muted);
+    letter-spacing: 0.5px; margin-top: 12px; max-width: 640px;
   }
 
   /* ── STATS BAR ── */
@@ -330,34 +370,12 @@
   .region-detail { color: var(--gray-light); font-size: 12px; }
 
   /* ── CTA ── */
-  .cta-block {
-    background: var(--gray);
-    border-top: 2px solid var(--orange);
-    padding: 56px 48px;
-    margin-top: 96px;
-    margin-bottom: 80px;
-    text-align: center;
-  }
   .cta-title {
     font-family: var(--disp); font-stretch: 125%; font-weight: 800;
     font-size: clamp(26px, 2.9vw, 40px);
     letter-spacing: 0; line-height: 1; margin-bottom: 16px;
   }
   .cta-title span { color: var(--orange); }
-  .cta-sub {
-    font-size: 14px; color: var(--gray-light);
-    margin-bottom: 28px; line-height: 1.7;
-  }
-  .cta-btn {
-    display: inline-block;
-    background: var(--orange); color: var(--white);
-    padding: 14px 36px; border-radius: 2px;
-    font-size: 13px; font-weight: 500;
-    letter-spacing: 2px; text-transform: uppercase;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .cta-btn:hover { background: var(--orange-dim); }
 
   /* ── FOOTER ── */
   footer {
@@ -402,30 +420,83 @@
     font-size: 12px; color: var(--text-muted); letter-spacing: 1px;
   }
 
+  /* -- REGION HUB LINKS -- */
+  .region-links { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px 12px; }
+  .region-links a {
+    font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gray-light);
+    text-decoration: underline; text-decoration-color: var(--gray-mid); text-underline-offset: 4px;
+    padding: 6px 0;
+    transition: color 0.2s, text-decoration-color 0.2s;
+  }
+  .region-links a:hover { color: var(--orange); text-decoration-color: var(--orange); }
+
+  /* -- CONTACT / QUOTE FORM -- */
+  .contact {
+    margin-top: 96px; padding-top: 72px;
+    border-top: 1px solid var(--gray-mid);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+  }
+  .contact .cta-title { margin-bottom: 20px; }
+  .contact-intro { font-size: 15px; line-height: 1.8; color: var(--gray-light); max-width: 480px; }
+  .contact-info { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+  .contact-info-item { display: flex; align-items: center; gap: 12px; }
+  .contact-info-icon { width: 36px; height: 36px; background: var(--gray); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .contact-info-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 2px; }
+  .contact-info-val { color: var(--white); font-size: 14px; text-decoration: none; }
+  .form-group { margin-bottom: 20px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .contact label { display: block; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-light); margin-bottom: 8px; }
+  .contact input, .contact select, .contact textarea {
+    width: 100%; background: var(--gray); border: 1px solid var(--gray-mid); color: var(--white);
+    padding: 14px 16px; font-family: 'Archivo', sans-serif; font-size: 14px;
+    border-radius: 2px; outline: none; transition: border-color 0.2s; -webkit-appearance: none;
+  }
+  .contact input:focus, .contact select:focus, .contact textarea:focus { border-color: var(--orange); }
+  .contact select option { background: var(--gray); }
+  .contact textarea { resize: vertical; min-height: 120px; }
+  .form-submit {
+    width: 100%; padding: 18px; background: var(--orange); border: none; color: var(--white);
+    font-family: 'Archivo', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px;
+    text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--orange-dim); }
+
   @media (max-width: 1024px) {
     nav { padding: 20px 32px; }
     .page-header { padding: 130px 32px 60px; }
     .content-wrapper { padding: 60px 32px 40px; }
+    .nav-center { display: none; }
+    .nav-hamburger { display: flex; }
     .stats { grid-template-columns: repeat(2, 1fr); }
+    .port-band img { height: 260px; }
+    .port-band { margin-bottom: 64px; }
     .block-grid { grid-template-columns: 1fr; gap: 24px; }
     .block-heading { position: static; }
     .pillars { grid-template-columns: 1fr; }
     .regions { grid-template-columns: 1fr; }
+    .contact { grid-template-columns: 1fr; gap: 40px; margin-top: 64px; padding-top: 56px; }
     .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     footer { padding: 48px 32px 40px; }
   }
   @media (max-width: 640px) {
     nav { padding: 16px 20px; }
+    .nav-cta { display: none; }
+    .nav-track { display: none; }
+    .mobile-nav-link { font-size: 32px; padding: 14px 0; }
+    .port-band img { height: 200px; }
     .page-header { padding: 110px 20px 48px; }
     .content-wrapper { padding: 40px 20px 32px; }
-    .nav-back span { display: none; }
     .stat { padding: 24px 20px; }
     .stat-num { font-size: 40px; }
     .block { margin-bottom: 64px; padding-bottom: 64px; }
     .block-title { font-size: 32px; }
     .facts { padding: 20px 24px; }
     .fact-row { grid-template-columns: 1fr; gap: 4px; }
-    .cta-block { padding: 40px 24px; margin-top: 64px; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    .region-links { gap: 2px 16px; }
+    .region-links a { padding: 12px 0; }
+    .contact { margin-top: 56px; padding-top: 48px; }
     .footer-top { grid-template-columns: 1fr; }
     footer { padding: 40px 20px 32px; }
     .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
@@ -454,15 +525,36 @@
 
 <nav>
   <a href="../" class="nav-logo" aria-label="CANXANSA Logistics">CAN<span>X</span>ANSA<span class="nav-sub" style="font-family:'Archivo',sans-serif;font-weight:300;font-size:11px;letter-spacing:2px;color:#888;margin-left:8px;vertical-align:middle;">· LOGISTICS</span></a>
+  <div class="nav-center">
+    <a href="../" class="nav-link">Home</a>
+    <a href="../#services" class="nav-link">Services</a>
+    <a href="../#corridors" class="nav-link">Corridors</a>
+    <a href="../#coverage" class="nav-link">Routes</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </div>
   <div class="nav-right">
-    <a href="../" class="nav-back"><span>← </span>Home</a>
     <a href="../track/" class="nav-track">Track</a>
-    <a href="../#contact" class="nav-cta">Get a Quote</a>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../" class="mobile-nav-link">Home</a>
+  <a href="../#services" class="mobile-nav-link">Services</a>
+  <a href="../#corridors" class="mobile-nav-link">Corridors</a>
+  <a href="../#coverage" class="mobile-nav-link">Routes</a>
+  <a href="../shipping-signals/" class="mobile-nav-link">Signals</a>
+  <a href="../track/" class="mobile-nav-link">Track</a>
+  <a href="#contact" class="mobile-nav-link mobile-nav-cta">Get a Quote</a>
+</div>
+
 <div class="page-header">
   <div class="header-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Home</a> / <span>About</span></nav>
     <div class="section-label">About CANXANSA</div>
     <h1 class="page-title">A FREIGHT FORWARDER<br>BUILT IN <span>ESTONIA.</span></h1>
     <p class="page-lead">
@@ -484,7 +576,7 @@
   <!-- STATS -->
   <div class="stats">
     <div class="stat">
-      <div class="stat-num">30+</div>
+      <div class="stat-num">40+</div>
       <div class="stat-label">Countries Served</div>
     </div>
     <div class="stat">
@@ -542,6 +634,16 @@
     </div>
   </div>
 
+  <!-- PORT BAND -->
+  <figure class="port-band">
+    <picture>
+      <source srcset="/images/hero-port.webp" type="image/webp">
+      <img src="/images/hero-port.jpg" width="1536" height="1024" loading="lazy" decoding="async"
+           alt="A CANXANSA-branded shipping container lifted by a crane at a port terminal at sunset">
+    </picture>
+    <figcaption>Every booking we place ends at a quay, an apron or a border gate. That is where a forwarder is judged.</figcaption>
+  </figure>
+
   <!-- BLOCK 2: WHAT WE DO -->
   <div class="block">
     <div class="block-grid">
@@ -567,7 +669,9 @@
           </div>
         </div>
 
-        <p style="margin-top:24px;">For corridors where one mode alone is sub-optimal &mdash; for example China to Europe via Turkey, or Central Asia to the EU &mdash; we structure <strong>multimodal solutions</strong> combining road, rail and sea legs under a single forwarding contract.</p>
+        <p style="margin-top:24px;">For corridors where one mode alone is sub-optimal &mdash; for example <a href="../china-to-europe-via-turkey-freight/">China to Europe via Turkey</a>, or <a href="../central-asia-to-europe-freight/">Central Asia to the EU</a> &mdash; we structure <strong>multimodal solutions</strong> combining road, rail and sea legs under a single forwarding contract.</p>
+
+        <p>How we actually run these lanes, in detail: <a href="../blog/middle-corridor-china-to-europe/">the Middle Corridor from China to Europe</a>, <a href="../blog/turkey-to-germany-road-freight/">road freight from Turkey to Germany</a>, <a href="../blog/air-freight-from-istanbul/">air freight out of Istanbul</a> and <a href="../blog/fcl-vs-lcl/">when FCL beats LCL</a>.</p>
       </div>
     </div>
   </div>
@@ -580,31 +684,37 @@
         <h2 class="block-title">WHERE WE<br>OPERATE.</h2>
       </div>
       <div class="block-body">
-        <p>Our network covers <strong>more than 30 countries</strong> across five primary regions. Within each region we maintain a curated set of port, airport and inland hub coverage rather than thin global reach &mdash; quality over breadth.</p>
+        <p>Our network covers <strong>more than 40 countries</strong> across six primary regions. Within each region we maintain a curated set of port, airport and inland hub coverage rather than thin global reach &mdash; quality over breadth.</p>
         <div class="regions">
           <div class="region">
             <div class="region-name">EUROPE</div>
             <div class="region-detail">Germany, France, Netherlands, Belgium, Italy, Spain, UK, Poland, Estonia and the Baltics</div>
+            <div class="region-links"><a href="../germany-freight/">Germany</a><a href="../france-freight/">France</a><a href="../netherlands-freight/">Netherlands</a><a href="../belgium-freight/">Belgium</a><a href="../italy-freight/">Italy</a><a href="../spain-freight/">Spain</a><a href="../uk-freight/">UK</a><a href="../poland-freight/">Poland</a><a href="../estonia-freight/">Estonia</a></div>
           </div>
           <div class="region">
             <div class="region-name">TURKEY</div>
             <div class="region-detail">Istanbul, Izmir, Mersin, Gaziantep &mdash; major gateway for bilateral and transit traffic</div>
+            <div class="region-links"><a href="../turkey-freight/">Turkey</a><a href="../turkey-germany-freight/">Turkey&ndash;Germany</a><a href="../turkey-netherlands-freight/">Turkey&ndash;Netherlands</a><a href="../turkey-italy-freight/">Turkey&ndash;Italy</a><a href="../estonia-turkey-freight/">Estonia&ndash;Turkey</a></div>
           </div>
           <div class="region">
             <div class="region-name">MIDDLE EAST</div>
             <div class="region-detail">UAE, Saudi Arabia, Qatar, Iraq, Egypt and the wider GCC and Levant</div>
+            <div class="region-links"><a href="../uae-freight/">UAE</a><a href="../saudi-arabia-freight/">Saudi Arabia</a><a href="../qatar-freight/">Qatar</a><a href="../iraq-freight/">Iraq</a><a href="../egypt-freight/">Egypt</a><a href="../syria-freight/">Syria</a></div>
           </div>
           <div class="region">
             <div class="region-name">CENTRAL ASIA</div>
             <div class="region-detail">Kazakhstan, Uzbekistan and the Middle Corridor towards Europe</div>
+            <div class="region-links"><a href="../central-asia-to-europe-freight/">Central Asia to Europe</a></div>
           </div>
           <div class="region">
             <div class="region-name">FAR EAST</div>
-            <div class="region-detail">China, India, Japan &mdash; via direct sea, air and the Eurasian land bridge</div>
+            <div class="region-detail">China, India, Japan, South Korea and South-East Asia &mdash; via direct sea, air and the Eurasian land bridge</div>
+            <div class="region-links"><a href="../china-freight/">China</a><a href="../india-freight/">India</a><a href="../japan-freight/">Japan</a><a href="../south-korea-freight/">South Korea</a><a href="../singapore-freight/">Singapore</a><a href="../vietnam-freight/">Vietnam</a><a href="../taiwan-freight/">Taiwan</a></div>
           </div>
           <div class="region">
             <div class="region-name">AMERICAS</div>
-            <div class="region-detail">Selected trade lanes to the United States &mdash; air and sea</div>
+            <div class="region-detail">Selected trade lanes to the United States, Canada, Mexico and Brazil &mdash; air and sea</div>
+            <div class="region-links"><a href="../usa-freight/">USA</a><a href="../canada-freight/">Canada</a><a href="../mexico-freight/">Mexico</a><a href="../brazil-freight/">Brazil</a></div>
           </div>
         </div>
       </div>
@@ -692,12 +802,96 @@
     </div>
   </div>
 
-  <!-- CTA -->
-  <div class="cta-block">
-    <h2 class="cta-title">NEED A QUOTE? <span>ONE HOUR.</span></h2>
-    <p class="cta-sub">Send origin, destination, mode and cargo details. We come back with a firm, itemised price within one working hour.</p>
-    <a href="../#contact" class="cta-btn">Get a Quote</a>
-  </div>
+  <!-- CONTACT / QUOTE FORM -->
+  <section class="contact" id="contact">
+    <div class="contact-left">
+      <div class="block-num">07 / Contact</div>
+      <h2 class="cta-title">NEED A QUOTE? <span>ONE HOUR.</span></h2>
+      <p class="contact-intro">Send origin, destination, mode and cargo details. We come back with a firm, itemised price within one working hour &mdash; air, sea FCL and LCL, road FTL and groupage, or a multimodal combination.</p>
+      <div class="contact-info">
+        <div class="contact-info-item">
+          <div class="contact-info-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="1" stroke="#e8521a" stroke-width="1.5"/><path d="M2 6l7 5 7-5" stroke="#e8521a" stroke-width="1.5"/></svg>
+          </div>
+          <div>
+            <div class="contact-info-label">Email</div>
+            <a href="mailto:info@canxansa.com" class="contact-info-val">info@canxansa.com</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#e8521a" stroke-width="1.5"/><path d="M9 5v4l2.5 2.5" stroke="#e8521a" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <div class="contact-info-label">Response Time</div>
+            <div class="contact-info-val">Within 1 hour</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2a7 7 0 0 0-6 10.6L2.4 16l3.5-.6A7 7 0 1 0 9 2z" stroke="#e8521a" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="contact-info-label">WhatsApp</div>
+            <a href="https://wa.me/3725233191" target="_blank" rel="noopener" class="contact-info-val" onclick="gtag('event', 'whatsapp_click', { event_category: 'contact', event_label: 'about_contact' })">+372 523 3191</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <form id="quote-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="full_name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="your@company.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" name="phone" placeholder="+90 ... / +372 ..." required>
+          </div>
+          <div class="form-group">
+            <label>Company</label>
+            <input type="text" name="company" placeholder="Your Company" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Transport Mode</label>
+          <select name="transport_mode" required>
+            <option value="">Select mode...</option>
+            <option value="air">Air Freight</option>
+            <option value="road-ftl">Road &mdash; FTL</option>
+            <option value="road-ltl">Road &mdash; LTL / Groupage</option>
+            <option value="sea-fcl">Sea Freight &mdash; FCL</option>
+            <option value="sea-lcl">Sea Freight &mdash; LCL</option>
+            <option value="rail">Rail / Multimodal</option>
+            <option value="not-sure">Not sure &mdash; advise me</option>
+          </select>
+        </div>
+        <input type="hidden" name="route" value="About page">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Origin City &amp; Country</label>
+            <input type="text" name="origin" placeholder="Istanbul / Hamburg / Shanghai..." required>
+          </div>
+          <div class="form-group">
+            <label>Destination City &amp; Country</label>
+            <input type="text" name="destination_city" placeholder="Tallinn / Dubai / Rotterdam..." required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Cargo Details</label>
+          <textarea name="cargo_details" placeholder="Cargo type, weight, dimensions, special requirements..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Request &mdash; Get Quote in 1 Hour</button>
+      </form>
+    </div>
+  </section>
 
 </div>
 
@@ -731,7 +925,7 @@
     <div>
       <div class="footer-col-title">Contact</div>
       <div class="footer-col-links">
-        <a href="/#contact">Get a Quote</a>
+        <a href="#contact">Get a Quote</a>
         <a href="https://wa.me/3725233191" target="_blank" rel="noopener" onclick="gtag('event', 'whatsapp_click', { event_category: 'contact', event_label: 'footer_link' })">WhatsApp</a>
         <a href="mailto:info@canxansa.com">info@canxansa.com</a>
         <a href="tel:+3725233191">+372 523 3191</a>
@@ -744,6 +938,50 @@
   </div>
 </footer>
 
+<script>
+  document.getElementById('quote-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.form-submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    try {
+      const res = await fetch('https://formspree.io/f/mpqykzop', {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        window.location.href = '../thank-you.html?lang=en';
+      } else {
+        btn.textContent = 'Error \u2014 try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error \u2014 try again';
+      btn.disabled = false;
+    }
+  });
+</script>
+<script>
+  (function() {
+    var hb = document.getElementById('nav-hamburger');
+    var mm = document.getElementById('mobile-menu');
+    if (!hb || !mm) return;
+    function setOpen(open) {
+      hb.classList.toggle('open', open);
+      mm.classList.toggle('open', open);
+      hb.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    hb.addEventListener('click', function() { setOpen(!mm.classList.contains('open')); });
+    mm.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() { setOpen(false); });
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mm.classList.contains('open')) setOpen(false);
+    });
+  })();
+</script>
 <script src="../cookie-consent.js" defer></script>
 <!-- Floating WhatsApp -->
 <a href="https://wa.me/3725233191" target="_blank" rel="noopener" aria-label="WhatsApp" onclick="gtag('event', 'whatsapp_click', { event_category: 'contact', event_label: 'floating_button' })" style="
