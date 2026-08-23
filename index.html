@@ -199,11 +199,6 @@
   .nav-link:hover::after, .nav-link.active::after { right: 0; }
 
   .nav-div { width: 1px; height: 12px; background: currentColor; opacity: 0.28; align-self: center; }
-  .nav-badge-tag {
-    font-size: 8px; background: var(--orange); color: var(--ink);
-    padding: 2px 5px; margin-left: 5px; border-radius: 1px;
-    animation: pulse 2.4s ease-in-out infinite; vertical-align: 2px;
-  }
   @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.45; } }
 
   .nav-right { display: flex; align-items: center; gap: 12px; }
@@ -683,7 +678,7 @@
   /* ─── REDUCED MOTION ─── */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .mq-inner, .nav-badge-tag, .hero-meta .dot { animation: none; }
+    .mq-inner, .hero-meta .dot { animation: none; }
     h1 .ln > span { animation: none; transform: none; }
     .hero-sub, .hero-cta-block, .ds-cell { animation: none; opacity: 1; }
     .hero-modes { animation: none; opacity: 1; }
@@ -726,7 +721,7 @@
     <a href="#contact" class="nav-link">Contact</a>
     <span class="nav-div" aria-hidden="true"></span>
     <a href="about/" class="nav-link">About</a>
-    <a href="shipping-signals/" class="nav-link">Signals<span class="nav-badge-tag">LIVE</span></a>
+    <a href="shipping-signals/" class="nav-link">Signals</a>
   </div>
   <div class="nav-right">
     <a href="track/" class="nav-track">Track</a>
@@ -744,7 +739,7 @@
   <a href="#corridors" class="mobile-nav-link"><span class="idx">03</span>Corridors</a>
   <a href="#how" class="mobile-nav-link"><span class="idx">04</span>Process</a>
   <a href="about/" class="mobile-nav-link"><span class="idx">05</span>About</a>
-  <a href="shipping-signals/" class="mobile-nav-link"><span class="idx">06</span>Signals<span class="nav-badge-tag">LIVE</span></a>
+  <a href="shipping-signals/" class="mobile-nav-link"><span class="idx">06</span>Signals</a>
   <a href="track/" class="mobile-nav-link"><span class="idx">07</span>Track</a>
   <a href="#contact" class="mobile-nav-link mobile-nav-cta">Get a Quote →</a>
 </div>
