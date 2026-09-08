@@ -249,10 +249,12 @@
 <!-- SEARCH -->
 <section class="search-section">
   <div class="search-box">
-    <input type="text" id="track-input" placeholder="Enter your tracking number" autocomplete="off" spellcheck="false">
+    <input type="text" id="track-input" aria-label="Tracking number" aria-describedby="track-input-error" placeholder="Enter your tracking number" autocomplete="off" spellcheck="false">
     <button id="track-btn">Track</button>
   </div>
 </section>
+
+<p id="track-input-error" role="alert" style="max-width:680px;margin:0 auto;padding:0 24px;color:var(--white)"></p>
 
 <!-- RESULT -->
 <section class="result" id="result">
@@ -348,16 +350,28 @@
     doTrack();
   }
 
+  input.addEventListener('input',function(){
+    document.getElementById('track-input-error').textContent='';
+    input.removeAttribute('aria-invalid');
+  });
   btn.addEventListener('click',doTrack);
   input.addEventListener('keydown',function(e){if(e.key==='Enter')doTrack();});
 
   function doTrack(){
     var raw=input.value.trim().toUpperCase();
-    if(!raw)return;
+    var inputError=document.getElementById('track-input-error');
+    inputError.textContent='';
+    input.removeAttribute('aria-invalid');
     result.classList.remove('visible');
     errorEl.classList.remove('visible');
     errorInvalid.classList.remove('visible');
 
+    if(!raw){
+      inputError.textContent='Please enter your tracking number.';
+      input.setAttribute('aria-invalid','true');
+      input.focus();
+      return;
+    }
     var id=cxValidate(raw);
     if(!id){errorEl.classList.add('visible');return;}
 
