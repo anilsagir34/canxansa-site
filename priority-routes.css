@@ -1,0 +1,22 @@
+/* Existing brand tokens, typography and responsive layout are retained. */
+.additional-corridors { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:32px; padding:28px 64px 64px; border-top:1px solid var(--hair); }
+.additional-corridors a { color:var(--bone); font-size:16px; text-decoration:none; }
+.additional-corridors a:hover { color:var(--orange); }
+.additional-corridors p { color:var(--bone-dim); font-size:13px; line-height:1.7; margin-top:10px; max-width:520px; }
+.priority-lanes { scroll-margin-top:90px; padding:64px; border-bottom:1px solid var(--gray-mid); }
+.forwarder-identity { font-size:14px; line-height:1.8; color:var(--gray-light); max-width:900px; margin-bottom:40px; }
+.priority-lanes a { color:var(--white); text-underline-offset:5px; }
+.priority-lanes a:hover { color:var(--orange); }
+.priority-lanes-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+.priority-lanes article { scroll-margin-top:110px; }
+.priority-lanes h2 { font-family:var(--disp); font-size:clamp(22px,2.3vw,34px); line-height:1.2; margin:0 0 24px; }
+.priority-lanes article p { font-size:14px; line-height:1.8; color:var(--gray-light); margin:0 0 16px; }
+.lane-links { display:flex; flex-wrap:wrap; gap:12px 20px; margin:24px 0; font-size:13px; }
+.lane-cta { display:inline-block; font-size:13px; font-weight:600; }
+.destination-actions { display:flex; flex-wrap:wrap; gap:14px 20px; margin-top:24px; font-size:12px; }
+.destination-actions a { color:var(--white); text-decoration:underline; text-underline-offset:5px; }
+.destination-actions a:hover { color:var(--orange); }
+.destination-actions a:focus-visible, .priority-lanes a:focus-visible, .additional-corridors a:focus-visible { outline:2px solid var(--orange); outline-offset:5px; }
+.quote-route-context { margin-bottom:20px; font-size:14px; line-height:1.6; color:var(--orange); }
+@media(max-width:1024px) { .additional-corridors { padding:28px 32px 48px; } .priority-lanes { padding:48px 32px; } .priority-lanes-grid { gap:32px; } }
+@media(max-width:640px) { .additional-corridors { padding:24px 20px 40px; } .priority-lanes { padding:40px 20px; } .priority-lanes-grid,.additional-corridors { grid-template-columns:1fr; } }
