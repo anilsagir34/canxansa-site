@@ -812,51 +812,53 @@
 
   <div class="contact-right">
     <form id="quote-form">
+      <p class="form-instructions">All fields are required. Not sure which transport mode fits? Select “Not sure — advise me”.</p>
       <input type="hidden" name="_next" value="https://canxansa.com/thank-you.html">
             <div class="form-row">
         <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" name="full_name" placeholder="John Smith" required>
+          <label for="quote-full_name">Full Name</label>
+          <input type="text" name="full_name" placeholder="John Smith" required id="quote-full_name" autocomplete="name">
         </div>
         <div class="form-group">
-          <label>Email</label>
-          <input type="email" name="email" placeholder="john@company.com" required>
+          <label for="quote-email">Email</label>
+          <input type="email" name="email" placeholder="john@company.com" required id="quote-email" autocomplete="email">
         </div>
       </div>
 <div class="form-row">
         <div class="form-group">
-          <label>Phone</label>
-          <input type="tel" name="phone" placeholder="+372 5555 0000" required> 
+          <label for="quote-phone">Phone</label>
+          <input type="tel" name="phone" placeholder="+372 5555 0000" required id="quote-phone" autocomplete="tel">
         </div>
         <div class="form-group">
-          <label>Company</label>
-          <input type="text" name="company" placeholder="ACME LLC" required> 
+          <label for="quote-company">Company</label>
+          <input type="text" name="company" placeholder="ACME LLC" required id="quote-company" autocomplete="organization">
         </div>
       </div>
       <div class="form-group">
-        <label>Transport Mode</label>
-        <select name="transport_mode" required>
+        <label for="quote-transport_mode">Transport Mode</label>
+        <select name="transport_mode" required id="quote-transport_mode">
           <option value="">Select...</option>
           <option value="rail">Rail (Middle Corridor)</option>
           <option value="sea">Sea via Caspian</option>
           <option value="road">Road (FTL/LTL)</option>
           <option value="multimodal">Multimodal</option>
+          <option value="not-sure">Not sure — advise me</option>
         </select>
       </div>
       <input type="hidden" name="route" value="Central Asia to Europe">
       <div class="form-row">
         <div class="form-group">
-          <label>Origin City</label>
-          <input type="text" name="origin" placeholder="Almaty, Kazakhstan" required> 
+          <label for="quote-origin">Origin City</label>
+          <input type="text" name="origin" placeholder="Almaty, Kazakhstan" required id="quote-origin">
         </div>
         <div class="form-group">
-          <label>Destination City</label>
-          <input type="text" name="destination" placeholder="Hamburg, Germany" required>
+          <label for="quote-destination">Destination City</label>
+          <input type="text" name="destination" placeholder="Hamburg, Germany" required id="quote-destination">
         </div>
       </div>
       <div class="form-group">
-        <label>Cargo Details</label>
-        <textarea name="cargo_details" placeholder="Cargo type, weight, volume (CBM), special requirements..." required> </textarea>
+        <label for="quote-cargo_details">Cargo Details</label>
+        <textarea name="cargo_details" placeholder="Cargo type, weight, volume (CBM), special requirements..." required id="quote-cargo_details"></textarea>
       </div>
       <button type="submit" class="form-submit">Send Request — Get Quote in 1 Hour</button>
     </form>
@@ -1039,5 +1041,6 @@
 </a>
 
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "84af88cb512e4afe921a0e56f09ee105"}'></script><!-- End Cloudflare Web Analytics -->
+<script src="/js/quote-form-ui.js" defer></script>
 </body>
 </html>

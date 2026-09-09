@@ -211,3 +211,11 @@ footer { border-top: 1px solid var(--hair); }
   .cx-footer .footer-top > div:first-child { grid-column: 1 / -1; }
   .cx-footer .footer-bottom { padding-right: 88px; flex-direction: column; align-items: flex-start; gap: 8px; }
 }
+
+/* Consistent, readable quote fields across country and corridor pages. */
+#quote-form label { font-size: 12px; color: var(--white); letter-spacing: 1.5px; }
+#quote-form input, #quote-form select, #quote-form textarea { font-size: 16px; }
+#quote-form .form-instructions { font-size: 14px; line-height: 1.6; color: var(--white); margin: 0 0 24px; }
+@media (max-width: 1024px) {
+  .quote-wa-obscured { visibility: hidden !important; pointer-events: none !important; }
+}
