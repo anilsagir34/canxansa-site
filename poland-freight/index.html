@@ -964,25 +964,26 @@
   </div>
   <div class="contact-right">
     <form id="quote-form">
+      <p class="form-instructions">All fields are required. Not sure which transport mode fits? Select “Not sure — advise me”.</p>
       <p class="quote-route-context" role="status" aria-live="polite" hidden></p>
       <div class="form-row">
         <div class="form-group">
           <label for="quote-full_name">Full Name</label>
-          <input id="quote-full_name" type="text" name="full_name" placeholder="Your name" required>
+          <input id="quote-full_name" type="text" name="full_name" placeholder="Your name" required autocomplete="name">
         </div>
         <div class="form-group">
           <label for="quote-email">Email</label>
-          <input id="quote-email" type="email" name="email" placeholder="your@company.com" required>
+          <input id="quote-email" type="email" name="email" placeholder="your@company.com" required autocomplete="email">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
           <label for="quote-phone">Phone</label>
-          <input id="quote-phone" type="tel" name="phone" placeholder="+48 ..." required>
+          <input id="quote-phone" type="tel" name="phone" placeholder="+48 ..." required autocomplete="tel">
         </div>
         <div class="form-group">
           <label for="quote-company">Company</label>
-          <input id="quote-company" type="text" name="company" placeholder="Your Company" required>
+          <input id="quote-company" type="text" name="company" placeholder="Your Company" required autocomplete="organization">
         </div>
       </div>
       <div class="form-group">
@@ -1013,6 +1014,7 @@
           <option value="sea-fcl">Sea Freight — FCL</option>
           <option value="sea-lcl">Sea Freight — LCL</option>
           <option value="multimodal">Multimodal</option>
+          <option value="not-sure">Not sure — advise me</option>
         </select>
       </div>
       <input type="hidden" name="route" value="Freight from Poland">
@@ -1028,7 +1030,7 @@
       </div>
       <div class="form-group">
         <label for="quote-cargo_details">Cargo Details</label>
-          <textarea id="quote-cargo_details" name="cargo_details" placeholder="Cargo type, weight, dimensions, special requirements..." required> </textarea>
+          <textarea id="quote-cargo_details" name="cargo_details" placeholder="Cargo type, weight, dimensions, special requirements..." required></textarea>
       </div>
       <button type="submit" class="form-submit">Send Request — Get Quote in 1 Hour</button>
     </form>
@@ -1217,5 +1219,6 @@
 
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "84af88cb512e4afe921a0e56f09ee105"}'></script><!-- End Cloudflare Web Analytics -->
 <script src="/js/route-quote.js" defer></script>
+<script src="/js/quote-form-ui.js" defer></script>
 </body>
 </html>
