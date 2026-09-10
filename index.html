@@ -161,8 +161,8 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 22px 64px;
-    border-bottom: 1px solid transparent;
+    padding: 14px 64px;
+    border-bottom: 1px solid var(--hair-soft);
     transition: padding 0.35s var(--ease), background 0.35s, border-color 0.35s;
   }
   nav { background: rgba(11,10,9,0.85); }
@@ -189,7 +189,7 @@
   .nav-center { display: flex; align-items: center; justify-content: center; gap: 20px; flex: 1 1 auto; margin: 0 24px; }
   .nav-link {
     font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px;
-    text-transform: uppercase; color: var(--bone-dim); text-decoration: none;
+    text-transform: uppercase; color: #d5cec6; text-decoration: none;
     transition: color 0.2s; position: relative; padding: 4px 0;
   }
   .nav-link::after {
@@ -256,14 +256,15 @@
     object-fit: cover; object-position: 50% 50%;
   }
   .hero-port canvas { position: absolute; inset: 0; }
+  .hero-port img, .hero-port canvas { filter: brightness(1.10) saturate(1.04); }
   .hero-veil {
     position: absolute; inset: 0; z-index: 2; pointer-events: none;
     background:
       /* scrim behind the headline, so the photo keeps its sunset elsewhere */
       radial-gradient(118% 88% at 0% 100%,
-        rgba(11,10,9,0.88) 0%, rgba(11,10,9,0.50) 36%, rgba(11,10,9,0.04) 72%, rgba(11,10,9,0) 100%),
+        rgba(11,10,9,0.88) 0%, rgba(11,10,9,0.38) 36%, rgba(11,10,9,0.04) 72%, rgba(11,10,9,0) 100%),
       linear-gradient(0deg, rgba(11,10,9,0.84) 0%, rgba(11,10,9,0.35) 16%, rgba(11,10,9,0) 34%),
-      linear-gradient(180deg, rgba(11,10,9,0.40) 0%, rgba(11,10,9,0.16) 10%, rgba(11,10,9,0) 22%);
+      linear-gradient(180deg, rgba(11,10,9,0.20) 0%, rgba(11,10,9,0.06) 10%, rgba(11,10,9,0) 22%);
   }
 
   .hero-body { position: relative; z-index: 3; padding: 160px 64px 56px; }
