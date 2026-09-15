@@ -84,7 +84,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdnoLmvDIaI.woff2">
-<link rel="preload" as="image" href="/images/hero-port.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="/images/hero-truck.webp" type="image/webp"
+      imagesrcset="/images/hero-truck-1280.webp 1280w, /images/hero-truck.webp 2560w"
+      imagesizes="100vw" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -94,7 +96,7 @@
     --bone: #f5f0eb;
     --bone-dim: #a29b93;
     --bone-hero: #cdc6bd;   /* fotograf uzerindeki ikincil yazi */
-    --muted: #7e786f;   /* 9-11px etiketler: 2.7:1 -> 4.5:1 */
+    --muted: #8a8479;   /* 9-11px etiketler: koyu kart zeminlerinde de 4.5:1 uzeri */
     --orange: #e8521a;
     --orange-deep: #b53c0e;
     --hair: rgba(245,240,235,0.09);
@@ -253,25 +255,31 @@
   }
   .hero-port img {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; object-position: 50% 50%;
+    object-fit: cover; object-position: 50% 0%;
   }
   .hero-port canvas { position: absolute; inset: 0; }
-  .hero-port img, .hero-port canvas { filter: brightness(1.10) saturate(1.04); }
+  .hero-port img, .hero-port canvas { filter: brightness(1.03) saturate(1.04); }
   .hero-veil {
     position: absolute; inset: 0; z-index: 2; pointer-events: none;
     background:
       /* scrim behind the headline, so the photo keeps its sunset elsewhere */
       radial-gradient(118% 88% at 0% 100%,
-        rgba(11,10,9,0.88) 0%, rgba(11,10,9,0.38) 36%, rgba(11,10,9,0.04) 72%, rgba(11,10,9,0) 100%),
+        rgba(11,10,9,0.92) 0%, rgba(11,10,9,0.68) 32%, rgba(11,10,9,0.26) 60%, rgba(11,10,9,0) 100%),
       linear-gradient(0deg, rgba(11,10,9,0.84) 0%, rgba(11,10,9,0.35) 16%, rgba(11,10,9,0) 34%),
-      linear-gradient(180deg, rgba(11,10,9,0.20) 0%, rgba(11,10,9,0.06) 10%, rgba(11,10,9,0) 22%);
+      /* sag alt: CTA ve track alani parlak kabin uzerinde okunur kalsin */
+      radial-gradient(76% 62% at 100% 100%,
+        rgba(11,10,9,0.62) 0%, rgba(11,10,9,0.28) 44%, rgba(11,10,9,0) 78%),
+      linear-gradient(180deg, rgba(11,10,9,0.56) 0%, rgba(11,10,9,0.32) 13%, rgba(11,10,9,0.12) 26%, rgba(11,10,9,0) 38%);
   }
 
   .hero-body { position: relative; z-index: 3; padding: 160px 64px 56px; }
   .hero h1 { text-shadow: 0 1px 3px rgba(11,10,9,0.62), 0 3px 10px rgba(11,10,9,0.30); }
   /* ici bos harf saydam doldurulur; golge onun arkasinda dolu bir leke birakir */
   .hero h1 .hollow { text-shadow: none; }
-  .hero-meta, .hero-sub, .hero-modes { text-shadow: 0 1px 3px rgba(11,10,9,0.78); }
+  /* foto parlak kaldigi icin okunabilirlik perdeden degil golgeden geliyor */
+  .hero-meta, .hero-sub, .hero-modes {
+    text-shadow: 0 1px 2px rgba(11,10,9,0.92), 0 2px 14px rgba(11,10,9,0.62);
+  }
 
   .hero-meta {
     display: flex; gap: 28px; align-items: center; margin-bottom: 36px;
@@ -625,12 +633,33 @@
   .rv.in { opacity: 1; transform: translateY(0); }
 
   /* ─── RESPONSIVE ─── */
+  /* ─── GENIS EKRAN: baslik sol sutunda, kamyon acikta ─── */
+  @media (min-width: 1025px) {
+    .hero h1 { font-size: clamp(46px, 5vw, 80px); max-width: 46vw; }
+    .hero-sub { max-width: 560px; }
+    /* metin blogu yukari: altta datastrip'e yaslanmasin */
+    .hero-body { padding-bottom: 148px; }
+    /* perde artik sol sutuna odakli, sag taraf kamyona birakilir */
+    .hero-veil {
+      background:
+        /* CTA ve track alani parlak kabin uzerinde okunur kalsin */
+        radial-gradient(46% 40% at 86% 74%,
+          rgba(11,10,9,0.60) 0%, rgba(11,10,9,0.26) 52%, rgba(11,10,9,0) 82%),
+        radial-gradient(96% 96% at 0% 70%,
+          rgba(11,10,9,0.90) 0%, rgba(11,10,9,0.66) 38%, rgba(11,10,9,0.14) 68%, rgba(11,10,9,0) 100%),
+        linear-gradient(0deg, rgba(11,10,9,0.84) 0%, rgba(11,10,9,0.35) 16%, rgba(11,10,9,0) 34%),
+        linear-gradient(180deg, rgba(11,10,9,0.50) 0%, rgba(11,10,9,0.22) 14%, rgba(11,10,9,0) 30%);
+    }
+  }
+
   @media (max-width: 1200px) {
     .nav-center { display: none; }
     .nav-hamburger { display: flex; }
   }
   @media (max-width: 1024px) {
     nav, nav.scrolled { padding-left: 32px; padding-right: 32px; }
+    /* 12vw'de "ANYWHERE." tablet genisliklerine sigmiyor, son harf kirpiliyordu */
+    .hero h1 { font-size: clamp(38px, 9.3vw, 96px); }
     /* Tablet viewports are tall enough that a 100vh hero leaves dead space above
        the bottom-anchored content. Let the hero size to its content instead. */
     .hero { min-height: auto; }
@@ -674,7 +703,28 @@
     .footer-top { grid-template-columns: 1fr; padding: 48px 20px 36px; }
     .footer-bottom { padding: 20px; }
     .mq-item { font-size: 27px; }
-    .hero-port img { object-position: 31% 50%; }
+    /* Mobil: fotograf yazilarin arkasinda degil, ustte kendi blogunda durur */
+    .hero {
+      min-height: 0; background: var(--ink);
+      justify-content: flex-start;
+    }
+    .hero-port {
+      position: relative; inset: auto; order: 1;
+      height: 34vh; min-height: 230px; width: 100%;
+    }
+    .hero-port img { object-position: 50% 62%; }
+    .hero-port::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(180deg,
+        rgba(11,10,9,0.55) 0%, rgba(11,10,9,0) 26%,
+        rgba(11,10,9,0) 68%, var(--ink) 100%);
+    }
+    .hero-body { order: 2; padding-top: 28px; }
+    .datastrip { order: 3; }
+    .hero-veil { display: none; }
+    .hero h1 { text-shadow: none; }
+    /* 12vw'de "ANYWHERE." 390px ekrana sigmiyor, sondaki nokta kirpiliyordu */
+    .hero h1 { font-size: clamp(38px, 11vw, 60px); }
     .hero-modes { gap: 14px; margin-top: 24px; font-size: 10px; letter-spacing: 1.5px; }
     .hero-modes .mode-sep { display: none; }
     .band::before { font-size: 108px; }
@@ -756,8 +806,9 @@
 <header class="hero" id="top">
   <div class="hero-port" id="hero-port" aria-hidden="true">
     <picture>
-      <source srcset="/images/hero-port.webp" type="image/webp">
-      <img src="/images/hero-port.jpg" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">
+      <source type="image/webp" sizes="100vw"
+              srcset="/images/hero-truck-1280.webp 1280w, /images/hero-truck.webp 2560w">
+      <img src="/images/hero-truck.jpg" alt="" width="2560" height="1760" fetchpriority="high" decoding="async">
     </picture>
   </div>
   <div class="hero-veil"></div>
@@ -1290,22 +1341,6 @@
   }
 </script>
 
-<script type="module">
-  import { initHeroPort } from '/js/hero-port.js';
-  const host = document.getElementById('hero-port');
-  function boot() {
-    try {
-      const s = initHeroPort(host, {
-        photo: '/images/hero-port.webp',
-        masks: '/images/hero-port-masks.png',
-        onReady: () => host.classList.add('live')
-      });
-      if (!s) host.classList.add('static');
-    } catch (e) { host.classList.add('static'); }
-  }
-  if ('requestIdleCallback' in window) requestIdleCallback(boot, { timeout: 1500 });
-  else setTimeout(boot, 200);
-</script>
 
 <!-- Floating WhatsApp -->
 <a href="https://wa.me/3725233191" target="_blank" rel="noopener" aria-label="WhatsApp" onclick="gtag('event', 'whatsapp_click', { event_category: 'contact', event_label: 'floating_button' })" style="
