@@ -50,8 +50,8 @@
     'cursor:pointer;border:1px solid #2e2e2e;background:transparent;color:#f5f0eb;' +
     'transition:background .2s,border-color .2s;}' +
     '#cxc-banner button:hover{border-color:#888;}' +
-    '#cxc-banner button.cxc-accept{background:#e8521a;border-color:#e8521a;color:#f5f0eb;}' +
-    '#cxc-banner button.cxc-accept:hover{background:#c44010;border-color:#c44010;}' +
+    '#cxc-banner button.cxc-accept{background:#c0400f;border-color:#c0400f;color:#f5f0eb;}' +
+    '#cxc-banner button.cxc-accept:hover{background:#a3340b;border-color:#a3340b;}' +
     '@media (max-width:1024px){#cxc-banner{left:auto;right:24px;bottom:100px;max-width:300px;}}' +
     // Mobile: stay at the bottom but stop short of the right-hand corner so the
     // floating WhatsApp button (58px at right:28px) is never covered.

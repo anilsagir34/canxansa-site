@@ -2,10 +2,16 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "canxansa",
-      "runtimeExecutable": "bash",
-      "runtimeArgs": ["-c", "cd '/Users/anil/Documents/New project/canxansa-site' && python3 -m http.server 8080"],
-      "port": 8080
+      "name": "canxansa-site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8099",
+        "--directory",
+        "/Users/anil/Documents/New project/canxansa-site"
+      ],
+      "port": 8099
     }
   ]
 }
