@@ -205,7 +205,7 @@
   .breadcrumb span { color: var(--orange); }
   .page-title {
     font-family: var(--disp); font-stretch: 125%; font-weight: 800;
-    font-size: clamp(40px, 5vw, 69px);
+    font-size: clamp(40px, 5vw, 150px);
     line-height: 1; letter-spacing: 0;
     margin-bottom: 24px;
   }
@@ -497,6 +497,14 @@
   }
   @media (max-width: 1200px) { .nav-center { display: none; } .nav-hamburger { display: flex; } }
   .form-instructions { font-size: 14px; line-height: 1.6; margin: 0 0 24px; }
+
+  /* Genis ekranda giris bolumu de basligla birlikte olceklensin */
+  @media (min-width: 1600px) {
+    .breadcrumb { font-size: clamp(11px, 0.72vw, 16px); }
+    .page-title { margin-bottom: clamp(24px, 1.6vw, 36px); }
+    .page-lead { font-size: clamp(18px, 1.18vw, 26px); max-width: clamp(720px, 47vw, 1080px); margin-bottom: clamp(32px, 2.1vw, 48px); }
+    .meta-item { font-size: clamp(12px, 0.79vw, 17px); }
+  }
 </style>
 <link rel="stylesheet" href="/v2.css">
 <!-- Google Analytics GA4 with Consent Mode v2 (default denied until user accepts) -->
