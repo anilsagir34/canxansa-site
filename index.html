@@ -634,11 +634,23 @@
 
   /* ─── RESPONSIVE ─── */
   /* ─── GENIS EKRAN: baslik sol sutunda, kamyon acikta ─── */
-  @media (min-width: 1025px) {
-    .hero h1 { font-size: clamp(46px, 5vw, 80px); max-width: 46vw; }
-    .hero-sub { max-width: 560px; }
-    /* metin blogu yukari: altta datastrip'e yaslanmasin */
-    .hero-body { padding-bottom: 148px; }
+  @media (min-width: 821px) {
+    /* Olculer vw tabanli: baslik her genislikte ekranin ayni orani kadar yer
+       kaplar, 4K'da kucucuk kalmaz. Ust sinirlar sadece asiri uclar icin. */
+    .hero h1 { font-size: clamp(40px, 5.2vw, 190px); max-width: 50vw; }
+    .hero-sub { font-size: clamp(15px, 0.99vw, 21px); max-width: min(37vw, 760px); }
+    .hero-meta, .hero-modes { font-size: clamp(11px, 0.73vw, 15px); }
+    /* CTA ve takip alani da olcekle, yoksa genis ekranda basligin yaninda kaybolur */
+    .hero .btn-solid, .hero .btn-line {
+      font-size: clamp(12px, 0.79vw, 17px);
+      padding: clamp(17px, 1.13vw, 24px) clamp(34px, 2.25vw, 48px);
+    }
+    .hero-track input { font-size: clamp(12px, 0.79vw, 17px); padding: clamp(14px, 0.93vw, 20px) clamp(16px, 1.06vw, 23px); }
+    .hero-track button { font-size: clamp(11px, 0.73vw, 15px); padding: clamp(14px, 0.93vw, 20px) clamp(22px, 1.46vw, 31px); }
+    .hero-body { padding-bottom: 64px; }
+    /* Metin blogu dikeyde ortalanir, datastrip altta kalir. Alt kenara yaslamak
+       uzun ekranlarda (4K, 1440p) butun bosluk usde birikmesine yol aciyordu. */
+    .hero-body { margin-block: auto; }
     /* perde artik sol sutuna odakli, sag taraf kamyona birakilir */
     .hero-veil {
       background:
@@ -658,8 +670,7 @@
   }
   @media (max-width: 1024px) {
     nav, nav.scrolled { padding-left: 32px; padding-right: 32px; }
-    /* 12vw'de "ANYWHERE." tablet genisliklerine sigmiyor, son harf kirpiliyordu */
-    .hero h1 { font-size: clamp(38px, 9.3vw, 96px); }
+
     /* Tablet viewports are tall enough that a 100vh hero leaves dead space above
        the bottom-anchored content. Let the hero size to its content instead. */
     .hero { min-height: auto; }
@@ -683,10 +694,34 @@
     .footer-bottom { padding: 22px 32px; }
     .rails { left: 14px; right: 14px; }
   }
+  /* ─── DAR EKRAN: fotograf ustte kendi blogunda, yazilar duz zeminde ─── */
+  @media (max-width: 820px) {
+    .hero h1 { font-size: clamp(38px, 9.3vw, 76px); text-shadow: none; }
+    .hero {
+      min-height: 0; background: var(--ink);
+      justify-content: flex-start;
+    }
+    .hero-port {
+      position: relative; inset: auto; order: 1;
+      height: 36vh; min-height: 240px; width: 100%;
+    }
+    .hero-port img { object-position: 50% 58%; }
+    .hero-port::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(180deg,
+        rgba(11,10,9,0.55) 0%, rgba(11,10,9,0) 26%,
+        rgba(11,10,9,0) 68%, var(--ink) 100%);
+    }
+    .hero-body { order: 2; padding-top: 28px; margin-block: 0; }
+    .datastrip { order: 3; }
+    .hero-veil { display: none; }
+  }
+
   @media (max-width: 640px) {
     nav, nav.scrolled { padding-left: 20px; padding-right: 20px; }
     .nav-cta, .nav-track { display: none; }
-    .hero-body { padding: 110px 20px 40px; }
+    /* fotograf artik ustte kendi blogunda; ust bosluk nav icin degil */
+    .hero-body { padding: 28px 20px 40px; }
     .hero-foot { margin-top: 36px; }
     .sec-head { padding: 60px 20px 32px; }
     .svc-row { padding: 30px 20px; }
@@ -703,26 +738,6 @@
     .footer-top { grid-template-columns: 1fr; padding: 48px 20px 36px; }
     .footer-bottom { padding: 20px; }
     .mq-item { font-size: 27px; }
-    /* Mobil: fotograf yazilarin arkasinda degil, ustte kendi blogunda durur */
-    .hero {
-      min-height: 0; background: var(--ink);
-      justify-content: flex-start;
-    }
-    .hero-port {
-      position: relative; inset: auto; order: 1;
-      height: 34vh; min-height: 230px; width: 100%;
-    }
-    .hero-port img { object-position: 50% 62%; }
-    .hero-port::after {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(180deg,
-        rgba(11,10,9,0.55) 0%, rgba(11,10,9,0) 26%,
-        rgba(11,10,9,0) 68%, var(--ink) 100%);
-    }
-    .hero-body { order: 2; padding-top: 28px; }
-    .datastrip { order: 3; }
-    .hero-veil { display: none; }
-    .hero h1 { text-shadow: none; }
     /* 12vw'de "ANYWHERE." 390px ekrana sigmiyor, sondaki nokta kirpiliyordu */
     .hero h1 { font-size: clamp(38px, 11vw, 60px); }
     .hero-modes { gap: 14px; margin-top: 24px; font-size: 10px; letter-spacing: 1.5px; }
