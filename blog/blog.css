@@ -164,6 +164,8 @@
     footer { padding: 22px 20px; }
     body::after { left: 14px; right: 14px; }
     .data-table th, .data-table td { padding: 11px 12px; }
+    /* Dar ekranda tablo sayfayi yana kaydirmasin; tablo kendi icinde kaydirilir */
+    .data-table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
