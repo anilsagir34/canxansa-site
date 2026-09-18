@@ -1,148 +1,100 @@
-/*!
- * CANXANSA Cookie Consent — GDPR + GA4 Consent Mode v2
- * Default: all analytics/ad signals DENIED until user clicks Accept.
- * Storage: localStorage key "canxansa_consent" → "granted" | "denied".
- * Re-open with: window.CanxansaConsent.open()
- */
+/* CANXANSA consent. Optional analytics load only after opt-in.
+   Existing granted/denied choices remain compatible. No advertising consent. */
 (function () {
   'use strict';
-
-  var STORAGE_KEY = 'canxansa_consent';
-  var dl = (window.dataLayer = window.dataLayer || []);
-  function gtag() { dl.push(arguments); }
-
-  // ---- 1. Apply stored consent (or keep default = denied) ----
-  var stored = null;
-  try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
-
-  if (stored === 'granted') {
-    gtag('consent', 'update', {
-      ad_storage: 'granted',
-      ad_user_data: 'granted',
-      ad_personalization: 'granted',
-      analytics_storage: 'granted'
+  var KEY = 'canxansa_consent';
+  var analyticsId = 'G-X19NTBBWNQ';
+  var observer;
+  var opener;
+  function status() {
+    try { return localStorage.getItem(KEY) || 'pending'; } catch (e) { return 'pending'; }
+  }
+  function apply(value) {
+    var granted = value === 'granted';
+    window['ga-disable-' + analyticsId] = !granted;
+    window.dataLayer = window.dataLayer || [];
+    (function () { window.dataLayer.push(arguments); })('consent', 'update', {
+      ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+      analytics_storage: granted ? 'granted' : 'denied'
     });
-  } else if (stored === 'denied') {
-    gtag('consent', 'update', {
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      analytics_storage: 'denied'
-    });
+    if (granted && !document.getElementById('cx-analytics')) {
+      var script = document.createElement('script');
+      script.id = 'cx-analytics'; script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + analyticsId;
+      document.head.appendChild(script);
+    }
+    if (!granted) {
+      document.cookie.split(';').forEach(function (cookie) {
+        var name = cookie.split('=')[0].trim();
+        if (!/^_ga(?:_|$)|^_gid$|^_gat/.test(name)) return;
+        ['', '; domain=' + location.hostname, '; domain=.' + location.hostname].forEach(function (domain) {
+          document.cookie = name + '=; Max-Age=0; path=/' + domain;
+        });
+      });
+    }
   }
-
-  // ---- 2. Inject styles ----
-  var css = '' +
-    '#cxc-banner{position:fixed;left:24px;right:auto;bottom:24px;width:calc(100% - 48px);max-width:340px;' +
-    'background:#0a0a0a;border:1px solid #2e2e2e;border-left:3px solid #e8521a;border-radius:2px;' +
-    'padding:15px 17px;z-index:9999;font-family:"DM Sans",sans-serif;color:#f5f0eb;' +
-    'box-shadow:0 8px 32px rgba(0,0,0,0.5);font-weight:300;font-size:12px;line-height:1.55;' +
-    'transform:translateY(20px);opacity:0;transition:transform .35s ease,opacity .35s ease;}' +
-    '#cxc-banner.cxc-show{transform:translateY(0);opacity:1;}' +
-    '#cxc-banner .cxc-title{font-family:"Bebas Neue",sans-serif;font-size:15px;letter-spacing:2px;' +
-    'color:#e8521a;margin-bottom:5px;}' +
-    '#cxc-banner p{margin:0 0 11px;color:#888;}' +
-    '#cxc-banner a{color:#e8521a;text-decoration:none;}' +
-    '#cxc-banner a:hover{text-decoration:underline;}' +
-    '#cxc-banner .cxc-actions{display:flex;gap:8px;flex-wrap:wrap;}' +
-    '#cxc-banner button{font-family:"DM Sans",sans-serif;font-size:11px;font-weight:500;' +
-    'letter-spacing:1px;text-transform:uppercase;padding:8px 15px;border-radius:2px;' +
-    'cursor:pointer;border:1px solid #2e2e2e;background:transparent;color:#f5f0eb;' +
-    'transition:background .2s,border-color .2s;}' +
-    '#cxc-banner button:hover{border-color:#888;}' +
-    '#cxc-banner button.cxc-accept{background:#c0400f;border-color:#c0400f;color:#f5f0eb;}' +
-    '#cxc-banner button.cxc-accept:hover{background:#a3340b;border-color:#a3340b;}' +
-    '@media (max-width:1024px){#cxc-banner{left:auto;right:24px;bottom:100px;max-width:300px;}}' +
-    // Mobile: stay at the bottom but stop short of the right-hand corner so the
-    // floating WhatsApp button (58px at right:28px) is never covered.
-    '@media (max-width:640px){#cxc-banner{left:12px;right:96px;bottom:12px;' +
-    'width:auto;max-width:none;padding:12px 14px;font-size:11.5px;line-height:1.5;}' +
-    '#cxc-banner .cxc-title{display:none;}' +
-    '#cxc-banner p{margin:0 0 9px;}' +
-    '#cxc-banner button{flex:1;min-width:0;padding:8px 10px;font-size:10.5px;}}';
-
-  var style = document.createElement('style');
-  style.id = 'cxc-style';
-  style.appendChild(document.createTextNode(css));
-  document.head.appendChild(style);
-
-  // ---- 3. Banner DOM ----
-  function getPrivacyHref() {
-    return '/privacy/';
+  function resize() {
+    var banner = document.getElementById('cxc-banner');
+    document.documentElement.style.setProperty('--consent-height', banner ? banner.offsetHeight + 'px' : '0px');
   }
-  function getCookiePolicyHref() {
-    return '/cookie-policy/';
+  function close() {
+    var banner = document.getElementById('cxc-banner');
+    if (observer) { observer.disconnect(); observer = null; }
+    if (banner) banner.remove();
+    document.documentElement.classList.remove('consent-open');
+    document.documentElement.style.removeProperty('--consent-height');
+    if (opener && document.contains(opener)) opener.focus();
   }
-
-  function buildBanner() {
-    if (document.getElementById('cxc-banner')) return document.getElementById('cxc-banner');
-    var banner = document.createElement('div');
+  function save(granted) {
+    var value = granted ? 'granted' : 'denied';
+    try { localStorage.setItem(KEY, value); } catch (e) {}
+    apply(value); close();
+  }
+  function open(focus) {
+    var existing = document.getElementById('cxc-banner');
+    if (existing) { if (focus) existing.querySelector('button').focus(); return; }
+    opener = focus ? document.activeElement : null;
+    var banner = document.createElement('section');
     banner.id = 'cxc-banner';
     banner.setAttribute('role', 'dialog');
-    banner.setAttribute('aria-label', 'Cookie consent');
-    banner.innerHTML =
-      '<div class="cxc-title">COOKIES.</div>' +
-      '<p>We use cookies to run this site and, only with your consent, Google Analytics. No advertising or tracking. ' +
-      '<a href="' + getCookiePolicyHref() + '">Cookie Policy</a> · <a href="' + getPrivacyHref() + '">Privacy Policy</a></p>' +
-      '<div class="cxc-actions">' +
-        '<button type="button" class="cxc-accept" data-action="accept">Accept</button>' +
-        '<button type="button" data-action="reject">Reject</button>' +
-      '</div>';
+    banner.setAttribute('aria-labelledby', 'cxc-title');
+    banner.setAttribute('aria-describedby', 'cxc-description');
+    banner.innerHTML = '<h2 id="cxc-title">Cookie preferences</h2>' +
+      '<p id="cxc-description">We use essential cookies to run this site. With your permission, we also use Google Analytics to understand visits. <a href="/cookie-policy/">Cookie Policy</a> · <a href="/privacy/">Privacy Policy</a></p>' +
+      '<div class="cxc-actions"><button type="button" data-action="reject">Reject optional</button><button type="button" class="cxc-accept" data-action="accept">Accept all</button></div>' +
+      '<button type="button" class="cxc-customize" aria-expanded="false" aria-controls="cxc-options" data-action="customize">Customize</button>' +
+      '<div id="cxc-options" hidden><p>Essential cookies are always active.</p><label><input id="cxc-analytics" type="checkbox"> Optional analytics</label><button type="button" data-action="save">Save preferences</button></div>';
     document.body.appendChild(banner);
-
-    banner.addEventListener('click', function (e) {
-      var t = e.target;
-      if (t && t.tagName === 'BUTTON' && t.dataset.action) {
-        setConsent(t.dataset.action === 'accept');
+    banner.querySelector('#cxc-analytics').checked = status() === 'granted';
+    banner.addEventListener('click', function (event) {
+      var button = event.target.closest('button[data-action]');
+      if (!button) return;
+      var action = button.dataset.action;
+      if (action === 'accept') save(true);
+      if (action === 'reject') save(false);
+      if (action === 'save') save(banner.querySelector('#cxc-analytics').checked);
+      if (action === 'customize') {
+        var options = banner.querySelector('#cxc-options');
+        options.hidden = !options.hidden;
+        button.setAttribute('aria-expanded', String(!options.hidden)); resize();
       }
     });
-    return banner;
+    document.documentElement.classList.add('consent-open');
+    resize();
+    if (window.ResizeObserver) { observer = new ResizeObserver(resize); observer.observe(banner); }
+    if (focus) banner.querySelector('button').focus();
   }
-
-  function showBanner() {
-    var b = buildBanner();
-    requestAnimationFrame(function () { b.classList.add('cxc-show'); });
-  }
-
-  function hideBanner() {
-    var b = document.getElementById('cxc-banner');
-    if (!b) return;
-    b.classList.remove('cxc-show');
-    setTimeout(function () { if (b.parentNode) b.parentNode.removeChild(b); }, 350);
-  }
-
-  function setConsent(granted) {
-    var value = granted ? 'granted' : 'denied';
-    try { localStorage.setItem(STORAGE_KEY, value); } catch (e) {}
-    gtag('consent', 'update', {
-      ad_storage: value,
-      ad_user_data: value,
-      ad_personalization: value,
-      analytics_storage: value
-    });
-    hideBanner();
-  }
-
-  // ---- 4. Show banner on first visit ----
   function ready(fn) {
-    if (document.readyState !== 'loading') fn();
-    else document.addEventListener('DOMContentLoaded', fn);
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+    else fn();
   }
-
-  if (stored !== 'granted' && stored !== 'denied') {
-    ready(showBanner);
-  }
-
-  // ---- 5. Public API to re-open ----
+  apply(status());
+  ready(function () { if (status() !== 'granted' && status() !== 'denied') open(false); });
+  window.addEventListener('storage', function (event) {
+    if (event.key === KEY) { apply(status()); close(); if (status() === 'pending') open(false); }
+  });
   window.CanxansaConsent = {
-    open: function () {
-      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
-      ready(showBanner);
-    },
-    accept: function () { setConsent(true); },
-    reject: function () { setConsent(false); },
-    status: function () {
-      try { return localStorage.getItem(STORAGE_KEY) || 'pending'; } catch (e) { return 'pending'; }
-    }
+    open: function () { ready(function () { open(true); }); },
+    accept: function () { save(true); }, reject: function () { save(false); }, status: status
   };
 })();

@@ -80,13 +80,13 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#0b0a09">
+<meta name="theme-color" content="#f7f6f2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdnoLmvDIaI.woff2">
 <link rel="preload" as="image" href="/images/hero-truck.webp" type="image/webp"
       imagesrcset="/images/hero-truck-1280.webp 1280w, /images/hero-truck.webp 2560w"
-      imagesizes="100vw" fetchpriority="high">
+      imagesizes="(min-width: 1760px) 1712px, 100vw" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -774,8 +774,9 @@
   gtag('js', new Date());
   gtag('config', 'G-X19NTBBWNQ', { 'anonymize_ip': true });
 </script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X19NTBBWNQ"></script>
+
 <link rel="stylesheet" href="/priority-routes.css">
+<link rel="stylesheet" href="/light-theme.css?v=20260918">
 </head>
 <body>
 
@@ -799,7 +800,7 @@
   <div class="nav-right">
     <a href="track/" class="nav-track">Track</a>
     <a href="#contact" class="nav-cta">Get a Quote</a>
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -818,18 +819,16 @@
 </div>
 
 <!-- HERO -->
-<header class="hero" id="top">
+<header class="hero home-hero" id="top">
+  <div class="hero-scene">
   <div class="hero-port" id="hero-port" aria-hidden="true">
     <picture>
-      <source type="image/webp" sizes="100vw"
+      <source type="image/webp" sizes="(min-width: 1760px) 1712px, 100vw"
               srcset="/images/hero-truck-1280.webp 1280w, /images/hero-truck.webp 2560w">
       <img src="/images/hero-truck.jpg" alt="" width="2560" height="1440" fetchpriority="high" decoding="async">
     </picture>
   </div>
-  <div class="hero-veil"></div>
-
-  <div class="hero-body">
-    <div class="hero-meta">
+<div class="hero-intro">    <div class="hero-meta">
       <span class="dot"></span>
       <span>Freight Forwarding</span>
       <span><b>TLL</b> Tallinn — <b>IST</b> Istanbul</span>
@@ -846,22 +845,19 @@
       <span class="mode-sep"></span>
       <span class="mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>Road Freight</span>
     </div>
-    <div class="hero-foot">
-      <p class="hero-sub"><strong>CANXANSA</strong> is a European freight forwarder based in Estonia for businesses, importers and exporters. We specialise in freight between Türkiye and Europe, and between Türkiye and the Middle East, in both directions. Our strong operational network in Türkiye coordinates road, sea and air cargo, alongside worldwide forwarding services.</p>
-      <div class="hero-cta-block">
-        <div class="hero-actions">
+</div>
+<p class="hero-sub"><strong>CANXANSA</strong> is a European freight forwarder based in Estonia for businesses, importers and exporters. We specialise in freight between Türkiye and Europe, and between Türkiye and the Middle East, in both directions. Our strong operational network in Türkiye coordinates road, sea and air cargo, alongside worldwide forwarding services.</p>
+<div class="hero-actions">
           <a href="#contact" class="btn-solid">Get a Quote →</a>
           <a href="#services" class="btn-line">Our Services</a>
         </div>
-        <div class="hero-track">
-          <input type="text" id="hero-track-input" aria-label="Tracking number" aria-describedby="hero-track-error" placeholder="TRACK — e.g. CX123456-7">
+</div>
+<div class="tracking-card"><label for="hero-track-input">Track your shipment</label><div class="tracking-fields">        <div class="hero-track">
+          <input type="text" id="hero-track-input" aria-label="Tracking number" aria-describedby="hero-track-error" placeholder="e.g. CX123456-7">
           <button id="hero-track-btn">Track</button>
         </div>
         <div class="hero-track-error" id="hero-track-error" role="alert">Invalid tracking number.</div>
-      </div>
-    </div>
-  </div>
-
+</div></div>
   <div class="datastrip">
     <div class="ds-cell"><span class="ds-num" data-count="150">150<em>+</em></span><span class="ds-label">Countries served</span></div>
     <div class="ds-cell"><span class="ds-num" data-count="24">24<em>/7</em></span><span class="ds-label">Support</span></div>
@@ -1315,17 +1311,21 @@
   // Hamburger
   const hamburger = document.getElementById('nav-hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
-  hamburger.addEventListener('click', function() {
-    this.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
-    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  function setMobileMenu(open) {
+    hamburger.classList.toggle('open', open);
+    mobileMenu.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  hamburger.addEventListener('click', () => setMobileMenu(!mobileMenu.classList.contains('open')));
+  mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMobileMenu(false)));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      setMobileMenu(false); hamburger.focus();
+    }
   });
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-      document.body.style.overflow = '';
-    });
+  matchMedia('(min-width: 1351px)').addEventListener('change', event => {
+    if (event.matches) setMobileMenu(false);
   });
 
   // Coverage tabs
@@ -1370,8 +1370,8 @@
   </svg>
 </a>
 
-<script src="/cookie-consent.js" defer></script>
+<script src="/cookie-consent.js?v=20260918" defer></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "84af88cb512e4afe921a0e56f09ee105"}'></script><!-- End Cloudflare Web Analytics -->
-<script src="/js/quote-form-ui.js" defer></script>
+<script src="/js/quote-form-ui.js?v=20260918" defer></script>
 </body>
 </html>
