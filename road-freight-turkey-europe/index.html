@@ -323,7 +323,7 @@
 #jr-canvas { opacity: 0; transition: opacity .9s ease; }
 .jr.ready #jr-canvas { opacity: 1; }
 .jr.ready .jr-poster { opacity: 0; }
-.jr-fade { position: absolute; inset: 0; background: #f4f1ec; opacity: 0; pointer-events: none; }
+.jr-fade { position: absolute; inset: 0; background: radial-gradient(ellipse at 68% 34%, #d7b49a 0%, #64697a 44%, #222d3b 88%); opacity: 0; pointer-events: none; }
 .jr-shade { position: absolute; inset: 0; pointer-events: none; transition: opacity .5s;
   background: radial-gradient(110% 80% at 0% 100%, rgba(10,9,8,.72) 0%, rgba(10,9,8,.3) 45%, rgba(10,9,8,0) 72%), linear-gradient(rgba(10,9,8,.42), rgba(10,9,8,0) 20%); }
 
@@ -333,6 +333,8 @@
 .jr-lab::before { content: ""; position: absolute; left: -4px; top: 3px; width: 8px; height: 8px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px rgba(232,82,26,.55); }
 .jr-lab.key::before { background: var(--o); box-shadow: 0 0 0 4px rgba(232,82,26,.3); }
 .jr-lab.on { opacity: 1; }
+.jr-lab.left { text-align: right; padding-left: 0; padding-right: 14px; translate: -100% 0; }
+.jr-lab.left::before { left: auto; right: -4px; }
 
 .jr-block { position: absolute; z-index: 4; left: clamp(20px, 4vw, 72px); bottom: clamp(56px, 10vh, 120px); max-width: min(600px, 86vw);
   opacity: 0; visibility: hidden; transform: translateY(18px); transition: opacity .5s ease, transform .7s cubic-bezier(.22,1,.36,1), visibility .5s; }
@@ -360,17 +362,13 @@
 .jr-scroll { margin-top: 30px; display: flex; align-items: center; gap: 12px; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--bone2); }
 .jr-scroll i { width: 1px; height: 26px; background: linear-gradient(var(--o), transparent); animation: jrcue 1.8s ease-in-out infinite; }
 @keyframes jrcue { 0%,100% { transform: scaleY(.4); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } }
-/* studyo sahnesinde (acik zemin) yazilar koyu */
-.jr.light .jr-block h2 { color: #0b0a09; text-shadow: none; }
-.jr.light .jr-block p { color: #4d4741; text-shadow: none; }
-.jr.light .jr-link, .jr.light .jr-chips a { color: #0b0a09; }
-.jr.light .jr-chips a { background: rgba(255,255,255,.6); border-color: rgba(11,10,9,.25); }
-.jr.light .jr-shade { opacity: 0; }
-.jr.light .jr-labels { visibility: hidden; }
-.jr.light .jr-k { color: var(--o2); }
-.jr.light .jr-progress button { color: rgba(11,10,9,.55); border-color: rgba(11,10,9,.18); }
-.jr.light .jr-progress button.on { color: #0b0a09; border-color: var(--o); }
-.jr.light .jr-skip, .jr.light .jr-credit { color: rgba(11,10,9,.6); }
+/* The studio shares the map light text and introduces a softer edge vignette. */
+.jr.studio .jr-shade {
+  background: radial-gradient(85% 78% at 8% 97%, rgba(7,10,15,.77), rgba(7,10,15,.27) 56%, transparent 82%),
+    linear-gradient(rgba(7,10,15,.45), transparent 21%);
+}
+.jr.studio .jr-labels { visibility: hidden; }
+.jr.studio .jr-link { border-bottom-color: #ff8254; }
 
 .jr-progress { position: absolute; z-index: 5; right: clamp(16px, 3vw, 48px); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; }
 .jr-progress button { all: unset; cursor: pointer; min-width: 120px; min-height: 24px; display: flex; gap: 10px; align-items: center; justify-content: flex-end; padding-right: 12px; border-right: 2px solid rgba(245,240,235,.25);
@@ -380,7 +378,8 @@
 .jr-progress button.on { color: var(--bone); border-right-color: var(--o); }
 .jr-progress button:focus-visible, .jr a:focus-visible { outline: 2px solid var(--o); outline-offset: 3px; }
 .jr-skip { position: absolute; z-index: 5; right: clamp(16px, 3vw, 48px); bottom: 34px; font-size: 10px; letter-spacing: 2.4px; text-transform: uppercase; color: var(--bone2); text-decoration: none; padding: 4px 0; border-bottom: 1px solid rgba(245,240,235,.3); }
-.jr-credit { position: absolute; z-index: 5; right: clamp(16px, 3vw, 48px); bottom: 10px; font-size: 9px; letter-spacing: .4px; color: rgba(245,240,235,.55); max-width: 60vw; text-align: right; }
+.jr-credit { padding: 16px clamp(24px, 5vw, 64px) 0; color: #394554; font-size: .8125rem; line-height: 1.65; }
+.jr-credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
 /* Sabit anlatim */
 .jr-text { padding: 110px 64px 40px; }
@@ -405,11 +404,10 @@
   .jr-progress button { min-width: 0; flex: 1; justify-content: flex-start; padding: 8px 0 0; border-right: 0; border-top: 2px solid rgba(245,240,235,.25); }
   .jr-progress button.done { border-top-color: rgba(232,82,26,.5); }
   .jr-progress button.on { border-top-color: var(--o); }
-  .jr.light .jr-progress button { border-color: rgba(11,10,9,.18); }
-  .jr.light .jr-progress button.on { border-top-color: var(--o); }
+  .jr.studio .jr-shade { background: linear-gradient(transparent 42%, rgba(7,10,15,.71) 80%),
+      linear-gradient(rgba(7,10,15,.42), transparent 19%); }
   .jr-progress button span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .jr-skip { right: 18px; bottom: 40px; }
-  .jr-credit { left: 18px; right: 18px; bottom: 12px; max-width: none; text-align: left; font-size: 8.5px; }
   .jr-lab { font-size: 9.5px; letter-spacing: 1.4px; }
   .jr-text { padding: 80px 24px 30px; }
 }
@@ -450,6 +448,12 @@
   .jr-cor .go { width: 40px; height: 40px; }
 }
 
+.jr-video-fallback { display: none; margin: 28px auto 0; width: min(780px, calc(100% - 48px)); color: #15202b; background: #f7f8fa; padding: 0 16px 4px; border-radius: 6px; }
+.jr-video-fallback summary { cursor: pointer; font-size: 1rem; font-weight: 700; padding: 14px 0; border-bottom: 1px solid #d7dce1; }
+.jr-video-fallback summary:focus-visible { outline: 2px solid var(--o2); outline-offset: 4px; }
+.jr-video-fallback video { display: block; width: 100%; aspect-ratio: 8 / 5; border-radius: 6px; background: #182432; }
+.jr-video-fallback p { margin: 14px 0; line-height: 1.5; }
+html.jr-rm .jr-video-fallback { display: block; }
 html.jr-rm .jr { height: auto; }
 html.jr-rm .jr-stage { position: relative; }
 html.jr-rm .jr-progress, html.jr-rm .jr-scroll, html.jr-rm #jr-canvas { display: none; }
@@ -561,9 +565,27 @@ html.jr-debug .jr-block { transition: none !important; }
       <button type="button" data-p=".97"><b>05</b><span>Network</span></button>
     </div>
     <a href="#contact" class="jr-skip" id="skip" data-cta="skip">Skip to quote</a>
-    <div class="jr-credit">Imagery: EOxCloudless 2017 by EOX, CC BY 4.0, contains modified Copernicus Sentinel data. Elevation: AWS Terrain Tiles.</div>
   </div>
 </section>
+
+<details class="jr-video-fallback" id="jr-video-fallback">
+  <summary>Watch the loading and sealing clip</summary>
+  <p>A short 3D clip showing a loaded trailer closing and being sealed.</p>
+  <template id="jr-video-template">
+    <video controls playsinline preload="none" width="896" height="560" poster="/images/journey/loading-and-sealing.webp" aria-label="Trailer loading and sealing">
+      <source src="/images/journey/loading-and-sealing.mp4" type="video/mp4">
+      <a href="/images/journey/loading-and-sealing.mp4">Open the loading and sealing clip</a>
+    </video>
+  </template>
+</details>
+
+<p class="jr-credit">
+  Map sources: <a href="https://s2maps.eu/">EOxCloudless 2017</a> by
+  <a href="https://eox.at/">EOX IT Services GmbH</a>, contains modified Copernicus Sentinel data (2017).
+  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Cropped and color graded for this journey.
+  Elevation: <a href="https://registry.opendata.aws/terrain-tiles/">Mapzen Terrain Tiles on AWS</a>
+  (<a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">attributions</a>).
+</p>
 
 <!-- Sabit icerik: arama motorlari ve hareketi kapali kullanicilar icin ayni hikaye -->
 <section class="jr-text" id="how-road-freight-works">
@@ -783,6 +805,6 @@ html.jr-debug .jr-block { transition: none !important; }
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "84af88cb512e4afe921a0e56f09ee105"}'></script><!-- End Cloudflare Web Analytics -->
 <script src="/js/quote-form-ui.js?v=20260918" defer></script>
 <script src="/js/form-funnel.js?v=20260923" defer></script>
-<script src="/js/road-journey.js?v=20261126d" defer></script>
+<script src="/js/road-journey.js?v=20261126v9" defer></script>
 </body>
 </html>
