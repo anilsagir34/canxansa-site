@@ -377,6 +377,9 @@
 .jr-progress button.done { border-right-color: rgba(232,82,26,.5); }
 .jr-progress button.on { color: var(--bone); border-right-color: var(--o); }
 .jr-progress button:focus-visible, .jr a:focus-visible { outline: 2px solid var(--o); outline-offset: 3px; }
+/* Studio: the white cab can pass behind the step list, so give it its own dark panel. */
+.jr-progress { padding: 12px 0 12px 14px; border-radius: 4px; transition: background .4s, backdrop-filter .4s; }
+.jr.studio .jr-progress { background: rgba(7,10,15,.66); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 .jr-skip { position: absolute; z-index: 5; right: clamp(16px, 3vw, 48px); bottom: 34px; font-size: 10px; letter-spacing: 2.4px; text-transform: uppercase; color: var(--bone2); text-decoration: none; padding: 4px 0; border-bottom: 1px solid rgba(245,240,235,.3); }
 .jr-credit { padding: 16px clamp(24px, 5vw, 64px) 0; color: #394554; font-size: .8125rem; line-height: 1.65; }
 .jr-credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
@@ -406,6 +409,7 @@
   .jr-progress button.on { border-top-color: var(--o); }
   .jr.studio .jr-shade { background: linear-gradient(transparent 42%, rgba(7,10,15,.71) 80%),
       linear-gradient(rgba(7,10,15,.42), transparent 19%); }
+  .jr-progress, .jr.studio .jr-progress { background: none; -webkit-backdrop-filter: none; backdrop-filter: none; padding: 0; }
   .jr-progress button span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .jr-skip { right: 18px; bottom: 40px; }
   .jr-lab { font-size: 9.5px; letter-spacing: 1.4px; }
